@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Reserva tu Plaza</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="../img/Captura de pantalla 2025-01-13 185823.png">
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#">Sobre Nosotros</a></li>
+                <li><a href="#">Actividades</a></li>
+                <li><a href="#">Personal</a></li>
+                <li><a href="#">Instalaciones</a></li>
+                <li><a href="#">Precios</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="intro">
+        <div class="intro-image">
+            <img src="niñospintando.avif">
+        </div>
+        <div class="intro-text">
+            <h1>RESERVA TU PLAZA</h1>
+            <div class="flecha">
+                <img src="emojione--down-arrow.png">
+            </div>
+        </div>
+    </section>
+
+    <div>
+        <p>¡Reserva la plaza de tu pequeño artista!</p>
+        <p> Completa el formulario a continuación para asegurar su participación en nuestro campamento artístico. ¡Las plazas son limitadas, no te quedes sin la tuya!</p>
+
+    </div>
+
+    <div class="form-container">
+        <h2>Datos del Pequeño Campista</h2>
+        <form>
+            <div class="form-group">
+                <label for="nombre">Nombre y apellidos</label>
+                <input type="text" id="nombre" name="nombre">
+            </div>
+            <div class="form-group">
+                <label for="fecha-nacimiento">Fecha de nacimiento</label>
+                <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" >
+            </div>
+            <div class="form-group">
+                <label for="dni">DNI / Pasaporte</label>
+                <input type="text" id="dni" name="dni" >
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="direccion" >
+            </div>
+
+            <br><br>
+            <h3>Datos Médicos</h3>
+            <div class="form-group">
+                <label for="historial-medico">Historial médico relevante</label>
+                <textarea id="historial-medico" name="historial-medico" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="autorizacion">Autorización para administrar medicamentos</label>
+                <input type="text" id="autorizacion" name="autorizacion">
+            </div>
+            <div class="form-group">
+                <label for="consentimiento">Consentimiento médico para emergencias</label>
+                <input type="text" id="consentimiento" name="consentimiento">
+            </div>
+
+            <br><br>
+            <h3>Datos Adicionales</h3>
+            <div class="form-group">
+                <label for="restricciones">Restricciones dietéticas</label>
+                <textarea id="restricciones" name="restricciones" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="necesidades">Necesidades especiales o adaptaciones</label>
+                <textarea id="necesidades" name="necesidades" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="contacto-emergencia">Persona de contacto en caso de emergencia</label>
+                <input type="text" id="contacto-emergencia" name="contacto-emergencia">
+            </div>
+
+            <div class="form-group">
+                
+                <label for="terminos">He leído y acepto el aviso legal y política de privacidad</label>
+                <input type="checkbox" id="terminos" name="terminos" >
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-cancel">Cancelar</button>
+                <button type="submit" class="btn-submit">Pago</button>
+            </div>
+        </form>
+    </div>
+    <script src="reserva.js"></script>
+</body>
+</html>
