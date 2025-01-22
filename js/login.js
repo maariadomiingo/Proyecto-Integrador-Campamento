@@ -63,44 +63,65 @@ document.addEventListener("DOMContentLoaded", function () {
         var isPasswordValid = validatePassword();
         console.log(isRolValid, isNombreValid, isPasswordValid);
 
-        // Si todos los campos son válidos, enviar el formulario
+        // Si todos los campos son válidos, enviar los datos con fetch
         if (isRolValid && isNombreValid && isPasswordValid) {
-            form_inserta.submit();
-            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-            insertarDatos(rol.value, nombre.value, contrasena.value);
+            console.log("Enviando datos...");
+            insertarDatos(rol.value, nombre.value, contrasena.value); // Envía los datos usando fetch
+        } else {
+            console.log("El formulario no pasó las validaciones.");
         }
     });
 
-    function insertarDatos(rol, nombre, contrasena){
+    function insertarDatos(rol, nombre, contrasena) {
         let formData = new FormData();
         formData.append("funcion", "insertaUsuario");
         formData.append("rol", rol);
         formData.append("nombre", nombre);
         formData.append("password", contrasena);
 
-        console.log(formData);
-
+        let data = {
+            "funcion": "insertaUsuario",
+            "rol": rol,
+            "nombre": nombre,
+            "password": contrasena
+        }
+    
+        console.log(formData);  
+    
         fetch("../php/login.php", {
             method: "POST",
-            body: formData
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            },
         })
-        .then(function(response){
+        .then(function(response) {
             if (!response.ok) {
                 throw new Error("Error en la solicitud: " + response.statusText);
             }
             return response.json();
         })
-        .then(function(data){
+        .then(function(data) {
             console.log(data);
             if (data.status === "success") {
                 alert("Usuario insertado correctamente");
+                
+                // Redirigir según el rol del usuario
+                if (rol.toLowerCase() === "coordinador") {
+                    window.location.href = "../html/interfaz_coordinador.html";
+                } else if (rol.toLowerCase() === "monitor") {
+                    window.location.href = "../html/interfaz_monitor.html";
+                } else {
+                    alert("Rol desconocido. No se puede redirigir.");
+                }
             } else {
                 alert("Error al insertar el usuario: " + data.message);
             }
         })
-        .catch(function(error){
+        .catch(function(error) {
             console.error("Error en la solicitud:", error);
             alert("Error en la solicitud. Consulta la consola para más detalles.");
-        })
+        });
     }
+    
 });
