@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(function(data) {
             console.log(data);
             if (data.status === "success") {
-              //  alert("Usuario insertado correctamente");
+                alert("Usuario insertado correctamente");
                 
                 // Redirigir según el rol del usuario
                 if (rol.toLowerCase() === "coordinador") {
