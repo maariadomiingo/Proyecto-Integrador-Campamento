@@ -4,14 +4,14 @@ body {
     font-family: Arial, sans-serif;
   }
   
-  .contenedor {
+  .container {
     width: 140px;
     height: 1063px;
     position: relative;
     background: white;
   }
   
-  .fondo {
+  .background {
     width: 19000px;
     height: 1025px;
     left: 0px;
@@ -20,7 +20,7 @@ body {
     background: #D3E1EB;
   }
   
-  .circulo {
+  .circle {
     width: 81px;
     height: 79px;
     left: 52px;
@@ -31,7 +31,7 @@ body {
     border-radius: 9999px;
   }
   
-  .icono-usuario {
+  .user-icon {
     width: 34px;
     height: 31px;
     left: 76px;
@@ -39,7 +39,7 @@ body {
     position: absolute;
   }
   
-  .circulo-salir {
+  .logout-circle {
     width: 80px;
     height: 80px;
     left: 1293px;
@@ -51,7 +51,7 @@ body {
     border: 1px #7AB3D7 solid;
   }
   
-  .icono-salir {
+  .logout-icon {
     width: 24px;
     height: 29px;
     left: 1325px;
@@ -59,7 +59,7 @@ body {
     position: absolute;
   }
   
-  .pie-de-pagina {
+  .footer {
     width: 19000px;
     height: 143px;
     left: 0px;
@@ -68,7 +68,7 @@ body {
     background: #7770C5;
   }
   
-  .texto-pie-de-pagina {
+  .footer-text {
     width: 1009px;
     left: 215px;
     top: 982px;
@@ -80,7 +80,7 @@ body {
     word-wrap: break-word;
   }
   
-  .div-vacio {
+  .empty-div {
     width: 407px;
     height: 125px;
     left: 187px;
@@ -88,7 +88,7 @@ body {
     position: absolute;
   }
   
-  .trazo-pincel-1 {
+  .brush-stroke-1 {
     width: 940px;
     height: 400px;
     left: 288px;
@@ -96,47 +96,15 @@ body {
     position: absolute;
   }
   
-  .trazo-pincel-2 {
+  .brush-stroke-2 {
     width: 940px;
     height: 400px;
     left: 288px;
     top: 510px;
-    position: absolute;
-  }
-
-  .trazo-pincel-3 {
-    width: 940px;
-    height: 400px;
-    left: 288px;
-    top: 400px;
-    position: absolute;
-  }
-
-  .trazo-pincel-4 {
-    width: 940px;
-    height: 400px;
-    left: 288px;
-    top: 290px;
-    position: absolute;
-  }
-
-  .trazo-pincel-5 {
-    width: 940px;
-    height: 400px;
-    left: 288px;
-    top: 510px;
-    position: absolute;
-  }
-
-  .trazo-pincel-6 {
-    width: 940px;
-    height: 400px;
-    left: 288px;
-    top: 50px;
     position: absolute;
   }
   
-  .agregar-monitor {
+  .add-monitor {
     width: 955px;
     height: 110px;
     left: 281px;
@@ -144,7 +112,7 @@ body {
     position: absolute;
   }
   
-  .agregar-monitor img {
+  .add-monitor img {
     width: 955px;
     height: 114px;
     left: 0px;
@@ -152,7 +120,7 @@ body {
     position: absolute;
   }
   
-  .texto-agregar-monitor {
+  .add-monitor-text {
     width: 455px;
     height: 17.65px;
     left: 137px;
@@ -165,7 +133,7 @@ body {
     word-wrap: break-word;
   }
   
-  .estado-actividades {
+  .activity-status {
     width: 955px;
     height: 114px;
     left: 284px;
@@ -173,7 +141,7 @@ body {
     position: absolute;
   }
   
-  .estado-actividades img {
+  .activity-status img {
     width: 955px;
     height: 114px;
     left: 0px;
@@ -181,7 +149,7 @@ body {
     position: absolute;
   }
   
-  .texto-estado-actividades {
+  .activity-status-text {
     width: 533px;
     height: 18.30px;
     left: 127px;
@@ -194,7 +162,7 @@ body {
     word-wrap: break-word;
   }
   
-  .gestionar-actividades {
+  .manage-activities {
     width: 948px;
     height: 134px;
     left: 288px;
@@ -202,7 +170,7 @@ body {
     position: absolute;
   }
   
-  .gestionar-actividades img {
+  .manage-activities img {
     width: 948px;
     height: 380px;
     left: 0px;
@@ -210,7 +178,7 @@ body {
     position: absolute;
   }
   
-  .texto-gestionar-actividades {
+  .manage-activities-text {
     width: 566.81px;
     height: 21.51px;
     left: 111.19px;
@@ -223,7 +191,7 @@ body {
     word-wrap: break-word;
   }
   
-  .imagen-rotada {
+  .rotated-image {
     width: 100px;
     height: 185px;
     left: 296px;
@@ -233,7 +201,7 @@ body {
     transform-origin: 0 0;
   }
   
-  .div-vacio-2 {
+  .empty-div-2 {
     width: 651px;
     height: 863px;
     left: 670px;
@@ -241,7 +209,7 @@ body {
     position: absolute;
   }
   
-  .gestionar-horarios {
+  .manage-schedules {
     width: 962px;
     height: 128px;
     left: 288px;
@@ -249,7 +217,7 @@ body {
     position: absolute;
   }
   
-  .gestionar-horarios img {
+  .manage-schedules img {
     width: 962px;
     height: 128px;
     left: 0px;
@@ -257,7 +225,7 @@ body {
     position: absolute;
   }
 
-  .imagen-horarios{
+  .schedule-img{
     width: 26px;
     height: 256px;
     left: 674.91px;
@@ -265,7 +233,7 @@ body {
     position: absolute;
   }
   
-  .texto-gestionar-horarios {
+  .manage-schedules-text {
     width: 584.25px;
     height: 20.54px;
     left: 127.93px;
@@ -278,11 +246,11 @@ body {
     word-wrap: break-word;
   }
   
-  .icono-horario {
-    width: 80px;
-    height: 65px;
-    left: 1000px;
-    top: 200px;
+  .schedule-icon {
+    width: 93.68px;
+    height: 73.48px;
+    left: 674.91px;
+    top: 44.25px;
     position: absolute;
   }
   
@@ -294,7 +262,7 @@ body {
     position: absolute;
   }
   
-  .icono-pequeno {
+  .small-icon {
     width: 89px;
     height: 59px;
     left: 953px;
@@ -302,7 +270,7 @@ body {
     position: absolute;
   }
   
-  .div-vacio-3 {
+  .empty-div-3 {
     width: 100px;
     height: 100px;
     left: 646px;
@@ -310,7 +278,7 @@ body {
     position: absolute;
   }
   
-  .editar-campistas {
+  .edit-campers {
     width: 455px;
     height: 60px;
     left: 423px;
@@ -323,7 +291,7 @@ body {
     word-wrap: break-word;
   }
   
-  .gestionar-grupos {
+  .manage-groups {
     width: 455px;
     height: 17.65px;
     left: 416px;
@@ -336,7 +304,7 @@ body {
     word-wrap: break-word;
   }
   
-  .rectangulo-pequeno {
+  .small-rectangle {
     width: 69px;
     height: 70px;
     padding-left: 5.75px;
@@ -352,23 +320,23 @@ body {
     display: inline-flex;
   }
   
-  .rectangulo-interno {
+  .inner-rectangle {
     width: 57.50px;
     height: 35px;
     background: white;
   }
   
-  .imagen-pequena-1 {
+  .small-image-1 {
     width: 77px;
     height: 78px;
   }
   
-  .imagen-pequena-2 {
+  .small-image-2 {
     width: 77px;
     height: 73px;
   }
   
-  .imagen-pequena-3 {
+  .small-image-3 {
     width: 46px;
     height: 49px;
   }

@@ -108,7 +108,7 @@ body {
     width: 940px;
     height: 400px;
     left: 288px;
-    top: 400px;
+    top: 510px;
     position: absolute;
   }
 
@@ -116,23 +116,15 @@ body {
     width: 940px;
     height: 400px;
     left: 288px;
-    top: 290px;
-    position: absolute;
-  }
-
-  .trazo-pincel-5 {
-    width: 940px;
-    height: 400px;
-    left: 288px;
     top: 510px;
     position: absolute;
   }
 
-  .trazo-pincel-6 {
-    width: 940px;
+  .trazo-pincel-5 {
+    width:12940px;
     height: 400px;
     left: 288px;
-    top: 50px;
+    top: 510px;
     position: absolute;
   }
   
@@ -279,10 +271,10 @@ body {
   }
   
   .icono-horario {
-    width: 80px;
-    height: 65px;
+    width: 90px;
+    height: 73px;
     left: 1000px;
-    top: 200px;
+    top: 190px;
     position: absolute;
   }
   

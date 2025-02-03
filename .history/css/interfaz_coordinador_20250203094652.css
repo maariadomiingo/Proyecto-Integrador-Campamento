@@ -1,0 +1,115 @@
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  .contenedor {
+    width: 140px;
+    height: 1063px;
+    position: relative;
+    background: white;
+  }
+  .fondo {
+    width: 19000px;
+    height: 1025px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #D3E1EB;
+  }
+  .circulo {
+    width: 81px;
+    height: 79px;
+    left: 52px;
+    top: 28px;
+    position: absolute;
+    background: #7770C5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 9999px;
+  }
+  .icono-usuario {
+    width: 34px;
+    height: 31px;
+    left: 76px;
+    top: 52px;
+    position: absolute;
+  }
+  .circulo-cerrar-sesion {
+    width: 80px;
+    height: 80px;
+    left: 1293px;
+    top: 37px;
+    position: absolute;
+    background: #F5F5F5;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+    border-radius: 9999px;
+    border: 1px #7AB3D7 solid;
+  }
+  .icono-cerrar-sesion {
+    width: 24px;
+    height: 29px;
+    left: 1325px;
+    top: 63px;
+    position: absolute;
+  }
+  .pie-pagina {
+    width: 19000px;
+    height: 143px;
+    left: 0px;
+    top: 920px;
+    position: absolute;
+    background: #7770C5;
+  }
+  .texto-pie-pagina {
+    width: 1009px;
+    left: 215px;
+    top: 982px;
+    position: absolute;
+    color: black;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+  }
+  .div-vacio {
+    width: 407px;
+    height: 125px;
+    left: 187px;
+    top: 300px;
+    position: absolute;
+  }
+  .trazo-pincel-1 {
+    width: 940px;
+    height: 400px;
+    left: 288px;
+    top: 630px;
+    position: absolute;
+  }
+  .trazo-pincel-2 {
+    width: 940px;
+    height: 400px;
+    left: 288px;
+    top: 510px;
+    position: absolute;
+  }
+  .rectangulo-pequeno {
+    width: 69px;
+    height: 70px;
+    padding-left: 5.75px;
+    padding-right: 5.75px;
+    padding-top: 17.50px;
+    padding-bottom: 17.50px;
+    left: 966px;
+    top: 655px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+  }
+  .rectangulo-interno {
+    width: 57.50px;
+    height: 35px;
+    background: white;
+  }
+

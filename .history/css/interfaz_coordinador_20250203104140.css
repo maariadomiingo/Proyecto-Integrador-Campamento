@@ -108,7 +108,7 @@ body {
     width: 940px;
     height: 400px;
     left: 288px;
-    top: 400px;
+    top: 290px;
     position: absolute;
   }
 
@@ -116,19 +116,11 @@ body {
     width: 940px;
     height: 400px;
     left: 288px;
-    top: 290px;
-    position: absolute;
-  }
-
-  .trazo-pincel-5 {
-    width: 940px;
-    height: 400px;
-    left: 288px;
     top: 510px;
     position: absolute;
   }
 
-  .trazo-pincel-6 {
+  .trazo-pincel-5 {
     width: 940px;
     height: 400px;
     left: 288px;

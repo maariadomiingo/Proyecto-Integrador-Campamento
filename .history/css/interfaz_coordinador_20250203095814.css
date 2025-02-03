@@ -103,38 +103,6 @@ body {
     top: 510px;
     position: absolute;
   }
-
-  .trazo-pincel-3 {
-    width: 940px;
-    height: 400px;
-    left: 288px;
-    top: 400px;
-    position: absolute;
-  }
-
-  .trazo-pincel-4 {
-    width: 940px;
-    height: 400px;
-    left: 288px;
-    top: 290px;
-    position: absolute;
-  }
-
-  .trazo-pincel-5 {
-    width: 940px;
-    height: 400px;
-    left: 288px;
-    top: 510px;
-    position: absolute;
-  }
-
-  .trazo-pincel-6 {
-    width: 940px;
-    height: 400px;
-    left: 288px;
-    top: 50px;
-    position: absolute;
-  }
   
   .agregar-monitor {
     width: 955px;
@@ -279,10 +247,10 @@ body {
   }
   
   .icono-horario {
-    width: 80px;
-    height: 65px;
+    width: 93.68px;
+    height: 73.48px;
     left: 1000px;
-    top: 200px;
+    top: 100px;
     position: absolute;
   }
   
