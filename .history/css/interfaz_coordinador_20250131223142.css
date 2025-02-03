@@ -1,0 +1,305 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: white;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #D3E1EB;
+  z-index: 1;
+}
+
+.circle {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #7770C5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.user-icon {
+  width: 34px;
+  height: 31px;
+  position: absolute;
+  top: 45px;
+  left: 45px;
+  z-index: 3;
+}
+
+.logout-circle {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #F5F5F5;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+  border-radius: 50%;
+  border: 1px solid #7AB3D7;
+  z-index: 2;
+}
+
+.logout-icon {
+  width: 24px;
+  height: 29px;
+  position: absolute;
+  top: 45px;
+  right: 45px;
+  z-index: 3;
+}
+
+.footer {
+  width: 100%;
+  height: 150px;
+  position: absolute;
+  bottom: 0;
+  background: #7770C5;
+  z-index: 2;
+}
+
+.footer-text {
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  color: black;
+  font-size: 16px;
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  z-index: 3;
+}
+
+.empty-div {
+  width: 407px;
+  height: 125px;
+  position: absolute;
+  left: 187px;
+  top: 300px;
+}
+
+.brush-stroke-1,
+.brush-stroke-2 {
+  width: 940px;
+  height: 400px;
+  position: absolute;
+  left: 288px;
+}
+
+.brush-stroke-1 {
+  top: 630px;
+}
+
+.brush-stroke-2 {
+  top: 510px;
+}
+
+.add-monitor,
+.activity-status,
+.manage-activities,
+.manage-schedules {
+  width: 955px;
+  height: 110px;
+  position: absolute;
+  left: 281px;
+}
+
+.add-monitor {
+  top: 516px;
+}
+
+.activity-status {
+  top: 402px;
+}
+
+.manage-activities {
+  top: 268px;
+}
+
+.manage-schedules {
+  top: 152px;
+}
+
+.add-monitor img,
+.activity-status img,
+.manage-activities img,
+.manage-schedules img {
+  width: 100%;
+  height: auto;
+}
+
+.add-monitor-text,
+.activity-status-text,
+.manage-activities-text,
+.manage-schedules-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 36px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.rotated-image {
+  width: 135px;
+  height: 185px;
+  position: absolute;
+  left: 296px;
+  top: 381px;
+  transform: rotate(180deg);
+}
+
+.empty-div-2 {
+  width: 651px;
+  height: 863px;
+  position: absolute;
+  left: 670px;
+  top: 463px;
+}
+
+.schedule-icon {
+  width: 93.68px;
+  height: 73.48px;
+  position: absolute;
+  left: 674.91px;
+  top: 44.25px;
+}
+
+.logo {
+  width: 194px;
+  height: 103px;
+  position: absolute;
+  left: 647px;
+  top: 25px;
+}
+
+.small-icon {
+  width: 89px;
+  height: 59px;
+  position: absolute;
+  left: 953px;
+  top: 778px;
+}
+
+.empty-div-3 {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 646px;
+  top: 210px;
+}
+
+.edit-campers,
+.manage-groups {
+  position: absolute;
+  color: white;
+  font-size: 36px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.edit-campers {
+  width: 455px;
+  height: 60px;
+  left: 423px;
+  top: 788px;
+}
+
+.manage-groups {
+  width: 455px;
+  height: 17.65px;
+  left: 416px;
+  top: 672px;
+}
+
+.small-rectangle {
+  width: 69px;
+  height: 70px;
+  padding-left: 5.75px;
+  padding-right: 5.75px;
+  padding-top: 17.50px;
+  padding-bottom: 17.50px;
+  position: absolute;
+  left: 966px;
+  top: 655px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
+.inner-rectangle {
+  width: 57.50px;
+  height: 35px;
+  background: white;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .circle,
+  .logout-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .user-icon {
+    top: 35px;
+    left: 35px;
+  }
+
+  .logout-icon {
+    top: 35px;
+    right: 35px;
+  }
+
+  .footer-text {
+    font-size: 14px;
+  }
+
+  .add-monitor-text,
+  .activity-status-text,
+  .manage-activities-text,
+  .manage-schedules-text,
+  .edit-campers,
+  .manage-groups {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-text {
+    font-size: 12px;
+  }
+
+  .add-monitor-text,
+  .activity-status-text,
+  .manage-activities-text,
+  .manage-schedules-text,
+  .edit-campers,
+  .manage-groups {
+    font-size: 18px;
+  }
+}
