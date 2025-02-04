@@ -323,7 +323,7 @@ body {
     width: 70px;
     height: 63px;
     left: 1000px;
-    top: 660px;
+    top: 650px;
     position: absolute;
   }
   
@@ -335,11 +335,11 @@ body {
     position: absolute;
   }
   
-  .icono-campistas {
-    width: 95px;
-    height: 80px;
-    left: 983px;
-    top: 768px;
+  .icono-pequeno {
+    width: 89px;
+    height: 59px;
+    left: 953px;
+    top: 778px;
     position: absolute;
   }
   

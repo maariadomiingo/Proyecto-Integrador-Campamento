@@ -199,7 +199,7 @@ body {
     height: 134px;
     left: 288px;
     top: 268px;
-    position: relative;
+    position: absolute;
   }
   
   .gestionar-actividades img {
@@ -290,42 +290,12 @@ body {
     width: 80px;
     height: 65px;
     left: 1000px;
-    top: 440px;
+    top: 200px;
     position: absolute;
   }
 
   .icono-gestionar {
-    width: 80px;
-    height: 65px;
-    left: 1000px;
-    top: 200px;
-    position: absolute;
-  }
-  
-  .icono-estado-actividades {
-    width: 70px;
-    height: 55px;
-    left: 1000px;
-    top: 325px;
-    position: absolute;
-    z-index: 1;
-  }
-
-  .icono-añadirMonitor {
-    width: 70px;
-    height: 65px;
-    left: 1000px;
-    top: 550px;
-    position: absolute;
-  }
-
-  .icon-gestionarGrupos{
-    width: 70px;
-    height: 63px;
-    left: 1000px;
-    top: 660px;
-    position: absolute;
-  }
+    
   
   .logo {
     width: 194px;
@@ -335,11 +305,11 @@ body {
     position: absolute;
   }
   
-  .icono-campistas {
-    width: 95px;
-    height: 80px;
-    left: 983px;
-    top: 768px;
+  .icono-pequeno {
+    width: 89px;
+    height: 59px;
+    left: 953px;
+    top: 778px;
     position: absolute;
   }
   
