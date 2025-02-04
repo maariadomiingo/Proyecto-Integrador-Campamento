@@ -91,3 +91,22 @@ body::before {
     width: 250px; 
     height: auto; 
 }
+.irhome{
+    position: absolute;
+    top: 30px; 
+    left: 30px;
+    background-color: #f5f5f5;
+    border: 2px solid #7AB3D7;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 40px;
+    height:40px;
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.irhome:hover {
+    background-color: #e0f7ff;
+    border-color: #3468A3;
+}

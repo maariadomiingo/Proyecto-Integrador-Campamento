@@ -72,4 +72,35 @@ document.addEventListener("DOMContentLoaded", () => {
             form.submit();
         }
     });
+
+    let currentStep = 1;
+
+    function updateSteps() {
+      const steps = document.querySelectorAll('.step');
+
+      steps.forEach((step, index) => {
+        step.classList.toggle('active', index < currentStep);
+      });
+
+      const progressWidth = (currentStep - 1) / (steps.length - 1) * 100;
+
+      document.getElementById('prevButton').disabled = currentStep === 1;
+      document.getElementById('nextButton').disabled = currentStep === steps.length;
+    }
+
+    function nextStep() {
+      if (currentStep < 4) {
+        currentStep++;
+        updateSteps();
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        updateSteps();
+      }
+    }
+
+    updateSteps();
 });
