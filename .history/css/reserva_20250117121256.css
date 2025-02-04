@@ -1,21 +1,25 @@
 /* General Styles */
+@font-face {
+    font-family: "Montserrat";
+    src: url(../font/Montserrat-VariableFont_wght.ttf);
+}
 body {
     font-family: Poppins, sans-serif;
     background-color: #fff;
     margin: 0;
     padding: 0;
 }
-
+/*Header*/
 .header {
     background-color: #fff;
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between; /* Separar logo y navegación */
+    justify-content: space-between; 
     align-items: center;
 }
 
 .logo img {
-    height: 50px;
+    height: 70px;
 }
 
 .nav ul {
@@ -23,8 +27,8 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 15px; /* Espaciado entre los elementos del nav */
-    justify-content: center; /* Centrar los elementos */
+    gap: 60px; 
+    justify-content: center;
     align-items: center;
 }
 
@@ -37,6 +41,38 @@ body {
     color: #333;
     font-weight: bold;
 }
+.idioma{
+    padding: 0px 10px;
+    background-color: #f2f2f2;
+    color: #0F0559;
+    border: 2px solid #7AB3D7;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+.idioma img{
+    height: 30px;
+}
+.idioma:hover {
+    border-color: #3468A3;
+}
+.perfil {
+    padding: 1px 10px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #7770C5;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.perfil img{
+    height: 30px;
+}
+.perfil:hover {
+    background-color: #564EB5; 
+}
 
 /* Intro Section */
 .intro {
@@ -46,9 +82,8 @@ body {
     width: 100%; /* Asegurar que ocupa todo el ancho */
     height: 550px; /* Altura fija para mantener el diseño */
     margin: 0 auto; /* Centrar la intro en la página */
-    background-color: #BBB7E5; 
+    background-color: #D3E1EB; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px 40px;
 }
 
 .intro-text {
@@ -57,6 +92,7 @@ body {
 }
 
 .intro-text h1 {
+    font-family: "Montserrat";
     font-size: 2.5em;
     color: #fff;
     margin-bottom: 20px;
@@ -71,13 +107,12 @@ body {
 .intro-image {
     flex: 1;
     display: flex;
-    justify-content: flex-start; /* Imagen alineada a la izquierda */
+    justify-content: flex-start;
     align-items: center;
 }
 
 .intro-image img {
-    max-width: 100%; /* Ajusta el tamaño de la imagen */
-    border-radius: 10px;
+    max-width: 100%;
     height: 550px; /* Mantener la altura como antes */
 }
 
@@ -86,37 +121,90 @@ body {
     justify-content: center;
     align-items: center;
     margin: 20px auto 0;
-    width: 50px;
-    height: 50px;
+    width: 90px;
+    height: 90px;
 }
 
 .flecha img {
     width: 100%; 
     height: auto;
 }
+/*pasos*/
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 600px;
+    margin: 40px 0;
+    position: relative;
+    padding-left: 35%;
+  }
+
+  .step {
+    background-color: #7770C5;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+    font-size: 25px;
+  }
+
+  .step.active {
+    background-color: #3A328F;
+  }
+
+  .line {
+    position: absolute;
+    height: 2px;
+    background-color: #7770C5;
+    top: 50%;
+    width: 45%;
+    z-index: 0;
+  }
 
 /* Form Container */
 .form-container {
-    background-color: #BBB7E5;
-    border-radius: 10px;
+    background-color: #D3E1EB;
+    border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px 40px;
     max-width: 600px;
     margin: 20px auto;
+    border: 2px solid #7AB3D7;
 }
-
+p{
+    font-size: 30px;
+}
+.textoreserva{
+    margin-top: 5%;
+    margin-left: 25%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
 h2 {
     color: black;
+    font-family: "Montserrat";
 }
 
 #terminos {
-    margin-top: 10px;
-    margin-left: 0;
+    margin-right: 2%;
 }
 
 .form-group {
     position: relative;
     margin-bottom: 15px;
+}
+.condiciones{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .form-group label {
@@ -130,7 +218,7 @@ h2 {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 50px;
     font-size: 14px;
 }
 
@@ -155,24 +243,93 @@ h2 {
 
 .form-actions {
     display: flex;
-    justify-content: space-between;
     margin-top: 20px;
+    justify-content:center;
+}
+.form-actions button{
+    margin: 3%;
 }
 
 .btn-cancel {
     background-color: #f2f2f2;
-    color: #333;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+    color: #0F0559;
+    border: 2px solid #7AB3D7;
+    padding: 10px 35px;
+    border-radius: 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
-
+.btn-cancel:hover {
+    border-color: #3468A3;
+}
 .btn-submit {
-    background-color: #7770C5;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #7AB3D7;
     color: #fff;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
 }
+.btn-submit:hover {
+    background-color: #488aaf; 
+}
+.negrita{
+    font-weight: bold;
+}
+/*footer*/
+footer {
+    background-color: #7770C5;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .footer-container {
+    display: flex;
+    align-items: stretch;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-section h3 {
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+
+  .footer-section ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-section ul li {
+    margin: 5px 0;
+  }
+
+  .footer-section a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s;
+  }
+  .footer-section{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+
+  .social-icons a img{
+    width: 40px;
+  }
+
