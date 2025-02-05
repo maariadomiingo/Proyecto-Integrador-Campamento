@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/home.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="../img/logo sin fondo.png">
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="#">Sobre Nosotros</a></li>
+                <li><a href="#">Actividades</a></li>
+                <li><a href="#">Monitores</a></li>
+                <li><a href="#">Socios</a></li>
+                <li><a href="#">Precios</a></li>
+                <li><a href="#">Fotos</a></li>
+                <li><a href="#">Contáctanos</a></li>
+            </ul>
+        </nav>
+        <div class="logo">
+            <button type="submit" class="idioma"><img src="../img/idioma.png" alt=""></button>
+            <button type="button" class="perfil"><img src="../img/user.png" alt=""></button>
+            </div>
+    </header>
+    <!-- seccion de bienvenida -->
+    <section class="welcome">
+        <h1>¡Explora, Crea y Aprende <br> en Dos Idiomas!</h1>
+        <p>Potencia la creatividad de tus hijos en nuestro <br> campamento de arte,
+         un lugar seguro y <br> divertido donde explorarán su imaginación <br> mientras se divierten.</p>
+         <input type="informacion" name="informacion" class="informacion" value="Mas información">
+    </section>
+    <!-- seccion de sobre nosotros -->
+     <section class="about">
+        <img src="../img/sobreNosotros-PequeArte.jpg" alt="">
+        <div class="about-content">
+            <h2>Sobre Nosotros</h2>
+            <p>Este campamento está diseñado para despertar la creatividad y la 
+            imaginación de los más pequeños en un entorno divertido y seguro.</p>
+           <!-- Contenido adicional oculto -->
+        <div id="extraInfo" class="hidden">
+            <p>Nuestro campamento cuenta con plazas para pequeños artistas, diseñadores, y pintores,
+            que les permitan explorar sus habilidades y desarrollar su creatividad.</p>
+            <p>Los participantes podrán desarrollar habilidades en arte, literatura, y música,
+            y aprenderán a trabajar en equipo y superar desafíos.</p>
+            <p>Si deseas más información sobre nuestro campamento, puedes contactar con nosotros.</p>
+             <!-- aqui hay que poner el link al form de contacta con nosotros -->
+            <p>Duración: media jornada, jornada completa</p>
+        </div>
+        <input type="verMas" name="verMas" class="verMas" value="Ver Más" onclick="mostrarInfo()">
+    </section>
+    <!-- seccion de actividades -->
+     <!-- seccion de actividades -->
+<section class="actividades">
+    <h1>Actividades</h1>
+    <div class="unidad">
+        <img src="icon/icon1.png" alt="Expresión artística">
+        <div class="text">
+            <h2>Expresión artística</h2>
+            <p>Los niños explorarán el mundo de los colores desarrollando su creatividad.</p>
+        </div>
+    </div>
+    <div class="unidad">
+        <img src="icon/icon3.png" alt="Ilustración creativa">
+        <div class="text">
+            <h2>Ilustración creativa</h2>
+            <p>Aprenderán técnicas para expresar sus ideas a través del dibujo.</p>
+        </div>
+    </div>
+    <div class="unidad">
+        <img src="icon/icon2.png" alt="Interpretación teatral">
+        <div class="text">
+            <h2>Interpretación teatral</h2>
+            <p>Fomentarán su expresión a través de actividades escénicas.</p>
+        </div>
+    </div>
+    <div class="unidad">
+        <img src="icon/icon4.png" alt="Narración de historias">
+        <div class="text">
+            <h2>Narración de historias</h2>
+            <p>Escucharán relatos que estimularán su imaginación y amor por la lectura.</p>
+        </div>
+    </div>
+    <div class="unidad">
+        <img src="icon/arte.png" alt="Modelado y formas">
+        <div class="text">
+            <h2>Modelado y formas</h2>
+            <p>Trabajarán con sus manos para dar forma a piezas creativas.</p>
+        </div>
+    </div>
+    <div class="unidad">
+        <img src="icon/guitarra.png" alt="Danza y movimiento">
+        <div class="text">
+            <h2>Danza y movimiento</h2>
+            <p>Descubrirán el ritmo y el movimiento mediante coreografías sencillas.</p>
+        </div>
+    </div>
+</section>
+    <script src="../js/home.js"></script>
+</body>
+</html>

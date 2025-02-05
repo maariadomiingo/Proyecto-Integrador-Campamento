@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="../css/login.css">
     <title>Iniciar Sesión</title>
 </head>
+<input class="irhome" type="image" src="../img/hogar.png" alt="">
 <img src="../img/logo sin fondo.png" class="logo" alt="">
 <body>
     <form id="formulario" method="POST" action="../php/login.php">
         <h1>Iniciar Sesión</h1>
         <select name="rol" id="rol">
-            <option value="">Selecciona un rol</option>
+            <option value="" disabled selected>--Selecciona un rol--</option>
             <option value="monitor">Monitor</option>
             <option value="coordinador">Coordinador</option>
         </select>
