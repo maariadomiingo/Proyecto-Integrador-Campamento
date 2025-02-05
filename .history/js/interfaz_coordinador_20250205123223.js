@@ -30,22 +30,4 @@ trazosPincel.forEach((trazo) => {
 });
 
 
-/* REDIRIGE A EDITAR CAMPISTA */
-document.addEventListener("DOMContentLoaded", function () {
-  // Seleccionar el elemento "EDITAR CAMPISTAS"
-  const editarCampistas = document.querySelector(".editar-campistas");
-  // Seleccionar el trazo-pincel-1
-  const trazoPincel1 = document.querySelector(".trazo-pincel-1");
-  
-  if (editarCampistas && trazoPincel1) {
-      editarCampistas.addEventListener("click", function () {
-          // Redirigir al hacer clic en "EDITAR CAMPISTAS"
-          window.location.href = "../html/editarCampista.html";
-      });
-      
-      trazoPincel1.addEventListener("click", function () {
-          // Redirigir al hacer clic en el trazo-pincel-1
-          window.location.href = "../html/editarCampista.html"
-      });
-  }
-});
+REDIRIGE A EDITAR CAMPISTA

@@ -40,12 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
   if (editarCampistas && trazoPincel1) {
       editarCampistas.addEventListener("click", function () {
           // Redirigir al hacer clic en "EDITAR CAMPISTAS"
-          window.location.href = "../html/editarCampista.html";
+          window.location.href = "editarCampista.html";
       });
       
       trazoPincel1.addEventListener("click", function () {
           // Redirigir al hacer clic en el trazo-pincel-1
-          window.location.href = "../html/editarCampista.html"
+          window.location.href = "../html/editarCampistas.html";
       });
   }
 });
