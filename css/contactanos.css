@@ -74,105 +74,12 @@ body {
     background-color: #564EB5; 
 }
 
-/* Intro Section */
-.intro {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%; /* Asegurar que ocupa todo el ancho */
-    height: 550px; /* Altura fija para mantener el diseño */
-    margin: 0 auto; /* Centrar la intro en la página */
-    background-color: #D3E1EB; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.intro-text {
-    flex: 1;
-    text-align: center;
-}
-
-.intro-text h1 {
-    font-family: "Montserrat";
-    font-size: 2.5em;
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-.intro-text p {
-    font-size: 1.1em;
-    color: #fff;
-    margin-top: 10px;
-}
-
-.intro-image {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.intro-image img {
-    max-width: 100%;
-    height: 550px; /* Mantener la altura como antes */
-}
-
-.flecha {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto 0;
-    width: 90px;
-    height: 90px;
-}
-
-.flecha img {
-    width: 100%; 
-    height: auto;
-}
-/*pasos*/
-.stepper {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    max-width: 600px;
-    margin: 40px 0;
-    position: relative;
-    padding-left: 32%;
-  }
-
-  .step {
-    background-color: #7770C5;
-    color: white;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    position: relative;
-    font-size: 25px;
-  }
-
-  .step.active {
-    background-color: #3A328F;
-  }
-
-  .line {
-    position: absolute;
-    height: 2px;
-    background-color: #7770C5;
-    top: 50%;
-    width: 55%;
-    z-index: 0;
-  }
-
 /* Form Container */
 .form-container {
     background-color: #D3E1EB;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px 40px;
+    padding: 10px 80px;
     max-width: 800px;
     margin: 20px auto;
     border: 2px solid #7AB3D7;
@@ -180,21 +87,28 @@ body {
 p{
     font-size: 30px;
 }
-.textoreserva{
-    margin-top: 5%;
-    margin-left: 25%;
-    width: 60%;
+.titulo{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.titulo img{
+    width:10%;
+    margin-left: 32%;
+    margin-bottom: -5%;
 }
 h2 {
-    color: black;
-    font-family: "Montserrat";
+    padding: 1%;
+    background-color: #3468A3;
+    color: #fff;
+    text-align: center;
+    width: 20%;
 }
 
 #terminos {
     margin-right: 2%;
 }
+
 .form-group {
     position: relative;
     margin-bottom: 15px;
@@ -220,9 +134,7 @@ h2 {
     border-radius: 50px;
     font-size: 14px;
 }
-.form-group textarea {
-    padding-left: 2%;
-}
+
 .form-group input.error,
 .form-group textarea.error {
     border: 2px solid red;
@@ -279,39 +191,6 @@ h2 {
 }
 .negrita{
     font-weight: bold;
-}
-.rojo{
-    color: red;
-}
-/*desplegable*/
-label {
-    display: block;
-    margin: 10px 0 5px;
-  }
-  .medicamento-extra {
-    margin-top: 5px;
-  }
-  .agregar-btn {
-    transition: background-color 0.3s ease;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-    background-color: #7AB3D7;
-    color: #fff;
-
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-  .agregar-btn:hover {
-    background-color: #488aaf;
-  }
-/*inscrito*/
-.imageninscrito{
-    margin: 20px;
-    margin-left: 40%;
-}
-.textoinscrito{
-    text-align: center;
 }
 /*footer*/
 footer {
