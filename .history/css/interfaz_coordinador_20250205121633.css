@@ -185,7 +185,7 @@ body {
 #pincel {
   position: absolute;
   width: 170px;
-  height: 150px;
+  height: 50px;
   display: none;
   transition: top 0.2s ease-out, left 0.2s ease-out;
 }

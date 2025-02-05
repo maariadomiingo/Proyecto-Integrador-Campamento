@@ -1,0 +1,266 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #D3E1EB;
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenedor {
+  width: 90%;
+  max-width: 1200px;
+  position: relative;
+}
+
+/* Círculo de usuario */
+.circulo {
+  width: 81px;
+  height: 79px;
+  position: absolute;
+  background: #7770C5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  left: 5%;
+  top: 20px;
+}
+
+.icono-usuario {
+  width: 34px;
+  height: 31px;
+  position: absolute;
+  left: 7%;
+  top: 45px;
+}
+
+/* Círculo de salir */
+.circulo-salir {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  background: #F5F5F5;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+  border-radius: 50%;
+  border: 1px #7AB3D7 solid;
+  right: 5%;
+  top: 20px;
+}
+
+.icono-salir {
+  width: 24px;
+  height: 29px;
+  position: absolute;
+  right: 7%;
+  top: 45px;
+}
+
+/* Pie de página */
+.pie-de-pagina {
+  width: 100%;
+  height: 143px;
+  background: #7770C5;
+  position: relative;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 16px;
+}
+
+.texto-pie-de-pagina {
+  text-align: center;
+  width: 80%;
+}
+
+/* Trazos de pincel */
+.trazo-pincel-1,
+.trazo-pincel-2,
+.trazo-pincel-3,
+.trazo-pincel-4,
+.trazo-pincel-5,
+.trazo-pincel-6 {
+  width: 90%;
+  max-width: 940px;
+  height: auto;
+  position: relative;
+  display: block;
+  margin: 20px auto;
+}
+
+/* Botones y secciones */
+.agregar-monitor,
+.estado-actividades,
+.gestionar-actividades,
+.gestionar-horarios {
+  width: 90%;
+  max-width: 960px;
+  height: 110px;
+  position: relative;
+  background: #7BA3D1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  border-radius: 15px;
+}
+
+.texto-agregar-monitor,
+.texto-estado-actividades,
+.texto-gestionar-actividades,
+.texto-gestionar-horarios {
+  color: white;
+  font-size: 24px;
+  font-family: Montserrat;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Iconos */
+.icono-horario,
+.icono-actividades,
+.icono-gestionar,
+.icono-estado-actividades,
+.icono-añadirMonitor,
+.icon-gestionarGrupos,
+.icono-campistas {
+  width: 60px;
+  height: auto;
+  position: relative;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Logo */
+.logo {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+/* Pincel */
+#pincel {
+  position: absolute;
+  width: 120px;
+  height: auto;
+  display: none;
+  transition: top 0.2s ease-out, left 0.2s ease-out;
+}
+
+/* Secciones de editar */
+.editar-campistas,
+.gestionar-grupos {
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  font-size: 24px;
+  font-family: Montserrat;
+  font-weight: 500;
+  color: white;
+  margin: 10px auto;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+  .circulo {
+    left: 3%;
+  }
+
+  .icono-usuario {
+    left: 4%;
+  }
+
+  .circulo-salir {
+    right: 3%;
+  }
+
+  .icono-salir {
+    right: 4%;
+  }
+
+  .texto-agregar-monitor,
+  .texto-estado-actividades,
+  .texto-gestionar-actividades,
+  .texto-gestionar-horarios {
+    font-size: 20px;
+  }
+
+  .pie-de-pagina {
+    height: 100px;
+    font-size: 14px;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .icono-horario,
+  .icono-actividades,
+  .icono-gestionar,
+  .icono-estado-actividades,
+  .icono-añadirMonitor,
+  .icon-gestionarGrupos,
+  .icono-campistas {
+    width: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .texto-agregar-monitor,
+  .texto-estado-actividades,
+  .texto-gestionar-actividades,
+  .texto-gestionar-horarios {
+    font-size: 18px;
+  }
+
+  .pie-de-pagina {
+    height: 80px;
+    font-size: 12px;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  .icono-horario,
+  .icono-actividades,
+  .icono-gestionar,
+  .icono-estado-actividades,
+  .icono-añadirMonitor,
+  .icon-gestionarGrupos,
+  .icono-campistas {
+    width: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .texto-agregar-monitor,
+  .texto-estado-actividades,
+  .texto-gestionar-actividades,
+  .texto-gestionar-horarios {
+    font-size: 16px;
+  }
+
+  .pie-de-pagina {
+    height: 70px;
+    font-size: 10px;
+  }
+
+  .logo {
+    width: 80px;
+  }
+
+  .icono-horario,
+  .icono-actividades,
+  .icono-gestionar,
+  .icono-estado-actividades,
+  .icono-añadirMonitor,
+  .icon-gestionarGrupos,
+  .icono-campistas {
+    width: 35px;
+  }
+}

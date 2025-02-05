@@ -182,13 +182,16 @@ body {
 }
 
 
+
+
 #pincel {
   position: absolute;
-  width: 170px;
-  height: 150px;
+  width: 50px;
+  height: auto;
   display: none;
   transition: top 0.2s ease-out, left 0.2s ease-out;
 }
+
 
 .div-vacio-2 {
   width: 651px;
