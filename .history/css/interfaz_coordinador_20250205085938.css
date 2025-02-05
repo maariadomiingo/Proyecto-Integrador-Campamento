@@ -3,28 +3,20 @@ body {
   padding: 0;
   font-family: Arial, sans-serif;
   background: #D3E1EB;
+  overflow-x: hidden; /* Evita el desplazamiento horizontal */
 }
 
-.contenedor {
-  width: 140px;
-  height: 1063px;
-  position: relative;
-  background: white;
-}
-
-/*  .fondo { */
-/*    width: 1800px; */
-/*    height: 1025px; */
-/*    left: 0px; */
-/*    top: 0px; */
-/*    position: absolute; */
-/*    background: #D3E1EB; */
-/*  } */
+/* .contenedor { */
+/*   width: 100%; /* Ajusta el ancho al 100% del viewport */ */
+/*   height: 1063px; */
+/*   position: relative; */
+/*   background: D3E1EB; */
+/* } */
 
 .circulo {
   width: 81px;
   height: 79px;
-  left: 52px;
+  left: 100px;
   top: 28px;
   position: absolute;
   background: #7770C5;
@@ -43,7 +35,7 @@ body {
 .circulo-salir {
   width: 80px;
   height: 80px;
-  left: 1200%;
+  left: 80.5%;
   top: 37px;
   position: absolute;
   background: #F5F5F5;
@@ -61,7 +53,7 @@ body {
 }
 
 .pie-de-pagina {
-  width: 19000px;
+  width: 100%; /* Ajusta el ancho al 100% del viewport */
   height: 143px;
   left: 0px;
   top: 920px;
@@ -89,53 +81,24 @@ body {
   position: absolute;
 }
 
-.trazo-pincel-1 {
-  width: 940px;
-  height: 400px;
-  left: 288px;
-  top: 630px;
-  position: absolute;
-}
-
-.trazo-pincel-2 {
-  width: 940px;
-  height: 400px;
-  left: 288px;
-  top: 510px;
-  position: absolute;
-}
-
-.trazo-pincel-3 {
-  width: 940px;
-  height: 400px;
-  left: 288px;
-  top: 400px;
-  position: absolute;
-}
-
-.trazo-pincel-4 {
-  width: 940px;
-  height: 400px;
-  left: 288px;
-  top: 290px;
-  position: absolute;
-}
-
-.trazo-pincel-5 {
-  width: 940px;
-  height: 400px;
-  left: 288px;
-  top: 510px;
-  position: absolute;
-}
-
+.trazo-pincel-1,
+.trazo-pincel-2,
+.trazo-pincel-3,
+.trazo-pincel-4,
+.trazo-pincel-5,
 .trazo-pincel-6 {
   width: 940px;
   height: 400px;
   left: 288px;
-  top: 50px;
   position: absolute;
 }
+
+.trazo-pincel-1 { top: 630px; }
+.trazo-pincel-2 { top: 510px; }
+.trazo-pincel-3 { top: 400px; }
+.trazo-pincel-4 { top: 290px; }
+.trazo-pincel-5 { top: 510px; }
+.trazo-pincel-6 { top: 50px; }
 
 .agregar-monitor {
   width: 955px;
@@ -258,7 +221,7 @@ body {
   position: absolute;
 }
 
-.imagen-horarios{
+.imagen-horarios {
   width: 26px;
   height: 256px;
   left: 674.91px;
@@ -287,7 +250,7 @@ body {
   position: absolute;
 }
 
-.icono-actividades{
+.icono-actividades {
   width: 80px;
   height: 65px;
   left: 1000px;
@@ -320,7 +283,7 @@ body {
   position: absolute;
 }
 
-.icon-gestionarGrupos{
+.icon-gestionarGrupos {
   width: 70px;
   height: 63px;
   left: 1000px;
@@ -392,12 +355,6 @@ body {
   justify-content: center;
   align-items: center;
   display: inline-flex;
-}
-
-.rectangulo-interno {
-  width: 57.50px;
-  height: 35px;
-  background: white;
 }
 
 .imagen-pequena-1 {
