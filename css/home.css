@@ -336,7 +336,6 @@ h1{
         align-items: center;
     }
 }
-/* Información extra */
 .seccion-info-extra {
     background-color: #B0CFF1;
     padding: 100px;
@@ -346,7 +345,6 @@ h1{
     gap: 200px; 
 }
 
-/* Cada tarjeta con imagen + texto */
 .seccion-info-extra div {
     display: flex; 
     align-items: center; 
@@ -396,8 +394,9 @@ h1{
     margin: 20px auto;
     padding: 35px;
     border-radius: 50px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
     max-width: 800px;
+    gap: 20px;
 }
 
 .socios div img {
@@ -408,15 +407,22 @@ h1{
     margin-right: 20px;
 }
 
+.socios div .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea h2 y p al inicio */
+    flex: 1;
+    /* text-align: center */
+}
+
 .socios div h2 {
     font-size: 1.5em;
-    /* margin-bottom: 5px; */
+    margin-bottom: 5px;
 }
 
 .socios div p {
-    font-size: 1em;
+    font-size: 0.9em;
     color: #666;
-    margin-bottom: 10px;
 }
 
 .socios div hr {
@@ -442,6 +448,85 @@ h1{
 
 .reserva button:hover {
     background-color: #5f57bb;
+}
+a{
+    font-weight: bold;
+}
+/*Galeria de imagenes*/
+.imagenes{
+    background-color: rgb(187,183,229,100);
+    margin:0;
+    padding: 0;
+    line-height: 4;
+    padding-bottom: 150px;
+}
+#galeria{
+    /* position: fixed; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 700px;
+    min-width: 400px;
+    padding: 0 10px;
+    /* top: 50%;
+    left: 50%; */ 
+    /* transform: translate(-50%, -50%); */
+}
+#galeria img{
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+#img-activa{
+    width: 100%;
+    height: auto;
+}
+#contenedor-galeria{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.65);
+}
+.contenedor-interno{
+    width: 700px;
+    height: 400px;
+    border: 2px #f3f3f3 solid;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+button{
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #f3f3f3;
+}
+#btn-cerrar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 3rem;
+} 
+#btn-retroceder{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    font-size: 3rem;
+}
+#btn-adelantar{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    font-size: 3rem;
 }
 
 /*footer*/
