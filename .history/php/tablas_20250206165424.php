@@ -26,16 +26,10 @@ $tables = [
     "Campista" => "CREATE TABLE IF NOT EXISTS Campista (
         id_campista INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50),
+        apellido VARCHAR(50),
         fechaNacimiento DATE,
         alergias TEXT,
-        direccion VARCHAR (50),
-        historialMedicoRelevante VARCHAR (300),
-        alergias VARCHAR (200),
-        necesidadesEspeciales VARCHAR (300),
-        nombreEmergencia VARCHAR (50) NOT NULL,
-        telefonoEmergencia INT NOT NULL,
-        FOREIGN KEY (id_monitor) REFERENCES usuario(id) ON DELETE CASCADE,
-/*         medicamentos autorizados del campista en una tabla a parte*/
+        necesidadesEspeciales TEXT
     );",
     
     "Horario" => "CREATE TABLE IF NOT EXISTS Horario (
@@ -78,10 +72,9 @@ $tables = [
     "Padre" => "CREATE TABLE IF NOT EXISTS Padre (
         id_padre INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50) NOT NULL,
-        direccion VARCHAR(50) NOT NULL,
+        apellido VARCHAR(50) NOT NULL,
         email VARCHAR(100) NOT NULL UNIQUE,
-        telefono VARCHAR(15) NOT NULL,
-        relacionParticipante VARCHAR(50) NOT NULL
+        telefono VARCHAR(15) NOT NULL
     );",
 
     "Reserva" => "CREATE TABLE IF NOT EXISTS Reserva (
@@ -90,19 +83,15 @@ $tables = [
         precioTotal DECIMAL(10,2) NOT NULL,
         estado ENUM('pendiente', 'pagado', 'cancelado') NOT NULL,
         id_campista INT NOT NULL,
-        id_padre INT NOT NULL,
-        FOREIGN KEY (id_padre) REFERENCES Padre(id_padre) ON DELETE CASCADE,
         FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
     );",
 
     "medicamentosAutorizados" => "CREATE TABLE IF NOT EXISTS medicamentosAutorizados (
-    id_campista INT NOT NULL,
-    nombreCampista VARCHAR(255) NOT NULL,
+    id_medicamento INT AUTO_INCREMENT PRIMARY KEY,
     paracetamol VARCHAR(100) NULL,
-    ibuprofeno VARCHAR(100) NULL,
-    otros VARCHAR (100)  NULL,
-    FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE,
-    FOREIGN KEY (nombre) REFERENCES Campista(nombre) ON DELETE CASCADE
+    ibuprofeso VARCHAR(100) NULL,
+    otros VARCHAR (100)  NULL
+    
     );"
 ];
 

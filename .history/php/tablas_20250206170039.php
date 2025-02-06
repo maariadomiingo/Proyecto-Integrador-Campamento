@@ -34,8 +34,8 @@ $tables = [
         necesidadesEspeciales VARCHAR (300),
         nombreEmergencia VARCHAR (50) NOT NULL,
         telefonoEmergencia INT NOT NULL,
+        medicamentos
         FOREIGN KEY (id_monitor) REFERENCES usuario(id) ON DELETE CASCADE,
-/*         medicamentos autorizados del campista en una tabla a parte*/
     );",
     
     "Horario" => "CREATE TABLE IF NOT EXISTS Horario (
@@ -90,8 +90,6 @@ $tables = [
         precioTotal DECIMAL(10,2) NOT NULL,
         estado ENUM('pendiente', 'pagado', 'cancelado') NOT NULL,
         id_campista INT NOT NULL,
-        id_padre INT NOT NULL,
-        FOREIGN KEY (id_padre) REFERENCES Padre(id_padre) ON DELETE CASCADE,
         FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
     );",
 
@@ -103,6 +101,8 @@ $tables = [
     otros VARCHAR (100)  NULL,
     FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE,
     FOREIGN KEY (nombre) REFERENCES Campista(nombre) ON DELETE CASCADE
+
+
     );"
 ];
 

@@ -103,6 +103,8 @@ $tables = [
     otros VARCHAR (100)  NULL,
     FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE,
     FOREIGN KEY (nombre) REFERENCES Campista(nombre) ON DELETE CASCADE
+
+
     );"
 ];
 
