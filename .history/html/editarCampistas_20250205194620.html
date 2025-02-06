@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Campistas</title>
+    
+    <!-- Fuentes -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="../css/editarCampista.css" />
+  </head>
+  <body>
+    <!-- Iconos de usuario y salir -->
+    <div class="circulo"></div>
+    <img class="icono-usuario" src="../img/user.png" />
+    <div class="circulo-salir">
+      <img class="icono-salir" src="../img/cerrar-sesion.png" />
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+      <div class="rectangle"></div>
+      <img class="logo" src="../img/logo sin fondo.png" />
+      
+      <span class="datos-de-campista">DATOS DE CAMPISTA</span>
+      <div class="flecha-atras"></div>
+      <div class="rectangle-2"></div>
+      
+      <!-- Espacio para imprimir los datos dinámicamente -->
+      <div id="datosCampista">
+        <span id="nombreCampista"></span>
+        <span id="fechaNacimiento"></span>
+        <span id="dniPasaporte"></span>
+        <span id="direccion"></span>
+        <span id="historialMedico"></span>
+        <span id="autorizacionMedicamentos"></span>
+        <span id="consentimientoMedico"></span>
+        <span id="restriccionesDieteticas"></span>
+        <span id="necesidadesEspeciales"></span>
+        <span id="contactoEmergencia"></span>
+      </div>
+
+      <button class="primary-buttons" onclick="cargarDatos()">Cargar Datos</button>
+    </div>
+
+    <!-- Script para cargar datos dinámicamente -->
+    <script>
+      function cargarDatos() {
+        fetch('obtenerDatos.php')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById("nombreCampista").textContent = data.nombre;
+            document.getElementById("fechaNacimiento").textContent = "Fecha de nacimiento: " + data.fechaNacimiento;
+            document.getElementById("dniPasaporte").textContent = "DNI / Pasaporte: " + data.dni;
+            document.getElementById("direccion").textContent = "Dirección: " + data.direccion;
+            document.getElementById("historialMedico").textContent = "Historial Médico: " + data.historialMedico;
+            document.getElementById("autorizacionMedicamentos").textContent = "Autorización Medicamentos: " + data.autorizacionMedicamentos;
+            document.getElementById("consentimientoMedico").textContent = "Consentimiento Médico: " + data.consentimientoMedico;
+            document.getElementById("restriccionesDieteticas").textContent = "Restricciones Dietéticas: " + data.restriccionesDieteticas;
+            document.getElementById("necesidadesEspeciales").textContent = "Necesidades Especiales: " + data.necesidadesEspeciales;
+            document.getElementById("contactoEmergencia").textContent = "Contacto Emergencia: " + data.contactoEmergencia;
+          })
+          .catch(error => console.error("Error cargando datos: ", error));
+      }
+    </script>
+  </body>
+</html>
