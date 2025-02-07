@@ -1,0 +1,372 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #D3E1EB;
+  width: 100%; /* Ocupa el 100% del ancho de la pantalla */
+  overflow-x: hidden; /* Evita el desplazamiento horizontal */
+}
+
+.circulo {
+  width: 81px;
+  height: 79px;
+  left: 52px;
+  top: 28px;
+  position: absolute;
+  background: #7770C5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 9999px;
+}
+
+.icono-usuario {
+  width: 34px;
+  height: 31px;
+  left: 76px;
+  top: 52px;
+  position: absolute;
+}
+
+.circulo-salir {
+  width: 80px;
+  height: 80px;
+  left: 90%;
+  top: 25px;
+  position: absolute;
+  background: #F5F5F5;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+  border-radius: 9999px;
+  border: 1px #7AB3D7 solid;
+}
+
+.icono-salir {
+  left: 9%;
+  top: 52px;
+  width: 24px;
+  height: 29px;
+  position: absolute;
+}
+
+.pie-de-pagina {
+  width: 100%; /* Ajusta el ancho al 100% del viewport */
+  height: 143px;
+  left: 0px;
+  top: 920px;
+  position: absolute;
+  background: #7770C5;
+}
+
+.texto-pie-de-pagina {
+  width: 1009px;
+  left: 215px;
+  top: 982px;
+  position: absolute;
+  color: black;
+  font-size: 16px;
+  font-family: Inter;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.div-vacio {
+  width: 407px;
+  height: 125px;
+  left: 187px;
+  top: 300px;
+  position: absolute;
+}
+
+.trazo-pincel-1,
+.trazo-pincel-2,
+.trazo-pincel-3,
+.trazo-pincel-4,
+.trazo-pincel-5,
+.trazo-pincel-6 {
+  width: 940px;
+  height: 400px;
+  left: 288px;
+  position: absolute;
+}
+
+.trazo-pincel-1 { top: 630px; }
+.trazo-pincel-2 { top: 510px; }
+.trazo-pincel-3 { top: 400px; }
+.trazo-pincel-4 { top: 290px; }
+.trazo-pincel-5 { top: 510px; }
+.trazo-pincel-6 { top: 50px; }
+
+.agregar-monitor {
+  width: 955px;
+  height: 110px;
+  left: 281px;
+  top: 516px;
+  position: absolute;
+}
+
+.agregar-monitor img {
+  width: 955px;
+  height: 114px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+}
+
+.texto-agregar-monitor {
+  width: 455px;
+  height: 17.65px;
+  left: 137px;
+  top: 44px;
+  position: absolute;
+  color: white;
+  font-size: 36px;
+  font-family: Montserrat;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.estado-actividades {
+  width: 955px;
+  height: 114px;
+  left: 284px;
+  top: 402px;
+  position: absolute;
+}
+
+.estado-actividades img {
+  width: 955px;
+  height: 114px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+}
+
+.texto-estado-actividades {
+  width: 533px;
+  height: 18.30px;
+  left: 127px;
+  top: 46.41px;
+  position: absolute;
+  color: white;
+  font-size: 36px;
+  font-family: Montserrat;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.gestionar-actividades {
+  width: 948px;
+  height: 134px;
+  left: 288px;
+  top: 268px;
+  position: relative;
+}
+
+.gestionar-actividades img {
+  width: 948px;
+  height: 380px;
+  left: 0px;
+  top: -90px;
+  position: absolute;
+}
+
+.texto-gestionar-actividades {
+  width: 566.81px;
+  height: 21.51px;
+  left: 111.19px;
+  top: 61.17px;
+  position: absolute;
+  color: white;
+  font-size: 36px;
+  font-family: Montserrat;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+
+#pincel {
+  position: absolute;
+  width: 170px;
+  height: 150px;
+  display: none;
+  transition: top 0.1s ease-out, left 0.1s ease-out;
+}
+
+.div-vacio-2 {
+  width: 651px;
+  height: 863px;
+  left: 670px;
+  top: 463px;
+  position: absolute;
+}
+
+.gestionar-horarios {
+  width: 962px;
+  height: 128px;
+  left: 288px;
+  top: 152px;
+  position: absolute;
+}
+
+.gestionar-horarios img {
+  width: 962px;
+  height: 128px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+}
+
+.imagen-horarios {
+  width: 26px;
+  height: 256px;
+  left: 674.91px;
+  top: 44.25px;
+  position: absolute;
+}
+
+.texto-gestionar-horarios {
+  width: 584.25px;
+  height: 20.54px;
+  left: 127.93px;
+  top: 60.84px;
+  position: absolute;
+  color: white;
+  font-size: 36px;
+  font-family: Montserrat;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.icono-horario {
+  width: 80px;
+  height: 65px;
+  left: 1000px;
+  top: 200px;
+  position: absolute;
+}
+
+.icono-actividades {
+  width: 80px;
+  height: 65px;
+  left: 1000px;
+  top: 440px;
+  position: absolute;
+}
+
+.icono-gestionar {
+  width: 80px;
+  height: 65px;
+  left: 1000px;
+  top: 200px;
+  position: absolute;
+}
+
+.icono-estado-actividades {
+  width: 70px;
+  height: 55px;
+  left: 1000px;
+  top: 325px;
+  position: absolute;
+  z-index: 1;
+}
+
+.icono-añadirMonitor {
+  width: 70px;
+  height: 65px;
+  left: 1000px;
+  top: 550px;
+  position: absolute;
+}
+
+.icon-gestionarGrupos {
+  width: 70px;
+  height: 63px;
+  left: 1000px;
+  top: 660px;
+  position: absolute;
+}
+
+.logo {
+  width: 194px;
+  height: 103px;
+  left: 647px;
+  top: 25px;
+  position: absolute;
+}
+
+.icono-campistas {
+  width: 95px;
+  height: 80px;
+  left: 983px;
+  top: 768px;
+  position: absolute;
+}
+
+.div-vacio-3 {
+  width: 100px;
+  height: 100px;
+  left: 646px;
+  top: 210px;
+  position: absolute;
+}
+
+.editar-campistas {
+  width: 455px;
+  height: 60px;
+  left: 423px;
+  top: 788px;
+  position: absolute;
+  color: white;
+  font-size: 36px;
+  font-family: Montserrat;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.gestionar-grupos {
+  width: 455px;
+  height: 17.65px;
+  left: 416px;
+  top: 672px;
+  position: absolute;
+  color: white;
+  font-size: 36px;
+  font-family: Montserrat;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.rectangulo-pequeno {
+  width: 69px;
+  height: 70px;
+  padding-left: 5.75px;
+  padding-right: 5.75px;
+  padding-top: 17.50px;
+  padding-bottom: 17.50px;
+  left: 966px;
+  top: 655px;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
+.rectangulo-interno {
+  width: 57.50px;
+  height: 35px;
+  background: white;
+}
+
+.imagen-pequena-1 {
+  width: 77px;
+  height: 78px;
+}
+
+.imagen-pequena-2 {
+  width: 77px;
+  height: 73px;
+}
+
+.imagen-pequena-3 {
+  width: 46px;
+  height: 49px;
+}

@@ -1,0 +1,41 @@
+/* Figma Styles of your File */
+:root {
+    /* Colors */
+    --degradado-principal: linear-gradient(
+      77.15deg,
+      rgba(119, 112, 197, 1) 59.00558829307556%,
+      rgba(122, 179, 215, 1) 99.91894960403442%
+    );
+    --principales-morado-pastel: #7770c5;
+    --principales-azul-pastel: #7ab3d7;
+    --principales-gradient: linear-gradient(
+      180deg,
+      rgba(119, 112, 197, 1) 0%,
+      rgba(123, 163, 209, 0.7) 100%
+    );
+    --contraste-rosa-pastel: #d67272;
+    --feedback-success: #50812a;
+    --feedback-information: #6291e8;
+    --feedback-warning: #ffd85a;
+    --feedback-error: #d0090b;
+  
+    /* Fonts */
+    --titulos-xl-font-family: Montserrat-Bold, sans-serif;
+    --titulos-xl-font-size: 56px;
+    --titulos-xl-line-height: normal;
+    --titulos-xl-font-weight: 700;
+    --titulos-xl-font-style: normal;
+    --titulos-m-font-family: Montserrat-Bold, sans-serif;
+    --titulos-m-font-size: 48px;
+    --titulos-m-line-height: normal;
+    --titulos-m-font-weight: 700;
+    --titulos-m-font-style: normal;
+    --titulos-s-font-family: Montserrat-Bold, sans-serif;
+    --titulos-s-font-size: 32px;
+    --titulos-s-line-height: normal;
+    --titulos-s-font-weight: 700;
+    --titulos-s-font-style: normal;
+  
+    /* Effects */
+  }
+  
