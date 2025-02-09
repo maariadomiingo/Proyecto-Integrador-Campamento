@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!input.parentElement.querySelector(".valido")) {
             const validoIcon = document.createElement("span");
             validoIcon.className = "valido";
-            validoIcon.innerHTML = `<img src="../img/mingcute--check-circle-line.png" alt="Válido" class="icon">`;
+            validoIcon.innerHTML = <img src="../img/mingcute--check-circle-line.png" alt="Válido" class="icon">;
             validoIcon.style.display = "none";
             input.parentElement.appendChild(validoIcon);
         }
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!input.parentElement.querySelector(".invalido")) {
             const invalidoIcon = document.createElement("span");
             invalidoIcon.className = "invalido";
-            invalidoIcon.innerHTML = `<img src="../img/mingcute--close-circle-line.png" alt="Inválido" class="icon">`;
+            invalidoIcon.innerHTML = <img src="../img/mingcute--close-circle-line.png" alt="Inválido" class="icon">;
             invalidoIcon.style.display = "none";
             input.parentElement.appendChild(invalidoIcon);
         }
