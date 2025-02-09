@@ -167,4 +167,46 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Ocurrió un error al enviar el formulario");
         }
     });
+  
+    // Variables
+const radioNo = document.getElementById("radio-no");
+const radioSi = document.getElementById("radio-si");
+const containerOtros = document.getElementById("container-otros");
+const checkboxOtros = document.getElementById("otros");
+const otrosContainer = document.getElementById("otros-container");
+const agregarBtn = document.getElementById("agregar-btn");
+const medicamentosAdicionales = document.getElementById("medicamentos-adicionales");
+const campoRestricciones = document.getElementById("campo-restricciones");
+
+// Mostrar campo de restricciones dietéticas
+radioSi.addEventListener("change", () => {
+  containerOtros.style.display = "block";
+});
+radioNo.addEventListener("change", () => {
+  containerOtros.style.display = "none";
+  campoRestricciones.value = ""; // Limpiar el campo si selecciona "No"
+});
+
+// Mostrar campo para especificar otros medicamentos
+checkboxOtros.addEventListener("change", () => {
+  if (checkboxOtros.checked) {
+    otrosContainer.style.display = "block";
+    agregarBtn.style.display = "inline-block";
+  } else {
+    otrosContainer.style.display = "none";
+    agregarBtn.style.display = "none";
+    medicamentosAdicionales.innerHTML = ""; // Limpiar medicamentos adicionales
+  }
+});
+
+// Agregar nuevos campos para medicamentos adicionales
+agregarBtn.addEventListener("click", () => {
+  const nuevoCampo = document.createElement("input");
+  nuevoCampo.type = "text";
+  nuevoCampo.name = "otros-medicamentos-adicionales[]";
+  nuevoCampo.placeholder = "Nombre del medicamento";
+  nuevoCampo.classList.add("nuevo-medicamento");
+  medicamentosAdicionales.appendChild(nuevoCampo);
+});
+
   });
