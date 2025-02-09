@@ -9,11 +9,16 @@ header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Ac
 
 // Leer JSON desde la solicitud
 $json = file_get_contents("php://input");
+
+// DEBUG: Imprime el JSON recibido
+file_put_contents("log.txt", "JSON recibido: " . $json . "\n", FILE_APPEND);
+
 $data = json_decode($json, true);
 
-// Si no se recibió JSON válido
+// DEBUG: Verifica si el JSON es válido
 if (json_last_error() !== JSON_ERROR_NONE) {
-    echo json_encode(["success" => false, "error" => "No se recibieron datos o JSON inválido"]);
+    file_put_contents("log.txt", "Error al decodificar JSON: " . json_last_error_msg() . "\n", FILE_APPEND);
+    echo json_encode(["success" => false, "error" => "JSON inválido"]);
     exit;
 }
 
@@ -35,12 +40,13 @@ $stmt = $conexion->prepare("
         nombre, 
         fechaNacimiento, 
         direccion, 
-        historialMedicoRelevante, 
+        historialMedicoRelevante,
+        alergias, 
         necesidadesEspeciales, 
         nombreEmergencia, 
         telefonoEmergencia
     ) 
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
 if (!$stmt) {
@@ -54,6 +60,7 @@ $stmt->bind_param(
     $fechaNacimiento,
     $direccion,
     $historialMedico,
+    $alergias,
     $necesidades,
     $nombreEmergencia,
     $telefonoEmergencia

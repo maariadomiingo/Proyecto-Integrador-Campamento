@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     const submitButton = form.querySelector(".btn-submit");
-  
+
     // Campos obligatorios y elementos de validación
     const camposObligatorios = [
         document.getElementById("nombre"),
@@ -143,17 +143,18 @@ document.addEventListener("DOMContentLoaded", () => {
   
         // Enviar datos al servidor
         try {
-            const response = await fetch("http://localhost/Proyecto-Integrador-Campamento/php/reserva.php", {
+            const response = await fetch("http://localhost/teoriaservidor/Proyecto-Integrador-Campamento/php/reserva.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
-            });
+            });            
   
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
   
             const data = await response.json();
+            console.log("Respuesta del servidor:", data);
   
             if (data.success) {
                 alert("Reserva enviada con éxito");
