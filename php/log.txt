@@ -1,0 +1,1 @@
+JSON recibido: {"nombre":"Juan","fechaNacimiento":"2010-05-14","direccion":"Calle 123","historialMedico":"Ninguno","restricciones":"No","necesidades":"Ninguna","medicamentos":["Paracetamol"],"otrosMedicamentos":"","contactoEmergencia":{"nombre":"Maria","telefono":"987654321"}}
