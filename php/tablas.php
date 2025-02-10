@@ -26,11 +26,22 @@ $tables = [
     "Campista" => "CREATE TABLE IF NOT EXISTS Campista (
         id_campista INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50),
-        apellido VARCHAR(50),
+        direccion VARCHAR(50),
         fechaNacimiento DATE,
-        alergias TEXT,
-        necesidadesEspeciales TEXT
+        historialMedicoRelevante VARCHAR (100),
+        necesidadesEspeciales VARCHAR (100),
+        nombreEmergencia VARCHAR (100),
+        telefonoEmergencia VARCHAR (15)
+
+
     );",
+
+    "medicamentosAutorizados" => "CREATE TABLE IF NOT EXISTS medicamentosAutorizados (
+        id_campista INT,
+        medicamento VARCHAR(50),
+        PRIMARY KEY (id_campista, medicamento),
+        FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
+        );",
     
     "Horario" => "CREATE TABLE IF NOT EXISTS Horario (
         id_horario INT AUTO_INCREMENT PRIMARY KEY,
