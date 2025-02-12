@@ -1,70 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Documento</title>
-    <link rel="stylesheet" href="../css/interfaz_coordinador.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz Coordinador</title>
+    <link rel="stylesheet" href="../css/interfaz_coordinador.css">
+    <link rel="icon" href="icon/favicon.png" type="image/x-icon">
   </head>
   <body>
-    <div class="contenedor">
-      <div class="fondo"></div>
-      <div class="circulo"></div>
-      <img class="icono-usuario" src="../img/user.png" />
-      <div class="circulo-salir">
-        <img class="icono-salir" src="../img/cerrar-sesion.png" />
-      </div>
-      <div class="pie-de-pagina"></div>
-      <div class="texto-pie-de-pagina">
-        Política de privacidad Política de uso aceptable Contacto +34 111 1111
-        11 Correo aaaaa@gmail.com
-      </div>
-      <div class="div-vacio"></div>
-<!--       editar campistas
- -->      <img class="trazo-pincel-1" src="../img/trazo-pincel.png" />
-<!--       gestionar grupos
- -->      <img class="trazo-pincel-2" src="../img/trazo-pincel.png" />
-<!--       trazo añadir monitor
- -->      <img class="trazo-pincel-3" src="../img/trazo-pincel.png" />
-      <div class="agregar-monitor">
-        <div class="texto-agregar-monitor">AÑADIR MONITOR</div>
-      </div>
-      <img class="icono-añadirMonitor" src="../img/anadir.png" />
+    <div class="header">
+      <!-- Círculo principal con icono de usuario -->
+      <button class="circulo">
+        <img class="icono-usuario" src="../img/user.png" alt="Icono Usuario">
+      </button>
+      <img class="logo" src="../img/logo sin fondo.png" alt="Logo">
+      <!-- Botón para salir -->
+      <button class="circulo-salir">
+        <img class="icono-salir" src="../img/cerrar-sesion.png" alt="Cerrar sesión">
+      </button>
+    </div>
 
-      <img class="icono-estado-actividades" src="../img/actividades.png" /> 
-      <img class="trazo-pincel-4" src="../img/trazo-pincel.png" />
-      <div class="estado-actividades">
-        <div class="texto-estado-actividades">ESTADO ACTIVIDADES</div>
-        
+    <div class="textocompleto">
+      <!-- Sección "Gestionar Horarios" --> 
+      <div class="gestionarhorarios">      
+        <div class="texto-gestionarhorarios">GESTIONAR HORARIOS</div>
+        <img class="icono-gestionar-horarios" src="../img/calendario.png" alt="Gestionar Horarios">
       </div>
-      
 
-      <div class="gestionar-actividades">
-<!--         trazo de gestionar actividades-->        
-         <img class="trazo-pincel-5" src="../img/trazo-pincel.png" /> 
+      <!-- Sección "Gestionar Actividades" -->
+      <div class="gestionaractividades">
         <div class="texto-gestionar-actividades">GESTIONAR ACTIVIDADES</div>
-       </div>
-       <img class="icono-actividades" src="../img/administrar.png" /> 
-
-      <img id="pincel" src="../img/pincel.png" />
-      
-
-<!--       GESTIONAR HORARIOS-->     
-       <img class="trazo-pincel-6" src="../img/trazo-pincel.png" class="imagen-horarios" />
-      <div class="gestionar-horarios">
-        <div class="texto-gestionar-horarios">GESTIONAR HORARIOS</div>
+        <img class="icono-gestionar-actividades" src="../img/actividades.png" alt="Gestionar Actividades">
       </div>
-      <img class="icono-horario" src="../img/calendario.png" />
 
-      <img class="logo" src="../img/logo sin fondo.png" />
-      <img class="icono-campistas" src="../img/campistas.png" />
-      
-      <div class="editar-campistas">EDITAR CAMPISTAS</div>
+      <!-- Sección "Estado Actividades" -->
+      <div class="estadoactividades">
+        <div class="texto-estadoactividades">ESTADO ACTIVIDADES</div>
+        <img class="icono-estadoactividades" src="../img/administrar.png" alt="Estado Actividades">
+      </div>
 
-      <div class="gestionar-grupos">GESTIONAR GRUPOS</div>
-      <img class="icon-gestionarGrupos" src="../img/pasarlista.png" />
+      <!-- Sección "Añadir Monitor" -->
+      <div class="añadirmonitor">      
+        <div class="texto-añadirmonitor">AÑADIR MONITOR</div>
+        <img class="icono-añadirmonitor" src="../img/anadir.png" alt="Añadir Monitor">
+      </div>
+
+      <!-- Sección "Gestionar Grupos" -->
+      <div class="gestionargrupo">      
+        <div class="texto-gestionargrupo">GESTIONAR GRUPOS</div>
+        <img class="icono-gestionargrupo" src="../img/pasarlista.png" alt="Gestionar Grupos">      
+      </div>
+
+      <!-- Sección "Editar Campistas" -->
+      <div class="editarcampistas">      
+        <div class="texto-editarcampistas">EDITAR CAMPISTAS</div>
+        <img class="icono-editarcampistas" src="../img/campistas.png" alt="Editar Campistas">      
       </div>
     </div>
-    <script src="../js/interfaz_coordinador.js"></script>
+
+    <script src="../js/interfaz_monitor.js"></script>
+    
+    <!-- Pie de página -->
+    <footer>
+      Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
+    </footer>
   </body>
 </html>
