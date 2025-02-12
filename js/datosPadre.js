@@ -96,42 +96,82 @@ telefono.addEventListener("focusout", function() {
             valid = false;
         }
 
-        // Si algún campo no es válido, evitar el envío del formulario
-        if (valid) {
+        console.log(valid);
+        if (!valid) {
             event.preventDefault();  // Prevenir el envío normal del formulario
-
-            // Crear el objeto JSON
-            const formData = {
-                nombre: nombre.value.trim(),
-                relacion: relacion.value.trim(),
-                telefono: telefono.value.trim(),
-                email: email.value.trim(),
-                direccion: direccion.value.trim() // Puede ser opcional
-            };
-
-            // Enviar los datos JSON a PHP usando fetch
-            fetch('../php/reserva-padres.php', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData) // Convertir los datos a formato JSON
-            })
-            .then(response => response.json()) // Respuesta en formato JSON
-            .then(data => {
-                if (data.success) {
-                    alert("Datos insertados correctamente");
-                    form_inserta.reset();
-                } else {
-                    alert("Hubo un error al insertar los datos");
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Hubo un problema al enviar los datos.');
-            });
         } else {
-            event.preventDefault();  
+            // Enviar los datos al PHP
+            console.log(nombre.value);
+            insertarDatos(nombre, relacion, telefono, email, direccion);
         }
     });
+
+    function insertarDatos(nombre, relacion, telefono, email, direccion){
+        fetch('../php/reserva-padres.php', {
+            method: "POST",
+            body: JSON.stringify({
+                "nombre": nombre.value.trim(),
+                "relacion": relacion.value.trim(),
+                "telefono": telefono.value.trim(),
+                "email": email.value.trim(),
+                "direccion": direccion.value.trim() || ""
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+       .then(function(response){
+        if (!response.ok) {
+            throw new Error("Error en la solicitud: " + response.statusText);
+        }
+        return response.json();
+       }) 
+       .then(function(data){
+        if(data.status === "success"){
+            alert("Tu hijo esta casi registrado, te enviaremos un mail");
+        }
+       })
+       .catch(function(error){
+        console.error('Error:', error);
+        alert('Hubo un problema al enviar los datos.');
+       });
+    }
+    //     // Si algún campo no es válido, evitar el envío del formulario
+    //     if (valid) {
+    //         event.preventDefault();  // Prevenir el envío normal del formulario
+
+    //         // Crear el objeto JSON
+    //         const formData = {
+    //             nombre: nombre.value.trim(),
+    //             relacion: relacion.value.trim(),
+    //             telefono: telefono.value.trim(),
+    //             email: email.value.trim(),
+    //             direccion: direccion.value.trim() // Puede ser opcional
+    //         };
+
+    //         // Enviar los datos JSON a PHP usando fetch
+    //         fetch('../php/reserva-padres.php', {
+    //             method: "POST",
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify(formData) // Convertir los datos a formato JSON
+    //         })
+    //         .then(response => response.json()) // Respuesta en formato JSON
+    //         .then(data => {
+    //             if (data.success) {
+    //                 alert("Datos insertados correctamente");
+    //                 form_inserta.reset();
+    //             } else {
+    //                 alert("Hubo un error al insertar los datos");
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error);
+    //             alert('Hubo un problema al enviar los datos.');
+    //         });
+    //     } else {
+    //         event.preventDefault();  
+    //     }
+    
 });
