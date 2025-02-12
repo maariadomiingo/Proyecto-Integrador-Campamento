@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/servicios.css">
-    <title>Reserva tu Plaza</title>
+    <link rel="stylesheet" href="../css/calendario.css">
+    <title>Calendario</title>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@5.11.3/main.min.js"></script>
+    <script src="../js/calendario.js"></script>
+
+  
 </head>
 <body>
     <header class="header">
@@ -26,9 +32,25 @@
         <button type="button" class="perfil"><img src="../img/user.png" alt=""></button>
         </div>
     </header>
+    <div class="grupo">
 
-    
-   
+      <div class="bordeformulario">
+    <form id="register-form" class="space-y-4">
+      <section id="tutor_section" class="flex flex-col space-y-4 max-w-3xl">
+          
+        <div id="calendar"></div>
+        <p>Días seleccionados: <span id="selected_days_display"></span></p>
+        <div class="flex justify-between mt-4">
+        </div>
+      </section>
+    </form>
+  </div>
+    <div class="imgtexto">
+      <h1>¡Elige el mejor horario para ti!</h1>
+    <img src="../img/calendarimage.png" alt="">
+    <button class="botonreservar">RESERVAR</button>
+  </div>
+   </div>
     <footer>
         <div class="footer-container">
           <div class="footer-section">
