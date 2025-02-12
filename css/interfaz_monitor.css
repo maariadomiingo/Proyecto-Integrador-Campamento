@@ -1,37 +1,50 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url(../font/Montserrat-VariableFont_wght.ttf);
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Montserrat";
   background: #D3E1EB;
   width: 100%; /* Ocupa el 100% del ancho de la pantalla */
   overflow-x: hidden; /* Evita el desplazamiento horizontal */
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 1%;
+}
+
+.logo {
+  height: 10%;
+  width: 10%;
+}
+
+.circulo, .circulo-salir {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .circulo {
   width: 81px;
   height: 79px;
-  left: 52px;
-  top: 28px;
-  position: absolute;
   background: #7770C5;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 9999px;
 }
 
 .icono-usuario {
-  width: 34px;
-  height: 31px;
-  left: 76px;
-  top: 52px;
-  position: absolute;
+  max-width: 60%;
+  max-height: 60%;
 }
 
 .circulo-salir {
   width: 80px;
   height: 80px;
-  left: 90%;
-  top: 25px;
-  position: absolute;
   background: #F5F5F5;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
   border-radius: 9999px;
@@ -39,58 +52,58 @@ body {
 }
 
 .icono-salir {
-  align-content: center;
-  top: 26px;
-  left: 32px;
   width: 24px;
   height: 29px;
-  position: absolute;
 }
 
-.pie-de-pagina {
-  width: 100%; /* Ajusta el ancho al 100% del viewport */
-  height: 143px;
-  left: 0px;
-  top: 920px;
-  position: absolute;
-  background: #7770C5;
+.todo {
+  position: relative;
 }
 
-.texto-pie-de-pagina {
-  width: 1009px;
-  left: 215px;
-  top: 982px;
-  position: absolute;
-  color: black;
-  font-size: 16px;
-  font-family: Inter;
-  font-weight: 400;
-  word-wrap: break-word;
+.textocompleto {
+  margin: 5%;
 }
 
-.trazo-pincel-1,
-.trazo-pincel-2,
-.trazo-pincel-3,
-.trazo-pincel-4,
-.trazo-pincel-5,
-.trazo-pincel-6 {
-  width: 940px;
-  height: 400px;
-  left: 288px;
-  position: absolute;
+/* verhorarios */
+.verhorarios, .veractividades, .pasarlista {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.trazo-pincel-1 { top: 630px; }
-.trazo-pincel-2 { top: 510px; }
-.trazo-pincel-3 { top: 400px; }
-.trazo-pincel-4 { top: 290px; }
-.trazo-pincel-5 { top: 510px; }
-.trazo-pincel-6 { top: 50px; }
+.icono-pasarlista, .icono-ver-actividades, .icono-ver-horarios {
+  height: 50%;
+  width: 5%;
+  z-index: 2;
+}
 
-/*verhorarios*/
+.verhorarios, .veractividades, .pasarlista {
+  background-image: url('../img/trazo-pincel.png');
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center; 
+  width: 80%; 
+  height: 100px; 
+  margin: 3%;
+  margin-left: 10%;
+}
 
-/*footer*/
-footer{
+.texto-verhorarios, .texto-ver-actividades, .texto-pasarlista {
+  margin-left: 10%;
+  color: #F5F5F5;
+  font-size: 30px;
+}
+
+.pincel {
+  height: 15%;
+  width: 7%;
+  margin-left: 80%;
+}
+
+/* footer */
+footer {
   background-color: #7770C5;
-  padding: 5%;
+  padding: 4%;
+  text-align: center;
 }
