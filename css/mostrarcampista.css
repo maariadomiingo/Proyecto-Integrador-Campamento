@@ -92,7 +92,7 @@ h1 {
 .main-container {
   display: flex;
   height: auto;
-  width: 60%;
+  width: auto;
   background: rgba(176, 207, 241, 0.5);
   border: 3px solid #4674aa;
   border-radius: 20px;
@@ -101,31 +101,18 @@ h1 {
   flex-direction: row;
   padding: 3%;
   margin: 3%;
-  margin-left: 15%;
+  margin-left: 12%;
 }
 
 h2 {
   text-decoration: underline;
 }
-input{
-  border-radius: 20px;
-  padding-left: 3%;
-}
+
 #nombre {
   font-size: 30px;
   text-decoration: underline;
 }
-.guardar-cambios{
-  padding: 7px 20px;
-  transition: background-color 0.3s ease;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-  background-color: #7770C5;
-  color: #fff;
-  font-size: 15px;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-}
+
 .texto {
   font-size: 15px;
 }

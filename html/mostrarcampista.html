@@ -6,7 +6,7 @@
   <title>Mostrar Campistas</title>
   
   <!-- Estilos CSS -->
-  <link rel="stylesheet" href="../css/editarCampista.css">
+  <link rel="stylesheet" href="../css/mostrarcampista.css">
   <link rel="icon" href="icon/favicon.png" type="image/x-icon">
 </head>
 <body>
@@ -30,47 +30,43 @@
   <div class="main-container">
     <img class="mural" src="../img/mural.png" alt="Mural">
     <div class="formularios">
+      <span id="nombre"></span>
+      <br><br>
       <form class="basico">
-        <label class="texto">Nombre:</label>
-        <input type="text" id="nombre" value="" placeholder="">
-        <br><br>
         <label class="texto">Fecha de nacimiento:</label>
-        <input type="date" id="fechaNacimiento" value="">
+        <span id="fechaNacimiento"></span>
         <br>
         <label class="texto">Dirección:</label>
-        <input type="text" id="direccion" value="">
+        <span id="direccion"></span>
         <br>
       </form>
-      
       <form class="datosmedicos">
         <h2>DATOS MÉDICOS</h2>
         <label class="texto">Historial médico:</label>
-        <input type="text" id="historialMedicoRelevante" value="">
+        <span id="historialMedicoRelevante"></span>
         <br>
         <label class="texto">Autorización para medicamentos:</label>
-        <input type="text" id="autorizacion" value="">
+        <span id="autorizacion"></span>
         <br>
         <label class="texto">Consentimiento médico:</label>
-        <input type="text" id="consentimiento" value="">
+        <span id="consentimiento"></span>
         <br>
       </form>
-      
       <form class="datosadicionales">
         <h2>DATOS ADICIONALES</h2>
         <label class="texto">Restricciones dietéticas:</label>
-        <input type="text" id="restricciones" value="">
+        <span id="restricciones"></span>
         <br>
         <label class="texto">Necesidades especiales o adaptaciones:</label>
-        <input type="text" id="necesidadesEspeciales" value="">
+        <span id="necesidadesEspeciales"></span>
         <br>
         <label class="texto">Persona de contacto en caso de emergencia:</label>
         <ul>
-          <li>Nombre: <input type="text" id="nombreEmergencia" value=""></li> 
-          <li>Teléfono: <input type="tel" id="telefonoEmergencia" value=""></li>
+          <li>Nombre:  <span id="nombreEmergencia"></span></li> 
+          <li>Teléfono:  <span id="telefonoEmergencia"></span> </li>
+                 
         </ul>
       </form>
-      
-      <button class="guardar-cambios" onclick="guardarCambios()">Guardar cambios</button>
     </div>
   </div>
   
@@ -78,6 +74,6 @@
     Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
   </footer>
   
-  <script src="../js/editarcampistas.js"></script>
+  <script src="../js/mostrarcampista.js"></script>
 </body>
 </html>
