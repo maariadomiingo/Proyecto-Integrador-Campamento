@@ -34,13 +34,6 @@ $tables = [
         telefonoEmergencia VARCHAR (15)
     );",
 
-    "Monitor" => "CREATE TABLE IF NOT EXISTS Monitor (
-        nombre VARCHAR(50) NOT NULL,
-        identificacion VARCHAR(9) NOT NULL PRIMARY KEY,
-        email VARCHAR(100) NOT NULL UNIQUE,
-        telefono INT NOT NULL
-    );",
-
     "medicamentosAutorizados" => "CREATE TABLE IF NOT EXISTS medicamentosAutorizados (
         id_campista INT,
         medicamento VARCHAR(50),
