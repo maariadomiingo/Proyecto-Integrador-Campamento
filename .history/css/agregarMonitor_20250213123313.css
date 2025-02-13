@@ -107,7 +107,7 @@ button {
 .caja-azul {
   position: absolute;
   width: 1078px;
-  height: 597px;
+  height: 587px;
   top: 300px;
   left: 174px;
   background: rgba(176, 207, 241, 0.5);
@@ -260,7 +260,7 @@ button {
   position: relative;
   top: 68%;
   left: 40%;
-  z-index: 4;
+  z-index: 40;
 }
 
 
