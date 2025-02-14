@@ -213,7 +213,7 @@ button {
   width: 10000px;
   height: 143px;
   top: 920px;
-  left: -500px;
+  left: 0;
   background: #7770c5;
   z-index: 17;
 }

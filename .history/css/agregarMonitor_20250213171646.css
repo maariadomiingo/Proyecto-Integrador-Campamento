@@ -210,10 +210,10 @@ button {
 
 .rectangle-footer {
   position: absolute;
-  width: 10000px;
+  width: 10;
   height: 143px;
   top: 920px;
-  left: -500px;
+  left: 0;
   background: #7770c5;
   z-index: 17;
 }

@@ -34,13 +34,6 @@ $tables = [
         telefonoEmergencia VARCHAR (15)
     );",
 
-    "Monitor" => "CREATE TABLE IF NOT EXISTS Monitor (
-        nombre VARCHAR(50) NOT NULL,
-        identificacion VARCHAR(9) NOT NULL PRIMARY KEY,
-        email VARCHAR(100) NOT NULL UNIQUE,
-        telefono INT NOT NULL
-    );",
-
     "medicamentosAutorizados" => "CREATE TABLE IF NOT EXISTS medicamentosAutorizados (
         id_campista INT,
         medicamento VARCHAR(50),
@@ -88,9 +81,10 @@ $tables = [
     "Padre" => "CREATE TABLE IF NOT EXISTS Padre (
         id_padre INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50) NOT NULL,
-        apellido VARCHAR(50) NOT NULL,
+        relacion VARCHAR(50) NOT NULL,
+        telefono VARCHAR(15) NOT NULL,
         email VARCHAR(100) NOT NULL UNIQUE,
-        telefono VARCHAR(15) NOT NULL
+        direccion VARCHAR(50) 
     );",
 
     "Reserva" => "CREATE TABLE IF NOT EXISTS Reserva (
@@ -100,13 +94,24 @@ $tables = [
         estado ENUM('pendiente', 'pagado', 'cancelado') NOT NULL,
         id_campista INT NOT NULL,
         FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
-    );"
+    );",
+    
+    "MedicamentosAutorizados" => "CREATE TABLE IF NOT EXISTS medicamentosAutorizados (
+    id_medicamento INT AUTO_INCREMENT PRIMARY KEY,
+    id_campista INT NOT NULL,
+    medicamento VARCHAR(100) NOT NULL,
+    FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
+);"
 ];
 
 // Ejecutar la creación de tablas
 foreach ($tables as $name => $sql) {
     if (mysqli_query($conexion, $sql)) {
-        // echo "Tabla $name creada exitosamente<br>";
+        echo "Tabla $name creada exitosamente<br>";
+    } else {
+        echo "Error creando tabla $name: " . mysqli_error($conexion) . "<br>";
     }
 }
+
+mysqli_close($conexion);
 ?>
