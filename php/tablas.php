@@ -101,11 +101,7 @@ $tables = [
 // Ejecutar la creación de tablas
 foreach ($tables as $name => $sql) {
     if (mysqli_query($conexion, $sql)) {
-        echo "Tabla $name creada exitosamente<br>";
-    } else {
-        echo "Error creando tabla $name: " . mysqli_error($conexion) . "<br>";
+        // echo "Tabla $name creada exitosamente<br>";
     }
 }
-
-mysqli_close($conexion);
 ?>
