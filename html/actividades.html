@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/actividades.css">
+    <title>Gestionar Actividades</title>
+</head>
+<body>
+    <form action="../php/gestionar_actividades.php" method="post" id="actividades" name="actividades">
+    <!-- seleccionar actividad -->
+       <select name="select-actividad" id="select-actividad">
+        <option value="" selected disabled>Seleccione una actividad</option>
+        <option value="1">Actividad 1</option>
+        <option value="2">Actividad 2</option>
+        <option value="3">Actividad 3</option>
+        <option value="4">Actividad 4</option>
+        <option value="5">Actividad 5</option>
+    </select>
+    <!-- asignar monitores monitores  -->
+    <select name="select-monitor" id="select-monitor">
+        <option value="" selected disabled>Asignar monitor</option>
+        <option value="1">Monitor 1</option>
+        <option value="2">Monitor 2</option>
+        <option value="3">Monitor 3</option>
+    </select>
+    <!-- escoger grupo -->
+     <select name="select-group" id="select-group">
+        <option value="" selected disabled>Escoger grupo</option>
+        <option value="1">Grupo 1</option>
+        <option value="2">Grupo 2</option>
+        <option value="3">Grupo 3</option>
+    </select>
+    <!-- crear actividad ocultar -->
+     <div id="crear-actividad-container" style="display: none;">
+        <label for="crear-actividad">Crear Nueva Actividad:</label>
+        <input type="text" id="crear-actividad" name="crear-actividad">
+     </div>
+    <!-- botones -->
+     <button onclick="eliminarActividad()">Eliminar Actividad</button>
+     <button onclick="agregarActividad()">Agregar Actividad</button>
+     <button onclick="crearActividad()">Crear Actividad</button>
+     <!-- mostrar actividad -->
+     <div id="actividad"></div> 
+    </form>
+     
+    <script src="../js/gestionar_actividades.js"></script> <!-- script para funciones de la interfaz -->
+</body>
+</html>
