@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("fecha-nacimiento").addEventListener("blur", validateFechaNacimiento);
   
     // Manejo de envío del formulario
-    submitButton.addEventListener("click", async (event) => {
+    submitButton.addEventListener("click", (event) => {
         event.preventDefault();
         let isFormValid = true;
   
@@ -120,51 +120,100 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!document.getElementById("terminos").checked) {
             isFormValid = false;
             alert("Debes aceptar los términos y condiciones.");
+            return;
         }
   
         if (!isFormValid) return;
   
-        // Recoger datos del formulario
-        const formData = {
-            nombre: document.getElementById("nombre").value,
-            fechaNacimiento: document.getElementById("fecha-nacimiento").value,
-            direccion: document.getElementById("direccion").value,
-            historialMedico: document.getElementById("historial-medico").value || "",
-            restricciones: document.querySelector("input[name='restricciones']:checked")?.value || "No",
-            restriccionesDetalles: document.getElementById("campo-restricciones").value || "",
-            necesidades: document.getElementById("necesidades").value || "",
-            medicamentos: Array.from(document.querySelectorAll("input[name='medicamentos']:checked")).map(med => med.value),
-            otrosMedicamentos: document.getElementById("otros-medicamentos")?.value || "",
-            contactoEmergencia: {
-                nombre: document.getElementById("nombre-emergencia").value,
-                telefono: document.getElementById("contacto-emergencia").value
-            }
-        };
-  
-        // Enviar datos al servidor
-        try {
-            const response = await fetch("http://localhost/teoriaservidor/Proyecto-Integrador-Campamento/php/reserva.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData)
-            });            
-  
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-  
-            const data = await response.json();
-            console.log("Respuesta del servidor:", data);
-  
-            if (data.success) {
-                alert("Reserva enviada con éxito");
-                form.reset();
-            } else {
-                alert("Error al enviar la reserva: " + (data.error || "Error desconocido"));
-            }
-        } catch (error) {
-            console.error("Error en la solicitud:", error);
-            alert("Ocurrió un error al enviar el formulario");
+    
+    
+       // Recoger datos del formulario - Ajustando la estructura para que coincida con el PHP
+       const formData = {
+        nombre: document.getElementById("nombre").value,
+        fechaNacimiento: document.getElementById("fecha-nacimiento").value,
+        direccion: document.getElementById("direccion").value,
+        historialMedico: document.getElementById("historial-medico")?.value || "",
+        restricciones: document.querySelector('input[name="restricciones"]:checked')?.value || "No",
+        restriccionesDetalles: document.getElementById("campo-restricciones")?.value || "",
+        necesidades: document.getElementById("necesidades")?.value || "",
+        medicamentos: Array.from(document.querySelectorAll('input[name="medicamentos"]:checked')).map(med => med.value),
+        otrosMedicamentos: document.getElementById("otros-medicamentos")?.value || "",
+        contactoEmergencia: {
+            nombre: document.getElementById("nombre-emergencia").value,
+            telefono: document.getElementById("contacto-emergencia").value
         }
+    };
+
+    console.log('Datos a enviar:', formData); // Para debug
+
+    // Enviar datos al servidor
+    fetch("../php/reserva.php", {
+        method: "POST",
+        headers: { 
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Respuesta del servidor:', data); // Para debug
+        if (data.success) {
+            alert("Reserva enviada con éxito");
+            form.reset();
+        } else {
+            alert("Error al enviar la reserva: " + (data.error || "Error desconocido"));
+        }
+    })
+    .catch(error => {
+        console.error("Error en la solicitud:", error);
+        alert("Ocurrió un error al enviar el formulario");
     });
-  });
+    });
+});
+    
+    
+    
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

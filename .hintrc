@@ -16,6 +16,12 @@
         "image-alt": "off",
         "input-image-alt": "off"
       }
+    ],
+    "axe/name-role-value": [
+      "default",
+      {
+        "button-name": "off"
+      }
     ]
   }
 }
