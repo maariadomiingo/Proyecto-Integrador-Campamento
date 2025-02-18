@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/gestionarActividades.css">
+    <title>Gestionar Actividades</title>
+</head>
+<body>
+      <!-- Iconos de usuario y salir -->
+      <div class="circulo">
+      <img class="icono-usuario" src="../img/user.png" />  
+      </div>
+      
+      <div class="circulo-salir">
+        <img class="icono-salir" src="../img/cerrar-sesion.png" />
+      </div>
+      <!-- Contenedor principal -->
+      <div class="main-container">
+        <div class="rectangle"></div>
+        <img class="logo" src="../img/logo sin fondo.png" />
+        
+        <div class="logo-1"></div>
+        <div class="logo-final-sin-fondo"></div>
+        <div class="img-3"></div>
+        <div class="pic-2"></div>
+        <div class="clipart-transparent-library-watercolor"></div>
+      </div>
+        
+
+    <h1>GESTIONAR ACTIVIDADES</h1>
+    <div class="gestionar-actividades">
+    <form method="post" id="formActividad">
+        <select name="actividad" id="actividad">
+            <option value="">Elegir Actividad</option>
+        </select><br>
+        <select name="asignarMonitor" id="asignarMonitor">
+            <option value="">Asignar Monitor</option>
+        </select><br>
+        <select name="selectGrupo" id="selectGrupo">
+            <option value="">Escoger grupo</option>
+        </select><br>
+        <input type="submit" value="Añadir Actividad" class="añadir-btn">
+        <button onclick="window.location.href='./estadoActividades.html'" class="new-btn">Estado Actividades</button>
+        <input type="submit" value="Editar Actividad" class="editar-btn">
+    </form>
+
+  <!-- Área para mostrar mensajes -->
+  <div id="mensaje"></div>
+
+    <div class="MostrarDatos">
+        <table>
+            <tr>
+                <th>Actividad</th>
+                <th>Monitor</th>
+                <th>Grupo</th>
+            </tr>
+            <!-- Mostrará los datos de las actividades aquí -->
+        </table>
+    </div>
+    </div>
+<script src="../js/gestionarActividades.js"></script>
+</body>
+<footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <ul>
+          <li><a href="#">Politica de privacidad</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <ul>
+          <li><a href="#">Politica de uso aceptable</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <ul>
+          <li><a href="#">Contacto +34 111 1111 11</a></li>
+        </ul>
+      </div>
+      <div class="iconos">
+        <div class="social-icons">
+          <ul>
+            <li><a href="#">Correo aaaaa@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</html>

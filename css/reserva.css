@@ -367,3 +367,22 @@ footer {
     width: 40px;
   }
 
+  /* pagina de confirmacion */
+  .container-conf{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 60vh;
+  }
+  .titulo-conf, .p-conf{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .titulo-conf:hover{
+    transform: scale(1.2); 
+    transition-duration: 3s;
+  }
+  .img-conf{
+    max-width: 100%;
+    height: auto;
+  }
