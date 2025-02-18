@@ -1,40 +1,58 @@
 <?php
-require_once '../server/conectar.php';
+include '../server/conectar.php';
 
-// Establecer la cabecera para JSON
-header('Content-Type: application/json');
+// Leer el cuerpo de la solicitud como JSON
+$input = file_get_contents('php://input');
+$data = json_decode($input, true);
 
-// Obtener datos del cuerpo de la solicitud JSON
-$json = file_get_contents('php://input');
-$data = json_decode($json, true);
-echo json_encode($data);
+// Verificar si existe una función en la solicitud
+if (isset($_POST['funcion'])) {
+    $funcion = $_POST['funcion'];
 
-// Validar si los datos llegaron correctamente
-if (!$data) {
-    echo json_encode(['success' => false, 'message' => 'Datos JSON inválidos']);
-    exit;
-}
+    switch ($funcion) {
+        case 'datosPadre':
+            // Capturar datos del formulario
+            $nombre = $_POST['nombre'] ?? '';
+            $relacion = $_POST['relacion'] ?? '';
+            $telefono = $_POST['telefono'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $direccion = $_POST['direccion'] ?? '';
 
-$nombre = $data['nombre'] ?? '';
-$relacion = $data['relacion'] ?? '';
-$telefono = $data['telefono'] ?? '';
-$email = $data['email'] ?? '';
-$direccion = $data['direccion'] ?? '';
+            // Establecer la cabecera JSON al inicio
+            header('Content-Type: application/json');
 
-// Verificar que los campos obligatorios no estén vacíos
-if (empty($nombre) || empty($relacion) || empty($telefono) || empty($email)) {
-    echo json_encode(['success' => false, 'message' => 'Faltan datos']);
-    exit;
-}
+            // Validar que los campos obligatorios no estén vacíos
+            if (empty($nombre) || empty($relacion) || empty($telefono) || empty($email)) {
+                echo json_encode(['success' => false, 'message' => 'Faltan datos obligatorios']);
+                exit;
+            }
 
-// Preparar la consulta para insertar los datos en la base de datos
-$stmt = $conn->prepare("INSERT INTO Padre (nombre, relacion, telefono, email, direccion) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("sssss", $nombre, $relacion, $telefono, $email, $direccion);
+            // Preparar la consulta para insertar datos
+            if ($stmt = $conexion->prepare("INSERT INTO Padre (nombre, relacion, telefono, email, direccion) VALUES (?, ?, ?, ?, ?)")) {
+                $stmt->bind_param("sssss", $nombre, $relacion, $telefono, $email, $direccion);
+                
+                if ($stmt->execute()) {
+                    echo json_encode(['success' => true, 'message' => 'Datos insertados correctamente']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Error al insertar los datos']);
+                }
 
-// Ejecutar la consulta
-if ($stmt->execute()) {
-    echo json_encode(['success' => true, 'message' => 'Datos insertados correctamente']);
+                $stmt->close();
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Error en la preparación de la consulta']);
+            }
+            break;
+
+        default:
+            echo json_encode(['success' => false, 'message' => 'Función no válida']);
+            exit;
+    }
 } else {
-    echo json_encode(['success' => false, 'message' => 'Error al insertar los datos']);
+    echo json_encode(['success' => false, 'message' => 'No se recibió ninguna función.']);
+}
+
+if (isset($conexion)) {
+    $conexion->close();
 }
 ?>
+
