@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mostrar Campistas</title>
-  
-  <!-- Estilos CSS -->
   <link rel="stylesheet" href="../css/pasarlista.css">
   <link rel="icon" href="icon/favicon.png" type="image/x-icon">
 </head>
@@ -19,6 +17,7 @@
       <img class="icono-salir" src="../img/cerrar-sesion.png" alt="Cerrar sesión">
     </button>
   </div>
+
   <div class="titulo">
     <button class="button"> 
       <img class="flecha" src="../img/FLECHA ATRAS.png" alt="Volver">
@@ -28,14 +27,16 @@
 
   <div class="container">
     <div class="tabla"><span>Campistas</span><span>Asistencia</span></div>
-    
+    <form id="formAsistencia">
+        <div id="listaCampistas"></div>
+        <button id="guardarAsistencia">Guardar Asistencia</button>
+    </form>
   </div>
- 
-  
+
   <footer>
     Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
   </footer>
-  
+
   <script src="../js/pasarlista.js"></script>
 </body>
 </html>

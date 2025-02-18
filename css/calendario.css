@@ -73,25 +73,52 @@ body {
 .perfil:hover {
     background-color: #564EB5; 
 }
-
-
+/*calendario*/
 #calendar {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  .fc-event.selected-day {
-    background-color: #00ff9d !important;
-    border: none !important;
-    color: #fff !important;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    margin: 2px auto;
-    font-size: 16px;
-  }
+  max-width: 700px;
+  margin: 0 auto;
+}
+.fc-event.selected-day {
+  background-color: #00ff9d !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  margin: 2px auto;
+  font-size: 16px;
+}
+.fc .fc-button-primary:disabled {
+  background-color: #02503F;
+  color: white;
+}
+
+.fc-toolbar-title {
+  /* ponemos el texto en mayusculas */
+  text-transform: capitalize;
+}
+.fc .fc-button {
+  background-color: #D67272 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 5px !important;
+}
+
+.fc .fc-button:hover {
+  background-color: #a74b4b !important; 
+}
+
+.fc .fc-button.fc-today-button {
+  background-color: #6e68b4 !important; 
+}
+
+.fc .fc-button.fc-today-button:hover {
+  background-color: #564EB5 !important; 
+}
+/*reservar*/
   .grupo{
     display: flex;
     justify-content: space-evenly;
@@ -99,19 +126,25 @@ body {
   .bordeformulario{
     border-radius: 20px;
     background-color: #DEDBF6;
+    height: 80%;
+    width: 50%;
+    padding: 2%;
+    margin: 3%;
+  }
+  .blanco{
+    padding: 2%;
     height: auto;
     width: auto;
-    padding: 3%;
-    margin: 3%;
+    background-color: #ffffff;
   }
   .imgtexto{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 3%;
+    margin-top: 10%;
   }
   .imgtexto img{
-    height: 50%;
+    height: 40%;
     width: auto;
   }
   .imgtexto h1{

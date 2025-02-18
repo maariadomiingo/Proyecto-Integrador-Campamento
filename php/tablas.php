@@ -38,8 +38,8 @@ $tables = [
         nombre VARCHAR(50) NOT NULL,
         identificacion VARCHAR(9) NOT NULL PRIMARY KEY,
         email VARCHAR(100) NOT NULL UNIQUE,
-        telefono INT NOT NULL
-    );",
+        telefono INT NOT NULL
+);",
 
     "medicamentosAutorizados" => "CREATE TABLE IF NOT EXISTS medicamentosAutorizados (
         id_campista INT,
@@ -105,8 +105,6 @@ $tables = [
 
 // Ejecutar la creación de tablas
 foreach ($tables as $name => $sql) {
-    if (mysqli_query($conexion, $sql)) {
-        // echo "Tabla $name creada exitosamente<br>";
-    }
+    mysqli_query($conexion, $sql);
 }
 ?>
