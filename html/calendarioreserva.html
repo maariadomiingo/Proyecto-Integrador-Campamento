@@ -1,76 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/servicios.css">
-    <title>Reserva tu Plaza</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/calendario.css">
+  <title>Calendario</title>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@5.11.3/main.min.js"></script>
+  <script src="../js/calendario.js"></script>
+
+
 </head>
+
 <body>
-    <header class="header">
-        <div class="logo">
-            <img src="../img/logo sin fondo.png">
-        </div>
-        <nav class="nav">
-            <ul>
-                <li><a href="#">Sobre Nosotros</a></li>
-                <li><a href="#">Actividades</a></li>
-                <li><a href="#">Personal</a></li>
-                <li><a href="#">Instalaciones</a></li>
-                <li><a href="#">Precios</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-        <div class="logo">
-        <button type="submit" class="idioma"><img src="../img/idioma.png" alt=""></button>
-        <button type="button" class="perfil"><img src="../img/user.png" alt=""></button>
-        </div>
-    </header>
+  <header class="header">
+    <div class="logo">
+      <img src="../img/logo sin fondo.png">
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="#">Sobre Nosotros</a></li>
+        <li><a href="#">Actividades</a></li>
+        <li><a href="#">Personal</a></li>
+        <li><a href="#">Instalaciones</a></li>
+        <li><a href="#">Precios</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="logo">
+      <button type="submit" class="idioma"><img src="../img/idioma.png" alt=""></button>
+      <button type="button" class="perfil"><img src="../img/user.png" alt=""></button>
+    </div>
+  </header>
+  <div class="grupo">
 
-    
-   
-    <footer>
-        <div class="footer-container">
-          <div class="footer-section">
-            <h3>Contacto</h3>
-            <ul>
-              <li><a href="#">Correo electrónico</a></li>
-              <li><a href="#">Teléfono</a></li>
-              <li><a href="#">Atención al cliente</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Servicios</h3>
-            <ul>
-              <li><a href="#">Sobre nosotros</a></li>
-              <li><a href="#">Actividades</a></li>
-              <li><a href="#">Personal</a></li>
-              <li><a href="#">Instalaciones</a></li>
-              <li><a href="#">Precios</a></li>
-              <li><a href="#">Contacto</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Legal</h3>
-            <ul>
-              <li><a href="#">Política de Privacidad</a></li>
-              <li><a href="#">Términos y Condiciones</a></li>
-              <li><a href="#">Política de Cookies</a></li>
-            </ul>
-          </div>
-          <div class="iconos">
-            <h3>Redes sociales</h3>
-            <div class="social-icons">
-              <a href="#"><img src="../img/facebook.png"></a>
-              <a href="#"><img src="../img/youtube.png"></a>
-              <a href="#"><img src="../img/whatsapp.png"></a>
-              <a href="#"><img src="../img/tik-tok.png"></a>
-              <a href="#"><img src="../img/instagram.png"></a>
-            </div>
-          </div>
-        </div>
-      </footer>
+    <div class="bordeformulario">
 
-    <script src="../js/reserva.js"></script>
+      <form id="register-form" class="space-y-4">
+        <section id="tutor_section" class="flex flex-col space-y-4 max-w-3xl">
+          <h3 class="">Selecciona los días disponibles:</h3>
+          <div class="blanco">
+            <div id="calendar"></div>
+          </div>
+          <p>Días seleccionados: <span id="selected_days_display"></span></p>
+          <div class="flex justify-between mt-4">
+          </div>
+
+        </section>
+      </form>
+    </div>
+
+    <div class="imgtexto">
+      <h1>¡Elige el mejor horario para ti!</h1>
+      <img src="../img/calendarimage.png" alt="">
+      <button class="botonreservar">RESERVAR</button>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <ul>
+          <li><a href="#">Correo electrónico</a></li>
+          <li><a href="#">Teléfono</a></li>
+          <li><a href="#">Atención al cliente</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Servicios</h3>
+        <ul>
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Actividades</a></li>
+          <li><a href="#">Personal</a></li>
+          <li><a href="#">Instalaciones</a></li>
+          <li><a href="#">Precios</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+        </ul>
+      </div>
+      <div class="iconos">
+        <h3>Redes sociales</h3>
+        <div class="social-icons">
+          <a href="#"><img src="../img/facebook.png"></a>
+          <a href="#"><img src="../img/youtube.png"></a>
+          <a href="#"><img src="../img/whatsapp.png"></a>
+          <a href="#"><img src="../img/tik-tok.png"></a>
+          <a href="#"><img src="../img/instagram.png"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/reserva.js"></script>
 </body>
+
 </html>

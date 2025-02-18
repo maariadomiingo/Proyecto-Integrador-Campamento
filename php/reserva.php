@@ -1,11 +1,23 @@
 <?php
 include '../server/conectar.php';
 
-// Forzar respuesta JSON
-header("Content-Type: application/json");
+// Configuración de CORS y headers
+header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Accept");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+// Manejar preflight request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+// Verificar método POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(["success" => false, "error" => "Método no permitido"]);
+    exit();
+}
 
 // Leer JSON desde la solicitud
 $json = file_get_contents("php://input");
@@ -80,28 +92,65 @@ if (!empty($medicamentos)) {
         VALUES (?, ?)
     ");
     
-    foreach ($medicamentos as $medicamento) {
-        $stmtMedicamentos->bind_param("is", $id_campista, $medicamento);
-        if (!$stmtMedicamentos->execute()) {
-            echo json_encode(["success" => false, "error" => $stmtMedicamentos->error]);
-            exit;
+    // Iniciar transacción
+    $conexion->begin_transaction();
+
+    // Insertar campista
+    $stmt = $conexion->prepare("
+        INSERT INTO Campista (
+            nombre, 
+            fechaNacimiento, 
+            direccion, 
+            historialMedicoRelevante, 
+            necesidadesEspeciales, 
+            nombreEmergencia, 
+            telefonoEmergencia
+        ) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ");
+
+    $stmt->bind_param(
+        "sssssss",
+        $nombre,
+        $fechaNacimiento,
+        $direccion,
+        $historialMedico,
+        $necesidades,
+        $nombreEmergencia,
+        $telefonoEmergencia
+    );
+
+    if (!$stmt->execute()) {
+        throw new Exception("Error al insertar campista: " . $stmt->error);
+    }
+
+    $id_campista = $stmt->insert_id;
+
+    // Procesar medicamentos
+    if (!empty($data['medicamentos'])) {
+        $stmtMed = $conexion->prepare("
+            INSERT INTO medicamentosAutorizados (id_campista, medicamento) 
+            VALUES (?, ?)
+        ");
+
+        foreach ($data['medicamentos'] as $medicamento) {
+            $med = filter_var($medicamento, FILTER_SANITIZE_STRING);
+            $stmtMed->bind_param("is", $id_campista, $med);
+            if (!$stmtMed->execute()) {
+                throw new Exception("Error al insertar medicamento: " . $stmtMed->error);
+            }
         }
     }
-}
 
-// Insertar otros medicamentos
-if (!empty($otrosMedicamentos)) {
-    $stmtOtros = $conexion->prepare("
-        INSERT INTO medicamentosAutorizados (id_campista, medicamento) 
-        VALUES (?, ?)
-    ");
-    $stmtOtros->bind_param("is", $id_campista, $otrosMedicamentos);
-    if (!$stmtOtros->execute()) {
-        echo json_encode(["success" => false, "error" => $stmtOtros->error]);
-        exit;
-    }
-}
+    // Confirmar transacción
+    $conexion->commit();
+    echo json_encode(["success" => true]);
 
-echo json_encode(["success" => true]);
-$conexion->close();
+} catch (Exception $e) {
+    $conexion->rollback();
+    error_log("Error en la base de datos: " . $e->getMessage());
+    echo json_encode(["success" => false, "error" => $e->getMessage()]);
+} finally {
+    $conexion->close();
+}
 ?>
