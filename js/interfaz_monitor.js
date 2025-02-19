@@ -45,10 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function mostrarDatosSesion(datos) {
         const identificacionElement = document.getElementById('identificacion');
-        const nombreElement = document.getElementById('nombre');
-
         identificacionElement.textContent = datos.identificacion || 'No disponible';
-        nombreElement.textContent = datos.nombre || 'No disponible';
+       
     }
 
     iconoUsuario.addEventListener('click', function() {
