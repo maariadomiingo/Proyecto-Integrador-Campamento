@@ -42,12 +42,30 @@ mysqli_query($conexion, $query_monitor);
 $query_coordinador = "INSERT IGNORE INTO Coordinador (nombre, identificacion, email, telefono) VALUES ('Maria García', '987654321', 'maria.garcia@example.com', 987654321)";
 mysqli_query($conexion, $query_coordinador);
 
-// Insertamos datos en Usuario usando identificaciones existentes en Monitor
-$query_usuario = "INSERT INTO Usuario (nombre, password, rol, identificacion) VALUES ('monitor', '$hash_monitor', 'monitor', '123456789')";
-mysqli_query($conexion, $query_usuario);
 
-// Crear las tablas en el orden correcto
+// Inserción en la base de datos
+$query = "INSERT IGNORE INTO usuario (nombre, password, rol) VALUES 
+    ('coordinador', '$hash_coordinador', 'coordinador'), 
+    ('monitor', '$hash_monitor', 'monitor')";
+mysqli_query($conexion, $query, "usuario");
+
+// CREACIÓN DE TABLAS (En orden correcto para evitar problemas con claves foráneas)
 $tables = [
+    "Monitor" => "CREATE TABLE IF NOT EXISTS Monitor (
+        nombre VARCHAR(50) NOT NULL,
+        identificacion VARCHAR(9) NOT NULL PRIMARY KEY,
+        email VARCHAR(100) NOT NULL UNIQUE,
+        telefono VARCHAR(15) NOT NULL
+    );",
+
+    "Actividad" => "CREATE TABLE IF NOT EXISTS Actividad (
+        id_actividad INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(100) NOT NULL,
+        descripcion TEXT,
+        recursos TEXT,
+        hora_actividad TIME NOT NULL
+    );",
+
     "Campista" => "CREATE TABLE IF NOT EXISTS Campista (
         id_campista INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50),
@@ -59,24 +77,14 @@ $tables = [
         nombreEmergencia VARCHAR(50),
         telefonoEmergencia VARCHAR(15)
     );",
-    
-    "Horario" => "CREATE TABLE IF NOT EXISTS Horario (
-        id_horario INT AUTO_INCREMENT PRIMARY KEY,
-        fecha DATE NOT NULL,
-        nombre_actividad VARCHAR(100) NOT NULL,
-        hora TIME NOT NULL,
-        UNIQUE KEY (fecha, hora)
-    );",
 
-    "Actividad" => "CREATE TABLE IF NOT EXISTS Actividad (
-        id_actividad INT AUTO_INCREMENT PRIMARY KEY,
-        nombre VARCHAR(100) NOT NULL,
-        descripcion TEXT,
-        recursos TEXT,
-        identificacion_monitor VARCHAR(9) NOT NULL,
-        id_horario INT NOT NULL,
-        FOREIGN KEY (identificacion_monitor) REFERENCES Monitor(identificacion) ON DELETE CASCADE,
-        FOREIGN KEY (id_horario) REFERENCES Horario(id_horario) ON DELETE CASCADE
+    "GrupoCampistas" => "CREATE TABLE IF NOT EXISTS GrupoCampistas (
+        id_grupo INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(255) NOT NULL,
+        identificacion_monitor VARCHAR(9),
+        id_actividad INT,
+        FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad) ON DELETE CASCADE,
+        FOREIGN KEY (identificacion_monitor) REFERENCES Monitor(identificacion) ON DELETE CASCADE
     );",
 
     "PasarLista" => "CREATE TABLE IF NOT EXISTS PasarLista (
@@ -89,12 +97,14 @@ $tables = [
         FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad) ON DELETE CASCADE
     );",
 
-    "GrupoCampistas" => "CREATE TABLE IF NOT EXISTS GrupoCampistas (
-        id_campista INT NOT NULL,
+    "AsignarActividad" => "CREATE TABLE IF NOT EXISTS AsignarActividad (
         id_actividad INT NOT NULL,
-        PRIMARY KEY (id_campista, id_actividad),
-        FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE,
-        FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad) ON DELETE CASCADE
+        identificacion_monitor VARCHAR(9) NOT NULL,
+        id_grupo INT NOT NULL,
+        PRIMARY KEY (id_actividad, identificacion_monitor, id_grupo),
+        FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad) ON DELETE CASCADE,
+        FOREIGN KEY (identificacion_monitor) REFERENCES Monitor(identificacion) ON DELETE CASCADE,
+        FOREIGN KEY (id_grupo) REFERENCES GrupoCampistas(id_grupo) ON DELETE CASCADE
     );",
 
     "Padre" => "CREATE TABLE IF NOT EXISTS Padre (
@@ -103,7 +113,7 @@ $tables = [
         relacion VARCHAR(50) NOT NULL,
         telefono VARCHAR(15) NOT NULL,
         email VARCHAR(100) NOT NULL UNIQUE,
-        direccion VARCHAR(50) 
+        direccion VARCHAR(50)
     );",
 
     "Reserva" => "CREATE TABLE IF NOT EXISTS Reserva (
@@ -114,8 +124,8 @@ $tables = [
         id_campista INT NOT NULL,
         FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
     );",
-    
-    "MedicamentosAutorizados" => "CREATE TABLE IF NOT EXISTS medicamentosAutorizados (
+
+    "MedicamentosAutorizados" => "CREATE TABLE IF NOT EXISTS MedicamentosAutorizados (
         id_medicamento INT AUTO_INCREMENT PRIMARY KEY,
         id_campista INT NOT NULL,
         medicamento VARCHAR(100) NOT NULL,
@@ -125,81 +135,49 @@ $tables = [
 
 // Ejecutar la creación de tablas
 foreach ($tables as $name => $sql) {
-    if (mysqli_query($conexion, $sql)) {
-        echo "Tabla $name creada exitosamente<br>";
-    } else {
-        echo "Error creando tabla $name: " . mysqli_error($conexion) . "<br>";
-    }
+    mysqli_query($conexion, $sql, $name);
 }
 
-// Función para ejecutar consultas preparadas de manera segura
+// FUNCIÓN SEGURA PARA INSERTAR DATOS
 function executeStatement($stmt, $params) {
-    $types = str_repeat('s', count($params)); // Tipos de parámetros (todos como string por defecto)
+    $types = str_repeat('s', count($params));
     $stmt->bind_param($types, ...$params);
     if (!$stmt->execute()) {
         die("Error al ejecutar la consulta: " . $stmt->error);
     }
 }
 
-// Función para obtener o insertar un horario
-function getHorarioId($fecha, $nombre_actividad, $hora) {
-    global $conexion;
-    
-    // Consulta para verificar si el horario existe
-    $query = "SELECT id_horario FROM horario WHERE fecha = ? AND hora = ?";
-    $stmt = $conexion->prepare($query);
-    $stmt->bind_param("ss", $fecha, $hora);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $stmt->close();
-    
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        return $row['id_horario'];
-    } else {
-        // Insertar nuevo horario
-        $insertQuery = "INSERT INTO horario (fecha, nombre_actividad, hora) VALUES (?, ?, ?)";
-        $insertStmt = $conexion->prepare($insertQuery);
-        $insertStmt->bind_param("sss", $fecha, $nombre_actividad, $hora);
-        $insertStmt->execute();
-        $id_horario = $conexion->insert_id;
-        $insertStmt->close();
-        return $id_horario;
-    }
-}
+// Insertar datos en Monitor con bind_param()
+$query_monitor = "INSERT IGNORE INTO Monitor (nombre, identificacion, email, telefono) VALUES (?, ?, ?, ?)";
+$stmt_monitor = $conexion->prepare($query_monitor);
+if (!$stmt_monitor) die("Error en consulta de Monitor: " . $conexion->error);
 
-// Obtener los id_horario para las actividades
-$id_horario1 = getHorarioId('2023-10-01', 'Pintura', '10:00:00');
-$id_horario2 = getHorarioId('2023-10-02', 'Manualidades', '11:00:00');
+// Datos del monitor
+$nombre = 'Juan Pérez';
+$identificacion = '123456789';
+$email = 'juan.perez@example.com';
+$telefono = '123456789';
+
+// Ejecutar inserción en Monitor
+executeStatement($stmt_monitor, [$nombre, $identificacion, $email, $telefono]);
+$stmt_monitor->close();
+echo "Datos insertados en la tabla Monitor.<br>";
 
 // Insertar en Actividad con bind_param()
-$query_actividad = "INSERT INTO actividad (nombre, descripcion, recursos, identificacion_monitor, id_horario) VALUES (?, ?, ?, ?, ?)";
+$query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos, hora_actividad) VALUES (?, ?, ?, ?)";
 $stmt_actividad = $conexion->prepare($query_actividad);
+if (!$stmt_actividad) die("Error en consulta de Actividad: " . $conexion->error);
 
-if (!$stmt_actividad) {
-    die("Error al preparar la consulta de Actividad: " . $conexion->error);
+// Insertar actividades
+$actividades = [
+    ['Pintura', 'Pintar cuadros', 'Pinturas - Lienzos', '10:00:00'],
+    ['Manualidades', 'Crear objetos con reciclaje', 'Tijeras - Pegamento - Papel', '12:00:00']
+];
+
+foreach ($actividades as $actividad) {
+    executeStatement($stmt_actividad, $actividad);
 }
-
-// Primera actividad
-$nombre = 'Pintura';
-$descripcion = 'Pintar cuadros';
-$recursos = 'Pinturas - Lienzos';
-$identificacion_monitor = '123456789';
-$id_horario = $id_horario1;
-executeStatement($stmt_actividad, [$nombre, $descripcion, $recursos, $identificacion_monitor, $id_horario]);
-
-// Segunda actividad
-$nombre = 'Manualidades';
-$descripcion = 'Crear objetos con materiales reciclados';
-$recursos = 'Tijeras - Pegamento - Papel';
-$identificacion_monitor = '123456789';
-$id_horario = $id_horario2;
-executeStatement($stmt_actividad, [$nombre, $descripcion, $recursos, $identificacion_monitor, $id_horario]);
-
-echo "Datos insertados correctamente en la tabla Actividad.<br>";
-
 $stmt_actividad->close();
+echo "Datos insertados en la tabla Actividad.<br>";
 
-// Cerrar conexión
-$conexion->close();
 ?>

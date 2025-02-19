@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reserva.css">
-    <title>Reserva tu Plaza</title>
+    <title>Confirmacion de la Reserva</title>
 </head>
 <body>
-
-    <header class="header">
+<header class="header">
         <div class="logo">
             <img src="../img/logo sin fondo.png">
         </div>
@@ -26,6 +25,7 @@
         <button type="submit" class="idioma"><img src="../img/idioma.png" alt=""></button>
         <button type="button" class="perfil"><img src="../img/user.png" alt=""></button>
         </div>
+
     </header>
 
     <div class="stepper">
@@ -36,46 +36,14 @@
         <div class="step" id="step4">4</div>
       </div>
 
-    <div class="form-container">
-        <h3>Información de los Padres o Tutores</h3>
-    <form method="post" id="formulario-padres">
-
-    <div class="form-group">
-        <label for="nombre-padre">Nombre completo del padre/madre/tutor</label>
-        <input type="text" id="nombre-padre" name="nombre-padre" >
-        <span class="rojo" id="nameError"></span><br><br>
+    <h1 class="titulo-conf">¡Felicidades!</h1>
+    <h2 class="titulo-conf">Inscribiste a tu hijo correctamente</h2>
+    <div class="container-conf">
+       <img src="../img/niñoinscrito.png" alt="" class="img-conf">
     </div>
-    <div class="form-group">
-        <label for="relacion">Relación con el participante</label>
-        <input type="text" id="relacion" name="relacion">
-        <span class="rojo" id="relacionError"></span><br><br>
-    </div>
-    <div class="form-group">
-        <label for="telefono">Teléfonos de contacto</label>
-        <input type="tel" id="telefono" name="telefono">
-        <span class="rojo" id="telefonoError"></span><br><br>
-    </div>
-    <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email">
-        <span class="rojo" id="emailError"></span><br><br>
-    </div>
-    <div class="form-group">
-        <label for="direccion-padre">Dirección <i>(Opcional)</i></label>
-        <input type="text" id="direccion-padre" name="direccion-padre">
-    </div>
-    
-    <div class="form-actions">
-        <button type="submit" class="btn-submit">Siguiente</button>
-        <button type="button" class="btn-cancel">Atrás</button>
-        
-    </div>
-    </form>
-    </div>
-
-     <script src="../js/datosPadre.js"></script>
-
-    <footer>
+    <p class="p-conf">Te enviaremos un correo brevemente.</p> 
+</body>
+<footer>
         <div class="footer-container">
           <div class="footer-section">
             <h3>Contacto</h3>
@@ -116,7 +84,4 @@
           </div>
         </div>
       </footer>
-
-    <script src="../js/datosPadre.js"></script>
-</body>
 </html>

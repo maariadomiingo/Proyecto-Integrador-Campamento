@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     const submitButton = form.querySelector(".btn-submit");
-  
+
     // Campos obligatorios y elementos de validación
     const camposObligatorios = [
         document.getElementById("nombre"),

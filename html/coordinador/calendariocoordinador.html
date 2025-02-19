@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario de Actividades</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../../css/calendariocoordinador.css">
+  <link rel="icon" href="icon/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+  <div class="header">
+    <button class="circulo">
+      <img class="icono-usuario" src="../../img/user.png" alt="Icono Usuario">
+    </button>
+    <img class="logo" src="../../img/logo sin fondo.png" alt="Logo">
+    <button class="circulo-salir">
+      <img class="icono-salir" src="../../img/cerrar-sesion.png" alt="Cerrar sesión">
+    </button>
+  </div>
+
+  <div class="titulo">
+    <button class="buttonatras">
+      <img class="flecha" src="../../img/FLECHA ATRAS.png" alt="Volver">
+    </button>
+    <h1>Gestionar Actividades</h1>
+  </div>
+    <!-- El pop-up para añadir actividad -->
+    <div id="popup">
+      <form id="form-actividad" onsubmit="guardarActividad(event)">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="fecha">Fecha (YYYY-MM-DD):</label>
+        <input type="date" id="fecha" name="fecha" required>
+
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" name="hora" required>
+
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" name="descripcion" required>
+
+        <button type="submit" class="button">Guardar actividad</button>
+        <button type="button" class="button" id="cancelar" onclick="closePopup()">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Calendario -->
+    <div id="calendario"></div>
+
+    <footer>
+      Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../js/calendariocoordinador.js" defer></script>
+</body>
+
+</html>
