@@ -41,23 +41,14 @@ $tables = [
         telefonoEmergencia VARCHAR(15)
     );",
 
-    "Horario" => "CREATE TABLE IF NOT EXISTS Horario (
-        id_horario INT AUTO_INCREMENT PRIMARY KEY,
-        fecha DATE NOT NULL,
-        nombre_actividad VARCHAR(100) NOT NULL,
-        hora TIME NOT NULL,
-        UNIQUE KEY (fecha, hora) 
-    );",
-
     "Actividad" => "CREATE TABLE IF NOT EXISTS Actividad (
         id_actividad INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(100) NOT NULL,
         descripcion TEXT,
         recursos TEXT,
         identificacion_monitor VARCHAR(9) NOT NULL,
-        id_horario INT NOT NULL,
-        FOREIGN KEY (identificacion_monitor) REFERENCES Monitor(identificacion) ON DELETE CASCADE,
-        FOREIGN KEY (id_horario) REFERENCES Horario(id_horario) ON DELETE CASCADE
+        hora_actividad TIME NOT NULL,
+        FOREIGN KEY (identificacion_monitor) REFERENCES Monitor(identificacion) ON DELETE CASCADE
     );",
 
     "GrupoCampistas" => "CREATE TABLE IF NOT EXISTS GrupoCampistas (
@@ -130,23 +121,6 @@ function executeStatement($stmt, $params) {
     }
 }
 
-// Insertar en Horario con bind_param()
-$query_horario = "INSERT INTO Horario (fecha, nombre_actividad, hora) VALUES (?, ?, ?)";
-$stmt_horario = $conexion->prepare($query_horario);
-
-if (!$stmt_horario) {
-    die("Error al preparar la consulta de Horario: " . $conexion->error);
-}
-
-// Insertar horarios y obtener sus IDs
-executeStatement($stmt_horario, ['2023-10-01', 'Pintura', '10:00:00']);
-$id_horario1 = $conexion->insert_id;
-
-executeStatement($stmt_horario, ['2023-10-02', 'Manualidades', '11:00:00']);
-$id_horario2 = $conexion->insert_id;
-
-$stmt_horario->close();
-
 // Insertar datos en Monitor con bind_param()
 $query_monitor = "INSERT INTO Monitor (nombre, identificacion, email, telefono) VALUES (?, ?, ?, ?)";
 $stmt_monitor = $conexion->prepare($query_monitor);
@@ -169,7 +143,7 @@ echo "Datos insertados correctamente en la tabla Monitor.<br>";
 $stmt_monitor->close();
 
 // Insertar en Actividad con bind_param()
-$query_actividad = "INSERT INTO Actividad (nombre, descripcion, recursos, identificacion_monitor, id_horario) VALUES (?, ?, ?, ?, ?)";
+$query_actividad = "INSERT INTO Actividad (nombre, descripcion, recursos, identificacion_monitor, hora_actividad) VALUES (?, ?, ?, ?, ?)";
 $stmt_actividad = $conexion->prepare($query_actividad);
 
 if (!$stmt_actividad) {
@@ -181,40 +155,16 @@ $nombre = 'Pintura';
 $descripcion = 'Pintar cuadros';
 $recursos = 'Pinturas - Lienzos';
 $identificacion_monitor = '123456789';  // Usamos la identificacion del monitor insertado anteriormente
-$id_horario = $id_horario1;
-executeStatement($stmt_actividad, [$nombre, $descripcion, $recursos, $identificacion_monitor, $id_horario]);
+$hora_actividad = '10:00:00';  // Hora de la actividad
+executeStatement($stmt_actividad, [$nombre, $descripcion, $recursos, $identificacion_monitor, $hora_actividad]);
 
 // Segunda actividad
 $nombre = 'Manualidades';
 $descripcion = 'Crear objetos con materiales reciclados';
 $recursos = 'Tijeras - Pegamento - Papel';
 $identificacion_monitor = '123456789';  // Usamos la misma identificacion del monitor
-$id_horario = $id_horario2;
-executeStatement($stmt_actividad, [$nombre, $descripcion, $recursos, $identificacion_monitor, $id_horario]);
-
-// datos del grupo
-// Preparar la consulta SQL
-$stmt = $conexion->prepare("INSERT INTO GrupoCampistas (nombre, identificacion_monitor, id_actividad) VALUES (?, ?, ?)");
-
-// Verificar si la preparación fue exitosa
-if ($stmt === false) {
-    die("Error en la preparación de la consulta: " . $conexion->error);
-}
-
-// Asignar valores a las variables
-$nombre = "Grupo prueba";
-$identificacion_monitor = NULL; // No se conoce aún
-$id_actividad = NULL; // No se conoce aún
-
-// Vincular los parámetros
-$stmt->bind_param("ssi", $nombre, $identificacion_monitor, $id_actividad);
-
-// Ejecutar la consulta
-if ($stmt->execute()) {
-    echo "Nuevo grupo de campistas insertado con éxito.";
-} else {
-    echo "Error al insertar el grupo de campistas: " . $stmt->error;
-}
+$hora_actividad = '12:00:00';  // Hora de la actividad
+executeStatement($stmt_actividad, [$nombre, $descripcion, $recursos, $identificacion_monitor, $hora_actividad]);
 
 echo "Datos insertados correctamente en la tabla Actividad.<br>";
 
