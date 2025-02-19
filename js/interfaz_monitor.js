@@ -1,51 +1,63 @@
-// Selecciona la imagen del pincel
-const pincel = document.getElementById("pincel");
+const urlParams = new URLSearchParams(window.location.search);
+const identificacionURL = urlParams.get('identificacion');
 
-// Selecciona todos los trazos de pincel
-const trazosPincel = document.querySelectorAll(".trazo-pincel-1, .trazo-pincel-2, .trazo-pincel-3, .trazo-pincel-4, .trazo-pincel-5, .trazo-pincel-6");
+document.addEventListener('DOMContentLoaded', function() {
+    const iconoUsuario = document.querySelector('.circulo');
+    const botonSalir = document.querySelector('.circulo-salir');
+    const contenedorDatos = document.querySelector('.datos-monitor');
 
-// Mantén el tamaño original del pincel
-pincel.style.width = "80px"; // Ajusta según el tamaño original en CSS
-pincel.style.height = "auto"; // Mantiene la proporción
+    function checkSession() {
+        if (!identificacionURL) {
+            window.location.href = '../html/login.html';
+            return;
+        }
 
-// Función para mover el pincel al centro del trazo
-function moverPincel(event) {
-  const rect = event.target.getBoundingClientRect();
+        // Enviar los datos en formato JSON
+        fetch('../php/login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                rol: 'monitor', 
+                identificacion: identificacionURL,
+                password: '12345678' 
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                mostrarDatosSesion(data);
+            } else {
+                window.location.href = '../html/login.html';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+           // window.location.href = '../html/login.html';
+        });
+    }
 
-  // Alinear pincel al centro del trazo
-  pincel.style.top = `${rect.top + rect.height / 2 - pincel.offsetHeight / 2}px`;
-  pincel.style.left = `${rect.left + rect.width - 60}px`; // Ajuste para que quede cerca de la imagen
-  pincel.style.display = "block";
-}
+    function mostrarDatosSesion(datos) {
+        const identificacionElement = document.getElementById('identificacion');
+        const nombreElement = document.getElementById('nombre');
 
-// Función para ocultar el pincel
-function ocultarPincel() {
-  pincel.style.display = "none";
-}
+        identificacionElement.textContent = datos.identificacion || 'No disponible';
+        nombreElement.textContent = datos.nombre || 'No disponible';
+    }
 
-// Añade eventos a los trazos de pincel
-trazosPincel.forEach((trazo) => {
-  trazo.addEventListener("mouseenter", moverPincel);
-  trazo.addEventListener("mouseleave", ocultarPincel);
-});
+    iconoUsuario.addEventListener('click', function() {
+        window.location.href = '../html/perfilMonitor.html';
+    });
 
+    botonSalir.addEventListener('click', function() {
+        window.location.href = '../html/login.html';
+    });
 
-/* REDIRIGE A EDITAR CAMPISTA */
-document.addEventListener("DOMContentLoaded", function () {
-  // Seleccionar el elemento "EDITAR CAMPISTAS"
-  const editarCampistas = document.querySelector(".editar-campistas");
-  // Seleccionar el trazo-pincel-1
-  const trazoPincel1 = document.querySelector(".trazo-pincel-1");
-  
-  if (editarCampistas && trazoPincel1) {
-      editarCampistas.addEventListener("click", function () {
-          // Redirigir al hacer clic en "EDITAR CAMPISTAS"
-          window.location.href = "../html/editarCampistas.html";
-      });
-      
-      trazoPincel1.addEventListener("click", function () {
-          // Redirigir al hacer clic en el trazo-pincel-1
-          window.location.href = "../html/editarCampistas.html"
-      });
-  }
+    checkSession();
 });
