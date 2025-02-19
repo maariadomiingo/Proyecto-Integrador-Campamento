@@ -20,77 +20,29 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Leer JSON desde la solicitud
-$json = file_get_contents("php://input");
+$jsonInput = file_get_contents("php://input");
+error_log("Datos recibidos: " . $jsonInput); // Para debug
 
-// DEBUG: Imprime el JSON recibido
-file_put_contents("log.txt", "JSON recibido: " . $json . "\n", FILE_APPEND);
+$data = json_decode($jsonInput, true);
 
-$data = json_decode($json, true);
-
-// DEBUG: Verifica si el JSON es válido
+// Verificar JSON válido
 if (json_last_error() !== JSON_ERROR_NONE) {
-    file_put_contents("log.txt", "Error al decodificar JSON: " . json_last_error_msg() . "\n", FILE_APPEND);
-    echo json_encode(["success" => false, "error" => "JSON inválido"]);
-    exit;
+    echo json_encode([
+        "success" => false, 
+        "error" => "JSON inválido: " . json_last_error_msg()
+    ]);
+    exit();
 }
 
-// Limpiar y asignar variables
-$nombre = isset($data['nombre']) ? $data['nombre'] : "";
-$fechaNacimiento = isset($data['fechaNacimiento']) ? $data['fechaNacimiento'] : "";
-$direccion = isset($data['direccion']) ? $data['direccion'] : "";
-$historialMedico = isset($data['historialMedico']) ? $data['historialMedico'] : "";
-$restricciones = isset($data['restricciones']) ? $data['restricciones'] : "No";
-$necesidades = isset($data['necesidades']) ? $data['necesidades'] : "";
-$nombreEmergencia = isset($data['contactoEmergencia']['nombre']) ? $data['contactoEmergencia']['nombre'] : "";
-$telefonoEmergencia = isset($data['contactoEmergencia']['telefono']) ? $data['contactoEmergencia']['telefono'] : "";
-$medicamentos = isset($data['medicamentos']) ? $data['medicamentos'] : [];
-$otrosMedicamentos = isset($data['otrosMedicamentos']) ? $data['otrosMedicamentos'] : "";
-
-// Preparar consulta
-$stmt = $conexion->prepare("
-    INSERT INTO Campista (
-        nombre, 
-        fechaNacimiento, 
-        direccion, 
-        historialMedicoRelevante,
-        alergias, 
-        necesidadesEspeciales, 
-        nombreEmergencia, 
-        telefonoEmergencia
-    ) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-");
-
-if (!$stmt) {
-    echo json_encode(["success" => false, "error" => "Error al preparar la consulta"]);
-    exit;
-}
-
-$stmt->bind_param(
-    "sssssss",
-    $nombre,
-    $fechaNacimiento,
-    $direccion,
-    $historialMedico,
-    $alergias,
-    $necesidades,
-    $nombreEmergencia,
-    $telefonoEmergencia
-);
-
-if (!$stmt->execute()) {
-    echo json_encode(["success" => false, "error" => $stmt->error]);
-    exit;
-}
-
-$id_campista = $stmt->insert_id;
-
-// Insertar medicamentos
-if (!empty($medicamentos)) {
-    $stmtMedicamentos = $conexion->prepare("
-        INSERT INTO medicamentosAutorizados (id_campista, medicamento) 
-        VALUES (?, ?)
-    ");
+try {
+    // Limpiar y asignar variables
+    $nombre = filter_var($data['nombre'] ?? "", FILTER_SANITIZE_STRING);
+    $fechaNacimiento = filter_var($data['fechaNacimiento'] ?? "", FILTER_SANITIZE_STRING);
+    $direccion = filter_var($data['direccion'] ?? "", FILTER_SANITIZE_STRING);
+    $historialMedico = filter_var($data['historialMedico'] ?? "", FILTER_SANITIZE_STRING);
+    $necesidades = filter_var($data['necesidades'] ?? "", FILTER_SANITIZE_STRING);
+    $nombreEmergencia = filter_var($data['contactoEmergencia']['nombre'] ?? "", FILTER_SANITIZE_STRING);
+    $telefonoEmergencia = filter_var($data['contactoEmergencia']['telefono'] ?? "", FILTER_SANITIZE_STRING);
     
     // Iniciar transacción
     $conexion->begin_transaction();
