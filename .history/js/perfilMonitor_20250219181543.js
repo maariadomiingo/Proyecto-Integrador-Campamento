@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Obtener el ID de la URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const identificacion = urlParams.get('identificacion');
+    const params = new URLSearchParams(window.location.search);
+    const identificacion = params.get("identificacion");
 
     if (!identificacion) {
         alert("No se proporcionó una identificacion.");
         return;
     }
 
-    // Llamar al PHP con el identificador usando POST
+    // Llamar al PHP con el ID usando POST
     fetch("../php/perfilMonitor.php", {
         method: "POST",
         headers: {
@@ -24,19 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
             alert(data.error);
             return;
         }
-        
+
         // Rellenar los datos en la página
         document.getElementById("nombre").textContent = data.nombre;
         document.getElementById("identificacion").textContent = data.identificacion;
         document.getElementById("mail").textContent = data.Mail;
         document.getElementById("telefono").textContent = data.telefono;
-        
+        document.getElementById("necesidadesEspeciales").textContent = data.necesidadesEspeciales;
+        document.getElementById("nombreEmergencia").textContent = data.nombreEmergencia;
+        document.getElementById("telefonoEmergencia").textContent = data.telefonoEmergencia;
     })
-    .catch(error => console.error("Error al obtener datos del monitor:", error));
+    .catch(error => console.error("Error al obtener datos del campista:", error));
 });
-
-function initProfile(identificacion) {
-    // Aquí usas la identificación para cargar datos o realizar acciones
-    console.log('Identificación:', identificacion);
-    // Puedes hacer una llamada AJAX aquí usando identificacion
-}

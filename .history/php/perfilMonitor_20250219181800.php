@@ -38,7 +38,7 @@ if ($resultado->num_rows > 0) {
 
     echo json_encode($datos);
 } else {
-    echo json_encode(["error" => "monitor no encontrado"]);
+    echo json_encode(["error" => "Campista no encontrado"]);
 }
 
 $stmt->close();

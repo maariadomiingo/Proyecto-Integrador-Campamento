@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function () {
     // Obtener el ID de la URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -34,9 +36,3 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("Error al obtener datos del monitor:", error));
 });
-
-function initProfile(identificacion) {
-    // Aquí usas la identificación para cargar datos o realizar acciones
-    console.log('Identificación:', identificacion);
-    // Puedes hacer una llamada AJAX aquí usando identificacion
-}

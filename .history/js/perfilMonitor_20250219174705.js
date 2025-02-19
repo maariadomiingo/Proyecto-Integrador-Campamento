@@ -49,13 +49,5 @@ document.addEventListener('DOMContentLoaded', function() {
        
     }
 
-    iconoUsuario.addEventListener('click', function() {
-        window.location.href = `perfilMonitor.html?identificacion=${identificacionURL}`;
-    });
-
-    botonSalir.addEventListener('click', function() {
-        window.location.href = '../html/login.html';
-    });
-
     checkSession();
 });

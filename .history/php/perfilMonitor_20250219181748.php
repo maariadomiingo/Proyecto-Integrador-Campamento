@@ -31,14 +31,16 @@ if ($resultado->num_rows > 0) {
     $datos = [
         "nombre" => $fila["nombre"],
         "identificacion" => $fila["identificacion"],
-        "mail" => $fila["mail"],
-        "telefono" => $fila["telefono"],
-        
+        "mail" => $fila["direccion"],
+        "historialMedicoRelevante" => $fila["historialMedicoRelevante"],
+        "necesidadesEspeciales" => $fila["necesidadesEspeciales"],
+        "nombreEmergencia" => $fila["nombreEmergencia"],
+        "telefonoEmergencia" => $fila["telefonoEmergencia"]
     ];
 
     echo json_encode($datos);
 } else {
-    echo json_encode(["error" => "monitor no encontrado"]);
+    echo json_encode(["error" => "Campista no encontrado"]);
 }
 
 $stmt->close();

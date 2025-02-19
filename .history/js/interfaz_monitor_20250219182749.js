@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     iconoUsuario.addEventListener('click', function() {
-        window.location.href = `perfilMonitor.html?identificacion=${identificacionURL}`;
+        window.location.hrefwindow.location.href = `interfaz_monitor.html?identificacion=${identificacion}`; = '../html/perfilMonitor.html';
     });
 
     botonSalir.addEventListener('click', function() {

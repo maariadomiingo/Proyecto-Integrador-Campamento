@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil Monitor</title>
+  
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../css/perfilMonitor.css">
+  <link rel="icon" href="icon/favicon.png" type="image/x-icon">
+</head>
+<body>
+  <div class="header">
+    <button class="circulo">
+      <img class="icono-usuario" src="../img/user.png" alt="Icono Usuario">
+    </button>
+    <img class="logo" src="../img/logo sin fondo.png" alt="Logo">
+    <button class="circulo-salir">
+      <img class="icono-salir" src="../img/cerrar-sesion.png" alt="Cerrar sesión">
+    </button>
+  </div>
+  
+  <div class="titulo">
+    <button class="button"> 
+      <img class="flecha" src="../img/FLECHA ATRAS.png" alt="Volver">
+    </button>
+    <h1>DATOS DE</h1>
+  </div>
+  
+  <div class="main-container">
+    <img class="mural" src="../img/mural.png" alt="Mural">
+    <div class="formularios">
+      <span id="nombre"></span>
+      <br><br>
+      <form class="basico">
+        <label class="texto">Fecha de nacimiento:</label>
+        <span id="fechaNacimiento"></span>
+        <br>
+        <label class="texto">Dirección:</label>
+        <span id="direccion"></span>
+        <br>
+      </form>
+      <form class="datosmedicos">
+        <h2>DATOS MÉDICOS</h2>
+        <label class="texto">Historial médico:</label>
+        <span id="historialMedicoRelevante"></span>
+        <br>
+        <label class="texto">Autorización para medicamentos:</label>
+        <span id="autorizacion"></span>
+        <br>
+        <label class="texto">Consentimiento médico:</label>
+        <span id="consentimiento"></span>
+        <br>
+      </form>
+      <form class="datosadicionales">
+        <h2>DATOS ADICIONALES</h2>
+        <label class="texto">Restricciones dietéticas:</label>
+        <span id="restricciones"></span>
+        <br>
+        <label class="texto">Necesidades especiales o adaptaciones:</label>
+        <span id="necesidadesEspeciales"></span>
+        <br>
+        <label class="texto">Persona de contacto en caso de emergencia:</label>
+        <ul>
+          <li>Nombre:  <span id="nombreEmergencia"></span></li> 
+          <li>Teléfono:  <span id="telefonoEmergencia"></span> </li>
+                 
+        </ul>
+      </form>
+    </div>
+  </div>
+  
+  <footer>
+    Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
+  </footer>
+  
+  <script src="../js/perfilMonitor.js"></script>
+</body>
+</html>

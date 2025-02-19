@@ -17,7 +17,7 @@ if ($identificacion === null) {
 }
 
 $sql = "SELECT identificacion, nombre, mail, telefono
-        FROM monitor WHERE identificacion = ?";
+        FROM campista WHERE identificacion = ?";
 
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("i", $identificacion);
@@ -30,15 +30,17 @@ if ($resultado->num_rows > 0) {
     // Formatear los datos en un array asociativo
     $datos = [
         "nombre" => $fila["nombre"],
-        "identificacion" => $fila["identificacion"],
-        "mail" => $fila["mail"],
-        "telefono" => $fila["telefono"],
-        
+        "fechaNacimiento" => $fila["fechaNacimiento"],
+        "direccion" => $fila["direccion"],
+        "historialMedicoRelevante" => $fila["historialMedicoRelevante"],
+        "necesidadesEspeciales" => $fila["necesidadesEspeciales"],
+        "nombreEmergencia" => $fila["nombreEmergencia"],
+        "telefonoEmergencia" => $fila["telefonoEmergencia"]
     ];
 
     echo json_encode($datos);
 } else {
-    echo json_encode(["error" => "monitor no encontrado"]);
+    echo json_encode(["error" => "Campista no encontrado"]);
 }
 
 $stmt->close();
