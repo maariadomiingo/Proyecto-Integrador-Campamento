@@ -1,49 +1,65 @@
 <?php
-// Solo incluir una vez el archivo de conexión
 require_once '../server/conectar.php';
-
-// Establecer la cabecera para JSON
 header('Content-Type: application/json');
 
-// Obtener datos del cuerpo de la solicitud JSON
-$json = file_get_contents('php://input');
-$data = json_decode($json, true);
+try {
+    // Verificar si se están enviando datos en formato JSON
+    if (!isset($_SERVER['CONTENT_TYPE']) || $_SERVER['CONTENT_TYPE'] !== 'application/json') {
+        throw new Exception("Se esperaban datos en formato JSON");
+    }
 
-$rol = $data['rol'] ?? '';
-$user = $data['nombre'] ?? '';
-$password = $data['password'] ?? '';
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
 
-// Verificar que los campos no estén vacíos
-if (!empty($rol) && !empty($user) && !empty($password)) {
-    // Escapar valores para evitar inyecciones SQL
-    $user = mysqli_real_escape_string($conexion, $user);
+    // Verificar si el JSON es válido
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        throw new Exception("Error en el formato de los datos");
+    }
 
-    // Consulta para buscar el usuario por nombre
-    $query = "SELECT nombre, password, rol FROM usuario WHERE nombre = '$user'";
-    $result = mysqli_query($conexion, $query);
+    // Campos recibidos
+    $rol = $data['rol'] ?? '';
+    $identificacion = $data['identificacion'] ?? '';
+    $password = $data['password'] ?? '';
 
-    // Verificar si el usuario existe
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
+    if (empty($rol) || empty($identificacion) || empty($password)) {
+        throw new Exception("Todos los campos son obligatorios");
+    }
 
-        // Verificar la contraseña
+    // Consulta preparada
+    $query = "SELECT identificacion, password, rol FROM usuario WHERE identificacion = ?";
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param("s", $identificacion);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    if ($resultado->num_rows > 0) {
+        $row = $resultado->fetch_assoc();
+
         if (password_verify($password, $row['password'])) {
             session_start();
-            $_SESSION['nombre'] = $row['nombre'];
+            $_SESSION['identificacion'] = $identificacion;
+            $_SESSION['rol'] = $row['rol'];
 
-            // Enviar respuesta JSON con el rol del usuario
-            echo json_encode(["status" => "success", "rol" => $row['rol']]);
+            echo json_encode([
+                "status" => "success",
+                "rol" => $row['rol'],
+                "identificacion" => $identificacion
+            ]);
             exit();
         } else {
-            echo json_encode(["status" => "error", "message" => "Contraseña incorrecta"]);
-            exit();
+            throw new Exception("Contraseña incorrecta");
         }
     } else {
-        echo json_encode(["status" => "error", "message" => "Usuario no encontrado"]);
-        exit();
+        throw new Exception("Usuario no encontrado");
     }
-} else {
-    echo json_encode(["status" => "error", "message" => "Por favor, completa todos los campos"]);
+} catch (Exception $e) {
+    http_response_code(400);
+    echo json_encode([
+        "status" => "error",
+        "message" => $e->getMessage()
+    ]);
     exit();
+} finally {
+    $conexion->close();
 }
 ?>
