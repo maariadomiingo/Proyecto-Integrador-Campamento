@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // Leer JSON desde la solicitud
+<<<<<<< HEAD
 $json = file_get_contents("php://input");
 
 // DEBUG: Imprime el JSON recibido
@@ -91,6 +92,31 @@ if (!empty($medicamentos)) {
         INSERT INTO medicamentosAutorizados (id_campista, medicamento) 
         VALUES (?, ?)
     ");
+=======
+$jsonInput = file_get_contents("php://input");
+error_log("Datos recibidos: " . $jsonInput); // Para debug
+
+$data = json_decode($jsonInput, true);
+
+// Verificar JSON válido
+if (json_last_error() !== JSON_ERROR_NONE) {
+    echo json_encode([
+        "success" => false, 
+        "error" => "JSON inválido: " . json_last_error_msg()
+    ]);
+    exit();
+}
+
+try {
+    // Limpiar y asignar variables
+    $nombre = filter_var($data['nombre'] ?? "", FILTER_SANITIZE_STRING);
+    $fechaNacimiento = filter_var($data['fechaNacimiento'] ?? "", FILTER_SANITIZE_STRING);
+    $direccion = filter_var($data['direccion'] ?? "", FILTER_SANITIZE_STRING);
+    $historialMedico = filter_var($data['historialMedico'] ?? "", FILTER_SANITIZE_STRING);
+    $necesidades = filter_var($data['necesidades'] ?? "", FILTER_SANITIZE_STRING);
+    $nombreEmergencia = filter_var($data['contactoEmergencia']['nombre'] ?? "", FILTER_SANITIZE_STRING);
+    $telefonoEmergencia = filter_var($data['contactoEmergencia']['telefono'] ?? "", FILTER_SANITIZE_STRING);
+>>>>>>> ce1e6445381c3f4075926fa6c8927439563496c8
     
     // Iniciar transacción
     $conexion->begin_transaction();
