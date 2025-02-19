@@ -131,14 +131,14 @@ telefono.addEventListener("focusout", function() {
         .then(function(data) {
             console.log(data);
             if (data.success) {
-                alert("Ha ido bien");
+                window.location.href = `../php/confirmacion-reserva.php?success=true&email=${encodeURIComponent(datosFormulario.email)}`;
             } else {
                 alert("Ha fallado: " + data.message);
             }
         })
         .catch(function(error) {
             console.error("Error en la solicitud:", error);
-            alert("Error en la solicitud. Consulta la consola para más detalles.");
+            // alert("Error en la solicitud. Consulta la consola para más detalles.");
         });
     }
 });

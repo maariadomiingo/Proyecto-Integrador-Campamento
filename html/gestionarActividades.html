@@ -30,7 +30,7 @@
 
     <h1>GESTIONAR ACTIVIDADES</h1>
     <div class="gestionar-actividades">
-        <form method="post" id="formActividad">
+    <form method="post" id="formActividad">
         <select name="actividad" id="actividad">
             <option value="">Elegir Actividad</option>
         </select><br>
@@ -41,29 +41,9 @@
             <option value="">Escoger grupo</option>
         </select><br>
         <input type="submit" value="Añadir Actividad" class="añadir-btn">
-        <input type="submit" value="Nueva Actividad" class="new-btn" onclick="mostrarFormulario()">
+        <button onclick="window.location.href='./estadoActividades.html'" class="new-btn">Estado Actividades</button>
         <input type="submit" value="Editar Actividad" class="editar-btn">
     </form>
-
-    <!-- Formulario para nueva actividad -->
-    <div id="formularioActividad" class="form-container">
-      <h2>Nueva Actividad</h2>
-      <form id="formActividad" onsubmit="guardarActividad(event)">
-          <label for="nombre">Nombre de la actividad:</label>
-          <input type="text" id="nombre" name="nombre" required><br><br>
-
-          <label for="descripcion">Descripción:</label>
-          <textarea id="descripcion" name="descripcion" required></textarea><br><br>
-
-          <label for="fecha">Fecha:</label>
-          <input type="date" id="fecha" name="fecha" required><br><br>
-
-          <label for="lugar">Lugar:</label>
-          <input type="text" id="lugar" name="lugar" required><br><br>
-
-          <input type="submit" value="Guardar Actividad">
-      </form>
-  </div>
 
   <!-- Área para mostrar mensajes -->
   <div id="mensaje"></div>
@@ -100,7 +80,9 @@
       </div>
       <div class="iconos">
         <div class="social-icons">
-          <a href="#">Correo aaaaa@gmail.com</a>
+          <ul>
+            <li><a href="#">Correo aaaaa@gmail.com</a></li>
+          </ul>
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     let diasSeleccionados = [];
-
     // Formatea una fecha en el formato YYYY-MM-DD
     function formatearFecha(fecha) {
         const anio = fecha.getFullYear();

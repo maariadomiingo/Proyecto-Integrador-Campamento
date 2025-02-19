@@ -121,7 +121,7 @@ select {
     max-width: 800px;
 }
 
-input[type="submit"] {
+input[type="submit"], button {
     color: #ffffff;
     border: none;
     padding: 10px 20px;
@@ -131,6 +131,10 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
+    transform: scale(1.2); /* Escala el botón al 120% de su tamaño original */
+    transition-duration: 3s;
+}
+button:hover{
     transform: scale(1.2); /* Escala el botón al 120% de su tamaño original */
     transition-duration: 3s;
 }

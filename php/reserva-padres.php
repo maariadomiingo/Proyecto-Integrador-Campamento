@@ -6,17 +6,17 @@ $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
 // Verificar si existe una función en la solicitud
-if (isset($_POST['funcion'])) {
-    $funcion = $_POST['funcion'];
+if (isset($data['funcion'])) {
+    $funcion = $data['funcion'];
 
     switch ($funcion) {
         case 'datosPadre':
-            // Capturar datos del formulario
-            $nombre = $_POST['nombre'] ?? '';
-            $relacion = $_POST['relacion'] ?? '';
-            $telefono = $_POST['telefono'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $direccion = $_POST['direccion'] ?? '';
+            // Capturar datos del JSON
+            $nombre = $data['nombre'] ?? '';
+            $relacion = $data['relacion'] ?? '';
+            $telefono = $data['telefono'] ?? '';
+            $email = $data['email'] ?? '';
+            $direccion = $data['direccion'] ?? '';
 
             // Establecer la cabecera JSON al inicio
             header('Content-Type: application/json');
@@ -55,4 +55,3 @@ if (isset($conexion)) {
     $conexion->close();
 }
 ?>
-
