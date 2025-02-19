@@ -28,11 +28,12 @@
     </button>
     <h1>Gestionar Actividades</h1>
   </div>
-    <button class="button" onclick="openPopup()">Añadir actividad</button>
-
     <!-- El pop-up para añadir actividad -->
     <div id="popup">
       <form id="form-actividad" onsubmit="guardarActividad(event)">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
         <label for="fecha">Fecha (YYYY-MM-DD):</label>
         <input type="date" id="fecha" name="fecha" required>
 
@@ -43,7 +44,7 @@
         <input type="text" id="descripcion" name="descripcion" required>
 
         <button type="submit" class="button">Guardar actividad</button>
-        <button type="button" class="button" onclick="closePopup()">Cancelar</button>
+        <button type="button" class="button" id="cancelar" onclick="closePopup()">Cancelar</button>
       </form>
     </div>
 
@@ -56,7 +57,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../js/calendariocoordinador.js"></script>
+    <script src="../../js/calendariocoordinador.js" defer></script>
 </body>
 
 </html>
