@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         events: function (fetchInfo, successCallback, failureCallback) {
-            fetch("http://localhost/Proyecto-Integrador-Campamento/php/horario.php", {
+            fetch("../../php/horario.php", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ action: 'get_actividades' })
@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 let events = data.map(evento => ({
-                    id: evento.id,
-                    title: evento.descripcion, 
-                    start: evento.fecha + 'T' + evento.hora,
+                    id: evento.id_actividad,  // Asegúrate de pasar el id correcto
+                    title: evento.nombre, 
+                    start: evento.fecha + 'T' + evento.hora_actividad,
                     description: evento.descripcion
                 }));
                 successCallback(events);
@@ -32,13 +32,15 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         eventClick: function (info) {
             if (confirm('¿Deseas eliminar esta actividad?')) {
-                fetch("http://localhost/Proyecto-Integrador-Campamento/php/horario.php", {
+                fetch("../../php/horario.php", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ action: 'borrar_actividad', id: info.event.id })
                 })
                 .then(response => response.json())
-                .then(() => info.event.remove());
+                .then(() => {
+                    info.event.remove();  // Elimina el evento del calendario
+                });
             }
         }
     });
@@ -50,17 +52,22 @@ document.addEventListener('DOMContentLoaded', function () {
         let fecha = document.getElementById('fecha').value;
         let hora = document.getElementById('hora').value;
         let descripcion = document.getElementById('descripcion').value;
-
-        fetch("http://localhost/Proyecto-Integrador-Campamento/php/horario.php", {
+    
+        fetch("../../php/horario.php", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'agregar_actividad', nombre, fecha, hora, descripcion })
         })
         .then(response => response.json())
-        .then(() => {
-            calendar.refetchEvents();
-            closePopup();
-        });
+        .then(data => {
+            if (data.exito) {
+                calendar.refetchEvents(); 
+                closePopup();
+            } else {
+                alert('Error al agregar actividad: ' + data.error);
+            }
+        })
+        .catch(error => alert('Error en la solicitud: ' + error));
     });
 
     function openPopup(fecha = '') {
@@ -71,4 +78,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function closePopup() {
         document.getElementById('popup').style.display = 'none';
     }
+
+    document.getElementById('cancelar').addEventListener('click', function(e) {
+        closePopup();
+    })
 });

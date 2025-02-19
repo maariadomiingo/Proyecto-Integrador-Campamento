@@ -41,7 +41,8 @@ $tables = [
         nombre VARCHAR(100) NOT NULL,
         descripcion TEXT,
         recursos TEXT,
-        hora_actividad TIME NOT NULL
+        hora_actividad TIME NOT NULL,
+        fecha DATE NOT NULL
     );",
 
     "Campista" => "CREATE TABLE IF NOT EXISTS Campista (
@@ -142,14 +143,14 @@ $stmt_monitor->close();
 echo "Datos insertados en la tabla Monitor.<br>";
 
 // Insertar en Actividad con bind_param()
-$query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos, hora_actividad) VALUES (?, ?, ?, ?)";
+$query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos, hora_actividad, fecha) VALUES (?, ?, ?, ?, ?)";
 $stmt_actividad = $conexion->prepare($query_actividad);
 if (!$stmt_actividad) die("Error en consulta de Actividad: " . $conexion->error);
 
 // Insertar actividades
 $actividades = [
-    ['Pintura', 'Pintar cuadros', 'Pinturas - Lienzos', '10:00:00'],
-    ['Manualidades', 'Crear objetos con reciclaje', 'Tijeras - Pegamento - Papel', '12:00:00']
+    ['Pintura', 'Pintar cuadros', 'Pinturas - Lienzos', '10:00:00', '2025-02-25'],
+    ['Manualidades', 'Crear objetos con reciclaje', 'Tijeras - Pegamento - Papel', '12:00:00', '2025-02-27']
 ];
 
 foreach ($actividades as $actividad) {
