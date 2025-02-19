@@ -1,26 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const formulario = document.querySelector('.main-container');
+    const formulario = document.querySelector('form'); // Select the form element
     const button = document.querySelector('.primary-buttons');
     const errorDiv = document.querySelector('.error');
 
-    // Función para mostrar mensaje de error
+    // Function to display error messages
     function mostrarError(mensaje) {
         errorDiv.innerHTML += `<li style="color: red; margin: 5px 0;">${mensaje}</li>`;
     }
 
-    // Función para ocultar mensaje de error
+    // Function to clear error messages
     function ocultarError() {
         errorDiv.innerHTML = '';
     }
 
-    // Validar campos al salir de ellos
-    document.querySelectorAll('.nombre, .apellido, .mail, .telefono, .identificacion').forEach(campo => {
+    // Validate fields on blur
+    document.querySelectorAll('.nombre, .mail, .telefono, .identificacion').forEach(campo => {
         campo.addEventListener('blur', function() {
             if (this.value.trim() === '') {
                 mostrarError(`Por favor ingresa tu ${this.placeholder}`);
             }
         });
-
         campo.addEventListener('input', function() {
             if (this.value.trim() !== '') {
                 ocultarError();
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Validar email al escribir
+    // Validate email on input
     document.querySelector('.mail').addEventListener('input', function() {
         if (!this.checkValidity()) {
             mostrarError('El correo electrónico no es válido');
@@ -37,26 +36,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Función para validar el formulario
+    // Function to validate the form
     function validarFormulario() {
         let formularioValido = true;
         ocultarError();
 
-        // Validar nombre
+        // Validate name
         const nombre = document.querySelector('.nombre');
         if (nombre.value.trim() === '') {
             mostrarError('Por favor ingresa tu nombre');
             formularioValido = false;
         }
 
-        // Validar apellido
-        const apellido = document.querySelector('.apellido');
-        if (apellido.value.trim() === '') {
-            mostrarError('Por favor ingresa tu apellido');
-            formularioValido = false;
-        }
-
-        // Validar mail
+        // Validate email
         const mail = document.querySelector('.mail');
         if (mail.value.trim() === '') {
             mostrarError('Por favor ingresa tu correo electrónico');
@@ -66,14 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
             formularioValido = false;
         }
 
-        // Validar telefono
+        // Validate phone
         const telefono = document.querySelector('.telefono');
         if (telefono.value.trim() === '') {
             mostrarError('Por favor ingresa tu teléfono');
             formularioValido = false;
         }
 
-        // Validar identificacion
+        // Validate identification
         const identificacion = document.querySelector('.identificacion');
         if (identificacion.value.trim() === '') {
             mostrarError('Por favor ingresa tu identificación');
@@ -81,38 +73,48 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (formularioValido) {
-            // Recoger datos del formulario
+            // Collect form data
             const datos = {
                 nombre: nombre.value,
-                apellido: apellido.value,
                 mail: mail.value,
                 telefono: telefono.value,
                 identificacion: identificacion.value
             };
 
-            // Convertir el objeto a JSON
+            // Convert data to JSON
             const datosJSON = JSON.stringify(datos);
 
-            // Enviar los datos al servidor
-            fetch('../php/aregarMonitor.php', {
+            // Send data to the server
+            fetch('../php/agregarMonitor.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: datosJSON
             })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
-
-            // Limpiar el formulario
-            formulario.reset();
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                if (data.exito) {
+                    formulario.reset(); // Reset the form
+                    window.location.reload(); // Optional: Reload the page
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                mostrarError('Error al agregar monitor: ' + error.message);
+            });
         }
 
         return formularioValido;
     }
 
-    // Evento del botón
+    // Button event listener
     button.addEventListener('click', function(e) {
         e.preventDefault();
         validarFormulario();
