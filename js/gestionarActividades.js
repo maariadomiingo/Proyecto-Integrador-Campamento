@@ -1,8 +1,28 @@
+function mostrarFormularioActualizar() {
+    // Oculta el formulario de añadir actividad
+    document.getElementById('formActividad').classList.add('hidden');
+    
+    // Muestra el formulario de actualizar actividad
+    document.getElementById('formActualizarActividad').classList.remove('hidden');
+}
+
+function cerrarFormularioActualizar() {
+    // Oculta el formulario de actualizar actividad
+    document.getElementById('formActualizarActividad').classList.add('hidden');
+    
+    // Muestra el formulario de añadir actividad
+    document.getElementById('formActividad').classList.remove('hidden');
+}
 document.addEventListener("DOMContentLoaded", function () {
     const selectActividad = document.getElementById("actividad");
     const selectMonitor = document.getElementById("asignarMonitor");
     const selectGrupo = document.getElementById("selectGrupo");
     const formActividad = document.getElementById("formActividad");
+    // const formActualizar = document.getElementById("formActualizarActividad");
+
+    // document.getElementById('editarActividadBtn').addEventListener('click', function () {
+    //     formActividad.classList.toggle('hidden'); // Alternar visibilidad del formulario
+    // });
 
     // Función para obtener datos desde el servidor
     async function fetchData(url) {

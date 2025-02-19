@@ -42,7 +42,7 @@
         </select><br>
         <input type="submit" value="Añadir Actividad" class="añadir-btn">
         <button onclick="window.location.href='./estadoActividades.html'" class="new-btn">Estado Actividades</button>
-        <input type="submit" value="Editar Actividad" class="editar-btn">
+        <input type="submit" value="Editar Actividad" class="editar-btn" onclick="mostrarFormularioActualizar()">
     </form>
 
   <!-- Área para mostrar mensajes -->
@@ -59,6 +59,23 @@
         </table>
     </div>
     </div>
+
+       <!-- Área para editar actividad  -->
+       <form method="post" id="formActualizarActividad" class="hidden">
+        <button type="button" class="cerrar-formulario" onclick="cerrarFormularioActualizar()">X</button>
+        <h2>EDITAR ACTIVIDAD</h2>  
+        <select name="actividad" id="actividad">
+          <option value="">Elegir Actividad</option>
+        </select><br>
+        <select name="asignarMonitor" id="asignarMonitor">
+          <option value="">Asignar Monitor</option>
+        </select><br>
+        <select name="selectGrupo" id="selectGrupo">
+          <option value="">Escoger grupo</option>
+        </select><br>
+        <input type="submit" value="Actualizar" class="actualizar-btn">
+      </form>
+
 <script src="../js/gestionarActividades.js"></script>
 </body>
 <footer>

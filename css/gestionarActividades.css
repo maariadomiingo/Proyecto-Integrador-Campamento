@@ -147,6 +147,29 @@ button:hover{
 .editar-btn{
     background-color: #D67272;
 }
+/* formulario de editar Actividad  */
+.hidden {
+    display: none;
+}
+/* Estilo para el botón de cierre */
+.cerrar-formulario {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000;
+}
+.cerrar-formulario:hover {
+    color: #ff0000;
+}
+/* Posicionamiento relativo para el formulario de editar */
+#formActualizarActividad {
+    position: relative;
+}
+
 /* formulario de nueva actividad */
 .form-container {
     display: none; /* Ocultar el formulario inicialmente */
