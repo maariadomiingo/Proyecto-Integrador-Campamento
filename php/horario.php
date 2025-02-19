@@ -15,7 +15,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 if (isset($data['action'])) {
     switch ($data['action']) {
         case 'get_actividades':
-            $sql = "SELECT id_actividad, nombre, descripcion, recursos, hora_actividad FROM Actividad";
+            $sql = "SELECT id_actividad, nombre, descripcion, recursos, hora_actividad, fecha FROM Actividad";
             $resultado = $conexion->query($sql);
 
             $actividades = [];
@@ -33,26 +33,36 @@ if (isset($data['action'])) {
                 $hora = $conexion->real_escape_string($data['hora']);
                 $descripcion = $conexion->real_escape_string($data['descripcion']);
 
-                $query = "INSERT INTO Actividad (nombre, descripcion, hora_actividad) VALUES ('$nombre', '$descripcion', '$hora')";
-                if ($conexion->query($query)) {
-                    $id_actividad = $conexion->insert_id; 
-                    echo json_encode([
-                        'exito' => true,
-                        'mensaje' => 'Actividad agregada con éxito',
-                        'id_actividad' => $id_actividad,
-                        'nombre' => $nombre,
-                        'fecha' => $fecha,
-                        'hora' => $hora,
-                        'descripcion' => $descripcion
-                    ]);
+                // Validación de formato de fecha y hora
+                $fecha = date('Y-m-d', strtotime($fecha)); 
+                $hora = date('H:i:s', strtotime($hora));   
+
+                $query = "INSERT INTO Actividad (nombre, descripcion, hora_actividad, fecha) VALUES (?, ?, ?, ?)";
+                $stmt = $conexion->prepare($query);
+                if ($stmt) {
+                    $stmt->bind_param("ssss", $nombre, $descripcion, $hora, $fecha);
+                    if ($stmt->execute()) {
+                        $id_actividad = $conexion->insert_id;
+                        echo json_encode([
+                            'exito' => true,
+                            'mensaje' => 'Actividad agregada con éxito',
+                            'id_actividad' => $id_actividad,
+                            'nombre' => $nombre,
+                            'fecha' => $fecha,
+                            'hora' => $hora,
+                            'descripcion' => $descripcion
+                        ]);
+                    } else {
+                        echo json_encode(['exito' => false, 'error' => 'Error al insertar en la base de datos: ' . $stmt->error]);
+                    }
+                    $stmt->close();
                 } else {
-                    echo json_encode(['exito' => false, 'error' => 'Error al insertar en la base de datos: ' . $conexion->error]);
+                    echo json_encode(['exito' => false, 'error' => 'Error en la preparación de la consulta']);
                 }
             } else {
                 echo json_encode(['exito' => false, 'error' => 'Datos incompletos para agregar actividad']);
             }
             break;
-
 
         case 'borrar_actividad':
             if (isset($data['id'])) {
@@ -62,7 +72,7 @@ if (isset($data['action'])) {
                 if ($stmt->execute()) {
                     echo json_encode(["exito" => true, "mensaje" => "Actividad eliminada con éxito"]);
                 } else {
-                    echo json_encode(["exito" => false, "mensaje" => "Error al eliminar actividad"]);
+                    echo json_encode(["exito" => false, "mensaje" => "Error al eliminar actividad: " . $stmt->error]);
                 }
 
                 $stmt->close();
@@ -70,13 +80,10 @@ if (isset($data['action'])) {
                 echo json_encode(["exito" => false, "mensaje" => "ID de actividad no proporcionado"]);
             }
             break;
-
-        default:
-            echo json_encode(["exito" => false, "mensaje" => "Acción no válida"]);
-            break;
     }
 } else {
     echo json_encode(["exito" => false, "mensaje" => "No se recibió ninguna acción"]);
 }
 
 $conexion->close();
+?>
