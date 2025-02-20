@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data.status === 'success') {
-                mostrarDatosSesion(data);
             } else {
                 window.location.href = '../html/login.html';
             }

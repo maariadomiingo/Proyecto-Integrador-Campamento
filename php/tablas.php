@@ -25,8 +25,7 @@ $sql_usuario = "CREATE TABLE IF NOT EXISTS Usuario (
     nombre VARCHAR(20) NOT NULL,
     password VARCHAR(255) NOT NULL,
     rol ENUM('coordinador', 'monitor') NOT NULL,
-    identificacion VARCHAR(9) NOT NULL,
-    FOREIGN KEY (identificacion) REFERENCES Monitor(identificacion) ON DELETE CASCADE
+    identificacion VARCHAR(9) NOT NULL
 );";
 mysqli_query($conexion, $sql_usuario);
 
@@ -39,11 +38,11 @@ $query_monitor = "INSERT IGNORE INTO Monitor (nombre, identificacion, email, tel
 mysqli_query($conexion, $query_monitor);
 
 // Insertamos datos en Coordinador (usando INSERT IGNORE para evitar duplicados)
-$query_coordinador = "INSERT IGNORE INTO Coordinador (nombre, identificacion, email, telefono) VALUES ('Maria García', '987654321', 'maria.garcia@example.com', 987654321)";
+$query_coordinador = "INSERT IGNORE INTO Coordinador (nombre, identificacion, email, telefono) VALUES ('Maria García', '123456789', 'maria.garcia@example.com', 987654321)";
 mysqli_query($conexion, $query_coordinador);
 
 // Inserción en la base de datos
-$query = "INSERT IGNORE INTO Usuario (nombre, password, rol, identificacion) VALUES 
+$query = "INSERT INTO Usuario (nombre, password, rol, identificacion) VALUES 
     ('coordinador', '$hash_coordinador', 'coordinador', '123456789'), 
     ('monitor', '$hash_monitor', 'monitor', 'qwertyuio')";
 mysqli_query($conexion, $query);
@@ -131,7 +130,7 @@ foreach ($tables as $name => $sql) {
     if (!mysqli_query($conexion, $sql)) {
         die("Error al crear la tabla $name: " . mysqli_error($conexion));
     }
-    echo "Tabla $name creada correctamente.<br>";
+    // echo "Tabla $name creada correctamente.<br>";
 }
 
 // FUNCIÓN SEGURA PARA INSERTAR DATOS

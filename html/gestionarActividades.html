@@ -31,13 +31,13 @@
     <h1>GESTIONAR ACTIVIDADES</h1>
     <div class="gestionar-actividades">
     <form method="post" id="formActividad">
-        <select name="actividad" id="actividadActualizar">
+        <select name="actividad" id="actividad">
             <option value="">Elegir Actividad</option>
         </select><br>
-        <select name="asignarMonitor" id="asignarMonitorActualizar">
+        <select name="asignarMonitor" id="asignarMonitor">
             <option value="">Asignar Monitor</option>
         </select><br>
-        <select name="selectGrupo" id="selectGrupoActualizar">
+        <select name="selectGrupo" id="selectGrupo">
             <option value="">Escoger grupo</option>
         </select><br>
         <input type="submit" value="Añadir Actividad" class="añadir-btn">
@@ -63,17 +63,19 @@
     </div>
     </div>
 
+    <!-- Fondo borroso -->
+    <div id="overlay" class="overlay"></div>
        <!-- Área para editar actividad  -->
        <form method="post" id="formActualizarActividad" class="hidden">
         <button type="button" class="cerrar-formulario" onclick="cerrarFormularioActualizar()">X</button>
         <h2>EDITAR ACTIVIDAD</h2>  
-        <select name="actividad" id="actividad">
+        <select name="actividad" id="actividadActualizar">
           <option value="">Elegir Actividad</option>
         </select><br>
-        <select name="asignarMonitor" id="asignarMonitor">
+        <select name="asignarMonitor" id="asignarMonitorActualizar">
           <option value="">Asignar Monitor</option>
         </select><br>
-        <select name="selectGrupo" id="selectGrupo">
+        <select name="selectGrupo" id="selectGrupoActualizar">
           <option value="">Escoger grupo</option>
         </select><br>
         <input type="submit" value="Actualizar" class="actualizar-btn">
