@@ -31,18 +31,18 @@
     <h1>GESTIONAR ACTIVIDADES</h1>
     <div class="gestionar-actividades">
     <form method="post" id="formActividad">
-        <select name="actividad" id="actividad">
+        <select name="actividad" id="actividadActualizar">
             <option value="">Elegir Actividad</option>
         </select><br>
-        <select name="asignarMonitor" id="asignarMonitor">
+        <select name="asignarMonitor" id="asignarMonitorActualizar">
             <option value="">Asignar Monitor</option>
         </select><br>
-        <select name="selectGrupo" id="selectGrupo">
+        <select name="selectGrupo" id="selectGrupoActualizar">
             <option value="">Escoger grupo</option>
         </select><br>
         <input type="submit" value="Añadir Actividad" class="añadir-btn">
         <button onclick="window.location.href='./estadoActividades.html'" class="new-btn">Estado Actividades</button>
-        <input type="submit" value="Editar Actividad" class="editar-btn" onclick="mostrarFormularioActualizar()">
+        <button type="button" class="editar-btn" onclick="mostrarFormularioActualizar()">Editar Actividad</button>
     </form>
 
   <!-- Área para mostrar mensajes -->
@@ -56,6 +56,9 @@
                 <th>Grupo</th>
             </tr>
             <!-- Mostrará los datos de las actividades aquí -->
+            <tbody>
+              <!-- Las filas se agregarán aquí dinámicamente -->
+          </tbody>
         </table>
     </div>
     </div>
