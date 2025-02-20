@@ -1,47 +1,62 @@
 <?php
 include '../server/conectar.php';
 
-// Función para ejecutar consultas y manejar errores
-function executeQuery($conexion, $sql, $nombreTabla) {
-    if (!mysqli_query($conexion, $sql)) {
-        die("Error al crear la tabla $nombreTabla: " . mysqli_error($conexion));
-    }
-}
-
-// Crear tabla usuario
-$sqlUsuario = "CREATE TABLE IF NOT EXISTS usuario (
-    id INT AUTO_INCREMENT PRIMARY KEY,  
-    nombre VARCHAR(20) NOT NULL,  
-    password VARCHAR(255) NOT NULL,
-    rol ENUM('coordinador', 'monitor') NOT NULL
+// Crear tabla Monitor
+$sql_monitor = "CREATE TABLE IF NOT EXISTS Monitor (
+    nombre VARCHAR(50) NOT NULL,
+    identificacion VARCHAR(9) NOT NULL PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    telefono INT NOT NULL
 );";
-executeQuery($conexion, $sqlUsuario, "usuario");
+mysqli_query($conexion, $sql_monitor);
+
+// Crear tabla Coordinador
+$sql_coordinador = "CREATE TABLE IF NOT EXISTS Coordinador (
+    nombre VARCHAR(50) NOT NULL,
+    identificacion VARCHAR(9) NOT NULL PRIMARY KEY,
+    email VARCHAR(100) NOT NULL,
+    telefono INT NOT NULL
+);";
+mysqli_query($conexion, $sql_coordinador);
+
+// Crear tabla Usuario con clave foránea a Monitor
+$sql_usuario = "CREATE TABLE IF NOT EXISTS Usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(20) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    rol ENUM('coordinador', 'monitor') NOT NULL,
+    identificacion VARCHAR(9) NOT NULL,
+    FOREIGN KEY (identificacion) REFERENCES Monitor(identificacion) ON DELETE CASCADE
+);";
+mysqli_query($conexion, $sql_usuario);
 
 // Hash de la contraseña
 $hash_coordinador = password_hash('12345678', PASSWORD_DEFAULT);
-$hash_monitor = password_hash('abcdefgh', PASSWORD_DEFAULT);
+$hash_monitor = password_hash('12345678', PASSWORD_DEFAULT);
+
+// Insertamos primero datos en Monitor (usando INSERT IGNORE para evitar duplicados)
+$query_monitor = "INSERT IGNORE INTO Monitor (nombre, identificacion, email, telefono) VALUES ('Juan Pérez', 'qwertyuio', 'juan.perez@example.com', 123456789)";
+mysqli_query($conexion, $query_monitor);
+
+// Insertamos datos en Coordinador (usando INSERT IGNORE para evitar duplicados)
+$query_coordinador = "INSERT IGNORE INTO Coordinador (nombre, identificacion, email, telefono) VALUES ('Maria García', '987654321', 'maria.garcia@example.com', 987654321)";
+mysqli_query($conexion, $query_coordinador);
 
 // Inserción en la base de datos
-$query = "INSERT IGNORE INTO usuario (nombre, password, rol) VALUES 
-    ('coordinador', '$hash_coordinador', 'coordinador'), 
-    ('monitor', '$hash_monitor', 'monitor')";
-executeQuery($conexion, $query, "usuario");
+$query = "INSERT IGNORE INTO Usuario (nombre, password, rol, identificacion) VALUES 
+    ('coordinador', '$hash_coordinador', 'coordinador', '123456789'), 
+    ('monitor', '$hash_monitor', 'monitor', 'qwertyuio')";
+mysqli_query($conexion, $query);
 
 // CREACIÓN DE TABLAS (En orden correcto para evitar problemas con claves foráneas)
 $tables = [
-    "Monitor" => "CREATE TABLE IF NOT EXISTS Monitor (
-        nombre VARCHAR(50) NOT NULL,
-        identificacion VARCHAR(9) NOT NULL PRIMARY KEY,
-        email VARCHAR(100) NOT NULL UNIQUE,
-        telefono VARCHAR(15) NOT NULL
-    );",
-
     "Actividad" => "CREATE TABLE IF NOT EXISTS Actividad (
         id_actividad INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(100) NOT NULL,
         descripcion TEXT,
         recursos TEXT,
-        hora_actividad TIME NOT NULL
+        hora_actividad TIME NOT NULL,
+        fecha DATE NOT NULL
     );",
 
     "Campista" => "CREATE TABLE IF NOT EXISTS Campista (
@@ -113,7 +128,10 @@ $tables = [
 
 // Ejecutar la creación de tablas
 foreach ($tables as $name => $sql) {
-    executeQuery($conexion, $sql, $name);
+    if (!mysqli_query($conexion, $sql)) {
+        die("Error al crear la tabla $name: " . mysqli_error($conexion));
+    }
+    echo "Tabla $name creada correctamente.<br>";
 }
 
 // FUNCIÓN SEGURA PARA INSERTAR DATOS
@@ -139,23 +157,23 @@ $telefono = '123456789';
 // Ejecutar inserción en Monitor
 executeStatement($stmt_monitor, [$nombre, $identificacion, $email, $telefono]);
 $stmt_monitor->close();
-echo "Datos insertados en la tabla Monitor.<br>";
+// echo "Datos insertados en la tabla Monitor.<br>";
 
 // Insertar en Actividad con bind_param()
-$query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos, hora_actividad) VALUES (?, ?, ?, ?)";
+$query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos, hora_actividad, fecha) VALUES (?, ?, ?, ?, ?)";
 $stmt_actividad = $conexion->prepare($query_actividad);
 if (!$stmt_actividad) die("Error en consulta de Actividad: " . $conexion->error);
 
 // Insertar actividades
 $actividades = [
-    ['Pintura', 'Pintar cuadros', 'Pinturas - Lienzos', '10:00:00'],
-    ['Manualidades', 'Crear objetos con reciclaje', 'Tijeras - Pegamento - Papel', '12:00:00']
+    ['Pintura', 'Pintar cuadros', 'Pinturas - Lienzos', '10:00:00', '2025-02-25'],
+    ['Manualidades', 'Crear objetos con reciclaje', 'Tijeras - Pegamento - Papel', '12:00:00', '2025-02-27']
 ];
 
 foreach ($actividades as $actividad) {
     executeStatement($stmt_actividad, $actividad);
 }
 $stmt_actividad->close();
-echo "Datos insertados en la tabla Actividad.<br>";
+// echo "Datos insertados en la tabla Actividad.<br>";
 
 ?>
