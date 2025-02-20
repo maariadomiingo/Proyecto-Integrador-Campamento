@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error:', error);
-           // window.location.href = '../html/login.html';
+            //window.location.href = '../html/login.html';
         });
     }
 
