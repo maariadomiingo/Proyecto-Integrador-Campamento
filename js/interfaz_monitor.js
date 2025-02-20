@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data.status === 'success') {
-                mostrarDatosSesion(data);
             } else {
                 window.location.href = '../html/login.html';
             }
@@ -41,14 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
            // window.location.href = '../html/login.html';
         });
-    }
-
-    function mostrarDatosSesion(datos) {
-        const identificacionElement = document.getElementById('identificacion');
-        const nombreElement = document.getElementById('nombre');
-
-        identificacionElement.textContent = datos.identificacion || 'No disponible';
-        nombreElement.textContent = datos.nombre || 'No disponible';
     }
 
     iconoUsuario.addEventListener('click', function() {
