@@ -47,7 +47,7 @@ $query = "INSERT INTO Usuario (nombre, password, rol, identificacion) VALUES
     ('monitor', '$hash_monitor', 'monitor', 'qwertyuio')";
 mysqli_query($conexion, $query);
 
-// CREACIÓN DE TABLAS (En orden correcto para evitar problemas con claves foráneas)
+// CREACIÓN DE TABLAS 
 $tables = [
     "Actividad" => "CREATE TABLE IF NOT EXISTS Actividad (
         id_actividad INT AUTO_INCREMENT PRIMARY KEY,
@@ -83,10 +83,8 @@ $tables = [
         id_campista INT NOT NULL,
         fecha DATE NOT NULL,
         estado ENUM('presente', 'ausente') NOT NULL,
-        id_actividad INT NOT NULL,
         PRIMARY KEY (id_campista, id_actividad, fecha),
         FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE,
-        FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad) ON DELETE CASCADE
     );",
 
     "AsignarActividad" => "CREATE TABLE IF NOT EXISTS AsignarActividad (
