@@ -101,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .catch(error => console.error(error));
+
+        
     });
 
     // Función para actualizar la tabla de actividades
@@ -117,11 +119,78 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td>${item.nombre_monitor}  -  </td>
                         <td>${item.nombre_grupo}</td>
                     `;
+                     // Almacena el ID de la actividad en un atributo de datos (data-id)
+                    row.dataset.idActividad = item.id_actividad;
+                    row.dataset.idMonitor = item.id_monitor;
+                    row.dataset.idGrupo = item.id_grupo;
+
+                    // Agrega evento para seleccionar la actividad y abrir el formulario de edición
+                    row.addEventListener("click", function () {
+                    seleccionarActividadParaEditar(this);
+                });
+
                     tableBody.appendChild(row);
                 });
             })
             .catch(error => console.error(error));
     }
+
+    // Función para seleccionar la actividad y editar
+    function seleccionarActividadParaEditar(fila) {
+        // Obtener datos de la fila seleccionada
+        const idActividad = fila.dataset.idActividad;
+        const idMonitor = fila.dataset.idMonitor;
+        const idGrupo = fila.dataset.idGrupo;
+    
+        // Seleccionar el formulario de edición
+        const formActualizar = document.getElementById("formActualizarActividad");
+    
+        // Asignar valores en los campos del formulario
+        document.getElementById("actividadActualizar").value = idActividad;
+        document.getElementById("asignarMonitorActualizar").value = idMonitor;
+        document.getElementById("selectGrupoActualizar").value = idGrupo;
+    
+        // Mostrar el formulario de edición
+        mostrarFormularioActualizar();
+    }
+    
+    // Manejar el envío del formulario de actualización
+document.getElementById("formActualizarActividad").addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita que la página se recargue
+
+    const idActividad = document.getElementById("actividadActualizar").value;
+    const idMonitor = document.getElementById("asignarMonitorActualizar").value;
+    const idGrupo = document.getElementById("selectGrupoActualizar").value;
+
+    if (!idActividad || !idMonitor || !idGrupo) {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+
+    // Enviar la actualización al servidor
+    fetch("../php/actualizarActividad.php", { // Archivo PHP para actualizar la actividad
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idActividad,
+            idMonitor,
+            idGrupo,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Actividad actualizada correctamente.");
+            cerrarFormularioActualizar();
+            updateActivityTable(); // Recargar la tabla con los nuevos datos
+        } else {
+            alert("Error al actualizar la actividad.");
+        }
+    })
+    .catch(error => console.error(error));
+});
 
     // Cargar la tabla al inicio
     updateActivityTable();
