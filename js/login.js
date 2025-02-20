@@ -1,20 +1,19 @@
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("DOMContentLoadedd");
+js: document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOMContentLoaded");
     var form_inserta = document.getElementById("formulario");
 
     // Elementos del formulario
     var rol = document.getElementById("rol");
-    var nombre = document.getElementById("nombre");
+    var identificacion = document.getElementById("identificacion");
     var contrasena = document.getElementById("password");
 
     // Mensajes de error
     var rolError = document.getElementById("rolError");
-    var nameError = document.getElementById("nameError");
+    var identificacionError = document.getElementById("identificacionError");
     var passwordError = document.getElementById("passwordError");
 
     // Función de validación para rol
     function validateRol() {
-        console.log("validateRol");
         if (rol.value.trim() === "") {
             rolError.classList.remove("hidden");
             return false;
@@ -24,21 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Función de validación para nombre
-    function validateNombre() {
-        console.log("validateNombre");
-        if (nombre.value.trim() === "" || nombre.value.length < 4) {
-            nameError.classList.remove("hidden");
+    // Función de validación para identificación
+    function validateIdentificacion() {
+        if (identificacion.value.trim() === "" || identificacion.value.length < 4) {
+            identificacionError.classList.remove("hidden");
             return false;
         } else {
-            nameError.classList.add("hidden");
+            identificacionError.classList.add("hidden");
             return true;
         }
     }
 
-    // Función de validación para la contraseña
+    // Función de validación para contraseña
     function validatePassword() {
-        console.log("validatePassword");
         if (contrasena.value.trim() === "" || contrasena.value.length < 6) {
             passwordError.classList.remove("hidden");
             return false;
@@ -48,80 +45,55 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Event listeners para validación en tiempo real con focusout
+    // Event listeners
     rol.addEventListener("focusout", validateRol);
-    nombre.addEventListener("focusout", validateNombre);
+    identificacion.addEventListener("focusout", validateIdentificacion);
     contrasena.addEventListener("focusout", validatePassword);
 
-    // Validación final del formulario al enviarlo
+    // Submit del formulario
     form_inserta.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        // Ejecuta las validaciones
         var isRolValid = validateRol();
-        var isNombreValid = validateNombre();
+        var isIdentificacionValid = validateIdentificacion();
         var isPasswordValid = validatePassword();
-        console.log(isRolValid, isNombreValid, isPasswordValid);
 
-        // Si todos los campos son válidos, enviar los datos con fetch
-        if (isRolValid && isNombreValid && isPasswordValid) {
-            console.log("Enviando datos...");
-            insertarDatos(rol.value, nombre.value, contrasena.value); // Envía los datos usando fetch
-        } else {
-            console.log("El formulario no pasó las validaciones.");
+        if (isRolValid && isIdentificacionValid && isPasswordValid) {
+            insertarDatos(rol.value, identificacion.value, contrasena.value);
         }
     });
 
-    function insertarDatos(rol, nombre, contrasena) {
-        let formData = new FormData();
-        formData.append("funcion", "insertaUsuario");
-        formData.append("rol", rol);
-        formData.append("nombre", nombre);
-        formData.append("password", contrasena);
-
-        let data = {
-            "funcion": "insertaUsuario",
-            "rol": rol,
-            "nombre": nombre,
-            "password": contrasena
-        }
-    
-        console.log(formData);  
-    
-        fetch("../php/login.php", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            },
+    // Función insertarDatos
+    function insertarDatos(rol, identificacion, password) {
+        fetch('../php/login.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                'rol': rol,
+                'identificacion': identificacion,
+                'password': password
+            }),
         })
-        .then(function(response) {
-            if (!response.ok) {
-                throw new Error("Error en la solicitud: " + response.statusText);
-            }
-            return response.json();
-        })
-        .then(function(data) {
-            console.log(data);
-            if (data.status === "success") {
-              //  alert("Usuario insertado correctamente");
-                
-                // Redirigir según el rol del usuario
-                if (rol.toLowerCase() === "coordinador") {
-                    window.location.href = "../html/interfaz_coordinador.html";
-                } else if (rol.toLowerCase() === "monitor") {
-                    window.location.href = "../html/interfaz_monitor.html";
-                } else {
-                    alert("Rol desconocido. No se puede redirigir.");
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-            } else {
-                alert("Error al insertar el usuario: " + data.message);
-            }
-        })
-        .catch(function(error) {
-            console.error("Error en la solicitud:", error);
-            alert("Error en la solicitud. Consulta la consola para más detalles.");
-        });
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    if (data.rol === 'monitor') {
+                        window.location.href = `../html/interfaz_monitor.html?identificacion=${data.identificacion}`;
+                    } else if (data.rol === 'coordinador') {
+                        window.location.href = `../html/interfaz_coordinador.html?identificacion=${data.identificacion}`;
+                    }
+                } else {
+                    alert(data.message || 'Error al iniciar sesión');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Error al iniciar sesión. Por favor, inténtalo de nuevo.");
+            });
     }
-    
 });

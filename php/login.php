@@ -10,7 +10,7 @@ $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
 $rol = $data['rol'] ?? '';
-$user = $data['nombre'] ?? '';
+$user = $data['identificacion'] ?? '';
 $password = $data['password'] ?? '';
 
 // Verificar que los campos no estén vacíos
@@ -18,8 +18,8 @@ if (!empty($rol) && !empty($user) && !empty($password)) {
     // Escapar valores para evitar inyecciones SQL
     $user = mysqli_real_escape_string($conexion, $user);
 
-    // Consulta para buscar el usuario por nombre
-    $query = "SELECT nombre, password, rol FROM usuario WHERE nombre = '$user'";
+    // Consulta para buscar el usuario por identificacion
+    $query = "SELECT identificacion, password, rol FROM usuario WHERE identificacion = '$user'";
     $result = mysqli_query($conexion, $query);
 
     // Verificar si el usuario existe
@@ -29,10 +29,10 @@ if (!empty($rol) && !empty($user) && !empty($password)) {
         // Verificar la contraseña
         if (password_verify($password, $row['password'])) {
             session_start();
-            $_SESSION['nombre'] = $row['nombre'];
+            $_SESSION['identificacion'] = $row['identificacion'];
 
             // Enviar respuesta JSON con el rol del usuario
-            echo json_encode(["status" => "success", "rol" => $row['rol']]);
+            echo json_encode(["status" => "success", "rol" => $row['rol'], 'identificacion' => $row['identificacion']]);
             exit();
         } else {
             echo json_encode(["status" => "error", "message" => "Contraseña incorrecta"]);
