@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     let calendarEl = document.getElementById('calendario');
     let calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridWeek',
+        initialView: 'dayGridMonth',
         locale: 'es',
         headerToolbar: {
             left: 'prev,next today',

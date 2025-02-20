@@ -121,10 +121,13 @@
     flex-direction: column;
   }
   #calendario {
+    max-width: 80%;
+    max-height: 80%;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 20px;
+    margin-left: 10%;
   }
   .dia {
     width: 200px;
@@ -139,7 +142,7 @@
   }
   .bordecalendario{
     padding: 2%;
-    height: auto;
+    height: 80%;
     width: auto;
     background-color: #ffffff;
   }

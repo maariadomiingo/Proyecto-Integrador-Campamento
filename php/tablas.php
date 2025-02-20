@@ -1,53 +1,31 @@
 <?php
 include '../server/conectar.php';
 
-// Crear tabla Monitor
-$sql_monitor = "CREATE TABLE IF NOT EXISTS Monitor (
-    nombre VARCHAR(50) NOT NULL,
-    identificacion VARCHAR(9) NOT NULL PRIMARY KEY,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    telefono INT NOT NULL
-);";
-mysqli_query($conexion, $sql_monitor);
+// Función para ejecutar consultas y manejar errores
+function executeQuery($conexion, $sql, $nombreTabla) {
+    if (!mysqli_query($conexion, $sql)) {
+        die("Error al crear la tabla $nombreTabla: " . mysqli_error($conexion));
+    }
+}
 
-// Crear tabla Coordinador
-$sql_coordinador = "CREATE TABLE IF NOT EXISTS Coordinador (
-    nombre VARCHAR(50) NOT NULL,
-    identificacion VARCHAR(9) NOT NULL PRIMARY KEY,
-    email VARCHAR(100) NOT NULL,
-    telefono INT NOT NULL
-);";
-mysqli_query($conexion, $sql_coordinador);
-
-// Crear tabla Usuario con clave foránea a Monitor
-$sql_usuario = "CREATE TABLE IF NOT EXISTS Usuario (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(20) NOT NULL,
+// Crear tabla usuario
+$sqlUsuario = "CREATE TABLE IF NOT EXISTS usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,  
+    nombre VARCHAR(20) NOT NULL,  
     password VARCHAR(255) NOT NULL,
-    rol ENUM('coordinador', 'monitor') NOT NULL,
-    identificacion VARCHAR(9) NOT NULL,
-    FOREIGN KEY (identificacion) REFERENCES Monitor(identificacion) ON DELETE CASCADE
+    rol ENUM('coordinador', 'monitor') NOT NULL
 );";
-mysqli_query($conexion, $sql_usuario);
+executeQuery($conexion, $sqlUsuario, "usuario");
 
 // Hash de la contraseña
 $hash_coordinador = password_hash('12345678', PASSWORD_DEFAULT);
-$hash_monitor = password_hash('12345678', PASSWORD_DEFAULT);
-
-// Insertamos primero datos en Monitor (usando INSERT IGNORE para evitar duplicados)
-$query_monitor = "INSERT IGNORE INTO Monitor (nombre, identificacion, email, telefono) VALUES ('Juan Pérez', '123456789', 'juan.perez@example.com', 123456789)";
-mysqli_query($conexion, $query_monitor);
-
-// Insertamos datos en Coordinador (usando INSERT IGNORE para evitar duplicados)
-$query_coordinador = "INSERT IGNORE INTO Coordinador (nombre, identificacion, email, telefono) VALUES ('Maria García', '987654321', 'maria.garcia@example.com', 987654321)";
-mysqli_query($conexion, $query_coordinador);
-
+$hash_monitor = password_hash('abcdefgh', PASSWORD_DEFAULT);
 
 // Inserción en la base de datos
 $query = "INSERT IGNORE INTO usuario (nombre, password, rol) VALUES 
     ('coordinador', '$hash_coordinador', 'coordinador'), 
     ('monitor', '$hash_monitor', 'monitor')";
-mysqli_query($conexion, $query, "usuario");
+executeQuery($conexion, $query, "usuario");
 
 // CREACIÓN DE TABLAS (En orden correcto para evitar problemas con claves foráneas)
 $tables = [
@@ -63,8 +41,7 @@ $tables = [
         nombre VARCHAR(100) NOT NULL,
         descripcion TEXT,
         recursos TEXT,
-        hora_actividad TIME NOT NULL,
-        fecha DATE NOT NULL
+        hora_actividad TIME NOT NULL
     );",
 
     "Campista" => "CREATE TABLE IF NOT EXISTS Campista (
@@ -136,7 +113,7 @@ $tables = [
 
 // Ejecutar la creación de tablas
 foreach ($tables as $name => $sql) {
-    mysqli_query($conexion, $sql, $name);
+    executeQuery($conexion, $sql, $name);
 }
 
 // FUNCIÓN SEGURA PARA INSERTAR DATOS
@@ -165,14 +142,14 @@ $stmt_monitor->close();
 echo "Datos insertados en la tabla Monitor.<br>";
 
 // Insertar en Actividad con bind_param()
-$query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos, hora_actividad, fecha) VALUES (?, ?, ?, ?, ?)";
+$query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos, hora_actividad) VALUES (?, ?, ?, ?)";
 $stmt_actividad = $conexion->prepare($query_actividad);
 if (!$stmt_actividad) die("Error en consulta de Actividad: " . $conexion->error);
 
 // Insertar actividades
 $actividades = [
-    ['Pintura', 'Pintar cuadros', 'Pinturas - Lienzos', '10:00:00', '2025-02-25'],
-    ['Manualidades', 'Crear objetos con reciclaje', 'Tijeras - Pegamento - Papel', '12:00:00', '2025-02-27']
+    ['Pintura', 'Pintar cuadros', 'Pinturas - Lienzos', '10:00:00'],
+    ['Manualidades', 'Crear objetos con reciclaje', 'Tijeras - Pegamento - Papel', '12:00:00']
 ];
 
 foreach ($actividades as $actividad) {
