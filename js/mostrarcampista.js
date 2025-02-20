@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Llamar al PHP con el ID usando POST
-    fetch("http://localhost/Proyecto-Integrador-Campamento/php/mostrarcampista.php", {
+    fetch("../php/mostrarcampista.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"

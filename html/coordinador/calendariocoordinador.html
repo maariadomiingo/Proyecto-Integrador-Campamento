@@ -28,36 +28,37 @@
     </button>
     <h1>Gestionar Actividades</h1>
   </div>
-    <!-- El pop-up para añadir actividad -->
-    <div id="popup">
-      <form id="form-actividad" onsubmit="guardarActividad(event)">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
+  <!-- El pop-up para añadir actividad -->
+  <div id="popup">
+    <form id="form-actividad" onsubmit="guardarActividad(event)">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
 
-        <label for="fecha">Fecha (YYYY-MM-DD):</label>
-        <input type="date" id="fecha" name="fecha" required>
+      <label for="fecha">Fecha (YYYY-MM-DD):</label>
+      <input type="date" id="fecha" name="fecha" required>
 
-        <label for="hora">Hora:</label>
-        <input type="time" id="hora" name="hora" required>
+      <label for="hora">Hora:</label>
+      <input type="time" id="hora" name="hora" required>
 
-        <label for="descripcion">Descripción:</label>
-        <input type="text" id="descripcion" name="descripcion" required>
+      <label for="descripcion">Descripción:</label>
+      <input type="text" id="descripcion" name="descripcion" required>
 
-        <button type="submit" class="button">Guardar actividad</button>
-        <button type="button" class="button" id="cancelar" onclick="closePopup()">Cancelar</button>
-      </form>
-    </div>
+      <button type="submit" class="button">Guardar actividad</button>
+      <button type="button" class="cancelarbutton" id="cancelar">Cancelar</button>
+    </form>
+  </div>
 
-    <!-- Calendario -->
+  <!-- Calendario -->
+  <div class="bordecalendario">
     <div id="calendario"></div>
+  </div>
+  <footer>
+    Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
+  </footer>
 
-    <footer>
-      Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../../js/calendariocoordinador.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../../js/calendariocoordinador.js" defer></script>
 </body>
 
 </html>
