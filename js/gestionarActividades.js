@@ -30,11 +30,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para obtener datos desde el servidor
     async function fetchData(url) {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Error al obtener datos: ${response.statusText}`);
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Error al obtener datos: ${response.statusText}`);
+            }
+            return response.json();
+        } catch (error) {
+            console.error('Error en fetchData:', error);
+            return null;
         }
-        return response.json();
     }
 
     // Función para rellenar un <select> con opciones
@@ -96,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(response => response.json())
             .then(data => {
+                console.log("Respuesta del servidor:", data);
                 if (data.success) {
                     alert("Actividad asignada correctamente.");
                     // Actualizar la tabla de actividades
@@ -109,16 +115,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para actualizar la tabla de actividades
     function updateActivityTable() {
-        fetchData("../php/getActividadesAsignadas.php")
+        fetch("../php/getActividadesAsignadas.php")
+            .then(response => response.json())
             .then(data => {
+                console.log("Datos obtenidos:", data); // 👈 Agregar esto
+    
                 const tableBody = document.querySelector(".MostrarDatos table tbody");
-                tableBody.innerHTML = ""; // Limpiar la tabla
+                tableBody.innerHTML = ""; // Limpiar la tabla antes de actualizar
+    
+                if (data.length === 0) {
+                    tableBody.innerHTML = "<tr><td colspan='3'>No hay actividades asignadas.</td></tr>";
+                    return;
+                }
     
                 data.forEach(item => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
-                        <td>${item.nombre_actividad}  -  </td>
-                        <td>${item.nombre_monitor}  -  </td>
+                        <td>${item.nombre_actividad}</td>
+                        <td>${item.nombre_monitor}</td>
                         <td>${item.nombre_grupo}</td>
                     `;
                     row.dataset.idActividad = item.id_actividad;
@@ -133,8 +147,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     tableBody.appendChild(row);
                 });
             })
-            .catch(error => console.error(error));
+            .catch(error => console.error("Error al actualizar la tabla:", error));
     }
+    
 
     function seleccionarActividadParaEditar(fila) {
         // Obtener datos de la fila seleccionada
