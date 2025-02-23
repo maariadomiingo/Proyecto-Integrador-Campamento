@@ -7,6 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    // JavaScript
+    function editar() {
+    window.location.href = 'editardatosMonitor.html';
+}
+
     fetch("../php/perfilMonitor.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },

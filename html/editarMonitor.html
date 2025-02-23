@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Perfil Monitor</title>
+  
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="../css/editarCampista.css">
+  <link rel="icon" href="icon/favicon.png" type="image/x-icon">
+</head>
+<body>
+  <div class="header">
+    <button class="circulo">
+      <img class="icono-usuario" src="../img/user.png" alt="Icono Usuario">
+    </button>
+    <img class="logo" src="../img/logo sin fondo.png" alt="Logo">
+    <button class="circulo-salir">
+      <img class="icono-salir" src="../img/cerrar-sesion.png" alt="Cerrar sesión">
+    </button>
+  </div>
+  
+  <div class="titulo">
+    <button class="button"> 
+      <img class="flecha" src="../img/FLECHA ATRAS.png" alt="Volver">
+    </button>
+    <h1>DATOS DEL PERFIL</h1>
+  </div>
+  
+  <div class="main-container">
+    <img class="mural" src="../img/mural.png" alt="Mural">
+    <div class="formularios">
+      <form class="basico">
+        <label class="texto">Nombre:</label>
+        <input type="text" id="nombre" value="" placeholder="">
+        <br><br>
+        <label class="texto">Identificación:</label>
+        <input type="identificacion" id="identificacion" value="">
+        <br><br>
+        <label class="texto">Mail:</label>
+        <input type="email" id="mail" value="">
+        <br><br>
+        <label for="teléfono">Teléfono:</label>
+        <input type="number" id="telefono" value="">
+        <br><br><br>
+      </form>
+      
+      <button class="guardar-cambios" onclick="guardarCambios()">Guardar cambios</button>
+    </div>
+  </div>
+  
+  <footer>
+    Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
+  </footer>
+  
+  <script src="../js/editarMonitor.js"></script>
+</body>
+</html>
