@@ -7,11 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // JavaScript
-    function editar() {
-    window.location.href = 'editardatosMonitor.html';
-}
-
     fetch("../php/perfilMonitor.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -32,3 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("Error al obtener datos del monitor:", error));
 });
+
+function editar(event) {
+    event.preventDefault(); // Evita la acción por defecto del formulario
+    const identificacion = document.getElementById("identificacion").textContent; // Obtener la identificación del perfil
+   // window.location.href = `../html/editarMonitor.html?identificacion=${data.identificacion}`;
+    window.location.href = `../html/editarMonitor.html?identificacion=${encodeURIComponent(identificacion)}`;
+}

@@ -1,52 +1,65 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const params = new URLSearchParams(window.location.search);
-    const identificacion = params.get("identificacion");
+  // Obtener el ID de la URL usando parámetros GET (ej: .../editarMonitor.html?identificacion=123)
+const urlParams = new URLSearchParams(window.location.search);
+const identificacion = urlParams.get('identificacion');
 
+if (!identificacion) {
+    const pathSegments = window.location.pathname.split('/');
+    identificacion = pathSegments.find(segment => !isNaN(segment)); 
+}
     if (!identificacion) {
-        alert("No se proporcionó una identificacion.");
+        alert("No se proporcionó una identificación.");
         return;
     }
+
+    console.log("ID a enviar:", identificacion);
 
     fetch("../php/editarMonitor.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `identificacion=${encodeURIComponent(identificacion)}`
+        body: new URLSearchParams({ identificacion: identificacion })
     })
     .then(response => response.json())
     .then(data => {
         if (data.error) {
-            console.error("Error:", data.error);
-        } else {
-            document.getElementById("nombre").value = data.nombre || "";
-            document.getElementById("identificacion").value = data.identificacion || "";
-            document.getElementById("mail").value = data.mail || "";
-            document.getElementById("telefono").value = data.telefono || "";
+            alert(data.error);
+            return;
         }
+
+        // Corregir "Mail" a "mail":
+       // Usa .value si son inputs
+document.getElementById("nombre").value = data.nombre || "No disponible";
+document.getElementById("identificacion").value = data.identificacion || "No disponible";
+document.getElementById("email").value = data.email || "No disponible";
+document.getElementById("telefono").value = data.telefono || "No disponible";
     })
-    .catch(error => console.error("Error en la solicitud:", error));
+    .catch(error => console.error("Error al obtener datos del monitor:", error));
 });
 
+
 function guardarCambios() {
-    const idCampista = new URLSearchParams(window.location.search).get("id");
+    const identificacion = document.getElementById("identificacion").value;
     const datos = {
         nombre: document.getElementById("nombre").value,
-        identificacion: document.getElementById("identificacion").value,
-        mail: document.getElementById("mail").value,
+        email: document.getElementById("email").value,
         telefono: document.getElementById("telefono").value
     };
+
+    console.log("Enviando datos:", { identificacion, datos }); // <--- Depuración
 
     fetch("../php/guardardatosMonitor.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datos)
+        body: JSON.stringify({ identificacion, ...datos })
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             alert("Datos actualizados correctamente.");
+            // window.location.href = "../perfilMonitor.html"; // Descomenta si es necesario
         } else {
-            console.error("Error:", data.error);
+            alert("Error al actualizar: " + data.error);
         }
     })
-    .catch(error => console.error("Error en la solicitud:", error));
+    .catch(error => console.error("Error:", error));
 }

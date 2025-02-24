@@ -1,0 +1,112 @@
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwerteyuio
+)
+
+Identificación recibida: qwerteyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwerteyuio
+Consulta devolvió 0 filas para ID: qwerteyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuiop
+)
+
+Identificación recibida: qwertyuiop
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuiop
+Consulta devolvió 0 filas para ID: qwertyuiop
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => monitor1
+)
+
+Identificación recibida: monitor1
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: monitor1
+Consulta devolvió 0 filas para ID: monitor1
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+Datos recibidos: {"identificacion":"qwertyuioz","nombre":"Juan Pérezzzz","email":"juan.perez@exazmple.com","telefono":"1234567893"}
+POST: Array
+(
+    [identificacion] => qwertyuioz
+)
+
+Identificación recibida: qwertyuioz
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuioz
+Consulta devolvió 0 filas para ID: qwertyuioz
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+Datos recibidos: {"identificacion":"qwertyuio","nombre":"Juan Pérez","email":"juan.perez@example.com","telefono":"123456789"}
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+Datos recibidos: {"identificacion":"qwertyuio","nombre":"Juan Pérez","email":"juan.perez@example.com","telefono":"123456789"}
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio

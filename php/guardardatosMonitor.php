@@ -1,57 +1,55 @@
 <?php
+header('Content-Type: application/json');
 require_once '../server/conectar.php';
-header("Content-Type: application/json");
 
-// Verificar la conexión
-if ($conexion->connect_error) {
-    echo json_encode(["error" => "Error en la conexión: " . $conexion->connect_error]);
-    exit();
-}
+file_put_contents('debug.log', "Datos recibidos: " . file_get_contents('php://input') . PHP_EOL, FILE_APPEND);
 
-// Obtener los datos enviados por POST en formato JSON
-$datos = json_decode(file_get_contents("php://input"), true);
+try {
+    $datos = json_decode(file_get_contents('php://input'), true);
 
-// Verificar si los datos contienen el ID del campista
-if (empty($datos['idCampista'])) {
-    echo json_encode(["error" => "No se proporcionó un ID de campista."]);
-    exit();
-}
+    if (empty($datos['identificacion'])) {
+        throw new Exception("Identificación no proporcionada");
+    }
 
-// Asignar las variables con los datos recibidos
-$idCampista = $datos['idCampista'];
-$nombre = $datos['nombre'] ?? null;
-$fechaNacimiento = $datos['fechaNacimiento'] ?? null;
-$direccion = $datos['direccion'] ?? null;
-$historialMedicoRelevante = $datos['historialMedicoRelevante'] ?? null;
-$necesidadesEspeciales = $datos['necesidadesEspeciales'] ?? null;
-$nombreEmergencia = $datos['nombreEmergencia'] ?? null;
-$telefonoEmergencia = $datos['telefonoEmergencia'] ?? null;
+    // Obtener datos
+    $identificacion = $datos['identificacion'];
+    $nombre = $datos['nombre'] ?? '';
+    $mail = $datos['email'] ?? '';
+    $telefono = $datos['telefono'] ?? '';
 
-$sql = "UPDATE campista SET 
-            nombre = IFNULL(?, nombre),
-            fechaNacimiento = IFNULL(?, fechaNacimiento),
-            direccion = IFNULL(?, direccion),
-            historialMedicoRelevante = IFNULL(?, historialMedicoRelevante),
-            necesidadesEspeciales = IFNULL(?, necesidadesEspeciales),
-            nombreEmergencia = IFNULL(?, nombreEmergencia),
-            telefonoEmergencia = IFNULL(?, telefonoEmergencia)
-        WHERE id_campista = ?";
+    // Validar campos
+    if (empty($nombre) || empty($mail) || empty($telefono)) {
+        throw new Exception("Todos los campos son obligatorios");
+    }
 
-$stmt = $conexion->prepare($sql);
+    // Consulta SQL
+    $query = "UPDATE monitor SET 
+                nombre = ?, 
+                email = ?, 
+                telefono = ?
+              WHERE identificacion = ?";
 
-// Vincular los parámetros en el SQL
-$stmt->bind_param("sssssssi", 
-    $nombre, $fechaNacimiento, $direccion, $historialMedicoRelevante, $necesidadesEspeciales, 
-    $nombreEmergencia, $telefonoEmergencia, $idCampista
-);
+    $stmt = $conexion->prepare($query);
 
-// Ejecutar la consulta
-if ($stmt->execute()) {
+    if (!$stmt) {
+        throw new Exception("Error en la consulta: " . $conexion->error);
+    }
+
+    // Ajustar "s" o "i" según el tipo de identificacion
+    $stmt->bind_param("sssi", $nombre, $mail, $telefono, $identificacion); // Si identificacion es INT
+
+    if (!$stmt->execute()) {
+        throw new Exception("Error al ejecutar: " . $stmt->error);
+    }
+
+    // Éxito
     echo json_encode(["success" => true]);
-} else {
-    echo json_encode(["error" => "Error al actualizar los datos: " . $stmt->error]);
+
+} catch (Exception $e) {
+    file_put_contents('debug.log', "Error: " . $e->getMessage() . PHP_EOL, FILE_APPEND);
+    http_response_code(400);
+    echo json_encode(["error" => $e->getMessage()]);
 }
 
-$stmt->close();
 $conexion->close();
 ?>
