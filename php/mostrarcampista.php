@@ -28,7 +28,7 @@ $resultado = $stmt->get_result();
 if ($resultado->num_rows > 0) {
     $fila = $resultado->fetch_assoc();
     
-    // Formatear los datos en un array asociativo
+    // Formatear los datos en un array 
     $datos = [
         "nombre" => $fila["nombre"],
         "fechaNacimiento" => $fila["fechaNacimiento"],

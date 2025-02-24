@@ -11,10 +11,11 @@ if (isset($data['idActividad'], $data['idMonitor'], $data['idGrupo'])) {
 
     // Verificar si la actividad ya tiene una asignación para actualizar
     $sql = "UPDATE AsignarActividad 
-            SET identificacion_monitor = ?, id_grupo = ? 
-            WHERE id_actividad = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sii", $idMonitor, $idGrupo, $idActividad);
+        SET identificacion_monitor = ?, id_grupo = ? 
+        WHERE id_actividad = ? AND identificacion_monitor = ? AND id_grupo = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("siiii", $idMonitor, $idGrupo, $idActividad, $idMonitor, $idGrupo);
+
     
     if ($stmt->execute()) {
         echo json_encode(["success" => true]);
@@ -23,7 +24,7 @@ if (isset($data['idActividad'], $data['idMonitor'], $data['idGrupo'])) {
     }
 
     $stmt->close();
-    $conn->close();
+    $conexion->close();
 } else {
     echo json_encode(["success" => false, "error" => "Datos incompletos"]);
 }

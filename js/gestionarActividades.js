@@ -106,26 +106,31 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error(error));
     });
-
+//ESTA FALLANDO DESDE AQUI
     // Función para actualizar la tabla de actividades
     function updateActivityTable() {
         fetchData("../php/getActividadesAsignadas.php")
             .then(data => {
+                
                 const tableBody = document.querySelector(".MostrarDatos table tbody");
                 tableBody.innerHTML = ""; // Limpiar la tabla
+
+                if (data.length === 0) {
+                    tableBody.innerHTML = "<tr><td colspan='3'>No hay actividades asignadas.</td></tr>";
+                    return;
+                }
     
                 data.forEach(item => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
-                        <td>${item.nombre_actividad}  -  </td>
-                        <td>${item.nombre_monitor}  -  </td>
+                        <td>${item.nombre_actividad}</td>
+                        <td>${item.nombre_monitor}</td>
                         <td>${item.nombre_grupo}</td>
                     `;
                     row.dataset.idActividad = item.id_actividad;
                     row.dataset.idMonitor = item.id_monitor;
                     row.dataset.idGrupo = item.id_grupo;
     
-                    // Agregar evento de clic a la fila
                     row.addEventListener("click", function () {
                         seleccionarActividadParaEditar(this);
                     });
@@ -133,7 +138,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     tableBody.appendChild(row);
                 });
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error("Error al cargar los datos:", error);
+                document.getElementById("mensaje").innerText = "Error al cargar los datos. Por favor, inténtalo de nuevo.";
+            });
     }
 
     function seleccionarActividadParaEditar(fila) {
@@ -194,23 +202,20 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                idActividad,
-                idMonitor,
-                idGrupo,
-            }),
+            body: JSON.stringify({ idActividad, idMonitor, idGrupo }),
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert("Actividad actualizada correctamente.");
-                    cerrarFormularioActualizar();
-                    updateActivityTable(); // Recargar la tabla con los nuevos datos
-                } else {
-                    alert("Error al actualizar la actividad.");
-                }
-            })
-            .catch(error => console.error(error));
+        .then(response => response.json())
+        .then(data => {
+            console.log("Respuesta del servidor:", data);
+            if (data.success) {
+                alert("Actividad actualizada correctamente.");
+                cerrarFormularioActualizar();
+                updateActivityTable(); // Recargar la tabla con los nuevos datos
+            } else {
+                alert("Error al actualizar la actividad: " + (data.error || "Error desconocido"));
+            }
+        })
+        .catch(error => console.error("Error en la petición:", error));
     });
 
     // Cargar la tabla al inicio

@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     const listaCampistas = document.getElementById("listaCampistas");
     const guardarAsistenciaBtn = document.getElementById("guardarAsistencia");
-    const actividadId = 1; // Asigna el ID de la actividad actual (esto lo puedes obtener de alguna parte del código)
 
     // Cargar la lista de campistas
-    fetch("http://localhost/Proyecto-Integrador-Campamento/php/pasarlista.php")
+    fetch("../php/pasarlista.php")
         .then(response => {
             if (!response.ok) {
                 throw new Error("Error al cargar los campistas");
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("No se pudo cargar la lista de campistas");
         });
 
-    // Botón para guardar la asistencia
+
     guardarAsistenciaBtn.addEventListener("click", (event) => {
         event.preventDefault();
         
@@ -47,10 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        fetch("http://localhost/Proyecto-Integrador-Campamento/php/guardarasistencia.php", {
+        fetch("../php/guardarasistencia.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ asistencias, actividad_id: actividadId }) // Enviar también el ID de la actividad
+            body: JSON.stringify({ asistencias}) 
         })
         .then(response => response.json())
         .then(data => {

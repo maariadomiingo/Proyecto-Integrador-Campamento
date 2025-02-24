@@ -1,37 +1,31 @@
 <?php
-require_once '../server/conectar.php';
+include '../server/conectar.php';
+header('Content-Type: application/json');
 
-// Obtener los datos enviados desde JavaScript
-$data = json_decode(file_get_contents("php://input"), true);
+// Obtener datos de la solicitud
+$datos = json_decode(file_get_contents("php://input"), true);
 
-if (isset($data['idActividad'], $data['idMonitor'], $data['idGrupo'])) {
-    $idActividad = $data['idActividad'];
-    $idMonitor = $data['idMonitor'];
-    $idGrupo = $data['idGrupo'];
+$actividadId = $datos["actividadId"] ?? null;
+$monitorId = $datos["monitorId"] ?? null;
+$grupoId = $datos["grupoId"] ?? null;
 
-    // Verificar si la actividad ya tiene una asignación para actualizar
-    $sql = "UPDATE AsignarActividad 
-            SET identificacion_monitor = ?, id_grupo = ? 
-            WHERE id_actividad = ? AND identificacion_monitor = ? AND id_grupo = ?";
-    $stmt = $conn->prepare($sql);
-
-    if ($stmt === false) {
-        echo json_encode(["success" => false, "error" => "Error en la preparación de la consulta: " . $conn->error]);
-        exit;
-    }
-
-    // Asociar los parámetros
-    $stmt->bind_param("sissi", $idMonitor, $idGrupo, $idActividad, $idMonitor, $idGrupo);
-
-    if ($stmt->execute()) {
-        echo json_encode(["success" => true]);
-    } else {
-        echo json_encode(["success" => false, "error" => "Error al ejecutar la consulta: " . $stmt->error]);
-    }
-
-    $stmt->close();
-    $conn->close();
-} else {
-    echo json_encode(["success" => false, "error" => "Datos incompletos"]);
+if (!$actividadId || !$monitorId || !$grupoId) {
+    echo json_encode(["success" => false, "message" => "Datos incompletos"]);
+    exit();
 }
+
+// Insertar en la base de datos
+$sql = "INSERT INTO AsignarActividad (id_actividad, identificacion_monitor, id_grupo) 
+        VALUES (?, ?, ?)";
+$stmt = $conexion->prepare($sql);
+$stmt->bind_param("iss", $actividadId, $monitorId, $grupoId);
+
+if ($stmt->execute()) {
+    echo json_encode(["success" => true]);
+} else {
+    echo json_encode(["success" => false, "message" => "Error al insertar: " . $stmt->error]);
+}
+
+$stmt->close();
+$conexion->close();
 ?>
