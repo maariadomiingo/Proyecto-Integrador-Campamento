@@ -30,16 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para obtener datos desde el servidor
     async function fetchData(url) {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`Error al obtener datos: ${response.statusText}`);
-            }
-            return response.json();
-        } catch (error) {
-            console.error('Error en fetchData:', error);
-            return null;
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Error al obtener datos: ${response.statusText}`);
         }
+        return response.json();
     }
 
     // Función para rellenar un <select> con opciones
@@ -101,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("Respuesta del servidor:", data);
                 if (data.success) {
                     alert("Actividad asignada correctamente.");
                     // Actualizar la tabla de actividades
@@ -112,17 +106,15 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error(error));
     });
-
+//ESTA FALLANDO DESDE AQUI
     // Función para actualizar la tabla de actividades
     function updateActivityTable() {
-        fetch("../php/getActividadesAsignadas.php")
-            .then(response => response.json())
+        fetchData("../php/getActividadesAsignadas.php")
             .then(data => {
-                console.log("Datos obtenidos:", data); // 👈 Agregar esto
-    
+                
                 const tableBody = document.querySelector(".MostrarDatos table tbody");
-                tableBody.innerHTML = ""; // Limpiar la tabla antes de actualizar
-    
+                tableBody.innerHTML = ""; // Limpiar la tabla
+
                 if (data.length === 0) {
                     tableBody.innerHTML = "<tr><td colspan='3'>No hay actividades asignadas.</td></tr>";
                     return;
@@ -139,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     row.dataset.idMonitor = item.id_monitor;
                     row.dataset.idGrupo = item.id_grupo;
     
-                    // Agregar evento de clic a la fila
                     row.addEventListener("click", function () {
                         seleccionarActividadParaEditar(this);
                     });
@@ -147,9 +138,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     tableBody.appendChild(row);
                 });
             })
-            .catch(error => console.error("Error al actualizar la tabla:", error));
+            .catch(error => {
+                console.error("Error al cargar los datos:", error);
+                document.getElementById("mensaje").innerText = "Error al cargar los datos. Por favor, inténtalo de nuevo.";
+            });
     }
-    
 
     function seleccionarActividadParaEditar(fila) {
         // Obtener datos de la fila seleccionada
@@ -209,23 +202,20 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                idActividad,
-                idMonitor,
-                idGrupo,
-            }),
+            body: JSON.stringify({ idActividad, idMonitor, idGrupo }),
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert("Actividad actualizada correctamente.");
-                    cerrarFormularioActualizar();
-                    updateActivityTable(); // Recargar la tabla con los nuevos datos
-                } else {
-                    alert("Error al actualizar la actividad.");
-                }
-            })
-            .catch(error => console.error(error));
+        .then(response => response.json())
+        .then(data => {
+            console.log("Respuesta del servidor:", data);
+            if (data.success) {
+                alert("Actividad actualizada correctamente.");
+                cerrarFormularioActualizar();
+                updateActivityTable(); // Recargar la tabla con los nuevos datos
+            } else {
+                alert("Error al actualizar la actividad: " + (data.error || "Error desconocido"));
+            }
+        })
+        .catch(error => console.error("Error en la petición:", error));
     });
 
     // Cargar la tabla al inicio
