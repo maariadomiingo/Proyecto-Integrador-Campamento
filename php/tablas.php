@@ -79,6 +79,14 @@ $tables = [
         FOREIGN KEY (identificacion_monitor) REFERENCES Monitor(identificacion) ON DELETE CASCADE
     );",
 
+    "GrupoCampistaRelacion" => "CREATE TABLE IF NOT EXISTS GrupoCampistaRelacion (
+        id_grupo INT NOT NULL,
+        id_campista INT NOT NULL,
+        PRIMARY KEY (id_grupo, id_campista),
+        FOREIGN KEY (id_grupo) REFERENCES GrupoCampistas(id_grupo) ON DELETE CASCADE,
+        FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
+    );",
+    
     "PasarLista" => "CREATE TABLE IF NOT EXISTS PasarLista (
         id_campista INT NOT NULL,
         fecha DATE NOT NULL,
