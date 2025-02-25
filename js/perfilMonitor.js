@@ -1,86 +1,46 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Función para verificar la sesión
-    function checkSession() {
-        fetch('login.php', {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Datos de la sesión:', data);
-            if (data.error) {
-                console.error('Error:', data.error);
-                // Si no hay sesión, redirige al login
-                if (data.error === "No hay sesión iniciada") {
-                    window.location.href = '../html/login.html';
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Error al verificar la sesión:', error);
-        });
+document.addEventListener("DOMContentLoaded", function () {
+    const pathSegments = window.location.pathname.split('/');
+    const identificacion = pathSegments[pathSegments.length - 1];
+    const atras = document.querySelector('.flecha');
+    const botonSalir = document.querySelector('.icono-salir');
+
+    if (!identificacion) {
+        alert("No se proporcionó una identificación.");
+        return;
     }
 
-    // Verificar sesión al cargar la página
-    checkSession();
+    // Event listeners dentro de DOMContentLoaded
+    atras.addEventListener('click', function() {
+        window.location.href = '../html/interfaz_monitor.html';
+    });
 
-    // Obtener los elementos
-    const btnCargarDatos = document.getElementById('cargarDatos');
-    const contenedorDatos = document.getElementById('datosContainer');
+    botonSalir.addEventListener('click', function() {
+        window.location.href = '../html/login.html';
+    });
 
-    if (btnCargarDatos && contenedorDatos) {
-        btnCargarDatos.addEventListener('click', function() {
-            // Llamada AJAX para traer los datos
-            fetch('get_data.php')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error en la respuesta');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Borra el contenido anterior
-                    contenedorDatos.innerHTML = '';
-                    
-                    if (data.error) {
-                        contenedorDatos.innerHTML = `<p class="error">${data.error}</p>`;
-                        return;
-                    }
+    fetch("../php/perfilMonitor.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ identificacion: identificacion })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
 
-                    // Crea la tabla
-                    const table = document.createElement('table');
-                    const thead = document.createElement('thead');
-                    const tbody = document.createElement('tbody');
-
-                    // Encabezados de la tabla
-                    const headers = Object.keys(data[0]);
-                    const headerRow = document.createElement('tr');
-                    headers.forEach(header => {
-                        const th = document.createElement('th');
-                        th.textContent = header;
-                        headerRow.appendChild(th);
-                    });
-                    thead.appendChild(headerRow);
-
-                    // Filas de la tabla
-                    data.forEach(row => {
-                        const rowTr = document.createElement('tr');
-                        headers.forEach(header => {
-                            const td = document.createElement('td');
-                            td.textContent = row[header];
-                            rowTr.appendChild(td);
-                        });
-                        tbody.appendChild(rowTr);
-                    });
-
-                    table.appendChild(thead);
-                    table.appendChild(tbody);
-                    contenedorDatos.appendChild(table);
-                })
-                .catch(error => {
-                    contenedorDatos.innerHTML = `<p class="error">Error al cargar los datos: ${error.message}</p>`;
-                });
-        });
-    } else {
-        console.error('Uno o más elementos no existen en el DOM');
-    }
+        document.getElementById("nombre").textContent = data.nombre || "No disponible";
+        document.getElementById("identificacion").textContent = data.identificacion || "No disponible";
+        document.getElementById("mail").textContent = data.mail || "No disponible";
+        document.getElementById("telefono").textContent = data.telefono || "No disponible";
+    })
+    .catch(error => console.error("Error al obtener datos del monitor:", error));
 });
+
+// Función editar (si se llama desde un botón en el HTML)
+function editar(event) {
+    event.preventDefault();
+    const identificacion = document.getElementById("identificacion").textContent;
+    window.location.href = `../html/editarMonitor.html?identificacion=${encodeURIComponent(identificacion)}`;
+}

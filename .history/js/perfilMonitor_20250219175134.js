@@ -2,7 +2,6 @@ const urlParams = new URLSearchParams(window.location.search);
 const identificacionURL = urlParams.get('identificacion');
 
 document.addEventListener('DOMContentLoaded', function() {
-    const iconoUsuario = document.querySelector('.circulo');
     const botonSalir = document.querySelector('.circulo-salir');
     const contenedorDatos = document.querySelector('.datos-monitor');
 
@@ -32,13 +31,14 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data.status === 'success') {
+                mostrarDatosSesion(data);
             } else {
                 window.location.href = '../html/login.html';
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            //window.location.href = '../html/login.html';
+           // window.location.href = '../html/login.html';
         });
     }
 
@@ -47,14 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
         identificacionElement.textContent = datos.identificacion || 'No disponible';
        
     }
-
-    iconoUsuario.addEventListener('click', function() {
-        window.location.href = `perfilMonitor.html?identificacion=${identificacionURL}`;
-    });
-
-    botonSalir.addEventListener('click', function() {
-        window.location.href = '../html/login.html';
-    });
 
     checkSession();
 });

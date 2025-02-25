@@ -30,6 +30,7 @@
   <div class="main-container">
     <img class="mural" src="../img/mural.png" alt="Mural">
     <div class="formularios">
+      <span id="nombre"></span>
       <br><br>
       <form class="basico">
         <label class="texto">Nombre:</label>
@@ -44,9 +45,6 @@
         <label class="texto">Teléfono:</label>
         <span id="telefono"></span>
         <br>
-        <br>
-        <button class="editar-perfil" onclick="editar(event)">Editar</button>
-
       </form>
     </div>
   </div>
@@ -56,9 +54,7 @@
   </footer>
   
   <script src="../js/perfilMonitor.js">
-     const urlParams = new URLSearchParams(window.location.search);
-        const identificacion = urlParams.get('identificacion');
-        initProfile(identificacion);
+    
   </script>
 </body>
 </html>

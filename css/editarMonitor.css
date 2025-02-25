@@ -1,0 +1,138 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url(../font/Montserrat-VariableFont_wght.ttf);
+  }
+  
+  body {
+    font-family: Poppins, sans-serif;
+    background-color: #d3e1eb;
+    ;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin: 1%;
+  }
+  
+  .logo {
+    height: 10%;
+    width: 10%;
+  }
+  
+  .circulo,
+  .circulo-salir, .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .circulo {
+    width: 81px;
+    height: 79px;
+    background: #7770C5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 9999px;
+  }
+  
+  .icono-usuario {
+    max-width: 60%;
+    max-height: 60%;
+  }
+  
+  .circulo-salir {
+    width: 80px;
+    height: 80px;
+    background: #F5F5F5;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+    border-radius: 9999px;
+    border: 1px #7AB3D7 solid;
+  }
+  
+  .icono-salir {
+    width: 24px;
+    height: 29px;
+  }
+  
+  /*inicio*/
+  .flecha {
+    max-width: 60%;
+    max-height: 60%;
+  }
+  
+  .titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .button{
+    width: 51px;
+    height: 49px;
+    background: #7770C5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    margin: 1%;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #0F0559;
+  }
+  
+  .mural {
+    display: flex;
+    height: 50%;
+    width: auto;
+    margin-right: 10%;
+  }
+  
+  .main-container {
+    display: flex;
+    height: auto;
+    width: 60%;
+    background: rgba(176, 207, 241, 0.5);
+    border: 3px solid #4674aa;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    padding: 3%;
+    margin: 3%;
+    margin-left: 15%;
+  }
+  
+  h2 {
+    text-decoration: underline;
+  }
+  input{
+    border-radius: 20px;
+    padding-left: 3%;
+  }
+  #nombre {
+    font-size: 30px;
+    text-decoration: underline;
+  }
+  .guardar-cambios{
+    padding: 7px 20px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #7770C5;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  .texto {
+    font-size: 15px;
+  }
+  
+  /* footer */
+  footer {
+    background-color: #7770C5;
+    padding: 4%;
+    text-align: center;
+  }

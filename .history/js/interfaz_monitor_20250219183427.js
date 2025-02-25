@@ -32,13 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data.status === 'success') {
+                mostrarDatosSesion(data);
             } else {
                 window.location.href = '../html/login.html';
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            //window.location.href = '../html/login.html';
+           // window.location.href = '../html/login.html';
         });
     }
 
