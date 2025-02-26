@@ -1,0 +1,96 @@
+
+<!-- ESTRUCTURA ver actividades
+----------------
+
+
+crear una actividad (id_actividad, nombre, descripción, recursos, hora, fecha)
+->
+gestionar actividades (id_actividad, identificacion_monitor, id_grupo)
+->
+
+ver actividades
+con identificación monitor -> ejemplo qwertyuio
+
+1. ver la actividad y sacar sus datos
+2.ver grupo  correspondiente -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/verActividades.css">
+    <title>Ver Actividades</title>
+</head>
+<body>
+    <!-- Iconos de usuario y salir -->
+    <div class="circulo">
+        <img class="icono-usuario" src="../img/user.png" />  
+    </div>
+    
+    <div class="circulo-salir">
+        <img class="icono-salir" src="../img/cerrar-sesion.png" />
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <img class="logo" src="../img/logo sin fondo.png" />
+    </div>
+    
+    <h1>VER ACTIVIDADES</h1>
+    
+    <div class="ver-actividades">
+        <form method="post" id="formActividad">
+            <label for="nombreActividad">Nombre: </label>
+            <span id="nombreActividad"></span>
+            <br><br>
+            <label for="descripcion">descripcion: </label>
+            <span id="descripcion"></span>
+            <br><br>
+            <label for="hora">Hora:</label>
+            <span id="hora"></span>
+            <br><br>
+            <label for="fecha">Fecha:</label>
+            <span id="fecha"></span>
+            <br><br>
+            <label for="grupo">Grupo: </label>
+            <span id="grupo"></span>
+            <br><br>
+            <label for="recursos">Recursos: </label>
+            <span id="recursos"></span>
+            <br><br>
+            <input type="submit" value="Hacer Reporte" class="reporte">
+        </form>
+    </div>
+
+    <!-- Footer dentro del body -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <ul>
+                    <li><a href="#">Política de privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <ul>
+                    <li><a href="#">Política de uso aceptable</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <ul>
+                    <li><a href="#">Contacto +34 111 1111 11</a></li>
+                </ul>
+            </div>
+            <div class="iconos">
+                <div class="social-icons">
+                    <ul>
+                        <li><a href="#">Correo aaaaa@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/verActividades.js"></script>
+</body>
+</html>

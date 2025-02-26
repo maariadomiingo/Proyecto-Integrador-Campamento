@@ -173,4 +173,12 @@ foreach ($actividades as $actividad) {
 $stmt_actividad->close();
 // echo "Datos insertados en la tabla Actividad.<br>";
 
+
+/* INSERT INTO grupoCampistas (id_grupo, nombre, identificacion_monitor, id_actividad) 
+VALUES 
+(1, 'Grupo A', 'qwertyuio', 1), 
+(2, 'Grupo B', 'qwertyuio', 1), 
+(3, 'Grupo C', 'qwertyuio', 2), 
+(4, 'Grupo D', 'qwertyuio', 2);
+ */
 ?>

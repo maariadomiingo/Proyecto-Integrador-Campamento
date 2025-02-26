@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const iconoUsuario = document.querySelector('.circulo');
     const botonSalir = document.querySelector('.circulo-salir');
     const contenedorDatos = document.querySelector('.datos-monitor');
+    const verActividades = document.querySelector('.veractividades');
 
     function checkSession() {
         if (!identificacionURL) {
@@ -56,5 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = '../html/login.html';
     });
 
+    
+    if (verActividades) {
+        verActividades.addEventListener('click', function() {
+            window.location.href = `verActividades.html?identificacion=${identificacionURL}`;
+        });
+    }
     checkSession();
 });
