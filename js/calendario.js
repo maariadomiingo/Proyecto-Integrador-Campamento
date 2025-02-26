@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     let diasSeleccionados = [];
+    const precioPorDia = 18;
+    const totalPriceElement = document.getElementById("totalPrice");
+    const botonReservar = document.querySelector(".botonreservar");
     // Formatea una fecha en el formato YYYY-MM-DD
     function formatearFecha(fecha) {
         const anio = fecha.getFullYear();
@@ -11,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Actualiza la visualización de los días seleccionados
     function actualizarVisualizacion() {
         document.getElementById('selected_days_display').textContent = diasSeleccionados.sort().join(', ');
+        totalPriceElement.textContent = diasSeleccionados.length * precioPorDia;
     }
 
     // Agrega una fecha al calendario si no está seleccionada
@@ -111,4 +115,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     calendario.render();
+    botonReservar.addEventListener("click", function () {
+        if (diasSeleccionados.length === 0) {
+            return;
+        }
+        const datosReserva = {
+            dias: diasSeleccionados,
+            precio_total: diasSeleccionados.length * precioPorDia
+        };
+        fetch("../php/guardar_reserva.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(datosReserva)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Reserva guardada correctamente.");
+            } else {
+                alert("Error al guardar la reserva.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    });
 });
