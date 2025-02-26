@@ -57,7 +57,14 @@ $tables = [
         hora_actividad TIME NOT NULL,
         fecha DATE NOT NULL
     );",
-
+    "Padre" => "CREATE TABLE IF NOT EXISTS Padre (
+        id_padre INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(50) NOT NULL,
+        relacion VARCHAR(50) NOT NULL,
+        telefono VARCHAR(15) NOT NULL,
+        email VARCHAR(100) NOT NULL UNIQUE,
+        direccion VARCHAR(50)
+    );",
     "Campista" => "CREATE TABLE IF NOT EXISTS Campista (
         id_campista INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(50),
@@ -91,8 +98,8 @@ $tables = [
         id_campista INT NOT NULL,
         fecha DATE NOT NULL,
         estado ENUM('presente', 'ausente') NOT NULL,
-        PRIMARY KEY (id_campista, id_actividad, fecha),
-        FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE,
+        PRIMARY KEY (id_campista, fecha),
+        FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
     );",
 
     "AsignarActividad" => "CREATE TABLE IF NOT EXISTS AsignarActividad (
@@ -104,16 +111,6 @@ $tables = [
         FOREIGN KEY (identificacion_monitor) REFERENCES Monitor(identificacion) ON DELETE CASCADE,
         FOREIGN KEY (id_grupo) REFERENCES GrupoCampistas(id_grupo) ON DELETE CASCADE
     );",
-
-    "Padre" => "CREATE TABLE IF NOT EXISTS Padre (
-        id_padre INT AUTO_INCREMENT PRIMARY KEY,
-        nombre VARCHAR(50) NOT NULL,
-        relacion VARCHAR(50) NOT NULL,
-        telefono VARCHAR(15) NOT NULL,
-        email VARCHAR(100) NOT NULL UNIQUE,
-        direccion VARCHAR(50)
-    );",
-
     "Reserva" => "CREATE TABLE IF NOT EXISTS Reserva (
         id_reserva INT AUTO_INCREMENT PRIMARY KEY,
         fechaReserva DATE NOT NULL,
