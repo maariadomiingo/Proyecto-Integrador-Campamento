@@ -86,7 +86,7 @@ $tables = [
         FOREIGN KEY (id_grupo) REFERENCES GrupoCampistas(id_grupo) ON DELETE CASCADE,
         FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
     );",
-    
+
     "PasarLista" => "CREATE TABLE IF NOT EXISTS PasarLista (
         id_campista INT NOT NULL,
         fecha DATE NOT NULL,
@@ -122,6 +122,13 @@ $tables = [
         id_campista INT NOT NULL,
         FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
     );",
+    "Tarifas" => "CREATE TABLE IF NOT EXISTS Tarifas (
+        id_tarifa INT AUTO_INCREMENT PRIMARY KEY,
+        id_campista INT NULL,
+        dias TEXT NOT NULL,
+        precio DECIMAL(10,2) NOT NULL,
+        FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
+    );",
 
     "MedicamentosAutorizados" => "CREATE TABLE IF NOT EXISTS MedicamentosAutorizados (
         id_medicamento INT AUTO_INCREMENT PRIMARY KEY,
@@ -140,7 +147,8 @@ foreach ($tables as $name => $sql) {
 }
 
 // FUNCIÓN SEGURA PARA INSERTAR DATOS
-function executeStatement($stmt, $params) {
+function executeStatement($stmt, $params)
+{
     $types = str_repeat('s', count($params));
     $stmt->bind_param($types, ...$params);
     if (!$stmt->execute()) {
