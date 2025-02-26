@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fecha = document.getElementById("fecha");
     const grupo = document.getElementById("grupo");
     const recursos = document.getElementById("recursos");
+    const contenedorActividades = document.getElementById("actividadesContainer");
 
     // Función para obtener los datos de la actividad
     function obtenerActividad() {
@@ -17,13 +18,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Insertar datos en la página
+            // Borra contenido anterior
+            contenedorActividades.innerHTML = "";
+
+            // Insertar datos generales
             grupo.textContent = data.grupo;
-            nombreActividad.textContent = data.actividad.nombre;
-            descripcion.textContent = data.actividad.descripcion;
-            hora.textContent = data.actividad.hora;
-            fecha.textContent = data.actividad.fecha;
-            recursos.textContent = data.actividad.recursos;
+            nombreActividad.textContent = data.actividades[0].actividad_nombre;
+            descripcion.textContent = data.actividades[0].descripcion;
+            hora.textContent = data.actividades[0].hora_actividad;
+            fecha.textContent = data.actividades[0].fecha;
+            recursos.textContent = data.actividades[0].recursos;
+
+            // Crea un contenedor para cada actividad adicional
+            if (data.actividades.length > 1) {
+                data.actividades.forEach((actividad, index) => {
+                    if (index > 0) {
+                        const actividadDiv = document.createElement("div");
+                        actividadDiv.className = "actividad-container";
+                        actividadDiv.innerHTML = `
+                            <div class="actividad-data">
+                                <h3>${actividad.actividad_nombre}</h3>
+                                <p><strong>Descripción:</strong> ${actividad.descripcion}</p>
+                                <p><strong>Recursos:</strong> ${actividad.recursos}</p>
+                                <p><strong>Hora:</strong> ${actividad.hora_actividad}</p>
+                                <p><strong>Fecha:</strong> ${actividad.fecha}</p>
+                            </div>
+                        `;
+                        contenedorActividades.appendChild(actividadDiv);
+                    }
+                });
+            }
         })
         .catch(error => console.error("Error en la petición:", error));
     }

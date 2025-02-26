@@ -89,7 +89,18 @@ h1 {
     margin: 20px 0;
 }
 
+
 .ver-actividades {
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #BBB7E5;
+    border-radius: 20px;
+    text-align: center;
+    width: 50%;
+    min-height: 150px; 
+}
+
+.actividad-container {
     margin: 10px auto;
     padding: 20px;
     background-color: #BBB7E5;
@@ -262,3 +273,4 @@ footer {
         width: 20px;
     }
 }
+

@@ -7,7 +7,6 @@ if ($conexion->connect_error) {
     exit();
 }
 
-// Obtener la identificación desde la URL
 $identificacion = $_GET['identificacion'] ?? null;
 
 if (!$identificacion) {
@@ -16,9 +15,9 @@ if (!$identificacion) {
 }
 
 try {
-    // Consulta con JOIN para obtener nombre del grupo y datos de la actividad en una sola consulta
     $stmt = $conexion->prepare("
         SELECT g.nombre AS grupo, 
+               a.id_actividad,
                a.nombre AS actividad_nombre, 
                a.descripcion, 
                a.recursos, 
@@ -32,7 +31,7 @@ try {
     $stmt->bind_param("s", $identificacion);
     $stmt->execute();
     
-    $resultado = $stmt->get_result()->fetch_assoc();
+    $resultado = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
     if (!$resultado) {
         echo json_encode(["error" => "No se encontraron datos para esta identificación"]);
@@ -41,14 +40,8 @@ try {
 
     // Formateamos la respuesta
     $respuesta = [
-        "grupo" => $resultado["grupo"],
-        "actividad" => [
-            "nombre" => $resultado["actividad_nombre"],
-            "descripcion" => $resultado["descripcion"],
-            "recursos" => $resultado["recursos"],
-            "hora" => $resultado["hora_actividad"],
-            "fecha" => $resultado["fecha"]
-        ]
+        "grupo" => $resultado[0]["grupo"],
+        "actividades" => $resultado
     ];
 
     echo json_encode($respuesta);
