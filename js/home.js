@@ -1,4 +1,6 @@
 // Seleccionar elementos de la galería
+const perfil = document.querySelector('.perfil');
+
 const btnCerrar = document.querySelector('#btn-cerrar');
 const btnAdelantar = document.querySelector('#btn-adelantar');
 const btnRetroceder = document.querySelector('#btn-retroceder');
@@ -59,4 +61,10 @@ function mostrarInfo() {
         extraInfo.style.display = "none";
         btn.textContent = "Ver Más";
     }
+}
+
+if (perfil) {
+    perfil.addEventListener('click', function() {
+        window.location.href = '../html/login.html';
+    });
 }

@@ -5,7 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const iconoUsuario = document.querySelector('.circulo');
     const botonSalir = document.querySelector('.circulo-salir');
     const contenedorDatos = document.querySelector('.datos-monitor');
+
     const verActividades = document.querySelector('.veractividades');
+    const verHorarios = document.querySelector('.verhorarios');
+    const pasarLista = document.querySelector('.pasarLista');
 
     function checkSession() {
         if (!identificacionURL) {
@@ -61,6 +64,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (verActividades) {
         verActividades.addEventListener('click', function() {
             window.location.href = `verActividades.html?identificacion=${identificacionURL}`;
+        });
+    }
+
+    if (verHorarios) {
+        verHorarios.addEventListener('click', function() {
+            window.location.href = `verHorarios.html?identificacion=${identificacionURL}`;
+        });
+    }
+
+    if (pasarLista) {
+        pasarLista.addEventListener('click', function() {
+            window.location.href = `pasarLista.html?identificacion=${identificacionURL}`;
         });
     }
     checkSession();

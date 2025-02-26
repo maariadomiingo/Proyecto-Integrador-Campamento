@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const identificacionMonitor = "qwertyuio"; // Se puede obtener dinámicamente de la URL
+    //const identificacionMonitor = "qwertyuio"; // Se puede obtener dinámicamente de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const identificacionMonitor = urlParams.get('identificacion');
+
     const nombreActividad = document.getElementById("nombreActividad");
     const descripcion = document.getElementById("descripcion");
     const hora = document.getElementById("hora");
@@ -17,17 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.error("Error al obtener la actividad:", data.error);
                 return;
             }
-
-            // Borra contenido anterior
-            contenedorActividades.innerHTML = "";
-
-            // Insertar datos generales
-            grupo.textContent = data.grupo;
-            nombreActividad.textContent = data.actividades[0].actividad_nombre;
-            descripcion.textContent = data.actividades[0].descripcion;
-            hora.textContent = data.actividades[0].hora_actividad;
-            fecha.textContent = data.actividades[0].fecha;
-            recursos.textContent = data.actividades[0].recursos;
 
             // Crea un contenedor para cada actividad adicional
             if (data.actividades.length > 1) {
