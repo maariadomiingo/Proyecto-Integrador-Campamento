@@ -35,20 +35,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const calendarioElemento = document.getElementById('calendar');
     const calendario = new FullCalendar.Calendar(calendarioElemento, {
-        initialView: 'dayGridMonth',
-        timeZone: 'local',
+        initialView: "dayGridMonth",
+        timeZone: "local",
         selectable: true,
         selectMirror: true,
+        locale: "es",
+        firstDay: 1,
+        headerToolbar: {
+            left: "prev,next",
+            center: "title",
+            right: "today"
+        },
         validRange: {
-            start: new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0],
-            end: '2025-03-01'
+            start: new Date(new Date().setDate(new Date().getDate() + 2)).toISOString().split("T")[0],
         },
         buttonText: {
-            today: 'Hoy',
-            month: 'Mes',
-            week: 'Semana',
-            day: 'Día',
-            list: 'Lista'
+            today: "Hoy",
+            month: "Mes",
+            week: "Semana",
+            day: "Día",
+            list: "Lista"
         },
         // Aplica un color gris a los días deshabilitados
         dayCellDidMount: function (info) {
@@ -70,22 +76,38 @@ document.addEventListener("DOMContentLoaded", function () {
             if (info.end - info.start === 86400000) {
                 return;
             }
+        
             let actual = new Date(info.start);
             let selectedDates = [];
-
+        
             while (actual < info.end) {
                 let fechaStr = formatearFecha(actual);
-                if (fullDays.includes(fechaStr)) {
-                    // alert(`El día ${fechaStr} está completo. No puedes seleccionarlo.`);
-                } else {
+                if (!fullDays.includes(fechaStr)) {
                     selectedDates.push(fechaStr);
                 }
                 actual.setDate(actual.getDate() + 1);
             }
-
-            selectedDates.forEach(fechaStr => {
-                agregarFecha(fechaStr);
-            });
+        
+            // Verificar si todos los días en el rango ya están seleccionados
+            const todosSeleccionados = selectedDates.every(fecha => diasSeleccionados.includes(fecha));
+        
+            if (todosSeleccionados) {
+                // Si todos están seleccionados, eliminarlos
+                diasSeleccionados = diasSeleccionados.filter(dia => !selectedDates.includes(dia));
+                calendario.getEvents().forEach(evento => {
+                    if (selectedDates.includes(evento.startStr)) {
+                        evento.remove();
+                    }
+                });
+            } else {
+                // Si hay al menos un día no seleccionado, agregarlos
+                selectedDates.forEach(fechaStr => {
+                    if (!diasSeleccionados.includes(fechaStr)) {
+                        agregarFecha(fechaStr);
+                    }
+                });
+            }
+        
             actualizarVisualizacion();
         },
 
@@ -131,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert("Reserva guardada correctamente.");
+                window.location.href = "../html/reserva.html";
             } else {
                 alert("Error al guardar la reserva.");
             }

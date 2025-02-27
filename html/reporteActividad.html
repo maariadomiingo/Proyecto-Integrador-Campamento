@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/reporteActividad.css">
+    <title>Reporte Actividades</title>
+</head>
+<body>
+    <!-- Iconos de usuario y salir -->
+    <div class="circulo">
+        <img class="icono-usuario" src="../img/user.png" />  
+    </div>
+    
+    <div class="circulo-salir">
+        <img class="icono-salir" src="../img/cerrar-sesion.png" />
+    </div>
+    
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <img class="logo" src="../img/logo sin fondo.png" />
+    </div>
+    
+    <h1>REPORTE ACTIVIDADES</h1>
+    <div class="gestionar-actividades">
+        <form method="post" id="formActividad">
+            <select name="actividad" id="actividad">
+                <option value="">Actividades</option>
+            </select><br>
+            <label for="descripcion"></label>
+            <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
+            
+            <button class="reportar-btn">Reportar Actividad</button>
+            <button class="cancelar-btn">Cancelar Reporte</button>
+        </form>
+    </div>
+
+    <script src="reporteActividad.js"></script>
+</body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <ul>
+                <li><a href="#">Política de privacidad</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <ul>
+                <li><a href="#">Política de uso aceptable</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <ul>
+                <li><a href="#">Contacto +34 111 1111 11</a></li>
+            </ul>
+        </div>
+        <div class="social-icons">
+            <ul>
+                <li><a href="#">Correo aaaaa@gmail.com</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+</html>

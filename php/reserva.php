@@ -1,6 +1,8 @@
 <?php
 include '../server/conectar.php';
 
+session_start(); // Asegúrate de iniciar sesión para acceder a los datos en la sesión.
+
 // Configuración de CORS y headers
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
@@ -21,17 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // Leer JSON desde la solicitud
 $jsonInput = file_get_contents("php://input");
-error_log("Datos recibidos: " . $jsonInput); // Para debug
-
 $data = json_decode($jsonInput, true);
 
 // Verificar JSON válido
 if (json_last_error() !== JSON_ERROR_NONE) {
-    echo json_encode([
-        "success" => false, 
-        "error" => "JSON inválido: " . json_last_error_msg()
-    ]);
+    echo json_encode([ "success" => false, "error" => "JSON inválido: " . json_last_error_msg()]);
     exit();
+}
+
+// Verificar si existe el id_tarifa en la sesión
+$id_tarifa = $_SESSION['id_tarifa'] ?? null;
+if (is_null($id_tarifa)) {
+    echo json_encode(['success' => false, 'message' => 'Falta el id_tarifa']);
+    exit;
 }
 
 try {
@@ -56,27 +60,32 @@ try {
             historialMedicoRelevante, 
             necesidadesEspeciales, 
             nombreEmergencia, 
-            telefonoEmergencia
+            telefonoEmergencia,
+            id_tarifa
         ) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $stmt->bind_param(
-        "sssssss",
+        "ssssssss",
         $nombre,
         $fechaNacimiento,
         $direccion,
         $historialMedico,
         $necesidades,
         $nombreEmergencia,
-        $telefonoEmergencia
+        $telefonoEmergencia,
+        $id_tarifa  
     );
 
     if (!$stmt->execute()) {
         throw new Exception("Error al insertar campista: " . $stmt->error);
     }
 
-    $id_campista = $stmt->insert_id;
+    $id_campista = $stmt->insert_id; // Guardar el id_campista generado
+
+    // Guardar el id_campista en la sesión
+    $_SESSION['id_campista'] = $id_campista;
 
     // Procesar medicamentos
     if (!empty($data['medicamentos'])) {
@@ -96,7 +105,7 @@ try {
 
     // Confirmar transacción
     $conexion->commit();
-    echo json_encode(["success" => true]);
+    echo json_encode(["success" => true, "id_campista" => $id_campista]);  
 
 } catch (Exception $e) {
     $conexion->rollback();
