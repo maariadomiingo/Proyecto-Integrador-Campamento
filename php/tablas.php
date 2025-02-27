@@ -127,6 +127,22 @@ $tables = [
         FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
     );",
 
+    /* "Reportes" => "CREATE TABLE IF NOT EXISTS Reportes (
+        INT AUTO_INCREMENT PRIMARY KEY,
+        nombreActividad VARCHAR (100) NOT NULL,
+        identificacion_monitor VARCHAR (9) NOT NULL,
+        id_actividad INT NOT NULL,
+        descripcion VARCHAR (500) NOT NULL,
+        hora_actividad TIME NOT NULL,
+        fecha DATE NOT NULL,
+        FOREIGN KEY (identificacion_monitor) REFERENCES Monitor(identificacion) ON DELETE CASCADE,
+        FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad) ON DELETE CASCADE,
+        FOREIGN KEY (nombreActividad) REFERENCES Actividad(nombre) ON DELETE CASCADE,
+        FOREIGN KEY (hora_actividad) REFERENCES Actividad(hora_actividad) ON DELETE CASCADE,
+        FOREIGN KEY (fecha) REFERENCES Actividad(fecha) ON DELETE CASCADE,
+        FOREIGN KEY (descripcion) REFERENCES Actividad(descripcion) ON DELETE CASCADE
+        );",
+ */
     "MedicamentosAutorizados" => "CREATE TABLE IF NOT EXISTS MedicamentosAutorizados (
         id_medicamento INT AUTO_INCREMENT PRIMARY KEY,
         id_campista INT NOT NULL,

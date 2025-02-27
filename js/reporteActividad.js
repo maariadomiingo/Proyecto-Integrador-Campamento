@@ -2,25 +2,38 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("formActividad");
     const actividadSelect = document.getElementById("actividad");
     const descripcionInput = document.getElementById("descripcion");
-    
-    // Cargar actividades dinámicamente desde PHP
-    fetch("../php/reporteActividad.php")
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                console.error("Error al obtener actividades:", data.error);
-                return;
-            }
-            data.actividades.forEach(actividad => {
-                const option = document.createElement("option");
-                option.value = actividad.id_actividad;
-                option.textContent = actividad.nombre;
-                actividadSelect.appendChild(option);
-            });
-        })
-        .catch(error => console.error("Error en la petición:", error));
 
-    // Manejar el envío del formulario
+    // Función para cargar actividades
+    function cargarActividades() {
+        const params = new URLSearchParams(window.location.search);
+        const identificacion = params.get('identificacion');
+
+        fetch(`../php/reporteActividad.php?identificacion=${identificacion}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error("Error:", data.error);
+                    return;
+                }
+
+                // Limpiar opciones actuales
+                actividadSelect.innerHTML = '<option value="">Seleccione una actividad...</option>';
+
+                // Populate the select with activities
+                data.actividades.forEach(actividad => {
+                    const option = document.createElement("option");
+                    option.value = actividad.id_actividad;
+                    option.textContent = `${actividad.nombre} - ${actividad.fecha} ${actividad.hora_actividad}`;
+                    actividadSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error("Error en la petición:", error));
+    }
+
+    // Cargar actividades al cargar la página
+    cargarActividades();
+
+    // Form submission handler
     form.addEventListener("submit", (event) => {
         event.preventDefault(); 
         
@@ -28,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const descripcion = descripcionInput.value.trim();
         
         if (!actividad || !descripcion) {
-            alert("Por favor, completa todos los campos.");
+            alert("Por favor, complete todos los campos.");
             return;
         }
         
@@ -45,29 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
             if (data.success) {
                 alert("Reporte enviado con éxito.");
                 form.reset();
+                cargarActividades(); // Refresh activities after submission
             } else {
-                alert("Error al enviar el reporte: " + data.error);
+                alert("Error al enviar el reporte: " + (data.error || 'Unknown error'));
             }
         })
         .catch(error => console.error("Error en la petición:", error));
     });
 
-    // Botón de cancelar
+    // Cancel button handler
     document.querySelector(".cancelar-btn").addEventListener("click", (event) => {
         event.preventDefault();
         window.location.href = "verActividades.html";
     });
 });
-
-
-
-
-/* function fillSelect(selectElement, data, valueKey, textKey) {
-    selectElement.innerHTML = `<option value="">${selectElement.name}</option>`; // Resetear opciones
-    data.forEach(item => {
-        const option = document.createElement("option");
-        option.value = item[valueKey];
-        option.textContent = item[textKey];
-        selectElement.appendChild(option);
-    });
-} */
