@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Cargar grupos al cargar la página
     cargarGrupos();
+    cargarCampistas(); // Cargar todos los campistas al inicio
 
     // Cargar campistas cuando se selecciona un grupo
     document.getElementById('grupo').addEventListener('change', function () {
         const grupoId = this.value;
-        cargarCampistas(grupoId);
+        console.log("Grupo seleccionado:", grupoId);
+        cargarCampistas(grupoId); // Cargar campistas no asignados al grupo seleccionado
+        cargarCampistasAsignados(grupoId); // Cargar campistas asignados al grupo
     });
 
     // Asignar campistas al grupo seleccionado
@@ -51,13 +54,33 @@ function cargarGrupos() {
         });
 }
 
-function cargarCampistas(grupoId) {
-    fetch(`../php/cargarCampista.php?grupoId=${grupoId}`)
+function cargarCampistas(grupoId = null) {
+    let url = '../php/cargarCampista.php';
+    if (grupoId) {
+        url += `?grupoId=${grupoId}`;
+    }
+
+    console.log("URL de carga de campistas:", url); // <-- Agrega este console.log
+
+    fetch(url)
         .then(response => response.text())
         .then(data => {
+            console.log("Respuesta del servidor:", data); // <-- Agrega este console.log
             document.getElementById('lista-campistas').innerHTML = data;
         })
         .catch(error => {
             console.error('Error al cargar campistas:', error);
+        });
+}
+
+
+function cargarCampistasAsignados(grupoId) {
+    fetch(`../php/cargarCampistasAsignados.php?grupoId=${grupoId}`)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('campistas-asignados').innerHTML = data;
+        })
+        .catch(error => {
+            console.error('Error al cargar campistas asignados:', error);
         });
 }
