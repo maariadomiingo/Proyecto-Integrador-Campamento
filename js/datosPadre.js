@@ -131,7 +131,7 @@ telefono.addEventListener("focusout", function() {
         .then(function(data) {
             console.log(data);
             if (data.success) {
-                window.location.href = `../php/confirmacion-reserva.php?success=true&email=${encodeURIComponent(datosFormulario.email)}`;
+                window.location.href = `../html/inscrito.html`;
             } else {
                 alert("Ha fallado: " + data.message);
             }
