@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                window.location.href = "reserva.html";
+                window.location.href = "../html/reserva.html";
             } else {
                 alert("Error al guardar la reserva.");
             }
