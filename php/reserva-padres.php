@@ -5,6 +5,15 @@ include '../server/conectar.php';
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
+session_start();
+
+// Verificar si existe el id_campista en la sesión
+$id_campista = $_SESSION['id_campista'] ?? null;
+if (is_null($id_campista)) {
+    echo json_encode(['success' => false, 'message' => 'Falta el id_campista']);
+    exit;
+}
+
 // Verificar si existe una función en la solicitud
 if (isset($data['funcion'])) {
     $funcion = $data['funcion'];
@@ -28,8 +37,8 @@ if (isset($data['funcion'])) {
             }
 
             // Preparar la consulta para insertar datos
-            if ($stmt = $conexion->prepare("INSERT INTO Padre (nombre, relacion, telefono, email, direccion) VALUES (?, ?, ?, ?, ?)")) {
-                $stmt->bind_param("sssss", $nombre, $relacion, $telefono, $email, $direccion);
+            if ($stmt = $conexion->prepare("INSERT INTO Padre (nombre, relacion, telefono, email, direccion,id_campista) VALUES (?, ?, ?, ?, ?, ?)")) {
+                $stmt->bind_param("ssssss", $nombre, $relacion, $telefono, $email, $direccion, $id_campista);
                 
                 if ($stmt->execute()) {
                     echo json_encode(['success' => true, 'message' => 'Datos insertados correctamente']);

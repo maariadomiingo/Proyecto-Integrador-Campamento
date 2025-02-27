@@ -33,15 +33,15 @@ mysqli_query($conexion, $sql_usuario);
 $hash_coordinador = password_hash('12345678', PASSWORD_DEFAULT);
 $hash_monitor = password_hash('12345678', PASSWORD_DEFAULT);
 
-// Insertamos primero datos en Monitor (usando INSERT IGNORE para evitar duplicados)
+// Insertamos datos en Monitor
 $query_monitor = "INSERT IGNORE INTO Monitor (nombre, identificacion, email, telefono) VALUES ('Juan Pérez', 'qwertyuio', 'juan.perez@example.com', 123456789)";
 mysqli_query($conexion, $query_monitor);
 
-// Insertamos datos en Coordinador (usando INSERT IGNORE para evitar duplicados)
+// Insertamos datos en Coordinador
 $query_coordinador = "INSERT IGNORE INTO Coordinador (nombre, identificacion, email, telefono) VALUES ('Maria García', '123456789', 'maria.garcia@example.com', 987654321)";
 mysqli_query($conexion, $query_coordinador);
 
-// Inserción en la base de datos
+// Inserción en la tabla Usuario
 $query = "INSERT INTO Usuario (nombre, password, rol, identificacion) VALUES 
     ('coordinador', '$hash_coordinador', 'coordinador', '123456789'), 
     ('monitor', '$hash_monitor', 'monitor', 'qwertyuio')";
@@ -57,13 +57,10 @@ $tables = [
         hora_actividad TIME NOT NULL,
         fecha DATE NOT NULL
     );",
-    "Padre" => "CREATE TABLE IF NOT EXISTS Padre (
-        id_padre INT AUTO_INCREMENT PRIMARY KEY,
-        nombre VARCHAR(50) NOT NULL,
-        relacion VARCHAR(50) NOT NULL,
-        telefono VARCHAR(15) NOT NULL,
-        email VARCHAR(100) NOT NULL UNIQUE,
-        direccion VARCHAR(50)
+    "Tarifas" => "CREATE TABLE IF NOT EXISTS Tarifas (
+        id_tarifa INT AUTO_INCREMENT PRIMARY KEY,
+        dias TEXT NOT NULL,
+        precio DECIMAL(10,2) NOT NULL
     );",
     "Campista" => "CREATE TABLE IF NOT EXISTS Campista (
         id_campista INT AUTO_INCREMENT PRIMARY KEY,
@@ -74,9 +71,20 @@ $tables = [
         alergias TEXT,
         necesidadesEspeciales TEXT,
         nombreEmergencia VARCHAR(50),
-        telefonoEmergencia VARCHAR(15)
+        telefonoEmergencia VARCHAR(15),
+        id_tarifa INT,
+        FOREIGN KEY (id_tarifa) REFERENCES Tarifas(id_tarifa) ON DELETE CASCADE
     );",
-
+    "Padre" => "CREATE TABLE IF NOT EXISTS Padre (
+        id_padre INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(50) NOT NULL,
+        relacion VARCHAR(50) NOT NULL,
+        telefono VARCHAR(15) NOT NULL,
+        email VARCHAR(100) NOT NULL UNIQUE,
+        direccion VARCHAR(50),
+        id_campista INT,
+        FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
+    );",
     "GrupoCampistas" => "CREATE TABLE IF NOT EXISTS GrupoCampistas (
         id_grupo INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(255) NOT NULL,
@@ -85,7 +93,6 @@ $tables = [
         FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad) ON DELETE CASCADE,
         FOREIGN KEY (identificacion_monitor) REFERENCES Monitor(identificacion) ON DELETE CASCADE
     );",
-
     "GrupoCampistaRelacion" => "CREATE TABLE IF NOT EXISTS GrupoCampistaRelacion (
         id_grupo INT NOT NULL,
         id_campista INT NOT NULL,
@@ -93,7 +100,6 @@ $tables = [
         FOREIGN KEY (id_grupo) REFERENCES GrupoCampistas(id_grupo) ON DELETE CASCADE,
         FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
     );",
-
     "PasarLista" => "CREATE TABLE IF NOT EXISTS PasarLista (
         id_campista INT NOT NULL,
         fecha DATE NOT NULL,
@@ -101,7 +107,6 @@ $tables = [
         PRIMARY KEY (id_campista, fecha),
         FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
     );",
-
     "AsignarActividad" => "CREATE TABLE IF NOT EXISTS AsignarActividad (
         id_actividad INT NOT NULL,
         identificacion_monitor VARCHAR(9) NOT NULL,
@@ -110,21 +115,6 @@ $tables = [
         FOREIGN KEY (id_actividad) REFERENCES Actividad(id_actividad) ON DELETE CASCADE,
         FOREIGN KEY (identificacion_monitor) REFERENCES Monitor(identificacion) ON DELETE CASCADE,
         FOREIGN KEY (id_grupo) REFERENCES GrupoCampistas(id_grupo) ON DELETE CASCADE
-    );",
-    "Reserva" => "CREATE TABLE IF NOT EXISTS Reserva (
-        id_reserva INT AUTO_INCREMENT PRIMARY KEY,
-        fechaReserva DATE NOT NULL,
-        precioTotal DECIMAL(10,2) NOT NULL,
-        estado ENUM('pendiente', 'pagado', 'cancelado') NOT NULL,
-        id_campista INT NOT NULL,
-        FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
-    );",
-    "Tarifas" => "CREATE TABLE IF NOT EXISTS Tarifas (
-        id_tarifa INT AUTO_INCREMENT PRIMARY KEY,
-        id_campista INT NULL,
-        dias TEXT NOT NULL,
-        precio DECIMAL(10,2) NOT NULL,
-        FOREIGN KEY (id_campista) REFERENCES Campista(id_campista) ON DELETE CASCADE
     );",
 
     /* "Reportes" => "CREATE TABLE IF NOT EXISTS Reportes (
@@ -156,7 +146,6 @@ foreach ($tables as $name => $sql) {
     if (!mysqli_query($conexion, $sql)) {
         die("Error al crear la tabla $name: " . mysqli_error($conexion));
     }
-    // echo "Tabla $name creada correctamente.<br>";
 }
 
 // FUNCIÓN SEGURA PARA INSERTAR DATOS
@@ -183,7 +172,6 @@ $telefono = '123456789';
 // Ejecutar inserción en Monitor
 executeStatement($stmt_monitor, [$nombre, $identificacion, $email, $telefono]);
 $stmt_monitor->close();
-// echo "Datos insertados en la tabla Monitor.<br>";
 
 // Insertar en Actividad con bind_param()
 $query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos, hora_actividad, fecha) VALUES (?, ?, ?, ?, ?)";

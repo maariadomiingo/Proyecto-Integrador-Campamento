@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
-    const identificacion = params.get("identificacion_monitor");
+    const identificacion = params.get("identificacion");
 
     if (!identificacion) {
         alert("No se proporcionó un ID de monitor.");

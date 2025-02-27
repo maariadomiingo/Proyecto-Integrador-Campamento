@@ -1,23 +1,39 @@
 <?php
 include '../server/conectar.php';
 
-// Obtener el ID del grupo seleccionado (si es necesario)
-$grupoId = $_GET['grupoId'] ?? null;
+$grupoId = isset($_GET['grupoId']) ? intval($_GET['grupoId']) : null;
 
-// Consulta para obtener campistas no asignados a un grupo
-$query = "SELECT c.id_campista, c.nombre 
-          FROM Campista c
-          LEFT JOIN GrupoCampistaRelacion gcr ON c.id_campista = gcr.id_campista AND gcr.id_grupo = ?
-          WHERE gcr.id_campista IS NULL";
-$stmt = $conexion->prepare($query);
-$stmt->bind_param('i', $grupoId);
+if ($grupoId) {
+    // Consulta para obtener los campistas que YA están asignados al grupo seleccionado
+    $query = "SELECT c.id_campista, c.nombre 
+              FROM Campista c
+              WHERE c.id_campista NOT IN (
+                  SELECT gcr.id_campista FROM GrupoCampistaRelacion gcr WHERE gcr.id_grupo = ?
+              )";
+    
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param('i', $grupoId);
+} else {
+    // Si no se seleccionó grupo, mostrar todos los campistas
+    $query = "SELECT id_campista, nombre FROM Campista";
+    $stmt = $conexion->prepare($query);
+}
+
 $stmt->execute();
 $result = $stmt->get_result();
 
 $lista = '';
 while ($row = $result->fetch_assoc()) {
-    $lista .= "<li><input type='checkbox' name='campista' value='{$row['id_campista']}'>{$row['nombre']}</li>";
+    $lista .= "<li><a href='editarCampistas.html?id={$row['id_campista']}'>
+    <input type='checkbox' name='campista' value='{$row['id_campista']}'> 
+    {$row['nombre']}
+</a></li>";
 }
 
-echo $lista;
+// Si la lista está vacía, mostrar mensaje
+if (empty($lista)) {
+    echo "<p>No hay campistas disponibles.</p>";
+} else {
+    echo $lista;
+}
 ?>
