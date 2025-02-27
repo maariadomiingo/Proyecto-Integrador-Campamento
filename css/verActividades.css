@@ -56,20 +56,6 @@ body {
     z-index: 90;
 }
 
-.main-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    max-width: 1438px;
-    height: auto;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.main-container,
-.main-container * {
-    box-sizing: border-box;
-}
 
 .logo {
     width: 140px;
@@ -87,18 +73,10 @@ h1 {
     color: #333;
     font-size: 2rem;
     margin: 20px 0;
+    position: relative;
+    margin-top: 90px;
 }
 
-
-.ver-actividades {
-    margin: 10px auto;
-    padding: 20px;
-    background-color: #BBB7E5;
-    border-radius: 20px;
-    text-align: center;
-    width: 50%;
-    min-height: 180px; 
-}
 
 .actividad-container {
     margin: 10px auto;
@@ -106,38 +84,47 @@ h1 {
     background-color: #BBB7E5;
     border-radius: 20px;
     text-align: center;
-    width: 50%;
+    width: 40%;
     min-height: 130px; 
+    position: relative;
+    margin-top: 15px;
 }
 
-input[type="submit"], button {
+.contenedor-boton {
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 100%; /* O ajusta según sea necesario */
+}
+
+
+input[type="submit"], button {
     color: #ffffff;
     border: none;
     padding: 10px 20px;
     border-radius: 32px;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: absolute; 
-    top: 80%; 
-    
+    background-color: #7770C5;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 20%;
+    text-align: center;
 }
-
 
 input[type="submit"]:hover {
-    transform: scale(1.2); /* Escala el botón al 120% de su tamaño original */
-    transition-duration: 3s;
+    transform: scale(0.8); /* Escala el botón al 120% de su tamaño original */
+    transition-duration: 2s;
 }
+
 button:hover{
-    transform: scale(1.2); /* Escala el botón al 120% de su tamaño original */
-    transition-duration: 3s;
+    transform: scale(1.1); /* Escala el botón al 120% de su tamaño original */
+    transition-duration: 2s;
 }
+
 .reporte{
     background-color: #7AB3D7;
 }
-
-
 
 footer {
     background-color: #7770C5;

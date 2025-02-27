@@ -186,7 +186,6 @@ foreach ($actividades as $actividad) {
 $stmt_actividad->close();
 // echo "Datos insertados en la tabla Actividad.<br>";
 
-
 /* INSERT INTO grupoCampistas (id_grupo, nombre, identificacion_monitor, id_actividad) 
 VALUES 
 (1, 'Grupo A', 'qwertyuio', 1), 
@@ -194,4 +193,25 @@ VALUES
 (3, 'Grupo C', 'qwertyuio', 2), 
 (4, 'Grupo D', 'qwertyuio', 2);
  */
+
+// Insertar en GrupoCampistas con bind_param()
+$query_grupo = "INSERT IGNORE INTO GrupoCampistas (id_grupo, nombre, identificacion_monitor, id_actividad) VALUES (?, ?, ?, ?)";
+$stmt_grupo = $conexion->prepare($query_grupo);
+if (!$stmt_grupo) die("Error en consulta de GrupoCampistas: " . $conexion->error);
+
+// Datos para insertar
+$grupos = [
+    [1, 'Grupo A', 'qwertyuio', 1],
+    [2, 'Grupo B', 'qwertyuio', 1],
+    [3, 'Grupo C', 'qwertyuio', 2],
+    [4, 'Grupo D', 'qwertyuio', 2]
+];
+
+foreach ($grupos as $grupo) {
+    list($id_grupo, $nombre, $identificacion_monitor, $id_actividad) = $grupo;
+    executeStatement($stmt_grupo, [$id_grupo, $nombre, $identificacion_monitor, $id_actividad]);
+}
+
+$stmt_grupo->close();
+// echo "Datos insertados en la tabla GrupoCampistas.<br>";
 ?>
