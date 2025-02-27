@@ -1,0 +1,178 @@
+/* Reset básico */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #DCE9F8;
+}
+
+/* Iconos de usuario y salir */
+.circulo, .circulo-salir {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    z-index: 90;
+}
+
+.circulo {
+    left: 20px;
+    background: #7770C5;
+}
+
+.circulo-salir {
+    right: 20px;
+    background: #F5F5F5;
+    border: 1px solid #7AB3D7;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+}
+
+.icono-usuario, .icono-salir {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Contenedor principal */
+.main-container {
+    width: 100%;
+    max-width: 1438px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.logo {
+    width: 140px;
+    display: block;
+    margin: 20px auto;
+}
+
+h1 {
+    position: relative;
+    color: #333;
+    font-size: 2rem;
+    margin: 20px 0;
+    margin-bottom: 20px;
+}
+
+.gestionar-actividades {
+    margin: 10px auto;
+    padding: 20px;
+    background-color:  #7AB3D7;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 1000px;
+}
+
+select, textarea {
+    width: 100%;
+    max-width: 800px;
+    margin: 10px 0;
+    padding: 15px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+button {
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 32px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    position: relative;
+    margin-top: 20px;
+  
+}
+
+.reportar-btn {
+    background-color: #7770C5;
+}
+
+.cancelar-btn {
+    background-color: #F5F5F5;
+    color: #0F0559;
+}
+
+button:hover {
+    transform: scale(1.2);
+    transition-duration: 0.3s;
+}
+
+footer {
+    background-color: #7770C5;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px 20px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #ddd;
+}
+
+@media (max-width: 768px) {
+    .circulo, .circulo-salir {
+        width: 50px;
+        height: 50px;
+    }
+    .logo {
+        width: 100px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .gestionar-actividades {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .circulo, .circulo-salir {
+        width: 40px;
+        height: 40px;
+    }
+    .logo {
+        width: 80px;
+    }
+    h1 {
+        font-size: 1.2rem;
+    }
+    .gestionar-actividades {
+        width: 100%;
+        padding: 10px;
+    }
+}

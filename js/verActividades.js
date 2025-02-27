@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const grupo = document.getElementById("grupo");
     const recursos = document.getElementById("recursos");
     const contenedorActividades = document.getElementById("actividadesContainer");
+    const reportes = document.getElementById("new-btn");
 
     // Función para obtener los datos de la actividad
     function obtenerActividad() {
@@ -46,4 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Llamar a la función al cargar la página
     obtenerActividad();
+
+
+    reportes.addEventListener('click', function() {
+        window.location.href = `reporteActividad.html?identificacion=${identificacionMonitor}`;
+    });
+
 });
