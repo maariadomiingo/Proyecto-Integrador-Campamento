@@ -1,90 +1,112 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const formulario = document.querySelector('form'); // Select the form element
-    const button = document.querySelector('.primary-buttons');
-    const errorDiv = document.querySelector('.error');
+    const formulario = document.getElementById('formMonitor');
+    const button = document.querySelector('.button');
 
-    // Function to display error messages
-    function mostrarError(mensaje) {
-        errorDiv.innerHTML += `<li style="color: red; margin: 5px 0;">${mensaje}</li>`;
+    // Función para mostrar mensajes de error
+    function mostrarError(input, mensaje) {
+        const errorDiv = document.getElementById(`error${input.id.charAt(0).toUpperCase() + input.id.slice(1)}`);
+        errorDiv.textContent = mensaje;
     }
 
-    // Function to clear error messages
-    function ocultarError() {
-        errorDiv.innerHTML = '';
+    // Función para limpiar mensajes de error
+    function ocultarError(input) {
+        const errorDiv = document.getElementById(`error${input.id.charAt(0).toUpperCase() + input.id.slice(1)}`);
+        if (errorDiv) {
+            errorDiv.textContent = '';
+        }
     }
 
-    // Validate fields on blur
-    document.querySelectorAll('.nombre, .mail, .telefono, .identificacion').forEach(campo => {
+    // Función para mostrar mensaje de éxito
+    function mostrarExito(mensaje) {
+        const exitoDiv = document.getElementById('mensajeExito');
+        exitoDiv.textContent = mensaje;
+        exitoDiv.style.display = 'block';
+        setTimeout(() => {
+            exitoDiv.style.display = 'none';
+        }, 3000);
+    }
+
+    // Validación individual de campos
+    const campos = document.querySelectorAll('.nombre, .mail, .telefono, .identificacion');
+    campos.forEach(campo => {
         campo.addEventListener('blur', function() {
+            ocultarError(this);
             if (this.value.trim() === '') {
-                mostrarError(`Por favor ingresa tu ${this.placeholder}`);
+                mostrarError(this, `Por favor ingresa tu ${this.placeholder}`);
+            } else {
+                if (!this.checkValidity()) {
+                    mostrarError(this, `El formato del campo ${this.placeholder} es inválido`);
+                }
             }
         });
+
         campo.addEventListener('input', function() {
-            if (this.value.trim() !== '') {
-                ocultarError();
-            }
+            ocultarError(this);
         });
     });
 
-    // Validate email on input
+    // Validación específica del email
     document.querySelector('.mail').addEventListener('input', function() {
-        if (!this.checkValidity()) {
-            mostrarError('El correo electrónico no es válido');
-        } else {
-            ocultarError();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(this.value)) {
+            mostrarError(this, 'El correo electrónico debe tener formato ejemplo@dominio.com');
         }
     });
 
-    // Function to validate the form
+    // Validación del formulario completo
     function validarFormulario() {
         let formularioValido = true;
-        ocultarError();
 
-        // Validate name
-        const nombre = document.querySelector('.nombre');
+        // Validar nombre
+        const nombre = document.getElementById('nombre');
         if (nombre.value.trim() === '') {
-            mostrarError('Por favor ingresa tu nombre');
+            mostrarError(nombre, 'Por favor ingresa tu nombre');
+            formularioValido = false;
+        } else if (nombre.value.length < 3) {
+            mostrarError(nombre, 'El nombre debe tener al menos 3 caracteres');
             formularioValido = false;
         }
 
-        // Validate email
-        const mail = document.querySelector('.mail');
-        if (mail.value.trim() === '') {
-            mostrarError('Por favor ingresa tu correo electrónico');
+        // Validar email
+        const email = document.getElementById('email');
+        if (email.value.trim() === '') {
+            mostrarError(email, 'Por favor ingresa tu correo electrónico');
             formularioValido = false;
-        } else if (!mail.checkValidity()) {
-            mostrarError('El correo electrónico no es válido');
+        } else if (!email.checkValidity()) {
+            mostrarError(email, 'El correo electrónico no es válido');
             formularioValido = false;
         }
 
-        // Validate phone
-        const telefono = document.querySelector('.telefono');
+        // Validar teléfono
+        const telefono = document.getElementById('telefono');
         if (telefono.value.trim() === '') {
-            mostrarError('Por favor ingresa tu teléfono');
+            mostrarError(telefono, 'Por favor ingresa tu teléfono');
+            formularioValido = false;
+        } else if (!/^\d{9}$/.test(telefono.value)) {
+            mostrarError(telefono, 'El teléfono debe ser un número de 9 dígitos');
             formularioValido = false;
         }
 
-        // Validate identification
-        const identificacion = document.querySelector('.identificacion');
-        if (identificacion.value.trim() === '') {
-            mostrarError('Por favor ingresa tu identificación');
+        // Validar usuario
+        const usuario = document.getElementById('usuario');
+        if (usuario.value.trim() === '') {
+            mostrarError(usuario, 'Por favor ingresa tu usuario');
+            formularioValido = false;
+        } else if (!/^[A-Za-z0-9]{6,15}$/.test(usuario.value)) {
+            mostrarError(usuario, 'El usuario debe tener entre 6 y 15 caracteres y solo puede contener letras y números');
             formularioValido = false;
         }
 
         if (formularioValido) {
-            // Collect form data
             const datos = {
                 nombre: nombre.value,
-                mail: mail.value,
+                mail: email.value,
                 telefono: telefono.value,
-                identificacion: identificacion.value
+                identificacion: usuario.value
             };
 
-            // Convert data to JSON
             const datosJSON = JSON.stringify(datos);
 
-            // Send data to the server
             fetch('../php/agregarMonitor.php', {
                 method: 'POST',
                 headers: {
@@ -101,22 +123,24 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 console.log(data);
                 if (data.exito) {
-                    formulario.reset(); // Reset the form
-                    window.location.reload(); // Optional: Reload the page
+                    mostrarExito(`Monitor ${nombre.value} agregado con éxito`);
+                    formulario.reset();
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                mostrarError('Error al agregar monitor: ' + error.message);
+                mostrarError(document.querySelector('.button'), 'Error al agregar monitor: ' + error.message);
             });
         }
 
         return formularioValido;
     }
 
-    // Button event listener
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
-        validarFormulario();
-    });
+    // Event listener para el botón de submit
+    if (button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            validarFormulario();
+        });
+    }
 });

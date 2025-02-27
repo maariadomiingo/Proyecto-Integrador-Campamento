@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" />
     <link rel="stylesheet" href="../css/agregarMonitor.css" />
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .success-message {
+            color: green;
+            font-size: 1.1em;
+            margin: 10px 0;
+            text-align: center;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <!-- Iconos de usuario y salir -->
@@ -15,34 +29,42 @@
     <img class="icono-usuario" src="../img/user.png" />
     <div class="circulo-salir">
         <img class="icono-salir" src="../img/cerrar-sesion.png" />
-       </div>
-<form action="" method="post">
-    <div class="fondo">
-        <div class="main-container">
-            <img src="../img/logo sin fondo.png" class="logo" />
-            <span class="span">AGREGAR MONITOR</span>
-            
-            <div class="caja-azul">
-            </div>
-
-            <input type="text" class="nombre" name="nombre" placeholder="NOMBRE" />
-
-            <input type="email" class="mail" name="mail" placeholder="MAIL" />
-
-            <input type="text" class="telefono" name="telefono" placeholder="TELEFONO" />
-
-            <input type="text" class="identificacion" name="IDENTIFICACION" placeholder="IDENTIFICACION" />
-
-            <div class="error"></div>
-            
-            <button class="primary-buttons">
-                <span class="button">Añadir</span>
-            </button>
-            <div class="rectangle-footer"></div>
-            <span class="politica-de-privacidad">Politica de privacidad Politica de uso aceptable Contacto +34 111 111111 Correo aaaaa@gmail.com</span>
-        </div>
     </div>
-</form>
+
+    <img src="../img/logo sin fondo.png" class="logo" />
+    <span class="span">AGREGAR MONITOR</span>
+
+    <!-- FORMULARIO -->
+    <div class="form-container">
+        <form id="formMonitor" method="post">
+            <br><br>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="nombre" name="nombre" placeholder="" id="nombre" />
+                <div class="error-message" id="errorNombre"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="mail" name="mail" placeholder="" id="email" />
+                <div class="error-message" id="errorEmail"></div>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" class="telefono" name="telefono" placeholder="" id="telefono" />
+                <div class="error-message" id="errorTelefono"></div>
+            </div>
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" class="identificacion" name="IDENTIFICACION" placeholder="" id="usuario" />
+                <div class="error-message" id="errorUsuario"></div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="button">Añadir</button>
+            </div>
+            <div class="success-message" id="mensajeExito"></div>
+        </form>
+    </div>
+
     <script src="../js/agregarMonitor.js"></script>
 </body>
 </html>
