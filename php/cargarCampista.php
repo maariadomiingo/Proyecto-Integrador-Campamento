@@ -24,7 +24,10 @@ $result = $stmt->get_result();
 
 $lista = '';
 while ($row = $result->fetch_assoc()) {
-    $lista .= "<li><input type='checkbox' name='campista' value='{$row['id_campista']}'> {$row['nombre']}</li>";
+    $lista .= "<li><a href='editarCampistas.html?id={$row['id_campista']}'>
+    <input type='checkbox' name='campista' value='{$row['id_campista']}'> 
+    {$row['nombre']}
+</a></li>";
 }
 
 // Si la lista está vacía, mostrar mensaje
