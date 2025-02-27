@@ -1,10 +1,11 @@
 // Seleccionar elementos de la galería
 const perfil = document.querySelector('.perfil');
+const reserva = document.querySelector('.reservar');
 
 const btnCerrar = document.querySelector('#btn-cerrar');
 const btnAdelantar = document.querySelector('#btn-adelantar');
 const btnRetroceder = document.querySelector('#btn-retroceder');
-const img = document.querySelectorAll('#galeria img'); // CORREGIDO
+const img = document.querySelectorAll('#galeria img'); 
 const container = document.querySelector('#contenedor-galeria');
 const imagenActiva = document.querySelector('#img-activa');
 let indexImagen = 0;
@@ -66,5 +67,10 @@ function mostrarInfo() {
 if (perfil) {
     perfil.addEventListener('click', function() {
         window.location.href = '../html/login.html';
+    });
+}
+if (reserva) {
+    reserva.addEventListener('click', function() {
+        window.location.href = '../html/jornada.html';
     });
 }
