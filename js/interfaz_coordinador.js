@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const añadirMonitor = document.querySelector('.añadirmonitor');
     const gestionarGrupos = document.querySelector('.gestionargrupo');
     const editarCampistas = document.querySelector('.editarcampistas');
-
+    document.getElementById("volverinicio").addEventListener("click", function() {
+        window.location.href = "home.html";
+    });
     function checkSession() {
         if (!identificacionURL) {
             window.location.href = '../html/login.html';

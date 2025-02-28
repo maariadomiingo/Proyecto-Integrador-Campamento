@@ -308,7 +308,9 @@ label {
 /*inscrito*/
 .imageninscrito{
     margin: 20px;
-    margin-left: 40%;
+    margin-left: 37%;
+    width: 25%;
+    height: auto;
 }
 .textoinscrito{
     text-align: center;
