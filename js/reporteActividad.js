@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 data.actividades.forEach(actividad => {
                     const option = document.createElement("option");
                     option.value = actividad.id_actividad;
-                    option.textContent = `${actividad.nombre} - ${actividad.fecha} ${actividad.hora_actividad}`;
+                    option.textContent = `${actividad.nombre} → Día: ${actividad.fecha} | Hora: ${actividad.hora_actividad} | Grupo: ${actividad.grupo}`;
                     actividadSelect.appendChild(option);
                 });
             })
@@ -39,7 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const actividad = actividadSelect.value;
         const descripcion = descripcionInput.value.trim();
-        
+        const params = new URLSearchParams(window.location.search);
+        const identificacion = params.get('identificacion');
+
         if (!actividad || !descripcion) {
             alert("Por favor, complete todos los campos.");
             return;
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new FormData();
         formData.append("actividad", actividad);
         formData.append("descripcion", descripcion);
+        formData.append("identificacion", identificacion); // Agregamos la identificación
         
         fetch("../php/reporteActividad.php", {
             method: "POST",
