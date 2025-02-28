@@ -1,16 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    //const identificacionMonitor = "qwertyuio"; // Se puede obtener dinámicamente de la URL
     const urlParams = new URLSearchParams(window.location.search);
     const identificacionMonitor = urlParams.get('identificacion');
-
-    const nombreActividad = document.getElementById("nombreActividad");
-    const descripcion = document.getElementById("descripcion");
-    const hora = document.getElementById("hora");
-    const fecha = document.getElementById("fecha");
-    const grupo = document.getElementById("grupo");
-    const recursos = document.getElementById("recursos");
-    const contenedorActividades = document.getElementById("actividadesContainer");
-    const reportes = document.getElementById("new-btn");
 
     // Función para obtener los datos de la actividad
     function obtenerActividad() {
@@ -37,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <p><strong>Fecha:</strong> ${actividad.fecha}</p>
                             </div>
                         `;
-                        contenedorActividades.appendChild(actividadDiv);
+                        document.getElementById("actividadesContainer").appendChild(actividadDiv);
                     }
                 });
             }
@@ -48,9 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Llamar a la función al cargar la página
     obtenerActividad();
 
-
-    reportes.addEventListener('click', function() {
-        window.location.href = `reporteActividad.html?identificacion=${identificacionMonitor}`;
+    // Funcionalidad para el botón "Atrás"
+    document.querySelector(".buttonatras").addEventListener('click', (event) => {
+        event.preventDefault();
+        window.location.href = `interfaz_monitor.html?identificacion=${identificacionMonitor}`;
     });
 
+    document.getElementById("new-btn").addEventListener('click', function() {
+        window.location.href = `reporteActividad.html?identificacion=${identificacionMonitor}`;
+    });
 });
