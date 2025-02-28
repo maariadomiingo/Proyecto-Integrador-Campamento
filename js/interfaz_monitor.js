@@ -45,7 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
             //window.location.href = '../html/login.html';
         });
     }
-
+    document.getElementById("volverinicio").addEventListener("click", function() {
+        window.location.href = "home.html";
+    });
     function mostrarDatosSesion(datos) {
         const identificacionElement = document.getElementById('identificacion');
         identificacionElement.textContent = datos.identificacion || 'No disponible';
