@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" />
     <link rel="stylesheet" href="../css/agregarMonitor.css" />
+    <link rel="stylesheet" href="../css/interfacesmc/interfaces.css" />
     <style>
         .error-message {
             color: red;
@@ -24,15 +25,18 @@
     </style>
 </head>
 <body>
-    <!-- Iconos de usuario y salir -->
-    <div class="circulo"></div>
-    <img class="icono-usuario" src="../img/user.png" />
-    <div class="circulo-salir">
-        <img class="icono-salir" src="../img/cerrar-sesion.png" />
+    <div class="header">
+        <img class="logo" src="../img/logo sin fondo.png" alt="Logo" id="volverinicio"> 
+        <button class="circulo-salir">
+            <img class="icono-salir" src="../img/cerrar-sesion.png" alt="Cerrar sesión">
+        </button>
     </div>
-
-    <img src="../img/logo sin fondo.png" class="logo" />
-    <span class="span">AGREGAR MONITOR</span>
+    <div class="titulo">
+        <button class="buttonatras"> 
+          <img class="flecha" src="../img/FLECHA ATRAS.png" alt="Volver">
+        </button>
+        <h1>DATOS DE CAMPISTA</h1>
+      </div>
 
     <!-- FORMULARIO -->
     <div class="form-container">
@@ -64,6 +68,10 @@
             <div class="success-message" id="mensajeExito"></div>
         </form>
     </div>
+        
+    <footer>
+        Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
+    </footer>
 
     <script src="../js/agregarMonitor.js"></script>
 </body>

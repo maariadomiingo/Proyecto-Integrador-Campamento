@@ -4,24 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/reporteActividad.css">
+    <link rel="stylesheet" type="text/css" href="../css/interfacesmc/interfaces.css">
+
     <title>Reporte Actividades</title>
 </head>
 <body>
-    <!-- Iconos de usuario y salir -->
-    <div class="circulo">
-        <img class="icono-usuario" src="../img/user.png" />  
-    </div>
-    
-    <div class="circulo-salir">
-        <img class="icono-salir" src="../img/cerrar-sesion.png" />
-    </div>
-    
-    <!-- Contenedor principal -->
-    <div class="main-container">
-        <img class="logo" src="../img/logo sin fondo.png" />
-    </div>
-    
-    <h1>REPORTE ACTIVIDADES</h1>
+    <div class="header">
+        <button class="circulo">
+          <img class="icono-usuario" src="../img/user.png" alt="Icono Usuario">
+        </button>
+        <img class="logo" src="../img/logo sin fondo.png" alt="Logo">
+        <button class="circulo-salir">
+          <img class="icono-salir" src="../img/cerrar-sesion.png" alt="Cerrar sesión">
+        </button>
+      </div>
+      
+      <div class="titulo">
+        <button class="buttonatras"> 
+          <img class="flecha" src="../img/FLECHA ATRAS.png" alt="Volver">
+        </button>
+        <h1>REPORTE ACTIVIDADES</h1>
+      </div>
     <div class="gestionar-actividades">
         <form method="post" id="formActividad">
             <select name="actividad" id="actividad">
@@ -38,27 +41,6 @@
     <script src="../js/reporteActividad.js"></script>
 </body>
 <footer>
-    <div class="footer-container">
-        <div class="footer-section">
-            <ul>
-                <li><a href="#">Política de privacidad</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <ul>
-                <li><a href="#">Política de uso aceptable</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <ul>
-                <li><a href="#">Contacto +34 111 1111 11</a></li>
-            </ul>
-        </div>
-        <div class="social-icons">
-            <ul>
-                <li><a href="#">Correo aaaaa@gmail.com</a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+    Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
+  </footer>
 </html>

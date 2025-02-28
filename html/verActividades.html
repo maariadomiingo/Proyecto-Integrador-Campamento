@@ -20,24 +20,26 @@ con identificación monitor -> ejemplo qwertyuio
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/verActividades.css">
+    <link rel="stylesheet" type="text/css" href="../css/interfacesmc/interfaces.css">
     <title>Ver Actividades</title>
 </head>
 <body>
-    <!-- Iconos de usuario y salir -->
-    <div class="circulo">
-        <img class="icono-usuario" src="../img/user.png" />  
-    </div>
-    
-    <div class="circulo-salir">
-        <img class="icono-salir" src="../img/cerrar-sesion.png" />
-    </div>
-
-    <!-- Contenedor principal -->
-    <div class="logo-container">
-        <img class="logo" src="../img/logo sin fondo.png" />
-    </div>
-    
-    <h1>VER ACTIVIDADES</h1>
+    <div class="header">
+        <button class="circulo">
+          <img class="icono-usuario" src="../img/user.png" alt="Icono Usuario">
+        </button>
+        <img class="logo" src="../img/logo sin fondo.png" alt="Logo">
+        <button class="circulo-salir">
+          <img class="icono-salir" src="../img/cerrar-sesion.png" alt="Cerrar sesión">
+        </button>
+      </div>
+      
+      <div class="titulo">
+        <button class="buttonatras"> 
+          <img class="flecha" src="../img/FLECHA ATRAS.png" alt="Volver">
+        </button>
+        <h1>VER ACTIVIDADES</h1>
+      </div>
     
     <div class="ver-actividades1">
         <div id="actividadesContainer" class="actividades-container">
@@ -51,31 +53,8 @@ con identificación monitor -> ejemplo qwertyuio
 
     <!-- Footer dentro del body -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <ul>
-                    <li><a href="#">Política de privacidad</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <ul>
-                    <li><a href="#">Política de uso aceptable</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <ul>
-                    <li><a href="#">Contacto +34 111 1111 11</a></li>
-                </ul>
-            </div>
-            <div class="iconos">
-                <div class="social-icons">
-                    <ul>
-                        <li><a href="#">Correo aaaaa@gmail.com</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+        Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
+      </footer>
 
     <script src="../js/verActividades.js"></script>
 </body>
