@@ -31,21 +31,31 @@
     <h1>ESTADO DE LAS ACTIVIDADES</h1>
     <div class="container">
         <select name="actividad-select" id="actividad-select">
-            <option value="">ACTIVIDADES</option>
+            <option value="">Seleccione una actividad</option>
         </select>
     </div>
-    <div id="mensaje"></div>
+    <!-- Contenedor para el mensaje de validación -->
+    <div id="mensaje" style="color: red; font-weight: bold; display: flex; align-items: center;">
+      <span id="mensaje-icon" class="mensaje-icon" style="margin-right: 10px;"></span> <!-- Icono de X -->
+      <span id="mensaje-text">Por favor, selecciona una actividad.</span>
+    </div>
+
 
     <div class="MostrarDatos">
-        <table>
-            <tr>
-                <th>Actividad</th>
-                <th> - Estado</th>
-            </tr>
-            <!-- Mostrará los datos de las actividades aquí -->
+        <table id="tabla-reportes">
+            <thead>
+                <tr>
+                    <th>Actividad</th>
+                    <th>Reportes</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los datos se llenarán dinámicamente con JavaScript -->
+            </tbody>
         </table>
-        <hr>
+
     </div>
+    <script src="../js/estadoActividades.js"></script>
 </body>
 <footer>
     <div class="footer-container">
