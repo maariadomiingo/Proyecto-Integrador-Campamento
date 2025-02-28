@@ -172,37 +172,89 @@ $query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos,
 $stmt_actividad = $conexion->prepare($query_actividad);
 if (!$stmt_actividad) die("Error en consulta de Actividad: " . $conexion->error);
 
-// Insertar actividades
+// Insertar 5 actividades
 $actividades = [
     ['Pintura', 'Pintar cuadros', 'Pinturas - Lienzos', '10:00:00', '2025-02-25'],
-    ['Manualidades', 'Crear objetos con reciclaje', 'Tijeras - Pegamento - Papel', '12:00:00', '2025-02-27']
+    ['Manualidades', 'Crear objetos con reciclaje', 'Tijeras - Pegamento - Papel', '12:00:00', '2025-02-27'],
+    ['Deportes', 'Partido de fútbol', 'Pelotas - Conos', '14:00:00', '2025-03-01'],
+    ['Teatro', 'Representación de obras teatrales', 'Disfraces - Guiones', '16:00:00', '2025-03-02'],
+    ['Cocina', 'Preparar postres', 'Harina - Azúcar - Horno', '18:00:00', '2025-03-03']
 ];
 
 foreach ($actividades as $actividad) {
     executeStatement($stmt_actividad, $actividad);
 }
 $stmt_actividad->close();
-// echo "Datos insertados en la tabla Actividad.<br>";
+// Insertar tarifas
+$query_tarifa = "INSERT IGNORE INTO Tarifas (dias, precio) VALUES (?, ?)";
+$stmt_tarifa = $conexion->prepare($query_tarifa);
+if (!$stmt_tarifa) die("Error en consulta de Tarifas: " . $conexion->error);
 
-/* INSERT INTO grupoCampistas (id_grupo, nombre, identificacion_monitor, id_actividad) 
-VALUES 
-(1, 'Grupo A', 'qwertyuio', 1), 
-(2, 'Grupo B', 'qwertyuio', 1), 
-(3, 'Grupo C', 'qwertyuio', 2), 
-(4, 'Grupo D', 'qwertyuio', 2);
- */
+// Insertar 5 tarifas
+$tarifas = [
+    ['7 días', 100.00],
+    ['10 días', 150.00],
+    ['14 días', 200.00],
+    ['5 días', 80.00],
+    ['15 días', 220.00]
+];
 
-// Insertar en GrupoCampistas con bind_param()
+foreach ($tarifas as $tarifa) {
+    executeStatement($stmt_tarifa, $tarifa);
+}
+$stmt_tarifa->close();
+
+// Insertar 5 campistas
+$query_campista = "INSERT IGNORE INTO Campista (nombre, fechaNacimiento, direccion, historialMedicoRelevante, alergias, necesidadesEspeciales, nombreEmergencia, telefonoEmergencia, id_tarifa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt_campista = $conexion->prepare($query_campista);
+if (!$stmt_campista) die("Error en consulta de Campista: " . $conexion->error);
+
+// Insertar 5 campistas
+$campistas = [
+    ['Ana Pérez', '2010-05-12', 'Calle Ficticia 123', 'Sin historial relevante', 'Ninguna', 'Ninguna', 'Carlos Pérez', '654321987', 1],
+    ['Luis Gómez', '2010-06-15', 'Avenida Real 456', 'Alergia al polen', 'Ninguna', 'No tiene necesidades especiales', 'María Gómez', '654987123', 2],
+    ['Laura Fernández', '2010-07-22', 'Calle Ejemplo 789', 'Asma', 'Alergia a los frutos secos', 'Usa gafas', 'José Fernández', '654321654', 3],
+    ['Carlos Martínez', '2010-08-30', 'Plaza Mayor 101', 'Sin historial relevante', 'No tiene alergias', 'No tiene necesidades especiales', 'Laura Martínez', '654789456', 4],
+    ['Elena Ruiz', '2010-09-05', 'Calle Sol 202', 'Alergia a los gatos', 'Alergia al polen', 'Usa audífono', 'Juan Ruiz', '654123789', 5]
+];
+
+foreach ($campistas as $campista) {
+    executeStatement($stmt_campista, $campista);
+}
+$stmt_campista->close();
+
+
+// Insertar 5 padres
+$query_padre = "INSERT IGNORE INTO Padre (nombre, relacion, telefono, email, direccion, id_campista) VALUES (?, ?, ?, ?, ?, ?)";
+$stmt_padre = $conexion->prepare($query_padre);
+if (!$stmt_padre) die("Error en consulta de Padre: " . $conexion->error);
+
+// Insertar padres para los campistas
+$padres = [
+    ['Carlos Pérez', 'Padre', '654321987', 'carlos.perez@example.com', 'Calle Ficticia 123', 1],
+    ['María Gómez', 'Madre', '654987123', 'maria.gomez@example.com', 'Avenida Real 456', 2],
+    ['José Fernández', 'Padre', '654321654', 'jose.fernandez@example.com', 'Calle Ejemplo 789', 3],
+    ['Laura Martínez', 'Madre', '654789456', 'laura.martinez@example.com', 'Plaza Mayor 101', 4],
+    ['Juan Ruiz', 'Padre', '654123789', 'juan.ruiz@example.com', 'Calle Sol 202', 5]
+];
+
+foreach ($padres as $padre) {
+    executeStatement($stmt_padre, $padre);
+}
+$stmt_padre->close();
+
+// Insertar 5 grupos
 $query_grupo = "INSERT IGNORE INTO GrupoCampistas (id_grupo, nombre, identificacion_monitor, id_actividad) VALUES (?, ?, ?, ?)";
 $stmt_grupo = $conexion->prepare($query_grupo);
 if (!$stmt_grupo) die("Error en consulta de GrupoCampistas: " . $conexion->error);
 
-// Datos para insertar
+// Insertar 5 grupos
 $grupos = [
     [1, 'Grupo A', 'qwertyuio', 1],
-    [2, 'Grupo B', 'qwertyuio', 1],
-    [3, 'Grupo C', 'qwertyuio', 2],
-    [4, 'Grupo D', 'qwertyuio', 2]
+    [2, 'Grupo B', 'qwertyuio', 2],
+    [3, 'Grupo C', 'qwertyuio', 3],
+    [4, 'Grupo D', 'qwertyuio', 4],
+    [5, 'Grupo E', 'qwertyuio', 5]
 ];
 
 foreach ($grupos as $grupo) {
@@ -211,5 +263,5 @@ foreach ($grupos as $grupo) {
 }
 
 $stmt_grupo->close();
-// echo "Datos insertados en la tabla GrupoCampistas.<br>";
+
 ?>
