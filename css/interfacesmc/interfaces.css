@@ -1,62 +1,65 @@
 @font-face {
-    font-family: "Montserrat";
-    src: url(../../font/Montserrat-VariableFont_wght.ttf);
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat";
-    background: #D3E1EB;
-    width: 100%; 
-    overflow-x: hidden; 
-  }
-  
-  /* header coordinador/monitor */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    margin: 1%;
-  }
-  
-  .logo {
-    height: auto;
-    width: 10%;
-  }
-  
-  .circulo, .circulo-salir {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .circulo {
-    width: 81px;
-    height: 79px;
-    background: #7770C5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 9999px;
-  }
-  
-  .icono-usuario {
-    max-width: 60%;
-    max-height: 60%;
-  }
-  
-  .circulo-salir {
-    width: 80px;
-    height: 80px;
-    background: #F5F5F5;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
-    border-radius: 9999px;
-    border: 1px #7AB3D7 solid;
-  }
-  
-  .icono-salir {
-    width: 24px;
-    height: 29px;
-  }
-  /*titulos*/
-  /*inicio*/
+  font-family: "Montserrat";
+  src: url(../../font/Montserrat-VariableFont_wght.ttf);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat";
+  background: #D3E1EB;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* header coordinador/monitor */
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 1%;
+}
+
+.logo {
+  height: auto;
+  width: 10%;
+}
+
+.circulo,
+.circulo-salir {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circulo {
+  width: 81px;
+  height: 79px;
+  background: #7770C5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 9999px;
+}
+
+.icono-usuario {
+  max-width: 60%;
+  max-height: 60%;
+}
+
+.circulo-salir {
+  width: 80px;
+  height: 80px;
+  background: #F5F5F5;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+  border-radius: 9999px;
+  border: 1px #7AB3D7 solid;
+}
+
+.icono-salir {
+  width: 24px;
+  height: 29px;
+}
+
+/*titulos*/
 .flecha {
   max-width: 60%;
   max-height: 60%;
@@ -68,7 +71,8 @@
   justify-content: center;
   flex-direction: row;
 }
-.buttonatras{
+
+.buttonatras {
   width: 51px;
   height: 49px;
   background: #7770C5;
@@ -82,48 +86,250 @@ h1 {
   color: #0F0559;
 }
 
-  /*inicio interfaces*/
-  .todo {
-    position: relative;
-  }
-  
-  .textocompleto {
-    margin: 5%;
-  }
-  .gestionarhorarios, .gestionaractividades, .estadoactividades, .añadirmonitor, .gestionargrupo, .editarcampistas, .verhorarios, .veractividades, .pasarlista {
-    display: flex;
+/*inicio interfaces*/
+.todo {
+  position: relative;
+}
+
+.textocompleto {
+  margin: 5%;
+}
+
+.gestionarhorarios,
+.gestionaractividades,
+.estadoactividades,
+.añadirmonitor,
+.gestionargrupo,
+.editarcampistas,
+.verhorarios,
+.veractividades,
+.pasarlista {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.icono-estadoactividades,
+.icono-gestionar-actividades,
+.icono-gestionar-horarios,
+.icono-añadirmonitor,
+.icono-gestionargrupo,
+.icono-editarcampistas,
+.icono-pasarlista,
+.icono-ver-actividades,
+.icono-ver-horarios {
+  height: 60%;
+  width: 5%;
+  z-index: 2;
+}
+
+.gestionarhorarios,
+.gestionaractividades,
+.estadoactividades,
+.añadirmonitor,
+.gestionargrupo,
+.editarcampistas,
+.verhorarios,
+.veractividades,
+.pasarlista {
+  background-image: url('../../img/trazo-pincel.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80%;
+  height: 80px;
+  margin: 3%;
+  margin-left: 10%;
+}
+
+.texto-gestionarhorarios,
+.texto-gestionar-actividades,
+.texto-estadoactividades,
+.texto-añadirmonitor,
+.texto-gestionargrupo,
+.texto-editarcampistas,
+.texto-verhorarios,
+.texto-ver-actividades,
+.texto-pasarlista {
+  margin-left: 10%;
+  color: #F5F5F5;
+  font-size: 30px;
+}
+
+/* footer */
+footer {
+  background-color: #7770C5;
+  padding: 4%;
+  text-align: center;
+  width: 100%;
+}
+
+/*HEADER RESPONSIVE*/
+@media screen and (max-width: 768px) {
+  .header {
     flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 15%;
+  }
+
+  .circulo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .circulo-salir {
+    width: 70px;
+    height: 70px;
+  }
+
+  .icono-usuario,
+  .icono-salir {
+    max-width: 50%;
+    max-height: 50%;
+  }
+
+  .titulo {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .buttonatras {
+    width: 45px;
+    height: 43px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+  /*dentro responsive*/
+  .gestionarhorarios,
+  .gestionaractividades,
+  .estadoactividades,
+  .añadirmonitor,
+  .gestionargrupo,
+  .editarcampistas,
+  .verhorarios,
+  .veractividades,
+  .pasarlista {
+    width: 90%;
+    height: 70px;
+    margin-left: 5%;
+  }
+
+  .icono-estadoactividades,
+  .icono-gestionar-actividades,
+  .icono-gestionar-horarios,
+  .icono-añadirmonitor,
+  .icono-gestionargrupo,
+  .icono-editarcampistas,
+  .icono-pasarlista,
+  .icono-ver-actividades,
+  .icono-ver-horarios {
+    width: 8%;
+  }
+
+  .texto-gestionarhorarios,
+  .texto-gestionar-actividades,
+  .texto-estadoactividades,
+  .texto-añadirmonitor,
+  .texto-gestionargrupo,
+  .texto-editarcampistas,
+  .texto-verhorarios,
+  .texto-ver-actividades,
+  .texto-pasarlista {
+    font-size: 24px;
+    margin-left: 5%;
+  }
+}
+
+/* Móviles (hasta 480px) */
+@media screen and (max-width: 480px) {
+  .header {
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-evenly;
+    gap: 10px;
   }
-  
-  .icono-estadoactividades, .icono-gestionar-actividades, .icono-gestionar-horarios, .icono-añadirmonitor, .icono-gestionargrupo, .icono-editarcampistas, .icono-pasarlista, .icono-ver-actividades, .icono-ver-horarios {
-    height: 60%;
-    width: 5%;
-    z-index: 2;
+
+  .logo {
+    width: 20%;
   }
-  
-  .gestionarhorarios, .gestionaractividades, .estadoactividades, .añadirmonitor, .gestionargrupo, .editarcampistas, .verhorarios, .veractividades, .pasarlista {
-    background-image: url('../../img/trazo-pincel.png');
-    background-size:cover;
-    background-repeat: no-repeat; 
-    background-position: center; 
-    width: 80%; 
-    height: 80px; 
-    margin: 3%;
-    margin-left: 10%;
+
+  .circulo,
+  .circulo-salir {
+    width: 50px;
+    height: 50px;
   }
-  
-  .texto-gestionarhorarios, .texto-gestionar-actividades, .texto-estadoactividades, .texto-añadirmonitor, .texto-gestionargrupo, .texto-editarcampistas, .texto-verhorarios, .texto-ver-actividades, .texto-pasarlista {
-    margin-left: 10%;
-    color: #F5F5F5;
-    font-size: 30px;
+
+  .icono-usuario,
+  .icono-salir {
+    max-width: 40%;
+    max-height: 40%;
   }
-  
-  /* footer */
-  footer {
-    background-color: #7770C5;
-    padding: 4%;
+
+  /*titulo responsive*/
+  .titulo {
+    align-items: center;
     text-align: center;
-    width: 100%;
+    gap: 5px;
   }
+
+  .buttonatras {
+    width: 40px;
+    height: 38px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+  /*dentro responsive*/
+  .gestionarhorarios,
+  .gestionaractividades,
+  .estadoactividades,
+  .añadirmonitor,
+  .gestionargrupo,
+  .editarcampistas,
+  .verhorarios,
+  .veractividades,
+  .pasarlista {
+    width: 100%;
+    height: auto;
+    margin: 2% auto;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .icono-estadoactividades,
+  .icono-gestionar-actividades,
+  .icono-gestionar-horarios,
+  .icono-añadirmonitor,
+  .icono-gestionargrupo,
+  .icono-editarcampistas,
+  .icono-pasarlista,
+  .icono-ver-actividades,
+  .icono-ver-horarios {
+    width: 12%;
+    height: auto;
+  }
+
+  .texto-gestionarhorarios,
+  .texto-gestionar-actividades,
+  .texto-estadoactividades,
+  .texto-añadirmonitor,
+  .texto-gestionargrupo,
+  .texto-editarcampistas,
+  .texto-verhorarios,
+  .texto-ver-actividades,
+  .texto-pasarlista {
+    font-size: 20px;
+    margin-left: 0;
+  }
+
+  footer {
+    padding: 6%;
+  }
+}
