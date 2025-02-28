@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const listaCampistas = document.getElementById("listaCampistas");
     const guardarAsistenciaBtn = document.getElementById("guardarAsistencia");
 
-    // Cargar la lista de campistas
+    // Cargar la lista de campistas con asistencia registrada
     fetch("../php/pasarlista.php")
         .then(response => {
             if (!response.ok) {
@@ -17,12 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 const div = document.createElement("div");
                 div.classList.add("campista-item");
 
+                const checked = campista.estado === "presente" ? "checked" : "";
+
                 div.innerHTML = `
                     <label>
                         <a href="mostrarcampista.html?id=${campista.id}" class="campista-link">
                             ${campista.nombre}
                         </a>
-                        <input type="checkbox" name="asistencia" data-id="${campista.id}">
+                        <input type="checkbox" name="asistencia" data-id="${campista.id}" ${checked}>
                     </label>
                 `;
 
@@ -34,22 +36,18 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("No se pudo cargar la lista de campistas");
         });
 
-
     guardarAsistenciaBtn.addEventListener("click", (event) => {
         event.preventDefault();
         
-        const checkboxes = document.querySelectorAll('input[name="asistencia"]:checked');
-        const asistencias = Array.from(checkboxes).map(checkbox => checkbox.getAttribute("data-id"));
-
-        if (asistencias.length === 0) {
-            alert("No se ha seleccionado ninguna asistencia.");
-            return;
-        }
+        const checkboxes = document.querySelectorAll('input[name="asistencia"]');
+        const asistencias = Array.from(checkboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.getAttribute("data-id"));
 
         fetch("../php/guardarasistencia.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ asistencias}) 
+            body: JSON.stringify({ asistencias }) 
         })
         .then(response => response.json())
         .then(data => {
