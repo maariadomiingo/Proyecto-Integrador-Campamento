@@ -2,6 +2,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("formActividad");
     const actividadSelect = document.getElementById("actividad");
     const descripcionInput = document.getElementById("descripcion");
+    const urlParams = new URLSearchParams(window.location.search);
+    const identificacionMonitor = urlParams.get('identificacion');
+    const mensajeContainer = document.getElementById("mensaje");
+
+    // Función para mostrar mensajes
+    function mostrarMensaje(texto, tipo = "success") {
+        mensajeContainer.textContent = texto;
+        mensajeContainer.className = `mensaje ${tipo}`;
+        setTimeout(() => {
+            mensajeContainer.className = "mensaje";
+        }, 5000);
+    }
 
     // Función para cargar actividades
     function cargarActividades() {
@@ -12,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
-                    console.error("Error:", data.error);
+                    mostrarMensaje(data.error, "error");
                     return;
                 }
 
@@ -27,7 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     actividadSelect.appendChild(option);
                 });
             })
-            .catch(error => console.error("Error en la petición:", error));
+            .catch(error => {
+                console.error("Error en la petición:", error);
+                mostrarMensaje("Error al cargar las actividades", "error");
+            });
     }
 
     // Cargar actividades al cargar la página
@@ -43,14 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const identificacion = params.get('identificacion');
 
         if (!actividad || !descripcion) {
-            alert("Por favor, complete todos los campos.");
+            mostrarMensaje("Por favor, complete todos los campos.", "error");
             return;
         }
         
         const formData = new FormData();
         formData.append("actividad", actividad);
         formData.append("descripcion", descripcion);
-        formData.append("identificacion", identificacion); // Agregamos la identificación
+        formData.append("identificacion", identificacion);
         
         fetch("../php/reporteActividad.php", {
             method: "POST",
@@ -59,19 +74,22 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert("Reporte enviado con éxito.");
+                mostrarMensaje(data.mensaje || "Reporte enviado con éxito");
                 form.reset();
-                cargarActividades(); // Refresh activities after submission
+                cargarActividades(); // Actualiza las actividades
             } else {
-                alert("Error al enviar el reporte: " + (data.error || 'Unknown error'));
+                mostrarMensaje(data.error || "Error al enviar el reporte", "error");
             }
         })
-        .catch(error => console.error("Error en la petición:", error));
+        .catch(error => {
+            console.error("Error en la petición:", error);
+            mostrarMensaje("Error al enviar el reporte", "error");
+        });
     });
 
     // Cancel button handler
     document.querySelector(".cancelar-btn").addEventListener("click", (event) => {
         event.preventDefault();
-        window.location.href = "verActividades.html";
+        window.location.href = `verActividades.html?identificacion=${identificacionMonitor}`;
     });
 });

@@ -7,7 +7,6 @@ if ($conexion->connect_error) {
     exit();
 }
 
-// Verificamos si es una petición GET o POST
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $identificacion = $_GET['identificacion'] ?? null;
 
@@ -17,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     try {
+        // Consulta que obtiene las actividades SIN reportes
         $stmt = $conexion->prepare("
             SELECT g.nombre AS grupo, 
                    a.id_actividad,
@@ -27,10 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                    a.fecha
             FROM grupocampistas g
             JOIN actividad a ON g.id_actividad = a.id_actividad
-            WHERE g.identificacion_monitor = ?
+            WHERE g.identificacion_monitor = ? 
+            AND a.id_actividad NOT IN (
+                SELECT id_actividad 
+                FROM reportes 
+                WHERE identificacion_monitor = ?
+            )
         ");
         
-        $stmt->bind_param("s", $identificacion);
+        $stmt->bind_param("ss", $identificacion, $identificacion);
         $stmt->execute();
         
         $resultado = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -52,19 +57,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode(["error" => "Error en la consulta: " . $e->getMessage()]);
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // La lógica para guardar el reporte permanece igual
     try {
-        // Recibimos los datos del formulario
         $actividad = $_POST['actividad'] ?? null;
         $descripcion = $_POST['descripcion'] ?? null;
         $identificacion = $_POST['identificacion'] ?? null;
 
-        // Verificamos que tengamos todos los datos necesarios
         if (!$actividad || !$descripcion || !$identificacion) {
             echo json_encode(["error" => "Faltan datos necesarios"]);
             exit();
         }
 
-        // Preparamos la consulta para guardar el reporte
         $stmt = $conexion->prepare("
             INSERT INTO reportes (
                 id_actividad,
