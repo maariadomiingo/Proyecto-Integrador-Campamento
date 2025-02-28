@@ -5,24 +5,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Verificar si existe la identificación
     if (!identificacion) {
-        alert("No se proporcionó una identificación.");
+        console.warn("No se proporcionó una identificación.");
         window.location.href = '../html/login.html';
         return;
     }
 
-    // Obtener elementos del DOM
-    const buttonAtras = document.querySelector('.button');
     const botonSalir = document.querySelector('.circulo-salir');
 
-    // Funcionalidad del botón "Atrás"
-    buttonAtras.addEventListener('click', function () {
-        window.location.href = `../html/interfaz_monitor.html?identificacion=${encodeURIComponent(identificacion)}`;
-    });
-
     // Funcionalidad del botón de salir
-    botonSalir.addEventListener('click', function () {
-        window.location.href = '../html/login.html';
-    });
+    if (botonSalir) {
+        botonSalir.addEventListener('click', function () {
+            window.location.href = '../html/login.html';
+        });
+    } else {
+        console.error("El botón 'Salir' no fue encontrado en el DOM.");
+    }
 
     // Función para obtener los datos del monitor
     function obtenerDatosDelMonitor() {
@@ -31,9 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: { 
                 "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: new URLSearchParams({ 
-                identificacion: identificacion 
-            })
+            body: new URLSearchParams({ identificacion: identificacion })
         })
         .then(response => response.json())
         .then(data => {
@@ -58,8 +53,23 @@ document.addEventListener("DOMContentLoaded", function () {
     obtenerDatosDelMonitor();
 
     // Función para editar el perfil
-    document.querySelector('.editar-perfil').addEventListener('click', function (event) {
-        event.preventDefault();
-        window.location.href = `../html/editarMonitor.html?identificacion=${encodeURIComponent(identificacion)}`;
-    });
+    const botonEditar = document.querySelector('.editar-perfil');
+    if (botonEditar) {
+        botonEditar.addEventListener('click', function (event) {
+            event.preventDefault();
+            window.location.href = `../html/editarMonitor.html?identificacion=${encodeURIComponent(identificacion)}`;
+        });
+    } else {
+        console.error("El botón 'Editar perfil' no fue encontrado en el DOM.");
+    }
+
+    const botonAtras = document.querySelector('.button');
+    if (botonAtras) {
+        botonAtras.addEventListener('click', function (event) {
+            event.preventDefault();
+            window.location.href = `../html/interfaz_monitor.html?identificacion=${encodeURIComponent(identificacion)}`;
+        });
+    } else {
+        console.error("El botón 'atras' no fue encontrado en el DOM.");
+    }
 });

@@ -47,4 +47,26 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("new-btn").addEventListener('click', function() {
         window.location.href = `reporteActividad.html?identificacion=${identificacionMonitor}`;
     });
+
+    const botonSalir = document.querySelector('.circulo-salir');
+
+    // Funcionalidad del botón de salir
+    if (botonSalir) {
+        botonSalir.addEventListener('click', function () {
+            window.location.href = '../html/login.html';
+        });
+    } else {
+        console.error("El botón 'Salir' no fue encontrado en el DOM.");
+    }
+
+    const perfilMonitor = document.querySelector('.circulo');
+    if (perfilMonitor) {
+        perfilMonitor.addEventListener('click', function (event) {
+            event.preventDefault();
+            console.log("Redirigiendo a perfil monitor con identificacion:", identificacionMonitor);
+            window.location.href = `../html/perfilMonitor.html?identificacion=${encodeURIComponent(identificacionMonitor)}`;
+        });
+    } else {
+        console.error("El botón 'Atrás' no fue encontrado en el DOM.");
+    }
 });

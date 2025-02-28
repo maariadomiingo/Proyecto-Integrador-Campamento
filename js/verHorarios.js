@@ -43,4 +43,36 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
     .catch(error => console.error("Error al obtener datos del monitor:", error));
+
+
+    const botonAtras = document.querySelector('.buttonatras');
+    if (botonAtras) {
+        botonAtras.addEventListener('click', function (event) {
+            event.preventDefault();
+            window.location.href = `../html/interfaz_monitor.html?identificacion=${encodeURIComponent(identificacion)}`;
+        });
+    } else {
+        console.error("El botón 'atras' no fue encontrado en el DOM.");
+    }
+
+    const botonSalir = document.querySelector('.circulo-salir');
+
+    // Funcionalidad del botón de salir
+    if (botonSalir) {
+        botonSalir.addEventListener('click', function () {
+            window.location.href = '../html/login.html';
+        });
+    } else {
+        console.error("El botón 'Salir' no fue encontrado en el DOM.");
+    }
+
+    const perfilMonitor = document.querySelector('.circulo');
+     // Funcionalidad del botón de salir
+     if (perfilMonitor) {
+        perfilMonitor.addEventListener('click', function () {
+            window.location.href = `../html/perfilMonitor.html?identificacion=${encodeURIComponent(identificacion)}`;
+        });
+    } else {
+        console.error("El botón 'Salir' no fue encontrado en el DOM.");
+    }
 });
