@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if (data.status === 'success') {
             } else {
-                window.location.href = '../html/login.html';
+               // window.location.href = '../html/login.html';
             }
         })
         .catch(error => {

@@ -1,46 +1,65 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const pathSegments = window.location.pathname.split('/');
-    const identificacion = pathSegments[pathSegments.length - 1];
-    const atras = document.querySelector('.flecha');
-    const botonSalir = document.querySelector('.icono-salir');
+    // Obtener la identificación del monitor desde la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const identificacion = urlParams.get('identificacion');
 
+    // Verificar si existe la identificación
     if (!identificacion) {
         alert("No se proporcionó una identificación.");
+        window.location.href = '../html/login.html';
         return;
     }
 
-    // Event listeners dentro de DOMContentLoaded
-    atras.addEventListener('click', function() {
-        window.location.href = '../html/interfaz_monitor.html';
+    // Obtener elementos del DOM
+    const buttonAtras = document.querySelector('.button');
+    const botonSalir = document.querySelector('.circulo-salir');
+
+    // Funcionalidad del botón "Atrás"
+    buttonAtras.addEventListener('click', function () {
+        window.location.href = `../html/interfaz_monitor.html?identificacion=${encodeURIComponent(identificacion)}`;
     });
 
-    botonSalir.addEventListener('click', function() {
+    // Funcionalidad del botón de salir
+    botonSalir.addEventListener('click', function () {
         window.location.href = '../html/login.html';
     });
 
-    fetch("../php/perfilMonitor.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ identificacion: identificacion })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            alert(data.error);
-            return;
-        }
+    // Función para obtener los datos del monitor
+    function obtenerDatosDelMonitor() {
+        fetch("../php/perfilMonitor.php", {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({ 
+                identificacion: identificacion 
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
 
-        document.getElementById("nombre").textContent = data.nombre || "No disponible";
-        document.getElementById("identificacion").textContent = data.identificacion || "No disponible";
-        document.getElementById("mail").textContent = data.mail || "No disponible";
-        document.getElementById("telefono").textContent = data.telefono || "No disponible";
-    })
-    .catch(error => console.error("Error al obtener datos del monitor:", error));
+            // Actualizar los datos en la vista
+            document.getElementById("nombre").textContent = data.nombre || "No disponible";
+            document.getElementById("identificacion").textContent = data.identificacion || "No disponible";
+            document.getElementById("mail").textContent = data.mail || "No disponible";
+            document.getElementById("telefono").textContent = data.telefono || "No disponible";
+        })
+        .catch(error => {
+            console.error("Error al obtener datos del monitor:", error);
+            alert("Ocurrió un error al cargar los datos. Por favor, inténtalo de nuevo.");
+        });
+    }
+
+    // Llamar a la función para obtener los datos
+    obtenerDatosDelMonitor();
+
+    // Función para editar el perfil
+    document.querySelector('.editar-perfil').addEventListener('click', function (event) {
+        event.preventDefault();
+        window.location.href = `../html/editarMonitor.html?identificacion=${encodeURIComponent(identificacion)}`;
+    });
 });
-
-// Función editar (si se llama desde un botón en el HTML)
-function editar(event) {
-    event.preventDefault();
-    const identificacion = document.getElementById("identificacion").textContent;
-    window.location.href = `../html/editarMonitor.html?identificacion=${encodeURIComponent(identificacion)}`;
-}
