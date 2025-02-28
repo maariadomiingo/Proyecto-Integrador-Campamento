@@ -19,7 +19,7 @@
   }
   
   .logo {
-    height: 10%;
+    height: auto;
     width: 10%;
   }
   
@@ -55,6 +55,33 @@
     width: 24px;
     height: 29px;
   }
+  /*titulos*/
+  /*inicio*/
+.flecha {
+  max-width: 60%;
+  max-height: 60%;
+}
+
+.titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.buttonatras{
+  width: 51px;
+  height: 49px;
+  background: #7770C5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  margin: 1%;
+}
+
+h1 {
+  text-align: center;
+  color: #0F0559;
+}
+
   /*inicio interfaces*/
   .todo {
     position: relative;
