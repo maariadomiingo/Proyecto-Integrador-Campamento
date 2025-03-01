@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const verActividades = document.querySelector('.veractividades');
     const verHorarios = document.querySelector('.verhorarios');
-    const pasarLista = document.querySelector('.pasarLista');
+    const pasarLista = document.querySelector('.pasarlista');
 
     function checkSession() {
         if (!identificacionURL) {
@@ -74,11 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = `verHorarios.html?identificacion=${identificacionURL}`;
         });
     }
-
-    if (pasarLista) {
-        pasarLista.addEventListener('click', function() {
-            window.location.href = `pasarLista.html?identificacion=${identificacionURL}`;
-        });
-    }
+// Corregir el selector de "pasarLista"
+if (pasarLista) {
+    pasarLista.addEventListener('click', function() {
+        window.location.href = `pasarlista.html?identificacion=${identificacionURL}`;
+    });
+}
     checkSession();
 });

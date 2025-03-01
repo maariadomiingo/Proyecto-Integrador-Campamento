@@ -2,6 +2,7 @@
 const perfil = document.querySelector('.perfil');
 const reserva = document.querySelector('.reservar');
 const masInformacion = document.querySelector('.informacion');
+const verMas = document.querySelector('.verMas');
 
 const btnCerrar = document.querySelector('#btn-cerrar');
 const btnAdelantar = document.querySelector('#btn-adelantar');
@@ -13,71 +14,86 @@ let indexImagen = 0;
 
 // Función para abrir el contenedor de la galería
 const abrirContenedor = (event) => {
-    imagenActiva.src = event.target.src; // CORREGIDO
-    container.style.display = 'flex';
-    indexImagen = Array.from(img).indexOf(event.target);
-};
+    imagenActiva.src = event.target.src;
+    container.style.display = 'block';
+}
 
-// Agregar evento de clic a todas las imágenes
-img.forEach((imagen) => {
-    imagen.addEventListener('click', abrirContenedor);
-});
-
-// Función para cerrar el contenedor
-btnCerrar.addEventListener('click', () => {
+// Función para cerrar el contenedor de la galería
+const cerrarContenedor = () => {
     container.style.display = 'none';
-});
+}
 
 // Función para adelantar imagen
-const adelantaImagen = () => {
-    if (indexImagen >= img.length - 1) {
-        indexImagen = 0;
-    } else {
+const adelantarImagen = () => {
+    if (indexImagen < img.length - 1) {
         indexImagen++;
+        imagenActiva.src = img[indexImagen].src;
     }
-    imagenActiva.src = img[indexImagen].src;
-};
+}
 
 // Función para retroceder imagen
-const retrocedeImagen = () => {
-    if (indexImagen <= 0) {
-        indexImagen = img.length - 1;
-    } else {
+const retrocederImagen = () => {
+    if (indexImagen > 0) {
         indexImagen--;
+        imagenActiva.src = img[indexImagen].src;
     }
-    imagenActiva.src = img[indexImagen].src;
-};
+}
 
-// Agregar eventos a los botones
-btnAdelantar.addEventListener('click', adelantaImagen);
-btnRetroceder.addEventListener('click', retrocedeImagen);
+// Event listeners para la galería
+img.forEach((image, index) => {
+    image.addEventListener('click', () => {
+        container.style.display = 'block';
+        indexImagen = index;
+        imagenActiva.src = image.src;
+    });
+});
 
+btnCerrar.addEventListener('click', cerrarContenedor);
+btnAdelantar.addEventListener('click', adelantarImagen);
+btnRetroceder.addEventListener('click', retrocederImagen);
+
+// Función para mostrar información extra
 function mostrarInfo() {
-    var extraInfo = document.getElementById("extraInfo");
-    var btn = document.querySelector(".verMas");
+    const infoExtra = document.getElementById('extraInfo');
+    infoExtra.classList.toggle('hidden');
+}
 
-    if (extraInfo.style.display === "none" || extraInfo.style.display === "") {
-        extraInfo.style.display = "block";
-        btn.textContent = "Ver Menos";
-    } else {
-        extraInfo.style.display = "none";
-        btn.textContent = "Ver Más";
-    }
+// Función para redirigir a contacto
+function masInformacion() {
+    window.location.href = 'contacto.html';
+}
+
+// Función para redirigir a la página de reserva
+function reservar() {
+    window.location.href = 'reserva.html';
+}
+
+// Función para redirigir a la página de perfil
+function perfil() {
+    window.location.href = 'perfil.html';
+}
+
+// Event listeners para los botones
+if (masInformacion) {
+    masInformacion.addEventListener('click', function() {
+        masInformacion();
+    });
+}
+
+if (reserva) {
+    reserva.addEventListener('click', function() {
+        reservar();
+    });
 }
 
 if (perfil) {
     perfil.addEventListener('click', function() {
-        window.location.href = '../html/login.html';
-    });
-}
-if (reserva) {
-    reserva.addEventListener('click', function() {
-        window.location.href = '../html/jornada.html';
+        perfil();
     });
 }
 
-if (masInformacion) {
-    masInformacion.addEventListener('click', function() {
-        window.location.href = '../html/jornada.html';
+if (verMas) {
+    verMas.addEventListener('click', function() {
+        mostrarInfo();
     });
 }
