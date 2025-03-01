@@ -159,7 +159,7 @@ if (!$stmt_monitor) die("Error en consulta de Monitor: " . $conexion->error);
 
 // Datos del monitor
 $nombre = 'Juan Pérez';
-$identificacion = '123456789';
+$identificacion = 'qwertyuio';
 $email = 'juan.perez@example.com';
 $telefono = '123456789';
 
@@ -185,6 +185,7 @@ foreach ($actividades as $actividad) {
     executeStatement($stmt_actividad, $actividad);
 }
 $stmt_actividad->close();
+
 // Insertar tarifas
 $query_tarifa = "INSERT IGNORE INTO Tarifas (dias, precio) VALUES (?, ?)";
 $stmt_tarifa = $conexion->prepare($query_tarifa);
@@ -222,7 +223,6 @@ foreach ($campistas as $campista) {
     executeStatement($stmt_campista, $campista);
 }
 $stmt_campista->close();
-
 
 // Insertar 5 padres
 $query_padre = "INSERT IGNORE INTO Padre (nombre, relacion, telefono, email, direccion, id_campista) VALUES (?, ?, ?, ?, ?, ?)";
@@ -264,4 +264,43 @@ foreach ($grupos as $grupo) {
 
 $stmt_grupo->close();
 
+// Insertar reportes
+$query_reportes = "INSERT INTO Reportes (id_actividad, identificacion_monitor, descripcion, fecha_reporte) VALUES (?, ?, ?, ?)";
+$stmt_reportes = $conexion->prepare($query_reportes);
+if (!$stmt_reportes) die("Error en consulta de Reportes: " . $conexion->error);
+
+// Reportes para Pintura (id_actividad = 1)
+$reportes = [
+    [1, 'qwertyuio', 'Los campistas mostraron gran creatividad en la actividad de pintura. Utilizaron diferentes técnicas y colores para crear hermosas obras.', '2023-01-01'],
+    [1, 'qwertyuio', 'Se observó una mejora en la coordinación y el uso de colores en esta sesión de pintura.', '2023-01-15'],
+    [1, 'qwertyuio', 'Los campistas lograron terminar sus cuadros con detalles muy bien trabajados.', '2023-02-01'],
+
+    // Reportes para Manualidades (id_actividad = 2)
+    [2, 'qwertyuio', 'Los participantes demostraron habilidades manuales excepcionales en la creación de objetos con reciclaje.', '2023-01-05'],
+    [2, 'qwertyuio', 'Se notó una mejora significativa en la precisión y creatividad en esta actividad.', '2023-01-20'],
+    [2, 'qwertyuio', 'Los campistas finalizaron sus proyectos con muy buen resultado.', '2023-02-15'],
+
+    // Reportes para Deportes (id_actividad = 3)
+    [3, 'qwertyuio', 'Los campistas mostraron gran entusiasmo y mejora en su resistencia durante el partido de fútbol.', '2023-01-10'],
+    [3, 'qwertyuio', 'Se observó una mejor coordinación y trabajo en equipo en esta sesión deportiva.', '2023-01-25'],
+    [3, 'qwertyuio', 'Los participantes lograron superar sus marcas personales en las actividades físicas.', '2023-02-10'],
+
+    // Reportes para Teatro (id_actividad = 4)
+    [4, 'qwertyuio', 'Los campistas actuaron de manera destacada en la representación teatral.', '2023-01-12'],
+    [4, 'qwertyuio', 'Se mejoró la expresión y dicción de los participantes durante los ensayos.', '2023-01-30'],
+    [4, 'qwertyuio', 'Los campistas mostraron gran creatividad en la improvisación durante la actividad.', '2023-02-05'],
+
+    // Reportes para Cocina (id_actividad = 5)
+    [5, 'qwertyuio', 'Los participantes prepararon postres deliciosos y muy bien presentados.', '2023-01-20'],
+    [5, 'qwertyuio', 'Se observó una mejora en las técnicas de cocción y sazón en esta sesión.', '2023-02-01'],
+    [5, 'qwertyuio', 'Los campistas trabajaron muy bien en equipo y mostraron creatividad culinaria.', '2023-02-20']
+];
+
+foreach ($reportes as $reporte) {
+    executeStatement($stmt_reportes, $reporte);
+}
+$stmt_reportes->close();
+
+// Cerrar conexión
+mysqli_close($conexion);
 ?>

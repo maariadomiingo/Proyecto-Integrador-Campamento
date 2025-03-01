@@ -11,6 +11,7 @@ js: document.addEventListener("DOMContentLoaded", function () {
     var rolError = document.getElementById("rolError");
     var identificacionError = document.getElementById("identificacionError");
     var passwordError = document.getElementById("passwordError");
+    
 
     // Función de validación para rol
     function validateRol() {
@@ -95,5 +96,14 @@ js: document.addEventListener("DOMContentLoaded", function () {
                 console.error('Error:', error);
                 alert("Error al iniciar sesión. Por favor, inténtalo de nuevo.");
             });
+    }
+
+    var irHomeButton = document.querySelector(".irhome");
+    if (irHomeButton) {
+        irHomeButton.addEventListener("click", function () {
+            window.location.href = "../html/home.html";
+        });
+    } else {
+        console.error("El botón 'irhome' no fue encontrado en el DOM.");
     }
 });

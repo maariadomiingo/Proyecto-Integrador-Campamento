@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 let events = data.map(evento => ({
-                    id: evento.id_actividad,  // Asegúrate de pasar el id correcto
+                    id: evento.id_actividad,
                     title: evento.nombre, 
                     start: evento.fecha + 'T' + evento.hora_actividad,
                     description: evento.descripcion
@@ -81,5 +81,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('cancelar').addEventListener('click', function(e) {
         closePopup();
-    })
+    });
+
+    const botonSalir = document.querySelector('.circulo-salir');
+
+    // Funcionalidad del botón de salir
+    if (botonSalir) {
+        botonSalir.addEventListener('click', function () {
+            window.location.href = '../../html/login.html';
+        });
+    } else {
+        console.error("El botón 'Salir' no fue encontrado en el DOM.");
+    }
+
+    const botonAtras = document.querySelector('.buttonatras');
+
+    // Funcionalidad del botón de atrás
+    if (botonAtras) {
+        botonAtras.addEventListener('click', function () {
+            // Redirección a la interfaz de coordinador
+            window.location.href = '../../html/interfaz_coordinador.html';
+        });
+    } else {
+        console.error("El botón 'atras' no fue encontrado en el DOM.");
+    }
 });
