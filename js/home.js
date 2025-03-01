@@ -1,6 +1,7 @@
 // Seleccionar elementos de la galería
 const perfil = document.querySelector('.perfil');
 const reserva = document.querySelector('.reservar');
+const masInformacion = document.querySelector('.informacion');
 
 const btnCerrar = document.querySelector('#btn-cerrar');
 const btnAdelantar = document.querySelector('#btn-adelantar');
@@ -71,6 +72,12 @@ if (perfil) {
 }
 if (reserva) {
     reserva.addEventListener('click', function() {
+        window.location.href = '../html/jornada.html';
+    });
+}
+
+if (masInformacion) {
+    masInformacion.addEventListener('click', function() {
         window.location.href = '../html/jornada.html';
     });
 }

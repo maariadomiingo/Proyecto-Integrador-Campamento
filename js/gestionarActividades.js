@@ -235,4 +235,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Cargar la tabla al inicio
     updateActivityTable();
+
+
+    const botonSalir = document.querySelector('.circulo-salir');
+
+    // Funcionalidad del botón de salir
+    if (botonSalir) {
+        botonSalir.addEventListener('click', function () {
+            window.location.href = '../html/login.html';
+        });
+    } else {
+        console.error("El botón 'Salir' no fue encontrado en el DOM.");
+    }
+
+    // Funcionalidad del botón de atrás
+    const botonAtras = document.getElementById('buttonatras');
+
+    if (botonAtras) {
+        botonAtras.addEventListener('click', function () {
+            // Redirección directa a la interfaz de coordinador sin verificar sesión
+            window.location.href = '../html/interfaz_coordinador.html';
+        });
+    } else {
+        console.error("El botón 'atras' no fue encontrado en el DOM.");
+    }
 });

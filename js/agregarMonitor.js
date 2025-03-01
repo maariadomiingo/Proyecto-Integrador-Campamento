@@ -26,31 +26,54 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // Validación individual de campos
+    // Validación en tiempo real para cada campo
     const campos = document.querySelectorAll('.nombre, .mail, .telefono, .identificacion');
     campos.forEach(campo => {
-        campo.addEventListener('blur', function() {
-            ocultarError(this);
-            if (this.value.trim() === '') {
-                mostrarError(this, `Por favor ingresa tu ${this.placeholder}`);
-            } else {
-                if (!this.checkValidity()) {
-                    mostrarError(this, `El formato del campo ${this.placeholder} es inválido`);
-                }
+        campo.addEventListener('input', function() {
+            // Validación específica para cada campo
+            switch(campo.id) {
+                case 'nombre':
+                    if (this.value.trim() === '') {
+                        mostrarError(this, 'Por favor ingresa tu nombre');
+                    } else if (this.value.length < 3) {
+                        mostrarError(this, 'El nombre debe tener al menos 3 caracteres');
+                    } else {
+                        ocultarError(this);
+                    }
+                    break;
+
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (this.value.trim() === '') {
+                        mostrarError(this, 'Por favor ingresa tu correo electrónico');
+                    } else if (!emailRegex.test(this.value)) {
+                        mostrarError(this, 'El correo electrónico debe tener formato ejemplo@dominio.com');
+                    } else {
+                        ocultarError(this);
+                    }
+                    break;
+
+                case 'telefono':
+                    if (this.value.trim() === '') {
+                        mostrarError(this, 'Por favor ingresa tu teléfono');
+                    } else if (!/^\d{0,9}$/.test(this.value)) {
+                        mostrarError(this, 'El teléfono debe ser un número de 9 dígitos');
+                    } else {
+                        ocultarError(this);
+                    }
+                    break;
+
+                case 'usuario':
+                    if (this.value.trim() === '') {
+                        mostrarError(this, 'Por favor ingresa tu usuario');
+                    } else if (!/^[A-Za-z0-9]{6,15}$/.test(this.value)) {
+                        mostrarError(this, 'El usuario debe tener entre 6 y 15 caracteres y solo puede contener letras y números');
+                    } else {
+                        ocultarError(this);
+                    }
+                    break;
             }
         });
-
-        campo.addEventListener('input', function() {
-            ocultarError(this);
-        });
-    });
-
-    // Validación específica del email
-    document.querySelector('.mail').addEventListener('input', function() {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(this.value)) {
-            mostrarError(this, 'El correo electrónico debe tener formato ejemplo@dominio.com');
-        }
     });
 
     // Validación del formulario completo
@@ -72,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (email.value.trim() === '') {
             mostrarError(email, 'Por favor ingresa tu correo electrónico');
             formularioValido = false;
-        } else if (!email.checkValidity()) {
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
             mostrarError(email, 'El correo electrónico no es válido');
             formularioValido = false;
         }
@@ -97,42 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
             formularioValido = false;
         }
 
-        if (formularioValido) {
-            const datos = {
-                nombre: nombre.value,
-                mail: email.value,
-                telefono: telefono.value,
-                identificacion: usuario.value
-            };
-
-            const datosJSON = JSON.stringify(datos);
-
-            fetch('../php/agregarMonitor.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: datosJSON
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                if (data.exito) {
-                    mostrarExito(`Monitor ${nombre.value} agregado con éxito`);
-                    formulario.reset();
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                mostrarError(document.querySelector('.button'), 'Error al agregar monitor: ' + error.message);
-            });
-        }
-
         return formularioValido;
     }
 
@@ -140,7 +127,61 @@ document.addEventListener('DOMContentLoaded', function() {
     if (button) {
         button.addEventListener('click', function(e) {
             e.preventDefault();
-            validarFormulario();
+            if (validarFormulario()) {
+                const datos = {
+                    nombre: document.getElementById('nombre').value,
+                    mail: document.getElementById('email').value,
+                    telefono: document.getElementById('telefono').value,
+                    identificacion: document.getElementById('usuario').value
+                };
+
+                const datosJSON = JSON.stringify(datos);
+
+                fetch('../php/agregarMonitor.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: datosJSON
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    if (data.exito) {
+                        mostrarExito(`Monitor ${datos.nombre} agregado con éxito`);
+                        formulario.reset();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    mostrarError(document.querySelector('.button'), 'Error al agregar monitor: ' + error.message);
+                });
+            }
         });
+    }
+
+    // Funcionalidad del botón de salir
+    const botonSalir = document.querySelector('.circulo-salir');
+    if (botonSalir) {
+        botonSalir.addEventListener('click', function () {
+            window.location.href = '../html/login.html';
+        });
+    } else {
+        console.error("El botón 'Salir' no fue encontrado en el DOM.");
+    }
+
+    // Funcionalidad del botón de atrás
+    const botonAtras = document.querySelector('.buttonatras');
+    if (botonAtras) {
+        botonAtras.addEventListener('click', function () {
+            window.location.href = '../html/interfaz_coordinador.html';
+        });
+    } else {
+        console.error("El botón 'Atrás' no fue encontrado en el DOM.");
     }
 });

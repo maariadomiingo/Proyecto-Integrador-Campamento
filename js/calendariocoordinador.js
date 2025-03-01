@@ -94,12 +94,12 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error("El botón 'Salir' no fue encontrado en el DOM.");
     }
 
-    const botonAtras = document.querySelector('.buttonatras');
-
     // Funcionalidad del botón de atrás
+    const botonAtras = document.getElementById('buttonatras');
+
     if (botonAtras) {
         botonAtras.addEventListener('click', function () {
-            // Redirección a la interfaz de coordinador
+            // Redirección directa a la interfaz de coordinador sin verificar sesión
             window.location.href = '../../html/interfaz_coordinador.html';
         });
     } else {
