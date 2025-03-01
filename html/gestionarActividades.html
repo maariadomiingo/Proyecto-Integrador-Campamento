@@ -4,23 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/gestionarActividades.css">
-    <link rel="stylesheet" type="text/css" href="../css/interfacesmc/interfaces.css">
     <title>Gestionar Actividades</title>
 </head>
 <body>
-  <div class="header">
-    <img class="logo" src="../img/logo sin fondo.png" alt="Logo" id="volverinicio"> 
-    <button class="circulo-salir">
-        <img class="icono-salir" src="../img/cerrar-sesion.png" alt="Cerrar sesión">
-    </button>
-</div>
-<div class="titulo">
-    <button class="buttonatras"> 
-      <img class="flecha" src="../img/FLECHA ATRAS.png" alt="Volver">
-    </button>
+    <!-- Iconos de usuario y salir -->
+    <div class="circulo">
+        <img class="icono-usuario" src="../img/user.png" />  
+    </div>
+    
+    <div class="circulo-salir">
+        <img class="icono-salir" src="../img/cerrar-sesion.png" />
+    </div>
+    
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <div class="rectangle"></div>
+        <img class="logo" src="../img/logo sin fondo.png" />
+        
+        <div class="logo-1"></div>
+        <div class="logo-final-sin-fondo"></div>
+        <div class="img-3"></div>
+        <div class="pic-2"></div>
+        <div class="clipart-transparent-library-watercolor"></div>
+    </div>
+    
     <h1>GESTIONAR ACTIVIDADES</h1>
-  </div>
-
     <div class="gestionar-actividades">
     <form method="post" id="formActividad">
         <select name="actividad" id="actividad">
@@ -37,8 +45,8 @@
         <button type="button" class="editar-btn" onclick="mostrarFormularioActualizar()">Editar Actividad</button>
     </form>
 
-  <!-- Área para mostrar mensajes -->
-  <div id="mensaje"></div>
+    <!-- Área para mostrar mensajes -->
+    <div id="mensaje"></div>
 
     <div class="MostrarDatos">
         <table>
@@ -57,8 +65,9 @@
 
     <!-- Fondo borroso -->
     <div id="overlay" class="overlay"></div>
-       <!-- Área para editar actividad  -->
-       <form method="post" id="formActualizarActividad" class="hidden">
+    
+    <!-- Área para editar actividad -->
+    <form id="formActualizarActividad" class="hidden">
         <button type="button" class="cerrar-formulario" onclick="cerrarFormularioActualizar()">X</button>
         <h2>EDITAR ACTIVIDAD</h2>  
         <select name="actividad" id="actividadActualizar">
@@ -70,12 +79,35 @@
         <select name="selectGrupo" id="selectGrupoActualizar">
           <option value="">Escoger grupo</option>
         </select><br>
-        <input type="submit" value="Actualizar" class="actualizar-btn">
-      </form>
+        <button type="button" id="guardarCambios" class="actualizar-btn">Actualizar</button>
+    </form>
 
-<script src="../js/gestionarActividades.js"></script>
+    <script src="../js/gestionarActividades.js"></script>
 </body>
-    <footer>
-        Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
-    </footer>
+<footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <ul>
+          <li><a href="#">Politica de privacidad</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <ul>
+          <li><a href="#">Politica de uso aceptable</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <ul>
+          <li><a href="#">Contacto +34 111 1111 11</a></li>
+        </ul>
+      </div>
+      <div class="iconos">
+        <div class="social-icons">
+          <ul>
+            <li><a href="#">Correo aaaaa@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>

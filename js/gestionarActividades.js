@@ -1,5 +1,4 @@
 function mostrarFormularioActualizar() {
-    // Muestra el formulario de actualizar actividad
     document.getElementById('formActualizarActividad').classList.remove('hidden');
     document.getElementById("overlay").style.display = "block";
 }
@@ -13,11 +12,6 @@ function cerrarFormularioActualizar() {
     document.getElementById("actividadActualizar").value = "";
     document.getElementById("asignarMonitorActualizar").value = "";
     document.getElementById("selectGrupoActualizar").value = "";
-}
-
-function abrirFormularioActualizar() {
-    document.getElementById("formActualizarActividad").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
 }
 
 document.getElementById("overlay").addEventListener("click", cerrarFormularioActualizar);
@@ -38,12 +32,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Función para rellenar un <select> con opciones
-    function fillSelect(selectElement, data, valueKey, textKey) {
-        selectElement.innerHTML = `<option value="">${selectElement.name}</option>`; // Resetear opciones
+    function fillSelect(selectElement, data, valueKey, textKey, fechaKey = null) {
+        const placeholders = {
+            "actividad": "-- ACTIVIDAD --",
+            "asignarMonitor": "-- ASIGNAR MONITOR --",
+            "selectGrupo": "-- SELECCIONAR GRUPO --"
+        };
+        selectElement.innerHTML = `<option value="" disabled selected>${placeholders[selectElement.id] || "-- SELECCIONAR --"}</option>`;
+        
         data.forEach(item => {
             const option = document.createElement("option");
             option.value = item[valueKey];
-            option.textContent = item[textKey];
+            option.textContent = item[textKey] + (fechaKey ? ` | ${item[fechaKey]}` : '');
             selectElement.appendChild(option);
         });
     }
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Obtener y rellenar actividades
     fetchData("../php/getActividades.php") // Endpoint para obtener actividades
         .then(data => {
-            fillSelect(selectActividad, data, "id_actividad", "nombre");
+            fillSelect(selectActividad, data, "id_actividad", "nombre", "fecha");
         })
         .catch(error => console.error(error));
 
@@ -106,15 +106,52 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error(error));
     });
-//ESTA FALLANDO DESDE AQUI
+
+    document.getElementById("guardarCambios").addEventListener("click", function () {
+        const idActividad = document.getElementById("actividadActualizar").value;
+        const idMonitor = document.getElementById("asignarMonitorActualizar").value;
+        const idGrupo = document.getElementById("selectGrupoActualizar").value;
+    
+        console.log(document.getElementById("actividadActualizar").value);
+        console.log(document.getElementById("asignarMonitorActualizar").value);
+        console.log(document.getElementById("selectGrupoActualizar").value);
+
+
+        if (!idActividad || !idMonitor || !idGrupo) {
+            alert("Por favor, selecciona una actividad, un monitor y un grupo.");
+            return;
+        }
+
+        const payload = { idActividad, idMonitor, idGrupo };
+        console.log("Enviando datos:", payload);
+    
+        fetch("../php/actualizarActividad.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idActividad, idMonitor, idGrupo }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Actividad actualizada correctamente.");
+                cerrarFormularioActualizar(); // Cierra el formulario
+                updateActivityTable(); // Refresca la tabla
+            } else {
+                alert("Error al actualizar: " + data.error);
+            }
+        })
+        .catch(error => console.error("Error en la solicitud:", error));
+    });
+    
+
     // Función para actualizar la tabla de actividades
     function updateActivityTable() {
         fetchData("../php/getActividadesAsignadas.php")
             .then(data => {
-                
+                console.log("Datos recibidos:", data); // Verifica la respuesta del servidor
                 const tableBody = document.querySelector(".MostrarDatos table tbody");
-                tableBody.innerHTML = ""; // Limpiar la tabla
-
+                tableBody.innerHTML = ""; // Limpiar tabla
+    
                 if (data.length === 0) {
                     tableBody.innerHTML = "<tr><td colspan='3'>No hay actividades asignadas.</td></tr>";
                     return;
@@ -123,8 +160,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 data.forEach(item => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
-                        <td>${item.nombre_actividad}</td>
-                        <td>${item.nombre_monitor}</td>
+                        <td>${item.nombre_actividad}   |   </td>
+                        <td>${item.nombre_monitor}   |   </td>
                         <td>${item.nombre_grupo}</td>
                     `;
                     row.dataset.idActividad = item.id_actividad;
@@ -142,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error("Error al cargar los datos:", error);
                 document.getElementById("mensaje").innerText = "Error al cargar los datos. Por favor, inténtalo de nuevo.";
             });
-    }
+    }    
 
     function seleccionarActividadParaEditar(fila) {
         // Obtener datos de la fila seleccionada
@@ -150,11 +187,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const idMonitor = fila.dataset.idMonitor;
         const idGrupo = fila.dataset.idGrupo;
 
+        console.log("Datos de la fila seleccionada:", { idActividad, idMonitor, idGrupo });
+
         // Llenar los selects del formulario de actualización
         document.getElementById("actividadActualizar").value = idActividad;
         document.getElementById("asignarMonitorActualizar").value = idMonitor;
         document.getElementById("selectGrupoActualizar").value = idGrupo;
 
+        console.log("Valores asignados a los selects:", {
+            actividad: document.getElementById("actividadActualizar").value,
+            monitor: document.getElementById("asignarMonitorActualizar").value,
+            grupo: document.getElementById("selectGrupoActualizar").value,
+        });
         // Mostrar el formulario de edición
         mostrarFormularioActualizar();
     }
@@ -163,8 +207,16 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(url)
             .then(response => response.json())
             .then(data => {
+                console.log(`Datos obtenidos para ${selectId}:`, data);
+
                 const selectElement = document.getElementById(selectId);
-                selectElement.innerHTML = `<option value="">${placeholderText}</option>`;
+                const placeholders = {
+                    "actividadActualizar": "-- ELEGIR ACTIVIDAD --",
+                    "asignarMonitorActualizar": "-- ASIGNAR MONITOR --",
+                    "selectGrupoActualizar": "-- ESCOGER GRUPO --"
+                };
+                selectElement.innerHTML = `<option value="" disabled selected>${placeholders[selectId] || "-- SELECCIONAR --"}</option>`;
+                
     
                 data.forEach(item => {
                     const option = document.createElement("option");
@@ -177,46 +229,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     // Llamar a las funciones al cargar la página
-    cargarDatosEnSelect("../php/getActividades.php", "actividadActualizar", "Elegir Actividad");
-    cargarDatosEnSelect("../php/getMonitores.php", "asignarMonitorActualizar", "Asignar Monitor");
-    cargarDatosEnSelect("../php/getGrupos.php", "selectGrupoActualizar", "Escoger grupo");
-    
-   
-
-    // Manejar el envío del formulario de actualización
-    document.getElementById("formActualizarActividad").addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita que la página se recargue
-    
-        const idActividad = document.getElementById("actividadActualizar").value;
-        const idMonitor = document.getElementById("asignarMonitorActualizar").value;
-        const idGrupo = document.getElementById("selectGrupoActualizar").value;
-    
-        if (!idActividad || !idMonitor || !idGrupo) {
-            alert("Por favor, selecciona una actividad, un monitor y un grupo.");
-            return;
-        }
-    
-        // Enviar la actualización al servidor
-        fetch("../php/actualizarActividad.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ idActividad, idMonitor, idGrupo }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Respuesta del servidor:", data);
-            if (data.success) {
-                alert("Actividad actualizada correctamente.");
-                cerrarFormularioActualizar();
-                updateActivityTable(); // Recargar la tabla con los nuevos datos
-            } else {
-                alert("Error al actualizar la actividad: " + (data.error || "Error desconocido"));
-            }
-        })
-        .catch(error => console.error("Error en la petición:", error));
-    });
+    cargarDatosEnSelect("../php/getActividades.php", "actividadActualizar", "-- ELEGIR ACTIVIDAD --");
+    cargarDatosEnSelect("../php/getMonitores.php", "asignarMonitorActualizar", "-- ASIGNAR MONITOR --");
+    cargarDatosEnSelect("../php/getGrupos.php", "selectGrupoActualizar", "-- ESCOGER GRUPO --");
 
     // Cargar la tabla al inicio
     updateActivityTable();
