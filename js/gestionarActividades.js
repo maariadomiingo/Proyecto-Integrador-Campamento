@@ -245,6 +245,7 @@ selectActividad.addEventListener("change", function () {
             });
     }
     
+
     // Cargar la tabla al inicio
     updateActivityTable();
 });

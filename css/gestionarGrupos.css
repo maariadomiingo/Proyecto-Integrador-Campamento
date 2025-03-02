@@ -61,6 +61,25 @@ body {
     z-index: 90;
 }
 
+/*titulos*/
+.flecha {
+    max-width: 60%;
+    max-height: 60%;
+  }
+  
+.buttonatras {
+    width: 51px;
+    height: 49px;
+    background: #7770C5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    margin: 1%;
+    position: relative;
+    top: 130px;
+    right: 15%;
+  }
+
+
 .main-container {
     overflow: hidden;
     position: relative;
@@ -84,12 +103,6 @@ body {
     padding: 30px;
 }
 
-.logo {
-    width: 140px;
-    height: auto;
-    display: block;
-    margin: 20px auto;
-}
 
 h1{
     font-family: "Montserrat";

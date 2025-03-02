@@ -10,6 +10,29 @@ document.addEventListener('DOMContentLoaded', function () {
         cargarCampistasAsignados(grupoId); // Cargar campistas asignados al grupo
     });
 
+
+    
+      // Funcionalidad del botón de salir
+      const botonSalir = document.querySelector('.circulo-salir');
+      if (botonSalir) {
+          botonSalir.addEventListener('click', function () {
+              window.location.href = '../html/login.html';
+          });
+      } else {
+          console.error("El botón 'Salir' no fue encontrado en el DOM.");
+      }
+      
+    // Funcionalidad del botón de atrás
+    const botonAtras = document.querySelector('.buttonatras');
+    if (botonAtras) {
+        botonAtras.addEventListener('click', function () {
+            window.location.href = '../html/interfaz_coordinador.html';
+        });
+    } else {
+        console.error("El botón 'Atrás' no fue encontrado en el DOM.");
+    }
+
+
     // Asignar campistas al grupo seleccionado
     document.getElementById('asignar').addEventListener('click', function () {
         const grupoId = document.getElementById('grupo').value;
