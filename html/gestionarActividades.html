@@ -33,16 +33,21 @@
     <form method="post" id="formActividad">
         <select name="actividad" id="actividad">
             <option value="">Elegir Actividad</option>
-        </select><br>
+        </select>
+        <div id="error-actividad" class="error-message" style="display: none;"></div>
+        <br>
         <select name="asignarMonitor" id="asignarMonitor">
             <option value="">Asignar Monitor</option>
-        </select><br>
+        </select>
+        <div id="error-monitor" class="error-message" style="display: none;"></div>
+        <br>
         <select name="selectGrupo" id="selectGrupo">
             <option value="">Escoger grupo</option>
-        </select><br>
+        </select>
+        <div id="error-grupo" class="error-message" style="display: none;"></div>
+        <br>
         <input type="submit" value="Añadir Actividad" class="añadir-btn">
         <button onclick="window.location.href='./estadoActividades.html'" class="new-btn">Estado Actividades</button>
-        <button type="button" class="editar-btn" onclick="mostrarFormularioActualizar()">Editar Actividad</button>
     </form>
 
     <!-- Área para mostrar mensajes -->
@@ -62,25 +67,6 @@
         </table>
     </div>
     </div>
-
-    <!-- Fondo borroso -->
-    <div id="overlay" class="overlay"></div>
-    
-    <!-- Área para editar actividad -->
-    <form id="formActualizarActividad" class="hidden">
-        <button type="button" class="cerrar-formulario" onclick="cerrarFormularioActualizar()">X</button>
-        <h2>EDITAR ACTIVIDAD</h2>  
-        <select name="actividad" id="actividadActualizar">
-          <option value="">Elegir Actividad</option>
-        </select><br>
-        <select name="asignarMonitor" id="asignarMonitorActualizar">
-          <option value="">Asignar Monitor</option>
-        </select><br>
-        <select name="selectGrupo" id="selectGrupoActualizar">
-          <option value="">Escoger grupo</option>
-        </select><br>
-        <button type="button" id="guardarCambios" class="actualizar-btn">Actualizar</button>
-    </form>
 
     <script src="../js/gestionarActividades.js"></script>
 </body>

@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Cargar grupos al cargar la página
     cargarGrupos();
-    cargarCampistas(); // Cargar todos los campistas al inicio
 
     // Cargar campistas cuando se selecciona un grupo
     document.getElementById('grupo').addEventListener('change', function () {
@@ -47,7 +46,18 @@ function cargarGrupos() {
     fetch('../php/cargarGrupos.php')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('grupo').innerHTML = data;
+            const select = document.getElementById('grupo');
+            select.innerHTML = data;
+
+            // Seleccionar el primer grupo por defecto
+            if (select.options.length > 0) {
+                const primerGrupoId = select.options[0].value;
+                select.value = primerGrupoId;
+
+                // Cargar campistas y asignados del primer grupo
+                cargarCampistas(primerGrupoId);
+                cargarCampistasAsignados(primerGrupoId);
+            }
         })
         .catch(error => {
             console.error('Error al cargar grupos:', error);
@@ -73,7 +83,6 @@ function cargarCampistas(grupoId = null) {
         });
 }
 
-
 function cargarCampistasAsignados(grupoId) {
     fetch(`../php/cargarCampistasAsignados.php?grupoId=${grupoId}`)
         .then(response => response.text())
@@ -83,27 +92,4 @@ function cargarCampistasAsignados(grupoId) {
         .catch(error => {
             console.error('Error al cargar campistas asignados:', error);
         });
-
-
-    
 }
-
-    // Funcionalidad del botón de salir
-    const botonSalir = document.querySelector('.circulo-salir');
-    if (botonSalir) {
-        botonSalir.addEventListener('click', function () {
-            window.location.href = '../html/login.html';
-        });
-    } else {
-        console.error("El botón 'Salir' no fue encontrado en el DOM.");
-    }
-
-    // Funcionalidad del botón de atrás
-    const botonAtras = document.querySelector('.buttonatras');
-    if (botonAtras) {
-        botonAtras.addEventListener('click', function () {
-            window.location.href = '../html/interfaz_coordinador.html';
-        });
-    } else {
-        console.error("El botón 'Atrás' no fue encontrado en el DOM.");
-    }

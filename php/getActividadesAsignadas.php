@@ -1,31 +1,34 @@
 <?php
-include '../server/conectar.php';
+require_once '../server/conectar.php';
 
-header('Content-Type: application/json');
+$query = "
+    SELECT 
+        a.id_actividad,
+        a.nombre AS nombre_actividad,
+        m.identificacion AS id_monitor,
+        m.nombre AS nombre_monitor,
+        g.id_grupo,
+        g.nombre AS nombre_grupo
+    FROM 
+        AsignarActividad aa
+    JOIN 
+        Actividad a ON aa.id_actividad = a.id_actividad
+    JOIN 
+        Monitor m ON aa.identificacion_monitor = m.identificacion
+    JOIN 
+        GrupoCampistas g ON aa.id_grupo = g.id_grupo
+";
 
-// Verificar conexión
-if (!$conexion) {
-    echo json_encode(["error" => "Error de conexión con la base de datos"]);
-    exit();
-}
-
-$query = "SELECT a.nombre AS nombre_actividad, m.nombre AS nombre_monitor, g.nombre AS nombre_grupo
-          FROM AsignarActividad amg
-          JOIN Actividad a ON amg.id_actividad = a.id_actividad
-          JOIN Monitor m ON amg.identificacion_monitor = m.identificacion
-          JOIN GrupoCampistas g ON amg.id_grupo = g.id_grupo";
-
-$result = mysqli_query($conexion, $query);
+$result = $conexion->query($query);
 
 if (!$result) {
-    echo json_encode(["error" => "Error en la consulta: " . mysqli_error($conexion)]);
-    exit();
+    die("Error en la consulta: " . $conexion->error);
 }
 
-$actividadesAsignadas = [];
-while ($row = mysqli_fetch_assoc($result)) {
-    $actividadesAsignadas[] = $row;
+$actividades = [];
+while ($row = $result->fetch_assoc()) {
+    $actividades[] = $row;
 }
 
-echo json_encode($actividadesAsignadas);
+echo json_encode($actividades);
 ?>

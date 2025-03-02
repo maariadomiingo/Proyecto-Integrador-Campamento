@@ -4,48 +4,70 @@
     <meta charset="UTF-8">
     <title>Asignar Campistas a Grupo</title>
     <link rel="stylesheet" href="../css/gestionarGrupos.css">
-    <link rel="stylesheet" href="../css/interfacesmc/interfaces.css">
 </head>
 <body>
-  <div class="header">
-    <img class="logo" src="../img/logo sin fondo.png" alt="Logo" id="volverinicio"> 
-    <button class="circulo-salir">
-        <img class="icono-salir" src="../img/cerrar-sesion.png" alt="Cerrar sesión">
-    </button>
-</div>
-<div class="titulo">
-    <button class="buttonatras"> 
-      <img class="flecha" src="../img/FLECHA ATRAS.png" alt="Volver">
-    </button>
-    <h1>GESTIONAR GRUPOS</h1>
-  </div>
-
-<div class="container">
-    <div class="boton-grupo">
-        <label for="grupo">Selecciona un grupo:</label><br>
-        <select id="grupo">
-        <!-- Opciones de grupos se cargarán dinámicamente -->
-        </select><br><br>
-
-        <button id="asignar">Asignar Campistas</button>
+    <!-- Iconos de usuario y salir -->
+    <div class="circulo">
+        <img class="icono-usuario" src="../img/user.png" />  
     </div>
-    
-    <div class="lista">
-       <h2>Lista de Campistas</h2>
-       <ul id="lista-campistas">
-        <!-- Lista de campistas se cargará dinámicamente -->
-       </ul> 
+    <div class="circulo-salir">
+        <img class="icono-salir" src="../img/cerrar-sesion.png" />
     </div>
-    
-
-    <div id="campistas-asignados">
-        <!-- Aquí se mostrarán los campistas asignados al grupo seleccionado -->
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <div class="rectangle"></div>
+        <img class="logo" src="../img/logo sin fondo.png" />
+        <div class="logo-1"></div>
+        <div class="logo-final-sin-fondo"></div>
+        <div class="img-3"></div>
+        <div class="pic-2"></div>
+        <div class="clipart-transparent-library-watercolor"></div>
     </div>
-</div>
-   
-</body>
-<footer>
-  Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
-</footer>
+    <h1>Gestionar Grupos</h1>
+    <div class="container">
+        <div class="boton-grupo">
+            <label for="grupo">Selecciona un grupo:</label><br>
+            <select id="grupo">
+                <!-- Opciones de grupos se cargarán dinámicamente -->
+            </select><br><br>
+            <button id="asignar">Asignar Campistas</button>
+        </div>
+        <div class="lista">
+            <h2>Lista de Campistas</h2>
+            <ul id="lista-campistas">
+                <!-- Lista de campistas se cargará dinámicamente -->
+            </ul> 
+        </div>
+        <div id="campistas-asignados">
+            <!-- Aquí se mostrarán los campistas asignados al grupo seleccionado -->
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <ul>
+                    <li><a href="#">Politica de privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <ul>
+                    <li><a href="#">Politica de uso aceptable</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <ul>
+                    <li><a href="#">Contacto +34 111 1111 11</a></li>
+                </ul>
+            </div>
+            <div class="iconos">
+                <div class="social-icons">
+                    <ul>
+                        <li><a href="#">Correo aaaaa@gmail.com</a></li>  
+                    </ul>   
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="../js/gestionarGrupos.js"></script>
+</body>
 </html>
