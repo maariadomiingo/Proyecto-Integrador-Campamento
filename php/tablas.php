@@ -152,21 +152,49 @@ function executeStatement($stmt, $params)
     }
 }
 
-// Insertar datos en Monitor con bind_param()
+// Preparar la consulta para insertar en la tabla Monitor
 $query_monitor = "INSERT IGNORE INTO Monitor (nombre, identificacion, email, telefono) VALUES (?, ?, ?, ?)";
 $stmt_monitor = $conexion->prepare($query_monitor);
 if (!$stmt_monitor) die("Error en consulta de Monitor: " . $conexion->error);
 
-// Datos del monitor
+// Datos del primer monitor
 $nombre = 'Juan Pérez';
 $identificacion = 'qwertyuio';
 $email = 'juan.perez@example.com';
 $telefono = '123456789';
 
-// Ejecutar inserción en Monitor
+// Ejecutar inserción del primer monitor
 executeStatement($stmt_monitor, [$nombre, $identificacion, $email, $telefono]);
-$stmt_monitor->close();
 
+// Insertar dos monitores adicionales
+$monitores_adicionales = [
+    ['Carlos López', 'asdfghjkl', 'carlos.lopez@example.com', 987654321],
+    ['Ana Martínez', 'zxcvbnmñ', 'ana.martinez@example.com', 123789456]
+];
+
+foreach ($monitores_adicionales as $monitor) {
+    list($nombre, $identificacion, $email, $telefono) = $monitor;
+    // Preparar la declaración nuevamente para cada iteración
+    $stmt_monitor = $conexion->prepare($query_monitor);
+    if (!$stmt_monitor) die("Error en consulta de Monitor: " . $conexion->error);
+    executeStatement($stmt_monitor, [$nombre, $identificacion, $email, $telefono]);
+    $stmt_monitor->close(); // Cerrar la declaración después de usarla
+}
+
+// Insertar usuarios para los monitores adicionales
+$usuarios_monitores = [
+    ['carlos.lopez', password_hash('12345678', PASSWORD_DEFAULT), 'monitor', 'asdfghjkl'],
+    ['ana.martinez', password_hash('12345678', PASSWORD_DEFAULT), 'monitor', 'zxcvbnmñ']
+];
+
+foreach ($usuarios_monitores as $usuario) {
+    list($nombre_usuario, $hash_password, $rol, $identificacion) = $usuario;
+    $query_usuario = "INSERT INTO Usuario (nombre, password, rol, identificacion) VALUES (?, ?, ?, ?)";
+    $stmt_usuario = $conexion->prepare($query_usuario);
+    if (!$stmt_usuario) die("Error en consulta de Usuario: " . $conexion->error);
+    executeStatement($stmt_usuario, [$nombre_usuario, $hash_password, $rol, $identificacion]);
+    $stmt_usuario->close(); // Cerrar la declaración después de usarla
+}
 // Insertar en Actividad con bind_param()
 $query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos, hora_actividad, fecha) VALUES (?, ?, ?, ?, ?)";
 $stmt_actividad = $conexion->prepare($query_actividad);
