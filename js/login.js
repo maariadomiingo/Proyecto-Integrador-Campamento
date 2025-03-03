@@ -1,4 +1,4 @@
-js: document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     console.log("DOMContentLoaded");
     var form_inserta = document.getElementById("formulario");
 

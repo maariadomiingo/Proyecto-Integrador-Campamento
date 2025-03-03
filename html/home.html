@@ -8,30 +8,37 @@
 </head>
 <body>
     <header class="header">
+        <input type="checkbox" name="" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+
         <div class="logo">
             <img src="../img/logo sin fondo.png">
         </div>
         <nav class="nav">
-            <ul>
-                <li><a href="#">Sobre Nosotros</a></li>
-                <li><a href="#">Actividades</a></li>
-                <li><a href="#">Monitores</a></li>
-                <li><a href="#">Socios</a></li>
-                <li><a href="#">Fotos</a></li>
-                <li><a href="#">Contáctanos</a></li>
-            </ul>
+                <a href="#home">Sobre Nosotros</a>
+                <a href="#actividades">Actividades</a>
+                <a href="#monitores">Monitores</a>
+                <a href="#socios">Socios</a>
+                <a href="#fotos">Fotos</a>
+                <a href="#contacto">Contáctanos</a>
         </nav>
-        <div class="logo">
-            <button type="submit" class="idioma"><img src="../img/idioma.png" alt=""></button>
-            <button type="button" class="perfil" ><img src="../img/user.png" alt=""></button>
-            </div>
+        <div class="icons">
+            <button type="submit" class="fas fa-idioma">
+                <img src="../img/idioma.png" alt="Cambiar idioma">
+            </button>
+            <button type="button" class="fas fa-user">
+                <img src="../img/user.png" alt="Usuario">
+            </button>
+        </div>
     </header>
-    <!-- seccion de bienvenida -->
     <section class="welcome">
-        <h1>¡Explora, Crea y Aprende <br> en Dos Idiomas!</h1>
-        <p>Potencia la creatividad de tus hijos en nuestro <br> campamento de arte,
-         un lugar seguro y <br> divertido donde explorarán su imaginación <br> mientras se divierten.</p>
-         <input type="informacion" name="informacion" class="informacion" value="Mas información">
+        <div class="content">
+            <h1>¡Explora, Crea y Aprende <br> en Dos Idiomas!</h1>
+            <p>Potencia la creatividad de tus hijos en nuestro <br> campamento de arte,
+             un lugar seguro y <br> divertido donde explorarán su imaginación <br> mientras se divierten.</p>
+            <input type="informacion" name="informacion" class="informacion" value="Mas información">
+        </div>
+        <div class="image-container"></div>
     </section>
     <!-- seccion de sobre nosotros -->
      <section class="about">
@@ -170,7 +177,7 @@
             <p>Avenida Mataespesa 45 alpedrete, 28430, Alpedrete, Madrid.</p>
         </div>
         <div class="reserva">
-            <button type="button" class="reservar">Reservar</button>
+            <button type="button">Reservar</button>
         </div>
     </div>
     <div>
@@ -181,7 +188,7 @@
         <p>Ronda de Sobradiel, 80 – 28043 Madrid</p>
         </div>
         <div class="reserva">
-            <button type="button" class="reservar">Reservar</button>
+            <button type="button">Reservar</button>
         </div> 
     </div>
     <div>
@@ -192,7 +199,7 @@
         <p>C. del Pez Austral, 13, Retiro, 28007 Madrid</p>
         </div>
         <div class="reserva">
-            <button type="button" class="reservar">Reservar</button>
+            <button type="button">Reservar</button>
         </div>
     </div>
     <div>
@@ -203,7 +210,7 @@
         <p>Carr. de Burgos, km 14, 28108 Alcobendas, Madrid</p>
         </div>
         <div class="reserva">
-            <button type="button" class="reservar">Reservar</button>
+            <button type="button">Reservar</button>
         </div>
     </div>
     <a href="">¿Eres una empresa?</a> Contáctanos para asociarte con nosotros.
@@ -211,26 +218,26 @@
  <!-- galeria de imagenes -->
  <div class="imagenes">
     <h1>GALERIA DE IMAGENES</h1>
-  <section id="galeria">
-    <img src="../img/galeria/galeria1.jpg" alt="galeria">
-    <img src="../img/galeria/galeria2.jpg" alt="galeria">
-    <img src="../img/galeria/galeria3.jpg" alt="galeria">
-    <img src="../img/galeria/galeria4.jpg" alt="galeria">
-    <img src="../img/galeria/galeria5.jpg" alt="galeria">
-    <img src="../img/galeria/galeria6.jpg" alt="galeria">
-    <img src="../img/galeria/galeria7.jpg" alt="galeria">
-    <img src="../img/galeria/galeria8.jpg" alt="galeria">
-    <img src="../img/galeria/galeria9.jpg" alt="galeria"> 
- </section>
- <section id="contenedor-galeria">
-    <div class="contenedor-interno">
-        <img src="../img/galeria/galeria1.jpg" alt="galeria" id="img-activa">
-        <button id="btn-cerrar" type="button">x</button>
-        <button id="btn-retroceder" type="button">&lt;</button>
-        <button id="btn-adelantar" type="button">&gt;</button>
-    </div>
- </section>  
- </div>
+    <section id="galeria">
+        <img src="../img/galeria/galeria1.jpg" alt="galeria">
+        <img src="../img/galeria/galeria2.jpg" alt="galeria">
+        <img src="../img/galeria/galeria3.jpg" alt="galeria">
+        <img src="../img/galeria/galeria4.jpg" alt="galeria">
+        <img src="../img/galeria/galeria5.jpg" alt="galeria">
+        <img src="../img/galeria/galeria6.jpg" alt="galeria">
+        <img src="../img/galeria/galeria7.jpg" alt="galeria">
+        <img src="../img/galeria/galeria8.jpg" alt="galeria">
+        <img src="../img/galeria/galeria9.jpg" alt="galeria">
+    </section>
+    <section id="contenedor-galeria" style="display: none;">
+        <div class="contenedor-interno">
+            <img src="../img/galeria/galeria1.jpg" alt="galeria" id="img-activa">
+            <button id="btn-cerrar" type="button">x</button>
+            <button id="btn-retroceder" type="button">&lt;</button>
+            <button id="btn-adelantar" type="button">&gt;</button>
+        </div>
+    </section>
+</div>
  <!-- seccion de call tu action -->
  <section id="cta">
     <p>En PequeArte, estamos comprometidos a hacer que este verano sea 
@@ -280,5 +287,4 @@
       </div>
     </div>
   </footer>
-
 </html>

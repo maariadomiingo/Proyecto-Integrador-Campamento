@@ -1,13 +1,8 @@
 // Seleccionar elementos de la galería
-const perfil = document.querySelector('.perfil');
-const reserva = document.querySelector('.reservar');
-const masInformacion = document.querySelector('.informacion');
-const verMas = document.querySelector('.verMas');
-
 const btnCerrar = document.querySelector('#btn-cerrar');
 const btnAdelantar = document.querySelector('#btn-adelantar');
 const btnRetroceder = document.querySelector('#btn-retroceder');
-const img = document.querySelectorAll('#galeria img'); 
+const img = document.querySelectorAll('#galeria img');
 const container = document.querySelector('#contenedor-galeria');
 const imagenActiva = document.querySelector('#img-activa');
 let indexImagen = 0;
@@ -15,12 +10,12 @@ let indexImagen = 0;
 // Función para abrir el contenedor de la galería
 const abrirContenedor = (event) => {
     imagenActiva.src = event.target.src;
-    container.style.display = 'block';
+    container.style.display = 'flex'; // Mostrar el contenedor
 }
 
 // Función para cerrar el contenedor de la galería
 const cerrarContenedor = () => {
-    container.style.display = 'none';
+    container.style.display = 'none'; // Ocultar el contenedor
 }
 
 // Función para adelantar imagen
@@ -42,7 +37,7 @@ const retrocederImagen = () => {
 // Event listeners para la galería
 img.forEach((image, index) => {
     image.addEventListener('click', () => {
-        container.style.display = 'block';
+        container.style.display = 'flex'; // Mostrar el contenedor
         indexImagen = index;
         imagenActiva.src = image.src;
     });
