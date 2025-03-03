@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 window.location.href = "../html/reserva.html";
             } else {
-                alert("Error al guardar la reserva.");
+                console.log("Error al guardar la reserva.");
             }
         })
         .catch(error => console.error("Error:", error));
