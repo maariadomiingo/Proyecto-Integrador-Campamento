@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const listaCampistas = document.getElementById("listaCampistas");
     const guardarAsistenciaBtn = document.getElementById("guardarAsistencia");
 
+
+   
+
     // Cargar la lista de campistas con asistencia registrada
     fetch("../php/pasarlista.php")
         .then(response => {
