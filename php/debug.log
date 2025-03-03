@@ -208,3 +208,31 @@ POST: Array
 
 Identificación recibida: qwertyuio
 Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio

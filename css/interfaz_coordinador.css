@@ -1,0 +1,109 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url(../font/Montserrat-VariableFont_wght.ttf);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat";
+  background: #D3E1EB;
+  width: 100%; /* Ocupa el 100% del ancho de la pantalla */
+  overflow-x: hidden; /* Evita el desplazamiento horizontal */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 1%;
+}
+
+.logo {
+  height: 10%;
+  width: 10%;
+}
+
+.circulo, .circulo-salir {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circulo {
+  width: 81px;
+  height: 79px;
+  background: #7770C5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 9999px;
+}
+
+.icono-usuario {
+  max-width: 60%;
+  max-height: 60%;
+}
+
+.circulo-salir {
+  width: 80px;
+  height: 80px;
+  background: #F5F5F5;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+  border-radius: 9999px;
+  border: 1px #7AB3D7 solid;
+}
+
+.icono-salir {
+  width: 24px;
+  height: 29px;
+}
+
+.todo {
+  position: relative;
+}
+
+.textocompleto {
+  margin: 5%;
+}
+
+/* gestionarhorarios */
+.gestionarhorarios, .gestionaractividades, .estadoactividades, .añadirmonitor, .gestionargrupo, .editarcampistas {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.icono-estadoactividades, .icono-gestionar-actividades, .icono-gestionar-horarios, .icono-añadirmonitor, .icono-gestionargrupo, .icono-editarcampistas {
+  height: 60%;
+  width: 5%;
+  z-index: 2;
+}
+
+.gestionarhorarios, .gestionaractividades, .estadoactividades, .añadirmonitor, .gestionargrupo, .editarcampistas {
+  background-image: url('../img/trazo-pincel.png');
+  background-size:cover;
+  background-repeat: no-repeat; 
+  background-position: center; 
+  width: 80%; 
+  height: 80px; 
+  margin: 3%;
+  margin-left: 10%;
+}
+
+.texto-gestionarhorarios, .texto-gestionar-actividades, .texto-estadoactividades, .texto-añadirmonitor, .texto-gestionargrupo, .texto-editarcampistas {
+  margin-left: 10%;
+  color: #F5F5F5;
+  font-size: 30px;
+}
+
+.pincel {
+  height: 15%;
+  width: 7%;
+  margin-left: 80%;
+}
+
+/* footer */
+footer {
+  background-color: #7770C5;
+  padding: 4%;
+  text-align: center;
+}

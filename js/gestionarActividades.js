@@ -93,6 +93,13 @@ selectActividad.addEventListener("change", function () {
     updateMonitorOptions(); // Actualizar opciones del select
 });
 
+// Función para validar si el monitor ya está asignado a la actividad
+function validateMonitorActivity(actividadId, monitorId) {
+    return fetch(`../php/checkMonitorActivity.php?actividadId=${actividadId}&monitorId=${monitorId}`)
+        .then(response => response.json())
+        .then(data => data.exists);
+}
+
     // Función para obtener datos desde el servidor
     async function fetchData(url) {
         const response = await fetch(url);
