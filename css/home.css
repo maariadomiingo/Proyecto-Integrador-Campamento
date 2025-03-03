@@ -687,10 +687,6 @@ button {
     transition: color 0.3s ease; /* Efecto hover */
 }
 
-button:hover {
-    color: #7770C5; /* Cambiar color al pasar el cursor */
-}
-
 #btn-cerrar {
     position: absolute;
     top: 10px;
@@ -713,11 +709,7 @@ button:hover {
     transform: translateY(-50%); /* Centrar verticalmente */
     font-size: 2.5rem;
 }
-/*Seccion de CTA*/
 
-
-
-/*footer*/
 footer {
     background-color: #7770C5;
     color: #ffffff;
@@ -879,6 +871,5 @@ footer {
 
 .icons .fa-user:hover {
     background-color: #ddd;
-    border-color: #3468A3;
+    border-color: #3468A3;
 }
-
