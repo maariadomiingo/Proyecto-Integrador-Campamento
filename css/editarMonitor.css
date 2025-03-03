@@ -111,7 +111,6 @@
   }
   #nombre {
     font-size: 30px;
-    text-decoration: underline;
   }
   .guardar-cambios{
     padding: 7px 20px;
@@ -126,6 +125,12 @@
   }
   .texto {
     font-size: 15px;
+    display: block;
+  }
+  
+  .texto + input {
+    margin-bottom: 17px; /* Espacio entre cada grupo label + input */
+    display: block; /* Asegura que los inputs no estén en la misma línea */
   }
   
   /* footer */

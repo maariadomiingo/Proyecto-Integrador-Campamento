@@ -104,18 +104,17 @@ h1 {
   margin-left: 12%;
 }
 
-h2 {
-  text-decoration: underline;
-}
 
 #nombre {
   font-size: 30px;
-  text-decoration: underline;
 }
 
 .texto {
   font-size: 15px;
+  margin-bottom: 15px; /* Espacio entre cada input */
+  display: block; /* Asegura que estén en una línea separada */
 }
+
 
 /* footer */
 footer {
