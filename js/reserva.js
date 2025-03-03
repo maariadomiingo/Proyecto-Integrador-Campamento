@@ -2,6 +2,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     const submitButton = form.querySelector(".btn-submit");
 
+
+    function redirectHome() {
+        window.location.href = "home.html";
+    }
+
+    const logo = document.querySelector(".logo img");
+    if (logo) {
+        logo.addEventListener("click", redirectHome);
+    }
+
+    
     // Campos obligatorios y elementos de validación
     const camposObligatorios = [
         document.getElementById("nombre"),
@@ -174,4 +185,6 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Ocurrió un error al enviar el formulario");
         });
     });
+
+   
 });
