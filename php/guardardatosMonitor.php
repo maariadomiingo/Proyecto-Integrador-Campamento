@@ -36,7 +36,7 @@ try {
     }
 
     // Ajustar "s" o "i" según el tipo de identificacion
-    $stmt->bind_param("sssi", $nombre, $mail, $telefono, $identificacion); // Si identificacion es INT
+    $stmt->bind_param("ssss", $nombre, $mail, $telefono, $identificacion); // Si identificacion es INT
 
     if (!$stmt->execute()) {
         throw new Exception("Error al ejecutar: " . $stmt->error);

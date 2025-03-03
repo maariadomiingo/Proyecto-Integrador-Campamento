@@ -19,7 +19,7 @@ if (!$identificacion) {
 $sql = "SELECT identificacion, nombre, email, telefono FROM monitor WHERE identificacion = ?";
 // ...
 $stmt = $conexion->prepare($sql);
-$stmt->bind_param("i", $identificacion); 
+$stmt->bind_param("s", $identificacion); //Teníamos un problema con Php, donde teníamos una letra literalmente, ya que en nuestra base de datos el dato era un varchar y lo tratamos de sacar como si fuera un int, solo cambiamos una “i” por una “s”
 
 if (!$stmt->execute()) { 
     echo json_encode(["error" => "Error al ejecutar la consulta: " . $stmt->error]);

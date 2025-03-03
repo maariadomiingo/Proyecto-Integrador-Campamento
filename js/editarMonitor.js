@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert("Datos actualizados correctamente.");
+                // alert("Datos actualizados correctamente.");
                 window.location.href = `../html/perfilMonitor.html?identificacion=${encodeURIComponent(identificacion)}`;
             } else {
                 alert("Error al actualizar: " + data.error);
