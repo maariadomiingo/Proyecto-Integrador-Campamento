@@ -215,4 +215,4 @@ POST: Array
 
 Identificación recibida: qwertyuio
 Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
-Datos recibidos: {"identificacion":"qwertyuio","nombre":"Juan Pérez7ur67u","email":"juan.perez@example.com","telefono":"123456789"}
+Datos recibidos: {"identificacion":"qwertyuio","nombre":"Juan si","email":"juan.perez@example.com","telefono":"123456789"}
