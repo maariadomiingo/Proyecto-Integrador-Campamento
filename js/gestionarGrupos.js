@@ -20,6 +20,16 @@ document.addEventListener('DOMContentLoaded', function () {
         cargarCampistasAsignados(grupoId);
     });
 
+    // Funcionalidad del botón de atrás
+    const botonAtras = document.querySelector('.buttonatras');
+    if (botonAtras) {
+        botonAtras.addEventListener('click', function () {
+            window.location.href = '../html/interfaz_coordinador.html';
+        });
+    } else {
+        console.error("El botón 'Atrás' no fue encontrado en el DOM.");
+    }
+
     // Manejar el clic en el botón "Asignar"
     asignarBtn.addEventListener('click', function () {
         campistasSeleccionados = Array.from(document.querySelectorAll('input[name="campista"]:checked'))

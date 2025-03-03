@@ -8,10 +8,29 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    box-sizing: border-box;
 }
 
+/*titulos*/
+.flecha {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+
+  .buttonatras {
+    width: 51px;
+    height: 49px;
+    background: #7770C5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    margin: 1%;
+    position: relative;
+    top: 12%;
+    left: 20%;
+  }
 /* header */
-.circulo {
+/* .circulo {
     width: 60px;
     height: 60px;
     background: #7770C5;
@@ -21,9 +40,9 @@ body {
     top: 20px;
     left: 20px;
     z-index: 90;
-}
+} */
 
-.icono-usuario {
+/* .icono-usuario {
     width: 24px;
     height: 24px;
     position: absolute;
@@ -31,7 +50,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 90;
-}
+} */
 
 .circulo-salir {
     width: 60px;
@@ -71,12 +90,16 @@ body {
     box-sizing: border-box;
 }
 
-.logo {
+/* .logo {
+    position: absolute;
+    top: -30px;
+    left: 0;
     width: 140px;
     height: auto;
     display: block;
-    margin: 20px auto;
+    z-index: 99;
 }
+ */
 
 /* body */
 html {
