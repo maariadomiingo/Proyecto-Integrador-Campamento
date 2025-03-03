@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
              const checked = campista.estado === "presente" ? "checked" : "";
 
              div.innerHTML = `
-                 <label>
+                 <label class="lista">
                      <a href="mostrarcampista.html?id=${campista.id}&identificacion=${identificacionMonitor}" class="campista-link">
                          ${campista.nombre}
                      </a>

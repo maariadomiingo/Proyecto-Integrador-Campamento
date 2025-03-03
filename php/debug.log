@@ -1181,3 +1181,118 @@ POST: Array
 
 Identificación recibida: qwertyuio
 Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => zxcvbnmñ
+)
+
+Identificación recibida: zxcvbnmñ
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: zxcvbnmñ
+POST: Array
+(
+    [identificacion] => asdfghjkl
+)
+
+Identificación recibida: asdfghjkl
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: asdfghjkl
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => asdfghjkl
+)
+
+Identificación recibida: asdfghjkl
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: asdfghjkl
+Datos recibidos: {"identificacion":"asdfghjkl","nombre":"Carlos López","email":"carlos.lopez@example.com","telefono":"987654321"}
+Error: Duplicate entry 'carlos.lopez@example.com' for key 'email'
+Datos recibidos: {"identificacion":"asdfghjkl","nombre":"Carlos López","email":"carlos.lopez@example.com","telefono":"987654321"}
+Error: Duplicate entry 'carlos.lopez@example.com' for key 'email'
+POST: Array
+(
+    [identificacion] => asdfghjkl
+)
+
+Identificación recibida: asdfghjkl
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: asdfghjkl
+Datos recibidos: {"identificacion":"asdfghjkl","nombre":"Carlos López","email":"carlos.lopez@example.com","telefono":"987654321"}
+Error: Duplicate entry 'carlos.lopez@example.com' for key 'email'
+Datos recibidos: {"identificacion":"asdfghjkl","nombre":"Carlos López","email":"carlos.lopez@example.com","telefono":"987654321"}
+Error: Duplicate entry 'carlos.lopez@example.com' for key 'email'
+Datos recibidos: {"identificacion":"asdfghjkl","nombre":"Carlos Lópe","email":"carlos.lopez@example.com","telefono":"987654321"}
+Error: Duplicate entry 'carlos.lopez@example.com' for key 'email'
+Datos recibidos: {"identificacion":"asdfghjkl","nombre":"Carlos López","email":"carlos.lopez@example.com","telefono":"987654321"}
+Error: Duplicate entry 'carlos.lopez@example.com' for key 'email'
+Datos recibidos: {"identificacion":"asdfghjkl","nombre":"Carlos López","email":"pepe.lopez@example.com","telefono":"987654321"}
+Error: Duplicate entry 'pepe.lopez@example.com' for key 'email'
+POST: Array
+(
+    [identificacion] => asdfghjkl
+)
+
+Identificación recibida: asdfghjkl
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: asdfghjkl
+Datos recibidos: {"identificacion":"asdfghjkl","nombre":"Carlos López","email":"carlos.lopez@example.com","telefono":"987654321"}
+Error: Duplicate entry 'carlos.lopez@example.com' for key 'email'
+Datos recibidos: {"identificacion":"asdfghjkl","nombre":"Carlos López","email":"pepe.lopez@example.com","telefono":"987654321"}
+Error: Duplicate entry 'pepe.lopez@example.com' for key 'email'
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+Datos recibidos: {"identificacion":"qwertyuio","nombre":"Juan Pére","email":"juan.perez@example.com","telefono":"123456789"}
+Error: Duplicate entry 'juan.perez@example.com' for key 'email'
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+Datos recibidos: {"identificacion":"qwertyuio","nombre":"Juan Pére","email":"juan.perez@example.com","telefono":"123456789"}
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+Datos recibidos: {"identificacion":"qwertyuio","nombre":"Juan Pére","email":"juan.perez@example.com","telefono":"123456789"}
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+Datos recibidos: {"identificacion":"qwertyuio","nombre":"Juan Pére","email":"juan.perez@example.com","telefono":"123456789"}
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+Datos recibidos: {"identificacion":"qwertyuio","nombre":"Juan Pére","email":"juan.perez@example.com","telefono":"123456789"}
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
