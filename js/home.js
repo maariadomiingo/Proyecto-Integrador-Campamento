@@ -6,6 +6,18 @@ const img = document.querySelectorAll('#galeria img');
 const container = document.querySelector('#contenedor-galeria');
 const imagenActiva = document.querySelector('#img-activa');
 let indexImagen = 0;
+const navbarLinks = document.querySelectorAll("nav a");
+    
+navbarLinks.forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        const href = this.getAttribute("href");
+        const section = document.querySelector(href);
+        section.scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 
 // Función para abrir el contenedor de la galería
 const abrirContenedor = (event) => {
