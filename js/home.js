@@ -62,7 +62,7 @@ if (btnRetroceder) btnRetroceder.addEventListener('click', retrocederImagen);
 
 // Función para redirigir a la página de reserva
 const redirigirAReserva = () => {
-    window.location.href = '../html/calendarioreserva.html';
+    window.location.href = '../html/jornada.html';
 }
 
 // Asignar evento a los botones de reserva (sin duplicaciones)
@@ -118,15 +118,8 @@ if (verMas) {
         mostrarInfo();
     });
 }
-// Seleccionar el botón "¡Hablemos!"
-const hablemosButton = document.getElementById('#cta');
+const hablemosButton = document.getElementById('hablemosButton');
 
-// Función para redirigir a la página de contacto
-function redirigirAContacto() {
+hablemosButton.addEventListener('click', function () {
     window.location.href = '../html/contactanos.html';
-}
-
-// Añadir evento de clic al botón
-if (hablemosButton) {
-    hablemosButton.addEventListener('click', redirigirAContacto);
-}
+});
