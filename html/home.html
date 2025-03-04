@@ -20,15 +20,18 @@
                 <a href="#monitores">Monitores</a>
                 <a href="#socios">Socios</a>
                 <a href="#fotos">Fotos</a>
-                <a href="../html/contactanos.html">Contáctanos</a>
+                <a href="contactanos.html">Contáctanos</a>
         </nav>
         <div class="icons">
-            <button type="submit" class="fas fa-idioma">
+            <!-- <button type="submit" class="fas fa-idioma">
                 <img src="../img/idioma.png" alt="Cambiar idioma">
-            </button>
-            <button type="button" class="fas fa-user">
-                <img src="../img/user.png" alt="Usuario">
-            </button>
+            </button> -->
+            <a href="login.html">
+                <button type="button" class="fas fa-user">
+                    <img src="../img/user.png" alt="Usuario">
+                </button>
+            </a>
+            
         </div>
     </header>
     <section class="welcome">
@@ -36,7 +39,7 @@
             <h1>¡Explora, Crea y Aprende <br> en Dos Idiomas!</h1>
             <p>Potencia la creatividad de tus hijos en nuestro <br> campamento de arte,
              un lugar seguro y <br> divertido donde explorarán su imaginación <br> mientras se divierten.</p>
-            <input type="informacion" name="informacion" class="informacion" value="Mas información">
+            <a href="contactanos.html"><input type="informacion" name="informacion" class="informacion" value="Mas información"></a>
         </div>
         <div class="image-container"></div>
     </section>
@@ -176,8 +179,8 @@
             <hr>
             <p>Avenida Mataespesa 45 alpedrete, 28430, Alpedrete, Madrid.</p>
         </div>
-        <div class="reserva">
-            <button type="button">Reservar</button>
+        <div class="reserva-btn">
+            <button type="button" class="reservar-btn">Reservar</button>
         </div>
     </div>
     <div>
@@ -187,9 +190,9 @@
         <hr>
         <p>Ronda de Sobradiel, 80 – 28043 Madrid</p>
         </div>
-        <div class="reserva">
-            <button type="button">Reservar</button>
-        </div> 
+        <div class="reserva-btn1">
+            <button type="button" class="reservar-btn1">Reservar</button>
+        </div>
     </div>
     <div>
         <img src="../img/agustiniano.png" alt="">
@@ -198,8 +201,8 @@
         <hr>
         <p>C. del Pez Austral, 13, Retiro, 28007 Madrid</p>
         </div>
-        <div class="reserva">
-            <button type="button">Reservar</button>
+        <div class="reserva-btn2">
+            <button type="button" class="reservar-btn2">Reservar</button>
         </div>
     </div>
     <div>
@@ -209,15 +212,16 @@
         <hr>
         <p>Carr. de Burgos, km 14, 28108 Alcobendas, Madrid</p>
         </div>
-        <div class="reserva">
-            <button type="button">Reservar</button>
+        <div class="reserva-btn3">
+            <button type="button" class="reservar-btn3">Reservar</button>
         </div>
     </div>
-    <a href="">¿Eres una empresa?</a> Contáctanos para asociarte con nosotros.
+    <a href="../html/contactanos.html">¿Eres una empresa?</a> Contáctanos para asociarte con nosotros.
  </section>
  <!-- galeria de imagenes -->
- <div class="imagenes" id="fotos">
-    <h1>GALERIA DE IMAGENES</h1>
+<h1>GALERÍA DE IMÁGENES</h1>
+<div class="imagenes" id="fotos">
+    
     <section id="galeria">
         <img src="../img/galeria/galeria1.jpg" alt="galeria">
         <img src="../img/galeria/galeria2.jpg" alt="galeria">
@@ -238,12 +242,16 @@
         </div>
     </section>
 </div>
- <!-- seccion de call tu action -->
- <section id="cta">
-    <p>En PequeArte, estamos comprometidos a hacer que este verano sea 
-    una experiencia creativa e inolvidable para tus pequeños artistas.</p>
-    <button type="button">¡Hablemos!</button>
- </section>
+ <!-- seccion de call to action -->
+<section id="cta">
+    <div class="cta-content">
+        <p>En PequeArte, estamos comprometidos a hacer que este verano sea 
+        una experiencia creativa e inolvidable para tus pequeños artistas.</p>
+        <a href="contactanos.html">
+            <button id="hablemosButton" type="button">¡Hablemos!</button>
+        </a>
+    </div>
+</section>
     <script src="../js/home.js"></script>
 </body>
 <footer>

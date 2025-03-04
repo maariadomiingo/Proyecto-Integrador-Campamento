@@ -502,7 +502,7 @@ h1{
     display: flex;
     flex-wrap: wrap;  
     justify-content: center; 
-    gap: 200px; 
+    gap: 50px; /* Reducido para mejor ajuste */
 }
 
 .seccion-info-extra div {
@@ -512,24 +512,74 @@ h1{
     max-width: 300px; 
     text-align: left; 
 }
+
 .seccion-info-extra img {
     width: 80px; 
     height: auto; 
     flex-shrink: 0; 
     object-fit: cover;
 }
+
 .seccion-info-extra .info-text {
     display: flex;
     flex-direction: column; 
 }
+
 .seccion-info-extra h2 {
     font-size: 1.5rem;
     margin: 0;
 }
+
 .seccion-info-extra p {
     margin: 1px 0 0; 
     font-size: 1rem;
 }
+
+/* Estilos Responsivos */
+@media (max-width: 768px) { 
+    .seccion-info-extra {
+        padding: 50px; /* Menos padding en pantallas pequeñas */
+        gap: 30px; /* Menos espacio entre elementos */
+    }
+    
+    .seccion-info-extra div {
+        flex-direction: column; /* Apilar elementos en pantallas pequeñas */
+        align-items: center;
+        text-align: center;
+    }
+    
+    .seccion-info-extra img {
+        width: 60px; /* Imágenes más pequeñas */
+    }
+
+    .seccion-info-extra h2 {
+        font-size: 1.3rem;
+    }
+
+    .seccion-info-extra p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) { 
+    .seccion-info-extra {
+        padding: 30px;
+        gap: 20px;
+    }
+
+    .seccion-info-extra img {
+        width: 50px;
+    }
+
+    .seccion-info-extra h2 {
+        font-size: 1.2rem;
+    }
+
+    .seccion-info-extra p {
+        font-size: 0.8rem;
+    }
+}
+
 /*socios*/
 .socios {
     text-align: center;
@@ -595,23 +645,26 @@ h1{
     text-align: left;
 }
 
-.reserva button {
-    background-color: #7770C5;
-    color: white;
+.reservar-btn, .reservar-btn1, .reservar-btn2, .reservar-btn3 {
+    background-color: #6A0DAD; /* Morado */
+    color: #fff;
     border: none;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
     font-size: 1em;
     transition: background 0.3s;
 }
 
-.reserva button:hover {
-    background-color: #5f57bb;
+.reservar-btn:hover, .reservar-btn1:hover, .reservar-btn2:hover, .reservar-btn3:hover {
+    background-color: #5A0B8E; /* Morado más oscuro al pasar el mouse */
 }
+
 a{
     font-weight: bold;
 }
+
+
 /* Galería de imágenes */
 .imagenes {
     background-color: rgba(187, 183, 229, 1); /* Fondo semi-transparente */
@@ -872,4 +925,119 @@ footer {
 .icons .fa-user:hover {
     background-color: #ddd;
     border-color: #3468A3;
+}
+/* Animación de rebote */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+/* Estilos para la sección CTA */
+#cta {
+    background-color: var(--color-primary);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+#cta .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+#cta p {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Animación de fondo */
+@keyframes moveBackground {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+#cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.1) 75%);
+    animation: moveBackground 10s linear infinite;
+    z-index: 0;
+}
+
+/* Estilos para el botón "¡Hablemos!" */
+#cta button {
+    background-color: white;
+    color: var(--color-primary);
+    border: none;
+    padding: 1.5rem 3rem;
+    font-size: 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#cta button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform var(--transition-duration);
+    z-index: -1;
+}
+
+#cta button:hover {
+    background-color: var(--color-secondary);
+    color: white;
+    transform: scale(1.1);
+}
+
+#cta button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Animación de rebote */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px);
+    }
+    60% {
+        transform: translateY(-7px);
+    }
+}
+
+#cta button {
+    animation: bounce 2s infinite;
+}
+
+#cta button:hover {
+    animation: none;
 }

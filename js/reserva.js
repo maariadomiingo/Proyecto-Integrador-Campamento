@@ -1,8 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     const submitButton = form.querySelector(".btn-submit");
+    const inputs = form.querySelectorAll("input, textarea");
+    const checkboxOtros = document.getElementById('otros');
+    const otrosContainer = document.getElementById('otros-container');
+    const agregarBtn = document.getElementById('agregar-btn');
+    const medicamentosAdicionales = document.getElementById('medicamentos-adicionales');
+    const radioNo = document.getElementById("radio-no");
+    const radioSi = document.getElementById("radio-si");
+    const containerOtros = document.getElementById("container-otros");
+    const campoRestricciones = document.getElementById("campo-restricciones");
+    const fechaNacimiento = document.getElementById("fecha-nacimiento");
 
+    // Función para desplegable de consentimiento medicamentos
+    checkboxOtros.addEventListener('change', () => {
+        if (checkboxOtros.checked) {
+            otrosContainer.style.display = 'block';
+            agregarBtn.style.display = 'inline-block';
+        } else {
+            otrosContainer.style.display = 'none';
+            agregarBtn.style.display = 'none';
+            medicamentosAdicionales.innerHTML = '';
+        }
+    });
 
+    // Agregar campos adicionales para medicamentos
+    agregarBtn.addEventListener('click', () => {
+        const nuevoMedicamentoDiv = document.createElement('div');
+        nuevoMedicamentoDiv.classList.add('medicamento-extra');
+
+        const nuevoInput = document.createElement('input');
+        nuevoInput.type = 'text';
+        nuevoInput.name = 'otros-medicamentos';
+        nuevoInput.placeholder = 'Nombre del medicamento adicional';
+
+        nuevoMedicamentoDiv.appendChild(nuevoInput);
+        medicamentosAdicionales.appendChild(nuevoMedicamentoDiv);
+    });
+
+    // Función restricciones dietéticas
+    radioSi.addEventListener("change", function () {
+        containerOtros.style.display = "block";
+    });
+
+    radioNo.addEventListener("change", function () {
+        containerOtros.style.display = "none";
+        campoRestricciones.value = "";
+    });
+
+    // Redirigir al inicio al hacer clic en el logo
     function redirectHome() {
         window.location.href = "home.html";
     }
@@ -12,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
         logo.addEventListener("click", redirectHome);
     }
 
-    
     // Campos obligatorios y elementos de validación
     const camposObligatorios = [
         document.getElementById("nombre"),
@@ -130,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Verificar términos y condiciones
         if (!document.getElementById("terminos").checked) {
             isFormValid = false;
-            alert("Debes aceptar los términos y condiciones.");
+            // alert("Debes aceptar los términos y condiciones.");
             return;
         }
 
@@ -173,18 +218,104 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             console.log('Respuesta del servidor:', data);
             if (data.success) {
-                alert("Reserva enviada con éxito");
                 form.reset();
                 window.location.href = '../html/datosPadre.html';
             } else {
-                alert("Error al enviar la reserva: " + (data.error || "Error desconocido"));
+                // alert("Error al enviar la reserva: " + (data.error || "Error desconocido"));
             }
         })
         .catch(error => {
             console.error("Error en la solicitud:", error);
-            alert("Ocurrió un error al enviar el formulario");
-        });
-    });
+            // alert("Ocurrió un error al enviar el formulario");
+        });
+    });
+});
 
-   
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+    const nombrePadre = document.getElementById('nombre-padre');
+    const email = document.getElementById('email');
+    const telefono = document.getElementById('telefono');
+    // const comentario = document.getElementById('comentario');
+    const terminos = document.getElementById('terminos');
+
+    const nombreError = document.getElementById('nombre-error');
+    const emailError = document.getElementById('email-error');
+    const telefonoError = document.getElementById('telefono-error');
+    // const comentarioError = document.getElementById('comentario-error');
+    const terminosError = document.getElementById('terminos-error');
+
+    const modalConfirmacion = document.getElementById('modal-confirmacion'); // Elemento del modal
+
+    // Funciones de validación (igual que antes)
+    function validarNombre() {
+        if (nombrePadre.value.trim() === '') {
+            nombreError.textContent = '❌ Por favor, ingrese su nombre.';
+            nombreError.style.display = 'block';
+            return false;
+        } else {
+            nombreError.style.display = 'none';
+            return true;
+        }
+    }
+
+    function validarEmail() {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email.value)) {
+            emailError.textContent = '❌ Por favor, ingrese un email válido.';
+            emailError.style.display = 'block';
+            return false;
+        } else {
+            emailError.style.display = 'none';
+            return true;
+        }
+    }
+
+    function validarTelefono() {
+        const telefonoPattern = /^\d{9}$/;
+        if (!telefonoPattern.test(telefono.value)) {
+            telefonoError.textContent = '❌ Por favor, ingrese un número de teléfono válido (9 dígitos).';
+            telefonoError.style.display = 'block';
+            return false;
+        } else {
+            telefonoError.style.display = 'none';
+            return true;
+        }
+    }
+
+
+    function validarTerminos() {
+        if (!terminos.checked) {
+            terminosError.textContent = '❌ Debe aceptar los términos y condiciones.';
+            terminosError.style.display = 'block';
+            return false;
+        } else {
+            terminosError.style.display = 'none';
+            return true;
+        }
+    }
+
+    // Validación al enviar el formulario
+    form.addEventListener('submit', function (event) {
+        const isNombreValid = validarNombre();
+        const isEmailValid = validarEmail();
+        const isTelefonoValid = validarTelefono();
+        // const isComentarioValid = validarComentario();
+        const isTerminosValid = validarTerminos();
+
+        if (!isNombreValid || !isEmailValid || !isTelefonoValid || !isTerminosValid) {
+            event.preventDefault(); // Evita que el formulario se envíe si hay errores
+        } else {
+            event.preventDefault(); // Evita el envío real del formulario (simulación)
+            modalConfirmacion.classList.add('mostrar'); // Muestra el modal
+
+            // Opcional: Limpiar el formulario después de enviar
+            form.reset();
+
+            // Ocultar el modal después de unos segundos
+            setTimeout(() => {
+                modalConfirmacion.classList.remove('mostrar');
+            }, 3000); // 3000 ms = 3 segundos
+        }
+    });
 });

@@ -116,7 +116,7 @@ h1 {
     flex: 1;
     margin: 10px auto;
     padding: 20px;
-    background-color: rgba(51, 62, 99, 0.75);
+    background-color: #7AB3D7;
     border-radius: 20px;
     text-align: center;
     width: 90%;
@@ -167,7 +167,7 @@ button:hover{
     transition-duration: 3s;
 }
 .añadir-btn{
-    background-color: #7AB3D7;
+    background-color: #7770C5;
 }
 .new-btn{
     background-color: rgba(28, 159, 28, 0.783);

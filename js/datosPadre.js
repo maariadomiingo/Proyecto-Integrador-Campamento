@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Validación con focusout para el campo nombre
     nombre.addEventListener("focusout", function() {
         if (nombre.value.trim() === "") {
-            nombreError.textContent = "Por favor, introduce un nombre";
+            nombreError.textContent = "❌ Por favor, introduce un nombre";
             nombreError.classList.remove("hidden");
         } else {
             nombreError.textContent = "";
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Validación con focusout para el campo relación
     relacion.addEventListener("focusout", function() {
         if (relacion.value.trim() === "") {
-            relacionError.textContent = "Ingrese la relación con el participante";
+            relacionError.textContent = "❌ Ingrese la relación con el participante";
             relacionError.classList.remove("hidden");
         } else {
             relacionError.textContent = "";
@@ -42,10 +42,10 @@ telefono.addEventListener("focusout", function() {
     const telefonoLetrasRegex = /[a-zA-Z]/; // Verifica si hay letras
 
     if (telefonoLetrasRegex.test(telefono.value)) {
-        telefonoError.textContent = "No puedes introducir letras en el número telefónico";
+        telefonoError.textContent = "❌ No puedes introducir letras en el número telefónico";
         telefonoError.classList.remove("hidden");
     } else if (!telefonoNumerosRegex.test(telefono.value)) {
-        telefonoError.textContent = "Debes introducir un número telefónico válido (9 dígitos, solo números)";
+        telefonoError.textContent = "❌ Debes introducir un número telefónico válido (9 dígitos, solo números)";
         telefonoError.classList.remove("hidden");
     } else {
         telefonoError.textContent = "";
@@ -57,7 +57,7 @@ telefono.addEventListener("focusout", function() {
     email.addEventListener("focusout", function() {
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
         if (!emailRegex.test(email.value)) {
-            emailError.textContent = "Debes introducir un correo electrónico válido";
+            emailError.textContent = "❌ Debes introducir un correo electrónico válido";
             emailError.classList.remove("hidden");
         } else {
             emailError.textContent = "";
@@ -71,27 +71,27 @@ telefono.addEventListener("focusout", function() {
 
         // Validación final al enviar el formulario para evitar que se envíe si hay errores
         if (nombre.value.trim() === "") {
-            nombreError.textContent = "Por favor, introduce un nombre";
+            nombreError.textContent = "❌ Por favor, introduce un nombre";
             nombreError.classList.remove("hidden");
             valid = false;
         }
 
         if (relacion.value.trim() === "") {
-            relacionError.textContent = "Ingrese la relación con el participante";
+            relacionError.textContent = "❌ Ingrese la relación con el participante";
             relacionError.classList.remove("hidden");
             valid = false;
         }
 
         const telefonoRegex = /^[0-9]{9}$/;
         if (!telefonoRegex.test(telefono.value)) {
-            telefonoError.textContent = "Debes introducir un número telefónico válido";
+            telefonoError.textContent = "❌ Debes introducir un número telefónico válido";
             telefonoError.classList.remove("hidden");
             valid = false;
         }
 
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
         if (!emailRegex.test(email.value)) {
-            emailError.textContent = "Debes introducir un correo electrónico válido";
+            emailError.textContent = "❌ Debes introducir un correo electrónico válido";
             emailError.classList.remove("hidden");
             valid = false;
         }

@@ -3,23 +3,70 @@
     font-family: "Montserrat";
     src: url(../font/Montserrat-VariableFont_wght.ttf);
 }
+
+:root {
+    --color-primary: #7770C5;
+    --color-secondary: #7AB3D7;
+    --color-text-primary: #D67272;
+    --color-text-secondary: #DEDBF6;
+    --color-background: #F3F3F3;
+    --color-hover: #ddd;
+    --transition-duration: .3s;
+}
+
 body {
-    font-family: Poppins, sans-serif;
+    font-family: "Montserrat", sans-serif;
     background-color: #fff;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
 }
-/*Header*/
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    overflow-x: hidden;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+/* Header */
 .header {
-    background-color: #fff;
-    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 2rem 9%;
     display: flex;
-    justify-content: space-between; 
     align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.header .logo {
+    font-size: 3rem;
+    color: #333;
+    font-weight: bolder;
 }
 
 .logo img {
     height: 70px;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    align-items: center;
 }
 
 .nav ul {
@@ -27,51 +74,130 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 60px; 
-    justify-content: center;
-    align-items: center;
+    gap: 80px; /* Mayor separación entre los elementos */
 }
 
 .nav li {
-    display: inline;
+    display: inline-block;
 }
 
 .nav a {
+    font-size: 2rem;
     text-decoration: none;
-    color: #333;
+    color: #666;
     font-weight: bold;
+    transition: color var(--transition-duration);
+    padding: 10px 20px; /* Asegura una buena separación */
+    display: block;
 }
-.idioma{
-    padding: 0px 10px;
-    background-color: #f2f2f2;
-    color: #0F0559;
-    border: 2px solid #7AB3D7;
+
+.nav a:hover {
+    color: var(--color-primary);
+}
+
+/* Icons */
+.icons {
+    display: flex;
+    gap: 15px;
+}
+
+.icons button {
+    padding: 10px;
     border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
 }
-.idioma img{
+
+.icons button img {
     height: 30px;
 }
-.idioma:hover {
+
+/* Language Button */
+.icons .fa-idioma {
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-secondary);
+    color: #fff;
+}
+
+.icons .fa-idioma:hover {
+    background-color: #564EB5;
     border-color: #3468A3;
 }
-.perfil {
-    padding: 1px 10px;
-    transition: background-color 0.3s ease;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-    background-color: #7770C5;
-    color: #fff;
-    border: none;
-    border-radius: 50px;
+
+/* User Button */
+.icons .fa-user {
+    background-color: #f2f2f2;
+    border: 2px solid var(--color-secondary);
+    color: #0F0559;
+}
+
+.icons .fa-user:hover {
+    background-color: var(--color-hover);
+    border-color: #3468A3;
+}
+
+/* Responsive */
+.header #toggler {
+    display: none;
+}
+
+.header .fa-bars {
+    font-size: 3rem;
+    color: #333;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
     cursor: pointer;
+    border: .1rem solid rgba(0, 0, 0, 0.2);
+    display: none;
 }
-.perfil img{
-    height: 30px;
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+    .header .fa-bars {
+        display: block;
+    }
+
+    .header .nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #eee;
+        border-top: .1rem solid rgba(0, 0, 0, 0.2);
+        flex-direction: column;
+        gap: 0;
+        display: none;
+    }
+
+    .header #toggler:checked ~ .nav {
+        display: flex;
+    }
+
+    .header .nav ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 20px; /* Espaciado adecuado en versión móvil */
+    }
+
+    .header .nav a {
+        display: block;
+        padding: 1.5rem;
+        background: #fff;
+        border-bottom: .1rem solid rgba(0, 0, 0, 0.2);
+    }
 }
-.perfil:hover {
-    background-color: #564EB5; 
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
 }
 
 /* Form Container */
@@ -245,4 +371,47 @@ footer {
   .social-icons a img{
     width: 40px;
   }
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+    display: none; /* Ocultar por defecto */
+}
+/* Estilos para el modal */
+.modal {
+    display: none; /* Ocultar por defecto */
+    position: fixed; /* Posición fija */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+}
+
+.modal-contenido {
+    background-color: white; /* Fondo del mensaje */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center; /* Texto centrado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    font-size: 1.5em; /* Tamaño del texto */
+    color: #333; /* Color del texto */
+}
+
+/* Animación para aparecer suavemente */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal.mostrar {
+    display: flex; /* Mostrar el modal */
+    animation: fadeIn 0.3s ease-in-out; /* Animación de aparición */
+}
 
