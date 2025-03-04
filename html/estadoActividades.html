@@ -3,32 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/interfacesmc/interfaces.css">
     <link rel="stylesheet" href="../css/estadoAct.css">
-    <title>Document</title>
+    <title>Estado Actividades</title>
 </head>
 <body>
-<!-- Iconos de usuario y salir -->
-<div class="circulo">
-    <img class="icono-usuario" src="../img/user.png" />  
-    </div>
-    
-    <div class="circulo-salir">
-      <img class="icono-salir" src="../img/cerrar-sesion.png" />
-    </div>
-    <!-- Contenedor principal -->
-    <div class="main-container">
-      <div class="rectangle"></div>
-      <img class="logo" src="../img/logo sin fondo.png" />
-      
-      <div class="logo-1"></div>
-      <div class="logo-final-sin-fondo"></div>
-      <div class="img-3"></div>
-      <div class="pic-2"></div>
-      <div class="clipart-transparent-library-watercolor"></div>
-    </div>
+  <div class="header">
+    <img class="logo" src="../img/logo sin fondo.png" alt="Logo" id="volverinicio"> 
+    <button class="circulo-salir">
+        <img class="icono-salir" src="../img/cerrar-sesion.png" alt="Cerrar sesión">
+    </button>
+</div>
 
-
-    <h1>ESTADO DE LAS ACTIVIDADES</h1>
+  <div class="titulo">
+    <button class="buttonatras" id="buttonatras">
+      <img class="flecha" src="../img/FLECHA ATRAS.png" alt="Volver">
+  </button>
+    <h1>ASIGNAR ACTIVIDADES</h1>
+  </div>
     <div class="container">
         <select name="actividad-select" id="actividad-select">
             <option value="">Seleccione una actividad</option>
@@ -58,29 +50,6 @@
     <script src="../js/estadoActividades.js"></script>
 </body>
 <footer>
-    <div class="footer-container">
-      <div class="footer-section">
-        <ul>
-          <li><a href="#">Politica de privacidad</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <ul>
-          <li><a href="#">Politica de uso aceptable</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <ul>
-          <li><a href="#">Contacto +34 111 1111 11</a></li>
-        </ul>
-      </div>
-      <div class="iconos">
-        <div class="social-icons">
-            <ul>
-              <li><a href="#">Correo aaaaa@gmail.com</a></li>  
-            </ul>   
-        </div>
-      </div>
-    </div>
-  </footer>
+  Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
+</footer>
 </html>

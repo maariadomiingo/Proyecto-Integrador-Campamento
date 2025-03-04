@@ -29,6 +29,11 @@
   align-items: center;
   padding-bottom: 2%;
 }
+.listapersona{
+  display: flex;
+  width: 50%;
+  align-items: center;
+}
 
 .tabla {
   display: flex;

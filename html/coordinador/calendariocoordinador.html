@@ -10,22 +10,37 @@
   <link rel="stylesheet" href="../../css/calendariocoordinador.css">
   <link rel="stylesheet" href="../../css/interfacesmc/interfaces.css">
   <link rel="icon" href="../icon/favicon.png" type="image/x-icon">
+  <style>
+    /* Estilo para los overlays con fondo difuminado */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Oscurece el fondo */
+        backdrop-filter: blur(5px); /* Difumina el fondo */
+        z-index: 98; /* Debe estar por debajo del popup */
+    }
+  </style>
 </head>
 
 <body>
   <div class="header">
-    <img class="logo" src="../../img/logo sin fondo.png" alt="Logo" id="volverinicio"> 
+    <img class="logo" src="../../img/logo sin fondo.png" alt="Logo" id="volverinicio">
     <button class="circulo-salir">
-        <img class="icono-salir" src="../../img/cerrar-sesion.png" alt="Cerrar sesión">
+      <img class="icono-salir" src="../../img/cerrar-sesion.png" alt="Cerrar sesión">
     </button>
-</div>
+  </div>
 
   <div class="titulo">
     <button class="buttonatras" id="buttonatras">
       <img class="flecha" src="../../img/FLECHA ATRAS.png" alt="Volver">
-  </button>
+    </button>
     <h1>GESTIONAR ACTIVIDADES</h1>
   </div>
+
   <!-- El pop-up para añadir actividad -->
   <div id="popup">
     <form id="form-actividad" onsubmit="guardarActividad(event)">
@@ -46,10 +61,22 @@
     </form>
   </div>
 
+  <!-- Popup de confirmación para eliminar actividad -->
+  <div id="delete-popup" class="popupeliminaractividad" style="display: none;">
+    <p>¿Seguro que quieres borrar esta actividad?</p>
+    <button id="delete-confirm">Eliminar</button>
+    <button id="delete-cancel">Cancelar</button>
+  </div>
+
+  <!-- Overlay para difuminar el fondo -->
+  <div class="overlay" id="overlay"></div> <!-- Para el popup de agregar actividad -->
+  <div class="overlay" id="overlay-delete"></div> <!-- Para el popup de eliminar actividad -->
+
   <!-- Calendario -->
   <div class="bordecalendario">
     <div id="calendario"></div>
   </div>
+
   <footer>
     Política de privacidad | Política de uso aceptable | Contacto: +34 111 1111 11 | Correo: aaaaa@gmail.com
   </footer>

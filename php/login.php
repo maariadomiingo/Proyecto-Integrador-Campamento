@@ -2,6 +2,11 @@
 // Solo incluir una vez el archivo de conexión
 require_once '../server/conectar.php';
 
+// Verificar si la conexión fue exitosa
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
+}
+
 // Establecer la cabecera para JSON
 header('Content-Type: application/json');
 
@@ -21,6 +26,12 @@ if (!empty($rol) && !empty($user) && !empty($password)) {
     // Consulta para buscar el usuario por identificacion
     $query = "SELECT identificacion, password, rol FROM usuario WHERE identificacion = '$user'";
     $result = mysqli_query($conexion, $query);
+
+    // Verificar si la consulta se realizó correctamente
+    if (!$result) {
+        echo json_encode(["status" => "error", "message" => "Error en la consulta"]);
+        exit();
+    }
 
     // Verificar si el usuario existe
     if (mysqli_num_rows($result) > 0) {
@@ -46,4 +57,6 @@ if (!empty($rol) && !empty($user) && !empty($password)) {
     echo json_encode(["status" => "error", "message" => "Por favor, completa todos los campos"]);
     exit();
 }
+
+mysqli_close($conexion);
 ?>

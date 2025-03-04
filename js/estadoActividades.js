@@ -80,4 +80,23 @@ tablaReportes.appendChild(rowActividad);
             console.error("Error al cargar reportes:", error);
         }
     }
+     // Funcionalidad del botón de salir
+     const botonSalir = document.querySelector('.circulo-salir');
+     if (botonSalir) {
+         botonSalir.addEventListener('click', function () {
+             window.location.href = '../html/login.html';
+         });
+     } else {
+         console.error("El botón 'Salir' no fue encontrado en el DOM.");
+     }
+ 
+     // Funcionalidad del botón de atrás
+     const botonAtras = document.querySelector('.buttonatras');
+     if (botonAtras) {
+         botonAtras.addEventListener('click', function () {
+             window.location.href = '../html/gestionarActividades.html';
+         });
+     } else {
+         console.error("El botón 'Atrás' no fue encontrado en el DOM.");
+     }
 });

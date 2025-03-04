@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/reserva.css">
-    <title>Reserva tu Plaza</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reserva.css">
+  <title>Reserva tu Plaza</title>
 </head>
+
 <body>
 
   <header class="header">
@@ -28,102 +30,102 @@
           <img src="../img/idioma.png" alt="Cambiar idioma">
       </button> -->
       <a href="login.html">
-          <button type="button" class="fas fa-user">
-              <img src="../img/user.png" alt="Usuario">
-          </button>
+        <button type="button" class="fas fa-user">
+          <img src="../img/user.png" alt="Usuario">
+        </button>
       </a>
-  </div>
+    </div>
   </header>
 
-    <div class="stepper">
-        <div class="line" id="progress-line"></div>
-        <div class="step" id="step1">1</div>
-        <div class="step" id="step2">2</div>
-        <div class="step" id="step3">3</div>
-        <div class="step" id="step4">4</div>
-      </div>
+  <div class="stepper">
+    <div class="line" id="progress-line"></div>
+    <div class="step" id="step1">1</div>
+    <div class="step" id="step2">2</div>
+    <div class="step" id="step3">3</div>
+    <div class="step" id="step4">4</div>
+  </div>
 
-    <div class="form-container">
-        <h3>Información de los Padres o Tutores</h3>
+  <div class="form-container">
+    <h3>Información de los Padres o Tutores</h3>
     <form method="post" id="formulario-padres">
 
-    <div class="form-group">
+      <div class="form-group">
         <label for="nombre-padre">Nombre completo del padre/madre/tutor</label>
-        <input type="text" id="nombre-padre" name="nombre-padre" >
+        <input type="text" id="nombre-padre" name="nombre-padre">
         <span class="rojo" id="nameError"></span><br><br>
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="relacion">Relación con el participante</label>
         <input type="text" id="relacion" name="relacion">
         <span class="rojo" id="relacionError"></span><br><br>
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="telefono">Teléfonos de contacto</label>
         <input type="tel" id="telefono" name="telefono">
         <span class="rojo" id="telefonoError"></span><br><br>
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="email">Correo electrónico</label>
         <input type="email" id="email" name="email">
         <span class="rojo" id="emailError"></span><br><br>
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="direccion-padre">Dirección <i>(Opcional)</i></label>
         <input type="text" id="direccion-padre" name="direccion-padre">
-    </div>
-    
-    <div class="form-actions">
-        <button type="submit" class="btn-submit">Siguiente</button>
+      </div>
+
+      <div class="form-actions">
         <button type="button" class="btn-cancel">Atrás</button>
-        
-    </div>
+        <button type="submit" class="btn-submit">Siguiente</button>
+      </div>
     </form>
-    </div>
+  </div>
 
-     <script src="../js/datosPadre.js"></script>
+  <script src="../js/datosPadre.js"></script>
 
-    <footer>
-        <div class="footer-container">
-          <div class="footer-section">
-            <h3>Contacto</h3>
-            <ul>
-              <li><a href="#">Correo electrónico</a></li>
-              <li><a href="#">Teléfono</a></li>
-              <li><a href="#">Atención al cliente</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Servicios</h3>
-            <ul>
-              <li><a href="#">Sobre nosotros</a></li>
-              <li><a href="#">Actividades</a></li>
-              <li><a href="#">Personal</a></li>
-              <li><a href="#">Instalaciones</a></li>
-              <li><a href="#">Precios</a></li>
-              <li><a href="#">Contacto</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Legal</h3>
-            <ul>
-              <li><a href="#">Política de Privacidad</a></li>
-              <li><a href="#">Términos y Condiciones</a></li>
-              <li><a href="#">Política de Cookies</a></li>
-            </ul>
-          </div>
-          <div class="iconos">
-            <h3>Redes sociales</h3>
-            <div class="social-icons">
-              <a href="#"><img src="../img/facebook.png"></a>
-              <a href="#"><img src="../img/youtube.png"></a>
-              <a href="#"><img src="../img/whatsapp.png"></a>
-              <a href="#"><img src="../img/tik-tok.png"></a>
-              <a href="#"><img src="../img/instagram.png"></a>
-            </div>
-          </div>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <ul>
+          <li><a href="#">Correo electrónico</a></li>
+          <li><a href="#">Teléfono</a></li>
+          <li><a href="#">Atención al cliente</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Servicios</h3>
+        <ul>
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Actividades</a></li>
+          <li><a href="#">Personal</a></li>
+          <li><a href="#">Instalaciones</a></li>
+          <li><a href="#">Precios</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+        </ul>
+      </div>
+      <div class="iconos">
+        <h3>Redes sociales</h3>
+        <div class="social-icons">
+          <a href="#"><img src="../img/facebook.png"></a>
+          <a href="#"><img src="../img/youtube.png"></a>
+          <a href="#"><img src="../img/whatsapp.png"></a>
+          <a href="#"><img src="../img/tik-tok.png"></a>
+          <a href="#"><img src="../img/instagram.png"></a>
         </div>
-      </footer>
+      </div>
+    </div>
+  </footer>
 
-    <script src="../js/datosPadre.js"></script>
+  <script src="../js/datosPadre.js"></script>
 </body>
+
 </html>

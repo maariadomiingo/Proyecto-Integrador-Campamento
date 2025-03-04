@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             <div class="actividad-data">
                                 <h3>${actividad.actividad_nombre}</h3>
                                 <p><strong>Descripción:</strong> ${actividad.descripcion}</p>
-                                <p><strong>Recursos:</strong> ${actividad.recursos}</p>
                                 <p><strong>Hora:</strong> ${actividad.hora_actividad}</p>
                                 <p><strong>Fecha:</strong> ${actividad.fecha}</p>
                             </div>

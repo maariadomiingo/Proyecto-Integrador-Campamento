@@ -76,7 +76,17 @@ if (reservarButtons.length > 0) {
 // Función para mostrar información extra
 function mostrarInfo() {
     const infoExtra = document.getElementById('extraInfo');
+    const verMasButton = document.querySelector('.verMas'); // Selecciona el botón 'Ver Más'
+    
+    // Alternar la clase 'hidden' para mostrar u ocultar la información
     infoExtra.classList.toggle('hidden');
+    
+    // Cambiar el texto del botón dependiendo de si la información está visible o no
+    if (infoExtra.classList.contains('hidden')) {
+        verMasButton.value = "Ver Más";
+    } else {
+        verMasButton.value = "Ver Menos";
+    }
 }
 
 // Función para redirigir a contacto

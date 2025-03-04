@@ -25,7 +25,8 @@ $lista = '';
 while ($row = $result->fetch_assoc()) {
     $lista .= "<li>
         <input type='checkbox' name='campista' value='{$row['id_campista']}'> 
-        {$row['nombre']}
+        <a href='editarCampistas.html?id={$row['id_campista']}'>{$row['nombre']}</a>
+        
     </li>";
 }
 

@@ -11,69 +11,6 @@ body {
     box-sizing: border-box;
 }
 
-/*titulos*/
-.flecha {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  
-
-  .buttonatras {
-    width: 51px;
-    height: 49px;
-    background: #7770C5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 50%;
-    margin: 1%;
-    position: relative;
-    top: 12%;
-    left: 20%;
-  }
-/* header */
-/* .circulo {
-    width: 60px;
-    height: 60px;
-    background: #7770C5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 50%;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 90;
-} */
-
-/* .icono-usuario {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 90;
-} */
-
-.circulo-salir {
-    width: 60px;
-    height: 60px;
-    background: #F5F5F5;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
-    border-radius: 50%;
-    border: 1px #7AB3D7 solid;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 90;
-}
-
-.icono-salir {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 90;
-}
 
 .main-container {
     overflow: hidden;
@@ -149,7 +86,7 @@ select option:disabled {
     font-weight: bold;
 }
 
-input[type="submit"], button {
+input[type="submit"] {
     color: #ffffff;
     border: none;
     padding: 10px 20px;
@@ -171,6 +108,12 @@ button:hover{
 }
 .new-btn{
     background-color: rgba(28, 159, 28, 0.783);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 32px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 5%;
 }
 .editar-btn{
     background-color: #D67272;
@@ -225,61 +168,6 @@ button:hover{
     padding: 20px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
-}
-
-footer {
-    background-color: #7770C5;
-    color: #fff;
-    padding: 15px 0;
-    text-align: center;
-    width: 100%;
-    margin-top: auto;
-}
-
-.footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    max-width: 1200px;
-    margin: auto;
-    padding: 10px 20px;
-}
-
-.footer-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-section ul li {
-    margin: 5px 0;
-}
-
-.footer-section a {
-    text-decoration: none;
-    color: #fff;
-    transition: color 0.3s ease;
-}
-
-.footer-section a:hover {
-    color: #ddd;
-}
-
-.social-icons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
-.social-icons a img {
-    width: 30px;
-    height: auto;
 }
 
 /* Media Queries */

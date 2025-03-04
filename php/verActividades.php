@@ -20,7 +20,6 @@ try {
                a.id_actividad,
                a.nombre AS actividad_nombre, 
                a.descripcion, 
-               a.recursos, 
                a.hora_actividad, 
                a.fecha
         FROM grupocampistas g

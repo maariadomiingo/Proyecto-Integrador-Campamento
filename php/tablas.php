@@ -53,7 +53,6 @@ $tables = [
         id_actividad INT AUTO_INCREMENT PRIMARY KEY,
         nombre VARCHAR(100) NOT NULL,
         descripcion TEXT,
-        recursos TEXT,
         hora_actividad TIME NOT NULL,
         fecha DATE NOT NULL
     );",
@@ -196,17 +195,17 @@ foreach ($usuarios_monitores as $usuario) {
     $stmt_usuario->close(); // Cerrar la declaración después de usarla
 }
 // Insertar en Actividad con bind_param()
-$query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, recursos, hora_actividad, fecha) VALUES (?, ?, ?, ?, ?)";
+$query_actividad = "INSERT IGNORE INTO Actividad (nombre, descripcion, hora_actividad, fecha) VALUES (?, ?, ?, ?)";
 $stmt_actividad = $conexion->prepare($query_actividad);
 if (!$stmt_actividad) die("Error en consulta de Actividad: " . $conexion->error);
 
 // Insertar 5 actividades
 $actividades = [
-    ['Pintura', 'Pintar cuadros', 'Pinturas - Lienzos', '10:00:00', '2025-03-08'],
-    ['Manualidades', 'Crear objetos con reciclaje', 'Tijeras - Pegamento - Papel', '12:00:00', '2025-03-18'],
-    ['Deportes', 'Partido de fútbol', 'Pelotas - Conos', '14:00:00', '2025-03-13'],
-    ['Teatro', 'Representación de obras teatrales', 'Disfraces - Guiones', '16:00:00', '2025-03-20'],
-    ['Cocina', 'Preparar postres', 'Harina - Azúcar - Horno', '18:00:00', '2025-03-21']
+    ['Pintura', 'Pintar cuadros', '10:00:00', '2025-03-08'],
+    ['Manualidades', 'Crear objetos con reciclaje', '12:00:00', '2025-03-18'],
+    ['Deportes', 'Partido de fútbol', '14:00:00', '2025-03-13'],
+    ['Teatro', 'Representación de obras teatrales', '16:00:00', '2025-03-20'],
+    ['Cocina', 'Preparar postres', '18:00:00', '2025-03-21']
 ];
 
 foreach ($actividades as $actividad) {

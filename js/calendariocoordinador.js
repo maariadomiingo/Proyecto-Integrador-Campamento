@@ -31,17 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             openPopup(info.startStr);
         },
         eventClick: function (info) {
-            if (confirm('¿Deseas eliminar esta actividad?')) {
-                fetch("../../php/horario.php", {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'borrar_actividad', id: info.event.id })
-                })
-                .then(response => response.json())
-                .then(() => {
-                    info.event.remove();  // Elimina el evento del calendario
-                });
-            }
+            openDeletePopup(info.event);
         }
     });
     calendar.render();
@@ -73,16 +63,46 @@ document.addEventListener('DOMContentLoaded', function () {
     function openPopup(fecha = '') {
         document.getElementById('popup').style.display = 'block';
         document.getElementById('fecha').value = fecha;
+        document.getElementById('overlay').style.display = 'block';
     }
 
     function closePopup() {
         document.getElementById('popup').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
     }
 
-    document.getElementById('cancelar').addEventListener('click', function(e) {
+    document.getElementById('cancelar').addEventListener('click', function() {
         closePopup();
     });
 
+    // Popup de confirmación para eliminar
+    function openDeletePopup(event) {
+        const deletePopup = document.getElementById('delete-popup');
+        deletePopup.style.display = 'block';
+        document.getElementById('overlay-delete').style.display = 'block';
+
+        document.getElementById('delete-confirm').onclick = function () {
+            fetch("../../php/horario.php", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'borrar_actividad', id: event.id })
+            })
+            .then(response => response.json())
+            .then(() => {
+                event.remove();
+                closeDeletePopup();
+            });
+        };
+
+        document.getElementById('delete-cancel').onclick = function () {
+            closeDeletePopup();
+        };
+    }
+
+    function closeDeletePopup() {
+        document.getElementById('delete-popup').style.display = 'none';
+        document.getElementById('overlay-delete').style.display = 'none';
+    }
     const botonSalir = document.querySelector('.circulo-salir');
 
     // Funcionalidad del botón de salir

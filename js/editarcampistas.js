@@ -50,7 +50,7 @@ function guardarCambios() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert("Datos actualizados correctamente.");
+            console.log("Datos actualizados correctamente.");
         } else {
             console.error("Error:", data.error);
         }

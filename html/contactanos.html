@@ -11,12 +11,11 @@
     <input type="checkbox" name="" id="toggler">
     <label for="toggler" class="fas fa-bars"></label>
 
-    <a href="home.html">
-      <div class="logo">
+    <div class="logo">
+      <a href="home.html">
         <img src="../img/logo sin fondo.png">
+      </a>
     </div>
-    </a>
-    
     <nav class="nav">
             <a href="#home">Sobre Nosotros</a>
             <a href="#actividades">Actividades</a>
@@ -26,16 +25,13 @@
             <a href="../html/contactanos.html">Contáctanos</a>
     </nav>
     <div class="icons">
-      <!-- <button type="submit" class="fas fa-idioma">
-          <img src="../img/idioma.png" alt="Cambiar idioma">
-      </button> -->
-      <a href="login.html">
-          <button type="button" class="fas fa-user">
-              <img src="../img/user.png" alt="Usuario">
-          </button>
-      </a>
-      
-  </div>
+        <button type="submit" class="fas fa-idioma">
+            <img src="../img/idioma.png" alt="Cambiar idioma">
+        </button>
+        <button type="button" class="fas fa-user">
+            <img src="../img/user.png" alt="Usuario">
+        </button>
+    </div>
 </header>
 
     <div class="titulo"><h2>CONTÁCTANOS</h2><img src="../img/subrayador azul.png" alt=""></div>
@@ -44,39 +40,30 @@
       <form>
   <br><br>
   <div class="form-group">
-    <label for="nombre-padre">Nombre:</label>
-    <input type="text" id="nombre-padre" name="nombre-padre">
-    <span class="error-message" id="nombre-error"></span> <!-- Mensaje de error -->
-</div>
-<div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email">
-    <span class="error-message" id="email-error"></span> <!-- Mensaje de error -->
-</div>
-<div class="form-group">
-    <label for="telefono">Teléfono:</label>
-    <input type="tel" id="telefono" name="telefono">
-    <span class="error-message" id="telefono-error"></span> <!-- Mensaje de error -->
-</div>
-<div class="form-group">
-    <label for="comentario">Comentarios:</label>
-    <textarea id="comentario" name="comentario" rows="3"></textarea>
-    <span class="error-message" id="comentario-error"></span> <!-- Mensaje de error -->
-</div>
-<div class="condiciones">
-    <input type="checkbox" id="terminos" name="terminos">
+      <label for="nombre-padre">Nombre:</label>
+      <input type="text" id="nombre-padre" name="nombre-padre" >
+  </div>
+  <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+  </div>
+  <div class="form-group">
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" name="telefono">
+  </div>
+  <div class="form-group">
+      <label for="comentario">Comentarios:</label>
+      <textarea id="comentario" name="comentario" rows="3"></textarea>
+  </div>
+  <div class="condiciones">
+    <input type="checkbox" id="terminos" name="terminos" >
     <label for="terminos">He leído y acepto el aviso legal y política de privacidad</label>
-    <span class="error-message" id="terminos-error"></span> <!-- Mensaje de error -->
+    
 </div>
   <div class="form-actions">
       <button type="submit" class="btn-submit">Solicitar información</button>
-      <div id="modal-confirmacion" class="modal">
-        <div class="modal-contenido">
-            <p>¡En breve nos contactaremos contigo! 🎉</p>
-        </div>
-    </div>
+      
   </div>
-  
   </form>
   </div>
 
