@@ -15,7 +15,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 if (isset($data['action'])) {
     switch ($data['action']) {
         case 'get_actividades':
-            $sql = "SELECT id_actividad, nombre, descripcion, recursos, hora_actividad, fecha FROM Actividad";
+            $sql = "SELECT id_actividad, nombre, descripcion, hora_actividad, fecha FROM Actividad";
             $resultado = $conexion->query($sql);
 
             $actividades = [];
