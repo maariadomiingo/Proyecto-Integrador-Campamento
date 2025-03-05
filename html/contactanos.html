@@ -11,11 +11,12 @@
     <input type="checkbox" name="" id="toggler">
     <label for="toggler" class="fas fa-bars"></label>
 
-    <div class="logo">
-      <a href="home.html">
+    <a href="home.html">
+      <div class="logo">
         <img src="../img/logo sin fondo.png">
-      </a>
     </div>
+    </a>
+    
     <nav class="nav">
             <a href="#home">Sobre Nosotros</a>
             <a href="#actividades">Actividades</a>
@@ -25,13 +26,16 @@
             <a href="../html/contactanos.html">Contáctanos</a>
     </nav>
     <div class="icons">
-        <button type="submit" class="fas fa-idioma">
-            <img src="../img/idioma.png" alt="Cambiar idioma">
-        </button>
-        <button type="button" class="fas fa-user">
-            <img src="../img/user.png" alt="Usuario">
-        </button>
-    </div>
+      <!-- <button type="submit" class="fas fa-idioma">
+          <img src="../img/idioma.png" alt="Cambiar idioma">
+      </button> -->
+      <a href="login.html">
+          <button type="button" class="fas fa-user">
+              <img src="../img/user.png" alt="Usuario">
+          </button>
+      </a>
+      
+  </div>
 </header>
 
     <div class="titulo"><h2>CONTÁCTANOS</h2><img src="../img/subrayador azul.png" alt=""></div>
@@ -40,76 +44,79 @@
       <form>
   <br><br>
   <div class="form-group">
-      <label for="nombre-padre">Nombre:</label>
-      <input type="text" id="nombre-padre" name="nombre-padre" >
-  </div>
-  <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email">
-  </div>
-  <div class="form-group">
-      <label for="telefono">Teléfono:</label>
-      <input type="tel" id="telefono" name="telefono">
-  </div>
-  <div class="form-group">
-      <label for="comentario">Comentarios:</label>
-      <textarea id="comentario" name="comentario" rows="3"></textarea>
-  </div>
-  <div class="condiciones">
-    <input type="checkbox" id="terminos" name="terminos" >
-    <label for="terminos">He leído y acepto el aviso legal y política de privacidad</label>
-    
+    <label for="nombre-padre">Nombre:</label>
+    <input type="text" id="nombre-padre" name="nombre-padre">
+    <span class="error-message" id="nombre-error"></span> <!-- Mensaje de error -->
+</div>
+<div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+    <span class="error-message" id="email-error"></span> <!-- Mensaje de error -->
+</div>
+<div class="form-group">
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" name="telefono">
+    <span class="error-message" id="telefono-error"></span> <!-- Mensaje de error -->
+</div>
+<div class="form-group">
+    <label for="comentario">Comentarios:</label>
+    <textarea id="comentario" name="comentario" rows="3"></textarea>
+    <span class="error-message" id="comentario-error"></span> <!-- Mensaje de error -->
 </div>
   <div class="form-actions">
       <button type="submit" class="btn-submit">Solicitar información</button>
-      
+      <div id="modal-confirmacion" class="modal">
+        <div class="modal-contenido">
+            <p>¡En breve nos contactaremos contigo! 🎉</p>
+        </div>
+    </div>
   </div>
+  
   </form>
   </div>
 
    
-    <footer>
-        <div class="footer-container">
-          <div class="footer-section">
-            <h3>Contacto</h3>
-            <ul>
-              <li><a href="#">Correo electrónico</a></li>
-              <li><a href="#">Teléfono</a></li>
-              <li><a href="#">Atención al cliente</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Servicios</h3>
-            <ul>
-              <li><a href="#">Sobre nosotros</a></li>
-              <li><a href="#">Actividades</a></li>
-              <li><a href="#">Personal</a></li>
-              <li><a href="#">Instalaciones</a></li>
-              <li><a href="#">Precios</a></li>
-              <li><a href="#">Contacto</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Legal</h3>
-            <ul>
-              <li><a href="#">Política de Privacidad</a></li>
-              <li><a href="#">Términos y Condiciones</a></li>
-              <li><a href="#">Política de Cookies</a></li>
-            </ul>
-          </div>
-          <div class="iconos">
-            <h3>Redes sociales</h3>
-            <div class="social-icons">
-              <a href="#"><img src="../img/facebook.png"></a>
-              <a href="#"><img src="../img/youtube.png"></a>
-              <a href="#"><img src="../img/whatsapp.png"></a>
-              <a href="#"><img src="../img/tik-tok.png"></a>
-              <a href="#"><img src="../img/instagram.png"></a>
-            </div>
-          </div>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <ul>
+          <li><a href="#">Correo electrónico</a></li>
+          <li><a href="#">Teléfono</a></li>
+          <li><a href="#">Atención al cliente</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Servicios</h3>
+        <ul>
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Actividades</a></li>
+          <li><a href="#">Personal</a></li>
+          <li><a href="#">Instalaciones</a></li>
+          <li><a href="#">Precios</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+        </ul>
+      </div>
+      <div class="iconos">
+        <h3>Redes sociales</h3>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61572940826762"><img src="../img/facebook.png"></a>
+          <a href="https://www.youtube.com/@PequeArtePodcast"><img src="../img/youtube.png"></a>
+          <a href="https://www.tiktok.com/@pequearte0?_t=ZN-8u4rkIn65tG&_r=1"><img src="../img/tik-tok.png"></a>
+          <a href="https://www.instagram.com/pequeartecampamento/?next=%2F"><img src="../img/instagram.png"></a>
         </div>
-      </footer>
+      </div>
+    </div>
+  </footer>
 
-    <script src="../js/reserva.js"></script>
+    <script src="../js/contactanos.js"></script>
 </body>
 </html>

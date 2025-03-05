@@ -601,7 +601,7 @@ h1{
     align-items: center;
     background: #DEDBF6;
     margin: 20px auto;
-    padding: 35px;
+    padding: 25px;
     border-radius: 50px;
     /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
     max-width: 800px;
@@ -610,10 +610,12 @@ h1{
 
 .socios div img {
     width: 150px;
-    height: 150px;
+    height: auto;
     object-fit: cover;
+    background-color: #ffffff;
     border-radius: 50px;
     margin-right: 20px;
+    padding: 10px;
 }
 
 .socios div .info {
