@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/home.css">
     <link rel="icon" href="icon/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Home</title>
 </head>
 <body>
@@ -24,15 +25,14 @@
                 <a href="contactanos.html">Contáctanos</a>
         </nav>
         <div class="icons">
-            <!-- <button type="submit" class="fas fa-idioma">
+            <button type="submit" id="fas fa-idioma" class="blanco">
                 <img src="../img/idioma.png" alt="Cambiar idioma">
-            </button> -->
+            </button>
             <a href="login.html">
-                <button type="button" class="fas fa-user">
+                <button type="button" id="fas fa-user" class="morado">
                     <img src="../img/user.png" alt="Usuario">
                 </button>
             </a>
-            
         </div>
     </header>
     <section class="welcome">
@@ -40,7 +40,9 @@
             <h1>¡Explora, Crea y Aprende <br> en Dos Idiomas!</h1>
             <p>Potencia la creatividad de tus hijos en nuestro <br> campamento de arte,
              un lugar seguro y <br> divertido donde explorarán su imaginación <br> mientras se divierten.</p>
-            <a href="contactanos.html"><input type="informacion" name="informacion" class="informacion" value="Mas información"></a>
+             <a href="contactanos.html">
+                <button type="button" class="morado">Más información</button>
+            </a>
         </div>
         <div class="image-container"></div>
     </section>
@@ -59,9 +61,9 @@
             y aprenderán a trabajar en equipo y superar desafíos.</p>
             <p>Si deseas más información sobre nuestro campamento, puedes contactar con nosotros.</p>
              <!-- aqui hay que poner el link al form de contacta con nosotros -->
-            <p>Duración: media jornada, jornada completa</p>
+            <p><strong>Duración:</strong> media jornada, jornada completa</p>
         </div>
-        <input type="verMas" name="verMas" class="verMas" value="Ver Más" onclick="mostrarInfo()">
+        <button type="button" class="azul" id="verMas" onclick="mostrarInfo()">Ver Más <i class="fas fa-arrow-down"></i></button>
     </section>
      <!-- seccion de actividades -->
       <div class="actividad-content" id="actividades">
@@ -181,7 +183,7 @@
             <p>Avenida Mataespesa 45 alpedrete, 28430, Alpedrete, Madrid.</p>
         </div>
         <div class="reserva-btn">
-            <button type="button" class="reservar-btn">Reservar</button>
+            <button type="button" id="reservar-btn" class="morado">Reservar</button>
         </div>
     </div>
     <div>
@@ -192,7 +194,7 @@
         <p>Ronda de Sobradiel, 80 – 28043 Madrid</p>
         </div>
         <div class="reserva-btn1">
-            <button type="button" class="reservar-btn1">Reservar</button>
+            <button type="button" id="reservar-btn1" class="morado">Reservar</button>
         </div>
     </div>
     <div>
@@ -203,7 +205,7 @@
         <p>C. del Pez Austral, 13, Retiro, 28007 Madrid</p>
         </div>
         <div class="reserva-btn2">
-            <button type="button" class="reservar-btn2">Reservar</button>
+            <button type="button" id="reservar-btn2" class="morado">Reservar</button>
         </div>
     </div>
     <div>
@@ -214,7 +216,7 @@
         <p>Carr. de Burgos, km 14, 28108 Alcobendas, Madrid</p>
         </div>
         <div class="reserva-btn3">
-            <button type="button" class="reservar-btn3">Reservar</button>
+            <button type="button" id="reservar-btn3" class="morado">Reservar</button>
         </div>
     </div>
     <a href="../html/contactanos.html">¿Eres una empresa?</a> Contáctanos para asociarte con nosotros.

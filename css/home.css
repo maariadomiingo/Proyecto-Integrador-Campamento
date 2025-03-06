@@ -34,25 +34,11 @@ html{
 section{
     padding: 2rem 9%;
 }
-.informacion{
-    display: inline-block;
-    margin-top: 1rem;
-    border-radius: 5rem;
-    background: #333;
-    color: #fff;
-    padding: .9rem 3.5rem;
-    cursor: pointer;
-    font-size: 1.7rem;
-}
-
-.informacion:hover{
-    background: var(--color-primary);
-}
 .header {
     position: fixed;
     top: 0; left:0; right:0;
     background:#fff;
-    padding: 2rem 9%;
+    padding: 2rem 3%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -171,23 +157,6 @@ section{
     margin-bottom: 2rem;
 }
 
-.home .informacion {
-    display: inline-block;
-    margin-top: 1rem;
-    border-radius: 5rem;
-    background: var(--color-primary);
-    color: #fff;
-    padding: 1rem 3.5rem;
-    cursor: pointer;
-    font-size: 1.7rem;
-    border: none;
-    transition: background-color var(--transition-duration);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra para resaltar */
-}
-
-.home .informacion:hover {
-    background: #564EB5; /* Cambio de color al hacer hover */
-}
 
 /* home */
 /* Estilos para la sección .welcome */
@@ -205,6 +174,9 @@ section{
 
 /* Estilos para el contenido de texto */
 .welcome .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 50%;
     animation: fadeInLeft 1s ease-out; /* Animación para el texto */
 }
@@ -212,7 +184,7 @@ section{
 .welcome h1 {
     color: #212529;
     font-size: 48px;
-    text-align: left;
+    text-align: center;
     margin-bottom: 20px;
     animation: fadeInLeft 1.5s ease-out; /* Animación para el título */
 }
@@ -220,7 +192,7 @@ section{
 .welcome p {
     color: #212529;
     font-size: 24px;
-    text-align: left;
+    text-align: center;
     margin-bottom: 30px;
     animation: fadeInLeft 2s ease-out; /* Animación para el párrafo */
 }
@@ -234,8 +206,8 @@ section{
     animation: fadeInRight 1.5s ease-out; /* Animación para la imagen */
 }
 
-/* Estilos para el botón */
-.informacion {
+/* Estilos para el botón morado */
+.morado {
     background-color: #7770C5;
     border: none;
     color: white;
@@ -244,18 +216,73 @@ section{
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+}
+.content .morado {
+    text-align: center;
     transition: background 0.3s, transform 0.2s;
     animation: fadeInUp 2.5s ease-out; /* Animación para el botón */
 }
 
-.informacion:hover {
+.morado:hover {
     background-color: #5e56a1;
 }
 
-.informacion:active {
+.morado:active {
     background-color: #4a4485;
     transform: scale(0.95);
 }
+/* Botones azules */
+.azul {
+    background-color: #7AB3D7;
+    color: white;
+    border-radius: 32px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.azul:hover {
+    background-color: #47a8d8;
+}
+
+.azul:active {
+    background-color: #446d85;
+    transform: scale(0.95);
+}
+
+.hidden {
+    display: none;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #444;
+}
+/*botones blancos*/
+.blanco {
+    background-color: #ffffff;
+    color: #0F0559;
+    border-radius: 32px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #7AB3D7;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.blanco:hover {
+    background-color: #f5f5f5;
+}
+
+.blanco:active {
+    border: 2px solid #3468A3;
+    transform: scale(0.95);
+}
+
 
 /* Animaciones */
 @keyframes fadeInLeft {
@@ -326,35 +353,6 @@ section{
     color: #212529;
 }
 
-/* Botón Ver Más */
-.verMas {
-    background-color: #7AB3D7;
-    color: white;
-    border-radius: 32px;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.verMas:hover {
-    background-color: #47a8d8;
-}
-
-.verMas:active {
-    background-color: #446d85;
-    transform: scale(0.95);
-}
-
-.hidden {
-    display: none;
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: #444;
-}
 
 /* Responsividad para pantallas pequeñas */
 @media (max-width: 768px) {
@@ -408,11 +406,11 @@ h1{
     flex-grow: 1; 
 }
 .unidad h2 {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     margin: 0 0 10px;
 }
 .unidad p {
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 /* Responsive para pantallas pequeñas */
@@ -482,7 +480,7 @@ h1{
 
 .monitor-info p {
     margin: 5px 0 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #555;
     padding: 20px;
 }
@@ -641,24 +639,8 @@ h1{
     border: 0.5px solid #6d6d6d;
     margin: 5px 0;
 }
-
 .reserva {
     text-align: left;
-}
-
-.reservar-btn, .reservar-btn1, .reservar-btn2, .reservar-btn3 {
-    background-color: #6A0DAD; /* Morado */
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background 0.3s;
-}
-
-.reservar-btn:hover, .reservar-btn1:hover, .reservar-btn2:hover, .reservar-btn3:hover {
-    background-color: #5A0B8E; /* Morado más oscuro al pasar el mouse */
 }
 
 a{
@@ -704,7 +686,6 @@ a{
 #contenedor-galeria {
     position: fixed;
     top: 0;
-    left: 0;
     z-index: 1000;
     width: 100%;
     height: 100%;
@@ -764,6 +745,7 @@ button {
     font-size: 2.5rem;
 }
 
+/*footer*/
 footer {
     background-color: #7770C5;
     color: #ffffff;
@@ -1041,4 +1023,487 @@ footer {
 
 #cta button:hover {
     animation: none;
+}
+/*contactanos*/
+/* Form Container */
+.form-container {
+    background-color: #D3E1EB;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 80px;
+    max-width: 800px;
+    margin: 20px auto;
+    border: 2px solid #7AB3D7;
+}
+.titulo{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-top: 8%;
+}
+.titulo img{
+    width:8%;
+    margin-left: 32%;
+    margin-bottom: -5%;
+}
+.titulo h2 {
+    padding: 1%;
+    background-color: #3468A3;
+    color: #fff;
+    text-align: center;
+    width: 20%;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    padding-left: 2%;
+}
+
+.form-group input.error,
+.form-group textarea.error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.valido img,
+.invalido img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.form-actions {
+    display: flex;
+    margin-top: 20px;
+    justify-content:center;
+}
+.form-actions button{
+    margin: 3%;
+}
+/* Estilos para el modal */
+.modal {
+    display: none; /* Ocultar por defecto */
+    position: fixed; /* Posición fija */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+}
+
+.modal-contenido {
+    background-color: white; /* Fondo del mensaje */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center; /* Texto centrado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    font-size: 1.5em; /* Tamaño del texto */
+    color: #333; /* Color del texto */
+}
+
+/* Animación para aparecer suavemente */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal.mostrar {
+    display: flex; /* Mostrar el modal */
+    animation: fadeIn 0.3s ease-in-out; /* Animación de aparición */
+}
+
+.error-message {
+    color: red;
+    font-size: 1.2em;
+    display: none; /* Ocultar por defecto */
+}
+/*jornadas*/
+/* Intro Section */
+.intro {
+    padding: 0%;
+    margin-top: 7%;
+    display: flex;
+    align-items: center;
+    width: auto; 
+    height: auto; 
+    background-color: #D3E1EB; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.intro-text {
+    flex: 1;
+    text-align:center;
+    margin: 5%;
+}
+
+.intro-text h1 {
+    font-family: "Montserrat";
+    font-size: 3.5em;
+    color: #0F0559;
+    margin-bottom: 20px;
+}
+
+.intro-text p {
+    font-size: 1.9em;
+    color: #0F0559;
+    margin-top: 10px;
+}
+
+.intro-image {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.intro-image img {
+   width: 100%;
+   height: 400px; 
+}
+.textoreserva{
+    margin-top: 5%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+.negrita{
+    font-weight: bold;
+}
+/*tarjetas*/
+.tarjeta{
+    width: 70%;
+    margin: 3%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 18%;
+
+}
+.tarjeta img{
+    width: 15%;
+    border-radius: 20px;
+    margin: 2%;
+}
+.tarjeta button{
+    padding: 1% 2%;
+    margin-right: 5%;
+    background-color: #7770C5;
+    border-radius: 20px;
+}
+.tarjeta button:hover{
+    background-color: #4c4593;
+}
+.tarjeta h1{
+    text-align:start;
+}
+.dentro{
+    margin-left: 5%;
+    display: flex;
+}
+.textodentro{
+    margin-left: 7%;
+}
+.jornadas{
+    display: flex;
+}
+.jornadas img{
+    width: 5%;
+    height: 5%;
+}
+/*calendario reservas*/
+/*calendario*/
+#calendar {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  section{
+    padding: 0%;
+  }
+  #selected_days_display{
+    display: none;
+  }
+  .fc-event.selected-day {
+    background-color: #D67272 !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin: 2px auto;
+    font-size: 16px;
+  }
+  .fc .fc-button-primary:disabled {
+    background-color: #02503F;
+    color: white;
+  }
+  
+  .fc-toolbar-title {
+    /* ponemos el texto en mayusculas */
+    text-transform: capitalize;
+  }
+  .fc .fc-button {
+    background-color: #D67272 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+  }
+  
+  .fc .fc-button:hover {
+    background-color: #a74b4b !important; 
+  }
+  
+  .fc .fc-button.fc-today-button {
+    background-color: #6e68b4 !important; 
+  }
+  
+  .fc .fc-button.fc-today-button:hover {
+    background-color: #564EB5 !important; 
+  }
+  /*reservar*/
+  .grupo{
+    display: flex;
+    margin-top: 10%;
+    justify-content: space-evenly;
+  }
+  .bordeformulario{
+    border-radius: 20px;
+    background-color: #DEDBF6;
+    height: 80%;
+    width: 50%;
+    padding: 2%;
+    margin: 3%;
+  }
+  .bordeblanco{
+    padding: 2%;
+    height: auto;
+    width: auto;
+    background-color: #ffffff;
+  }
+  .imgtexto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+  }
+  .imgtexto img{
+    height: 40%;
+    width: auto;
+  }
+  .imgtexto h1{
+    color: #0F0559;
+  }
+.imgtexto h3{
+  font-size: 20px;
+}
+ .botonreservar{
+    padding: 7px 20px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #7770C5;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  /*reservar y datos padres*/
+  /*pasos*/
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 600px;
+    margin: 40px 0;
+    position: relative;
+    padding-left: 32%;
+}
+
+.step {
+    background-color: #7770C5;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+    font-size: 25px;
+}
+
+.step.active {
+    background-color: #3A328F;
+}
+
+.line {
+    position: absolute;
+    height: 2px;
+    background-color: #7770C5;
+    top: 50%;
+    width: 55%;
+    z-index: 0;
+}
+
+.negrita {
+    font-weight: bold;
+}
+
+.rojo {
+    color: red;
+}
+
+.intro .intro-text h1 {
+    font-family: "Montserrat";
+    font-size: 2.9em;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.flecha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 0;
+    width: 90px;
+    height: 90px;
+}
+
+.flecha img {
+    width: 100%;
+    height: auto;
+}
+
+.textoreserva p {
+    font-size: 20px;
+}
+
+.textoreserva {
+    margin-top: 5%;
+    margin-left: 25%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+#terminos {
+    margin-right: 2%;
+}
+.condiciones {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/*desplegable*/
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.medicamento-extra {
+    margin-top: 5px;
+}
+
+.agregar-btn {
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #7AB3D7;
+    color: #fff;
+
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.agregar-btn:hover {
+    background-color: #488aaf;
+}
+
+/*inscrito*/
+.imageninscrito {
+    margin: 20px;
+    margin-left: 37%;
+    width: 25%;
+    height: auto;
+}
+
+.textoinscrito {
+    text-align: center;
+}
+.textoinscrito p{
+    font-size: 20px;
+}
+/* /desplegable/ */
+label {
+    display: block;
+    margin: 10px 0 5px;
+  }
+  .medicamento-extra {
+    margin-top: 5px;
+  }
+  
+/* pagina de confirmacion */
+.container-conf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.titulo-conf,
+.p-conf {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.titulo-conf:hover {
+    transform: scale(1.2);
+    transition-duration: 3s;
+}
+
+.img-conf {
+    max-width: 100%;
+    height: auto;
+}
+.espacio{
+    padding: 5%;
 }

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/reserva.css">
+  <link rel="stylesheet" href="../css/home.css">
   <link rel="icon" href="icon/favicon.png" type="image/x-icon">
   <title>Reserva tu Plaza</title>
 </head>
@@ -16,28 +16,28 @@
     <label for="toggler" class="fas fa-bars"></label>
 
     <div class="logo">
-      <img src="../img/logo sin fondo.png">
+      <a href="home.html"><img src="../img/logo sin fondo.png"></a>
     </div>
     <nav class="nav">
-      <a href="home.html#home">Sobre Nosotros</a>
-      <a href="home.html#actividades">Actividades</a>
-      <a href="home.html#monitores">Monitores</a>
-      <a href="home.html#socios">Socios</a>
-      <a href="home.html#fotos">Fotos</a>
-      <a href="home.html#contacto">Contáctanos</a>
+            <a href="home.html#home">Sobre Nosotros</a>
+            <a href="home.html#actividades">Actividades</a>
+            <a href="home.html#monitores">Monitores</a>
+            <a href="home.html#socios">Socios</a>
+            <a href="home.html#fotos">Fotos</a>
+            <a href="contactanos.html">Contáctanos</a>
     </nav>
     <div class="icons">
-      <!-- <button type="submit" class="fas fa-idioma">
-          <img src="../img/idioma.png" alt="Cambiar idioma">
-      </button> -->
-      <a href="login.html">
-        <button type="button" class="fas fa-user">
-          <img src="../img/user.png" alt="Usuario">
+        <button type="submit" id="fas fa-idioma" class="blanco">
+            <img src="../img/idioma.png" alt="Cambiar idioma">
         </button>
-      </a>
+        <a href="login.html">
+            <button type="button" id="fas fa-user" class="morado">
+                <img src="../img/user.png" alt="Usuario">
+            </button>
+        </a>
     </div>
-  </header>
-
+</header>
+<div class="espacio"></div>
   <div class="stepper">
     <div class="line" id="progress-line"></div>
     <div class="step" id="step1">1</div>
@@ -76,8 +76,8 @@
       </div>
 
       <div class="form-actions">
-        <button type="button" class="btn-cancel">Atrás</button>
-        <button type="submit" class="btn-submit">Siguiente</button>
+        <button type="button" class="blanco">Atrás</button>
+        <button type="submit" class="azul">Siguiente</button>
       </div>
     </form>
   </div>

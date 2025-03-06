@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let diasSeleccionados = [];
     const precioPorDia = 18;
     const totalPriceElement = document.getElementById("totalPrice");
-    const botonReservar = document.querySelector(".botonreservar");
+    const botonReservar = document.getElementById("botonreservar");  // Cambié esto para usar el ID
+
     // Formatea una fecha en el formato YYYY-MM-DD
     function formatearFecha(fecha) {
         const anio = fecha.getFullYear();
@@ -56,23 +57,16 @@ document.addEventListener("DOMContentLoaded", function () {
             day: "Día",
             list: "Lista"
         },
-        // Aplica un color gris a los días deshabilitados
         dayCellDidMount: function (info) {
             let fechaStr = formatearFecha(info.date);
             if (fullDays.includes(fechaStr)) {
-                // Aplica el color gris a los días no permitidos
-                info.el.style.backgroundColor = '#f0f0f0';  // Gris claro
-                info.el.style.color = '#d1d1d1';  // Gris para el texto
-                info.el.style.cursor = 'not-allowed';  // Cursor deshabilitado
-                info.el.style.opacity = '0.6';  // Baja opacidad
+                info.el.style.backgroundColor = '#f0f0f0'; 
+                info.el.style.color = '#d1d1d1';  
+                info.el.style.cursor = 'not-allowed';  
+                info.el.style.opacity = '0.6';  
             }
         },
-        locale: 'es',
-        firstDay: 1,
-
-        // Maneja la selección de un rango de fechas
         select: function (info) {
-            // Si la selección es de un solo día, ignorarla
             if (info.end - info.start === 86400000) {
                 return;
             }
@@ -88,11 +82,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 actual.setDate(actual.getDate() + 1);
             }
         
-            // Verificar si todos los días en el rango ya están seleccionados
             const todosSeleccionados = selectedDates.every(fecha => diasSeleccionados.includes(fecha));
         
             if (todosSeleccionados) {
-                // Si todos están seleccionados, eliminarlos
                 diasSeleccionados = diasSeleccionados.filter(dia => !selectedDates.includes(dia));
                 calendario.getEvents().forEach(evento => {
                     if (selectedDates.includes(evento.startStr)) {
@@ -100,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
             } else {
-                // Si hay al menos un día no seleccionado, agregarlos
                 selectedDates.forEach(fechaStr => {
                     if (!diasSeleccionados.includes(fechaStr)) {
                         agregarFecha(fechaStr);
@@ -111,11 +102,9 @@ document.addEventListener("DOMContentLoaded", function () {
             actualizarVisualizacion();
         },
 
-        // Maneja el clic en una fecha para alternar su selección
         dateClick: function (info) {
             let fechaStr = info.dateStr;
             if (fullDays.includes(fechaStr)) {
-                // alert(`El día ${fechaStr} está completo. No puedes seleccionarlo.`);
                 return;
             }
 
@@ -137,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     calendario.render();
+
     botonReservar.addEventListener("click", function () {
         if (diasSeleccionados.length === 0) {
             return;

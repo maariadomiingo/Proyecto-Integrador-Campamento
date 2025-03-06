@@ -1341,3 +1341,25 @@ POST: Array
 Identificación recibida: qwertyuio
 Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
 Datos recibidos: {"identificacion":"qwertyuio","nombre":"Juan Pérez Montero","email":"juan.perez@example.com","telefono":"123456789"}
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+POST: Array
+(
+    [identificacion] => qwertyuio
+)
+
+Identificación recibida: qwertyuio
+Consulta: SELECT nombre, email, identificacion, telefono FROM monitor WHERE identificacion = ? con ID: qwertyuio
+Datos recibidos: {"identificacion":"qwertyuio","nombre":"Pepito Pérez","email":"juan.perez@example.com","telefono":"123456789"}

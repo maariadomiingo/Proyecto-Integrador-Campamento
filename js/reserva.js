@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
-    const submitButton = form.querySelector(".btn-submit");
+    const submitButton = form.querySelector("#btn-submit");
     const inputs = form.querySelectorAll("input, textarea");
     const checkboxOtros = document.getElementById('otros');
     const otrosContainer = document.getElementById('otros-container');

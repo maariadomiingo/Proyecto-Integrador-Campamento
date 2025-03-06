@@ -7,7 +7,7 @@ const container = document.querySelector('#contenedor-galeria');
 const imagenActiva = document.querySelector('#img-activa');
 let indexImagen = 0;
 const navbarLinks = document.querySelectorAll("nav a");
-const reservarButtons = document.querySelectorAll('.reservar-btn, .reservar-btn1, .reservar-btn2, .reservar-btn3');
+const reservarButtons = document.querySelectorAll('#reservar-btn, #reservar-btn1, #reservar-btn2, #reservar-btn3');
 
 // Scroll suave en la navegación
 navbarLinks.forEach(link => {
@@ -76,16 +76,16 @@ if (reservarButtons.length > 0) {
 // Función para mostrar información extra
 function mostrarInfo() {
     const infoExtra = document.getElementById('extraInfo');
-    const verMasButton = document.querySelector('.verMas'); // Selecciona el botón 'Ver Más'
-    
+    const verMasButton = document.getElementById('verMas');
+
     // Alternar la clase 'hidden' para mostrar u ocultar la información
     infoExtra.classList.toggle('hidden');
-    
-    // Cambiar el texto del botón dependiendo de si la información está visible o no
+
+    // Cambiar el texto y el icono del botón
     if (infoExtra.classList.contains('hidden')) {
-        verMasButton.value = "Ver Más";
+        verMasButton.innerHTML = 'Ver Más <i class="fas fa-arrow-down"></i>';
     } else {
-        verMasButton.value = "Ver Menos";
+        verMasButton.innerHTML = 'Ver Menos <i class="fas fa-arrow-up"></i>';
     }
 }
 
@@ -123,10 +123,9 @@ if (perfil) {
     });
 }
 
+const verMas = document.getElementById('verMas');
 if (verMas) {
-    verMas.addEventListener('click', function() {
-        mostrarInfo();
-    });
+    verMas.addEventListener('click', mostrarInfo);
 }
 const hablemosButton = document.getElementById('hablemosButton');
 

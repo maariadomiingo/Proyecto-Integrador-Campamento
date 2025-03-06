@@ -104,7 +104,15 @@ h1 {
   margin-left: 12%;
 }
 
-
+.editar-perfil{
+  height: 49px;
+  background: #7770C5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 10% 5% 10% 5%;
+  margin: 1%;
+  color: #F5F5F5;
+}
 #nombre {
   font-size: 30px;
 }
